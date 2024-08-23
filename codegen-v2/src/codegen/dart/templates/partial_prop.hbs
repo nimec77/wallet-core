@@ -2,7 +2,7 @@
     {{return.type}}{{#if return.is_nullable}}?{{/if}} get {{#unless is_public}}_{{/unless}}{{name}} {
         {{#each operations}}
         {{#if this.call}}
-        final {{this.call.var_name}} = {{this.call.call}};
+        final {{this.call.var_name}} = {{#if this.call.is_ffi_call}}_core.{{/if}}{{this.call.call}};
         {{/if}}
         {{#if this.call_optional}}
             final UnsafeRawPointer? ptr;

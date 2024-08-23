@@ -63,6 +63,7 @@ pub(super) fn process_inits(
             ops.push(DartOperation::Call {
                 var_name: "result".to_string(),
                 call: format!("{}({})", init.name, param_names),
+                is_ffi_call: true,
             });
         }
 
@@ -92,12 +93,12 @@ pub(super) fn process_deinits(
     object: &ObjectVariant,
     deinit: Vec<DeinitInfo>,
 ) -> Result<(Vec<DeinitInfo>, Vec<DeinitInfo>)> {
-    let mut swift_deinits = vec![];
+    let mut dart_deinits = vec![];
     let mut skipped_deinits = vec![];
 
     for deinit in deinit {
         if deinit.name.starts_with(object.name()) {
-            swift_deinits.push(deinit)
+            dart_deinits.push(deinit)
         } else {
             // Deinit is not associated with the object.
             skipped_deinits.push(deinit);
@@ -105,5 +106,5 @@ pub(super) fn process_deinits(
         }
     }
 
-    Ok((swift_deinits, skipped_deinits))
+    Ok((dart_deinits, skipped_deinits))
 }

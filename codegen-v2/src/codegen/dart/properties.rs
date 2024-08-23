@@ -5,6 +5,7 @@
 use super::*;
 use crate::manifest::PropertyInfo;
 use heck::ToLowerCamelCase;
+use crate::codegen::dart::utils::has_address_protocol;
 
 /// This function checks each property and determines whether there's an
 /// association with the passed on object (struct or enum), based on common name
@@ -31,15 +32,17 @@ pub(super) fn process_properties(
         // Initialize the 'self' type, which is then passed on to the underlying
         // C FFI function.
         ops.push(match object {
-            // E.g. `let obj = self.rawValue`
+            // E.g. `final obj = rawValue;`
             ObjectVariant::Struct(_) => DartOperation::Call {
                 var_name: "obj".to_string(),
-                call: "self.rawValue".to_string(),
+                call: "rawValue".to_string(),
+                is_ffi_call: false,
             },
-            // E.g. `let obj = TWSomeEnum(rawValue: self.rawValue")`
+            // E.g. `final obj = TWSomeEnum.fromValue(rawValue");`
             ObjectVariant::Enum(name) => DartOperation::Call {
                 var_name: "obj".to_string(),
-                call: format!("{}(rawValue: self.rawValue)", name),
+                call: format!("{}.fromValue(rawValue)", name),
+                is_ffi_call: true,
             },
         });
 
@@ -53,6 +56,7 @@ pub(super) fn process_properties(
             ops.push(DartOperation::Call {
                 var_name,
                 call,
+                is_ffi_call: true,
             });
         }
 
@@ -73,10 +77,12 @@ pub(super) fn process_properties(
             is_nullable: prop.return_type.is_nullable,
         };
 
+        let is_override =  pretty_name == "description" && has_address_protocol(object.name());
+
         dart_props.push(DartProperty {
             name: pretty_name,
             is_public: prop.is_public,
-            is_override: true,
+            is_override,
             operations: ops,
             return_type,
             comments: vec![],

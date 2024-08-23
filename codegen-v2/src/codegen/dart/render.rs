@@ -3,7 +3,7 @@
 // Copyright © 2017 Trust Wallet.
 
 use super::{inits::process_deinits, *};
-use crate::codegen::dart::utils::{import_name, pretty_file_name, pretty_name};
+use crate::codegen::dart::utils::{has_address_protocol, import_name, pretty_file_name, pretty_name};
 
 #[derive(Debug, Clone)]
 pub struct RenderInput<'a> {
@@ -147,7 +147,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         if !deinits.is_empty() {
             superclasses.push("Disposable".to_string());
         }
-        if pretty_struct_name.ends_with("Address") {
+        if has_address_protocol(strct.name.as_str()) {
             superclasses.push("Address".to_string());
         }
 
@@ -176,6 +176,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             name: pretty_struct_name,
             is_class: strct.is_class,
             is_public: strct.is_public,
+            raw_type: "Pointer<Opaque>".to_string(),
             init_instance: strct.is_class,
             imports,
             superclasses,

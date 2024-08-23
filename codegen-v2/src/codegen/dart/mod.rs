@@ -31,6 +31,7 @@ pub struct DartStruct {
     is_class: bool,
     is_public: bool,
     init_instance: bool,
+    raw_type: String,
     imports: Vec<String>,
     superclasses: Vec<String>,
     eq_operator: Option<DartOperatorEquality>,
@@ -118,6 +119,7 @@ pub enum DartOperation {
     Call {
         var_name: String,
         call: String,
+        is_ffi_call: bool,
     },
     // Results in:
     // ```dart
@@ -289,6 +291,7 @@ fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
                 DartOperation::Call {
                     var_name,
                     call,
+                    is_ffi_call: true,
                 }
             }
         }
@@ -308,12 +311,13 @@ fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
                 DartOperation::Call {
                     var_name,
                     call,
+                    is_ffi_call: true,
                 }
             }
         }
         // E.g.
-        // - `final param = param.rawValue`
-        // - `final param = param?.rawValue`
+        // - `final param = param.rawValue;`
+        // - `final param = param?.rawValue;`
         TypeVariant::Struct(_) => {
             // For nullable structs, we do not use the special
             // `CallOptional` handler but rather use the question mark
@@ -330,14 +334,16 @@ fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
             DartOperation::Call {
                 var_name,
                 call,
+                is_ffi_call: false,
             }
         }
-        // E.g. `final param = TWSomeEnum(rawValue: param.rawValue);`
+        // E.g. `final param = TWSomeEnum.fromValue(param.value);`
         // Note that it calls the constructor of the enum, which calls
         // the underlying "*Create*" C FFI function.
         TypeVariant::Enum(enm) => DartOperation::Call {
             var_name: param.name.clone(),
-            call: format!("{enm}(rawValue: {}.rawValue)", param.name),
+            call: format!("{enm}.fromValue({}.value)", param.name),
+            is_ffi_call: true,
         },
         // Skip processing parameter, reference the parameter by name
         // directly, as defined in the function interface (usually the
