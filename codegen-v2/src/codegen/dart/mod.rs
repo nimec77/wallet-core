@@ -31,7 +31,6 @@ pub struct DartStruct {
     is_class: bool,
     is_public: bool,
     init_instance: bool,
-    raw_type: String,
     imports: Vec<String>,
     superclasses: Vec<String>,
     eq_operator: Option<DartOperatorEquality>,
@@ -49,8 +48,6 @@ pub struct DartEnum {
     add_description: bool,
     variants: Vec<DartEnumVariant>,
     value_type: String,
-    value_field: Option<String>,
-    constructor: Option<String>,
 }
 
 /// Represents a Swift enum variant.
@@ -119,7 +116,6 @@ pub enum DartOperation {
     Call {
         var_name: String,
         call: String,
-        is_ffi_call: bool,
     },
     // Results in:
     // ```dart
@@ -363,15 +359,9 @@ fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
             );
 
             if param.ty.is_nullable {
-                DartOperation::DeferOptionalCall {
-                    var_name,
-                    call,
-                }
+                DartOperation::DeferOptionalCall { var_name, call }
             } else {
-                DartOperation::DeferCall {
-                    var_name,
-                    call,
-                }
+                DartOperation::DeferCall { var_name, call }
             }
         }
         TypeVariant::Data => {
@@ -381,15 +371,9 @@ fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
             );
 
             if param.ty.is_nullable {
-                DartOperation::DeferOptionalCall {
-                    var_name,
-                    call,
-                }
+                DartOperation::DeferOptionalCall { var_name, call }
             } else {
-                DartOperation::DeferCall {
-                    var_name,
-                    call,
-                }
+                DartOperation::DeferCall { var_name, call }
             }
         }
         _ => return None,

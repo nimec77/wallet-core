@@ -166,7 +166,6 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             None
         };
 
-
         let mut imports = vec![];
         for super_class in superclasses.clone() {
             imports.push(import_name(super_class.as_str()));
@@ -190,13 +189,6 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
 
     // Render enums.
     for enm in info.enums {
-        let obj = ObjectVariant::Enum(&enm.name);
-
-        // Process items.
-        let (methods, properties);
-        (methods, info.functions) = process_methods(&obj, info.functions)?;
-        (properties, info.properties) = process_properties(&obj, info.properties)?;
-
         // Convert the name into an appropriate format.
         let pretty_enum_name = pretty_name(enm.name);
 
@@ -207,7 +199,11 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             .variants
             .into_iter()
             .map(|info| DartEnumVariant {
-                name: info.name,
+                name: if info.name == "default" {
+                    "defaultValue".to_string()
+                } else {
+                    info.name
+                },
                 value: info.value,
                 as_string: info.as_string,
             })
@@ -215,8 +211,6 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
 
         //TODO: get value type from info.value
         let value_type = "int";
-        let value_field = Some(format!("final {} value;", value_type));
-        let constructor = Some(format!("const {}(this.value);", pretty_enum_name));
 
         // Add the generated Dart code to the outputs
         outputs.enums.push(DartEnum {
@@ -225,20 +219,6 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             add_description: add_class,
             variants,
             value_type: value_type.to_string(),
-            value_field,
-            constructor,
-        });
-
-        // Avoid rendering empty extension for enums.
-        if methods.is_empty() && properties.is_empty() {
-            continue;
-        }
-
-        outputs.extensions.push(DartEnumExtension {
-            name: pretty_enum_name,
-            init_instance: true,
-            methods,
-            properties,
         });
     }
 
