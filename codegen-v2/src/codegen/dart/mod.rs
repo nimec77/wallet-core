@@ -31,6 +31,7 @@ pub struct DartStruct {
     is_class: bool,
     is_public: bool,
     init_instance: bool,
+    raw_type: String,
     imports: Vec<String>,
     superclasses: Vec<String>,
     eq_operator: Option<DartOperatorEquality>,
@@ -116,6 +117,7 @@ pub enum DartOperation {
     Call {
         var_name: String,
         call: String,
+        is_ffi_call: bool,
     },
     // Results in:
     // ```dart
