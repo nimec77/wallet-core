@@ -33,7 +33,7 @@ pub(super) fn process_methods(
         //
         // E.g:
         // - `final obj = rawValue;`
-        // - `final obj = TWSomeEnum(rawValue: RawValue");`
+        // - `final obj = TWSomeEnum.fromValue(rawValue);`
         if !func.is_static {
             ops.push(match object {
                 ObjectVariant::Struct(_) => DartOperation::Call {
@@ -43,8 +43,8 @@ pub(super) fn process_methods(
                 },
                 ObjectVariant::Enum(name) => DartOperation::Call {
                     var_name: "obj".to_string(),
-                    call: format!("{}(rawValue: rawValue)", name),
-                    is_ffi_call: false,
+                    call: format!("{}.fromValue(value)", name),
+                    is_ffi_call: true,
                 },
             });
         }
@@ -94,7 +94,7 @@ pub(super) fn process_methods(
             ops.push(DartOperation::Call {
                 var_name,
                 call,
-                is_ffi_call: true,
+                is_ffi_call: true
             });
         }
 

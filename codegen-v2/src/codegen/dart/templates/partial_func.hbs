@@ -6,14 +6,14 @@
         {{#if this.call_optional}}
         final UnsafeRawPointer? ptr;
         if ({{this.call_optional.var_name}} != null) {
-            ptr = {{this.call_optional.call}};
+            ptr = _core.{{this.call_optional.call}};
         } else {
             ptr = null;
         }
         final {{this.call_optional.var_name}} = ptr;
         {{/if}}
         {{#if this.guarded_call}}
-        final {{this.guarded_call.var_name}} = {{this.guarded_call.call}};
+        final {{this.guarded_call.var_name}} = _core.{{this.guarded_call.call}};
         if ({{this.guarded_call.var_name}} == null) {
             return null;
         }

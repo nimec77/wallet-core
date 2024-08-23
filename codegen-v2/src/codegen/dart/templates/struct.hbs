@@ -30,7 +30,7 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
     {{#if eq_operator}}
     @override
     bool operator == ({{name}} other) {
-        return {{eq_operator.c_ffi_name}}(this.rawValue, other.rawValue);
+        return _core.{{eq_operator.c_ffi_name}}(this.rawValue, other.rawValue);
     }
 
     {{/if}}

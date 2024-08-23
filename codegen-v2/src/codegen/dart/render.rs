@@ -215,16 +215,13 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             })
             .collect();
 
-        //TODO: get value type from info.value
-        let value_type = "int";
-
         // Add the generated Dart code to the outputs
         outputs.enums.push(DartEnum {
             name: pretty_enum_name.clone(),
             is_public: enm.is_public,
             add_description: add_class,
             variants,
-            value_type: value_type.to_string(),
+            value_type: "int".to_string(),
         });
 
         // Avoid rendering empty extension for enums.
