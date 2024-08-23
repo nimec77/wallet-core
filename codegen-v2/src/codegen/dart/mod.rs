@@ -86,6 +86,7 @@ pub struct DartFunction {
     pub name: String,
     pub is_public: bool,
     pub is_static: bool,
+    pub has_defer: bool,
     pub params: Vec<DartParam>,
     pub operations: Vec<DartOperation>,
     #[serde(rename = "return")]

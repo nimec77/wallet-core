@@ -44,7 +44,7 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
     @override
     dispose() {
     {{#each deinits}}
-        {{name}}(rawValue)
+        _core.{{name}}(rawValue)
     {{/each}}
     }
 

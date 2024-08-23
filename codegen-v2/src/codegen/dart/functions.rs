@@ -18,6 +18,7 @@ pub(super) fn process_methods(
 ) -> Result<(Vec<DartFunction>, Vec<FunctionInfo>)> {
     let mut dart_funcs = vec![];
     let mut skipped_funcs = vec![];
+    let mut has_defer = false;
 
     for func in functions {
         if !func.name.starts_with(object.name()) {
@@ -101,6 +102,7 @@ pub(super) fn process_methods(
         // Add Defer operation to release memory.
         for param in func.params {
             if let Some(op) = param_c_ffi_defer_call(&param) {
+                has_defer = true;
                 ops.push(op)
             }
         }
@@ -121,6 +123,7 @@ pub(super) fn process_methods(
             name: pretty_name,
             is_public: func.is_public,
             is_static: func.is_static,
+            has_defer,
             operations: ops,
             params,
             return_type,
