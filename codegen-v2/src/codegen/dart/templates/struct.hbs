@@ -17,30 +17,34 @@ import 'package:generated_bindings.dart';
 
 final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} implements {{#each superclasses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
     final TrustWalletCore _core;
-    {{#if init_instance}}
+{{#if init_instance}}
     final {{{raw_type}}} rawValue;
 
     const {{name}}(TrustWalletCore core, this.rawValue): _core = core;
-    {{else}}
+{{else}}
 
     const {{name}}(TrustWalletCore core): _core = core;
-    {{/if}}
+{{/if}}
 
-    {{! Equality operator, if available }}
-    {{#if eq_operator}}
+{{! Equality operator, if available }}
+{{#if eq_operator}}
     @override
     bool operator == ({{name}} other) {
         return _core.{{eq_operator.c_ffi_name}}(this.rawValue, other.rawValue);
     }
 
-    {{/if}}
-    {{! Inits }}
-    {{#each inits}}
+{{/if}}
+{{! Inits }}
+{{#each inits}}
+    {{#if has_defer}}
+    {{~> partial_init_defer}}
+    {{else}}
     {{~> partial_init}}
+    {{/if}}
 
-    {{/each}}
-    {{! Deinits }}
-    {{#if deinits}}
+{{/each}}
+{{! Deinits }}
+{{#if deinits}}
     @override
     dispose() {
     {{#each deinits}}
@@ -48,17 +52,20 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
     {{/each}}
     }
 
-    {{/if}}
-    {{! Methods }}
-    {{#each methods}}
+{{/if}}
+{{! Methods }}
+{{#each methods}}
+    {{#if has_defer}}
+    {{~> partial_func_defer}}
+    {{else}}
     {{~> partial_func}}
+    {{/if}}
 
-    {{/each}}
-    {{! Properties }}
-    {{#each properties}}
+{{/each}}
+{{! Properties }}
+{{#each properties}}
     {{~> partial_prop}}
     {{#unless @last}}
-
     {{/unless}}
-    {{/each}}
+{{/each}}
 }

@@ -5,7 +5,7 @@
 use self::functions::process_methods;
 use self::inits::process_inits;
 use self::properties::process_properties;
-use crate::manifest::{DeinitInfo, FileInfo, ParamInfo, ProtoInfo, TypeInfo, TypeVariant};
+use crate::manifest::{DeinitInfo, FileInfo, ProtoInfo, TypeVariant};
 use crate::{Error, Result};
 use handlebars::Handlebars;
 use serde_json::json;
@@ -132,6 +132,7 @@ pub enum DartOperation {
     // ```
     CallOptional {
         var_name: String,
+        var_type: String,
         call: String,
     },
     // Results in:
@@ -192,6 +193,7 @@ pub struct DartInit {
     pub class_name: String,
     pub is_nullable: bool,
     pub is_public: bool,
+    pub has_defer: bool,
     pub params: Vec<DartParam>,
     pub operations: Vec<DartOperation>,
     pub comments: Vec<String>,
@@ -238,8 +240,8 @@ impl TryFrom<ProtoInfo> for DartProto {
 impl From<TypeVariant> for DartType {
     fn from(value: TypeVariant) -> Self {
         let res = match value {
-            TypeVariant::Void => "Void".to_string(),
-            TypeVariant::Bool => "Bool".to_string(),
+            TypeVariant::Void => "void".to_string(),
+            TypeVariant::Bool => "bool".to_string(),
             TypeVariant::Char => "Character".to_string(),
             TypeVariant::ShortInt => "Int16".to_string(),
             TypeVariant::Int => "Int32".to_string(),
@@ -247,7 +249,7 @@ impl From<TypeVariant> for DartType {
             TypeVariant::LongInt => "Int64".to_string(),
             TypeVariant::Float => "Float".to_string(),
             TypeVariant::Double => "Double".to_string(),
-            TypeVariant::SizeT => "Int".to_string(),
+            TypeVariant::SizeT => "int".to_string(),
             TypeVariant::Int8T => "Int8".to_string(),
             TypeVariant::Int16T => "Int16".to_string(),
             TypeVariant::Int32T => "Int32".to_string(),
@@ -266,151 +268,5 @@ impl From<TypeVariant> for DartType {
         };
 
         DartType(res)
-    }
-}
-
-// Convenience function: process the parameter, returning the operation for
-// handling the C FFI call (if any).
-fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
-    let op = match &param.ty.variant {
-        // E.g. `final param = TWStringCreateWithNSString(param);`
-        TypeVariant::String => {
-            let (var_name, call) = (
-                param.name.clone(),
-                format!("TWStringCreateWithNSString({})", param.name),
-            );
-
-            // If the parameter is nullable, add special handler.
-            if param.ty.is_nullable {
-                DartOperation::CallOptional {
-                    var_name,
-                    call,
-                }
-            } else {
-                DartOperation::Call {
-                    var_name,
-                    call,
-                    is_ffi_call: true,
-                }
-            }
-        }
-        TypeVariant::Data => {
-            let (var_name, call) = (
-                param.name.clone(),
-                format!("TWDataCreateWithNSData({})", param.name),
-            );
-
-            // If the parameter is nullable, add special handler.
-            if param.ty.is_nullable {
-                DartOperation::CallOptional {
-                    var_name,
-                    call,
-                }
-            } else {
-                DartOperation::Call {
-                    var_name,
-                    call,
-                    is_ffi_call: true,
-                }
-            }
-        }
-        // E.g.
-        // - `final param = param.rawValue;`
-        // - `final param = param?.rawValue;`
-        TypeVariant::Struct(_) => {
-            // For nullable structs, we do not use the special
-            // `CallOptional` handler but rather use the question mark
-            // operator.
-            let (var_name, call) = if param.ty.is_nullable {
-                (
-                    param.name.clone(),
-                    format!("{}?.rawValue", param.name),
-                )
-            } else {
-                (param.name.clone(), format!("{}.rawValue", param.name))
-            };
-
-            DartOperation::Call {
-                var_name,
-                call,
-                is_ffi_call: false,
-            }
-        }
-        // E.g. `final param = TWSomeEnum.fromValue(param.value);`
-        // Note that it calls the constructor of the enum, which calls
-        // the underlying "*Create*" C FFI function.
-        TypeVariant::Enum(enm) => DartOperation::Call {
-            var_name: param.name.clone(),
-            call: format!("{enm}.fromValue({}.value)", param.name),
-            is_ffi_call: true,
-        },
-        // Skip processing parameter, reference the parameter by name
-        // directly, as defined in the function interface (usually the
-        // case for primitive types).
-        _ => return None,
-    };
-
-    Some(op)
-}
-
-fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
-    let op = match &param.ty.variant {
-        TypeVariant::String => {
-            let (var_name, call) = (
-                param.name.clone(),
-                Some(format!("TWStringDelete({})", param.name)),
-            );
-
-            if param.ty.is_nullable {
-                DartOperation::DeferOptionalCall { var_name, call }
-            } else {
-                DartOperation::DeferCall { var_name, call }
-            }
-        }
-        TypeVariant::Data => {
-            let (var_name, call) = (
-                param.name.clone(),
-                Some(format!("TWDataDelete({})", param.name)),
-            );
-
-            if param.ty.is_nullable {
-                DartOperation::DeferOptionalCall { var_name, call }
-            } else {
-                DartOperation::DeferCall { var_name, call }
-            }
-        }
-        _ => return None,
-    };
-
-    Some(op)
-}
-
-// Convenience function: wrap the return value, returning the operation. Note
-// that types are wrapped differently when returning, compared to
-// `param_c_ffi_call`; such as using `TWStringNSString` instead of
-// `TWDataCreateWithNSData` for Strings.
-fn wrap_return(ty: &TypeInfo) -> DartOperation {
-    match &ty.variant {
-        // E.g.`return TWStringNSString(result)`
-        TypeVariant::String => DartOperation::Return {
-            call: "TWStringNSString(result)".to_string(),
-        },
-        TypeVariant::Data => DartOperation::Return {
-            call: "TWDataNSData(result)".to_string(),
-        },
-        // E.g. `return SomeEnum(rawValue: result.rawValue)`
-        TypeVariant::Enum(_) => DartOperation::Return {
-            call: format!(
-                "{}(rawValue: result.rawValue)!",
-                DartType::from(ty.variant.clone())
-            ),
-        },
-        // E.g. `return SomeStruct(rawValue: result)`
-        TypeVariant::Struct(_) => DartOperation::Return {
-            call: format!("{}(rawValue: result)", DartType::from(ty.variant.clone())),
-        },
-        _ => DartOperation::Return {
-            call: "result".to_string(),
-        },
     }
 }

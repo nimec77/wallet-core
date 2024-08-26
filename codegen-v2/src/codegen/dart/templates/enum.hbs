@@ -7,13 +7,13 @@
 
 enum {{#unless is_public}}_{{/unless}}{{name}} {
 {{#each variants}}
-  {{this.name}}({{this.value}}){{#unless @last}},{{else}};{{/unless}}
+  {{name}}({{value}}){{#unless @last}},{{else}};{{/unless}}
 {{/each}}
 
 {{#if add_description}}
 String get description => switch (value) {
   {{#each variants}}
-  {{this.value}} => '{{this.as_string}}',
+  {{value}} => '{{as_string}}',
   {{/each}}
 {{/if}}
   final {{value_type}} value;
@@ -21,7 +21,7 @@ String get description => switch (value) {
 
   static {{#unless is_public}}_{{/unless}}{{name}} fromValue({{value_type}} value) => switch (value) {
       {{#each variants}}
-        {{this.value}} => {{this.name}},
+        {{value}} => {{name}},
       {{/each}}
         _ => throw ArgumentError("Unknown value for TWCoinType: $value"),
       };

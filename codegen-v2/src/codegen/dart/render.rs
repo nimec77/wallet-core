@@ -2,6 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
+use std::collections::HashSet;
 use super::{inits::process_deinits, *};
 use crate::codegen::dart::utils::{has_address_protocol, import_name, pretty_file_name, pretty_name};
 
@@ -13,7 +14,9 @@ pub struct RenderInput<'a> {
     pub extension_template: &'a str,
     pub proto_template: &'a str,
     pub partial_init_template: &'a str,
+    pub partial_init_defer_template: &'a str,
     pub partial_func_template: &'a str,
+    pub partial_func_defer_template: &'a str,
     pub partial_prop_template: &'a str,
 }
 
@@ -56,7 +59,9 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
     engine.register_partial("extension", input.extension_template)?;
     engine.register_partial("proto", input.proto_template)?;
     engine.register_partial("partial_init", input.partial_init_template)?;
+    engine.register_partial("partial_init_defer", input.partial_init_defer_template)?;
     engine.register_partial("partial_func", input.partial_func_template)?;
+    engine.register_partial("partial_func_defer", input.partial_func_defer_template)?;
     engine.register_partial("partial_prop", input.partial_prop_template)?;
 
     let rendered = generate_dart_types(input.file_info)?;
@@ -126,6 +131,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
     // Render structs/classes.
     for strct in info.structs {
         let obj = ObjectVariant::Struct(&strct.name);
+        let mut imports = HashSet::new();
 
         // Process items.
         let (inits, deinits, mut methods, properties);
@@ -166,9 +172,8 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             None
         };
 
-        let mut imports = vec![];
-        for super_class in superclasses.clone() {
-            imports.push(import_name(super_class.as_str()));
+        for super_class in &superclasses {
+            imports.insert(import_name(super_class.as_str()));
         }
 
         outputs.structs.push(DartStruct {
@@ -177,7 +182,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             is_public: strct.is_public,
             raw_type: "Pointer<Opaque>".to_string(),
             init_instance: strct.is_class,
-            imports,
+            imports: imports.into_iter().collect(),
             superclasses,
             eq_operator,
             inits,

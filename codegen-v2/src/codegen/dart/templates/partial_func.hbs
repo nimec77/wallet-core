@@ -1,43 +1,26 @@
     {{#if is_static}}static{{/if}} {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}({{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
-        {{#if has_defer}}try { {{~/if}}
-            {{#each operations}}
-            {{#if this.call}}
-            final {{this.call.var_name}} = {{#if this.call.is_ffi_call}}_core.{{/if}}{{this.call.call}};
-            {{/if}}
-            {{#if this.call_optional}}
-            final UnsafeRawPointer? ptr;
-            if ({{this.call_optional.var_name}} != null) {
-                ptr = _core.{{this.call_optional.call}};
-            } else {
-                ptr = null;
-            }
-            final {{this.call_optional.var_name}} = ptr;
-            {{/if}}
-            {{#if this.guarded_call}}
-            final {{this.guarded_call.var_name}} = _core.{{this.guarded_call.call}};
-            if ({{this.guarded_call.var_name}} == null) {
-                return null;
-            }
-            {{/if}}
-            {{#if this.return}}
-
-            return {{this.return.call}};
-            {{/if}}
-            {{/each}}
-        {{#if has_defer}}
-        } finally {
-        {{#each operations}}
-        {{#if this.defer_optional_call.call}}
-            if ({{this.defer_optional_call.var_name}} != null) {
-                _core.{{this.defer_optional_call.call}};
-            }
-            {{/if}}
-            {{#if this.defer_call}}
-            {{#if this.defer_call.call}}
-            _core.{{this.defer_call.call}};
-            {{/if}}
-            {{/if}}
-        {{/each}}
+    {{#each operations}}
+    {{#if call}}
+        final {{call.var_name}} = {{#if call.is_ffi_call}}_core.{{/if}}{{call.call}};
+    {{/if}}
+    {{#if call_optional}}
+        final {{{call_optional.var_type}}}? ptr;
+        if ({{call_optional.var_name}} != null) {
+        ptr = _core.{{call_optional.call}};
+        } else {
+        ptr = null;
         }
-        {{/if}}
+        final {{call_optional.var_name}} = ptr;
+    {{/if}}
+    {{#if guarded_call}}
+        final {{guarded_call.var_name}} = _core.{{guarded_call.call}};
+        if ({{guarded_call.var_name}} == null) {
+            return null;
+        }
+    {{/if}}
+    {{#if return}}
+
+        return {{return.call}};
+    {{/if}}
+    {{/each}}
     }

@@ -3,7 +3,7 @@
 // Copyright © 2017 Trust Wallet.
 
 use super::*;
-use crate::codegen::dart::utils::pretty_func_name;
+use crate::codegen::dart::utils::{param_c_ffi_call, param_c_ffi_defer_call, pretty_func_name};
 use crate::manifest::InitInfo;
 
 /// This function checks each constructor and determines whether there's an
@@ -20,6 +20,7 @@ pub(super) fn process_inits(
     let mut skipped_inits = vec![];
 
     for init in inits {
+        let mut has_defer = false;
         if !init.name.starts_with(object.name()) {
             // Init is not assciated with the object.
             skipped_inits.push(init);
@@ -32,7 +33,7 @@ pub(super) fn process_inits(
         // function interface and add the necessary operations on how to process
         // those parameters.
         let mut params = vec![];
-        for param in init.params {
+        for param in &init.params {
             // Convert parameter to Dart parameter.
             params.push(DartParam {
                 name: param.name.clone(),
@@ -67,8 +68,16 @@ pub(super) fn process_inits(
             });
         }
 
+        // Add Defer operation to release memory.
+        for param in &init.params {
+            if let Some(op) = param_c_ffi_defer_call(&param) {
+                has_defer = true;
+                ops.push(op)
+            }
+        }
+
         // Note that we do not return a value here; the template sets a
-        // `self.rawValue = result` entry at the end of the constructor.
+        // `return {{class_name}}(result);`
 
         // Prettify name, remove object name prefix from this property.
         let pretty_init_name = pretty_func_name(&init.name, object.name());
@@ -80,6 +89,7 @@ pub(super) fn process_inits(
             class_name,
             is_nullable: init.is_nullable,
             is_public: init.is_public,
+            has_defer,
             params,
             operations: ops,
             comments: vec![],

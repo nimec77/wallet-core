@@ -4,13 +4,13 @@
 
 use super::*;
 use crate::manifest::{FunctionInfo, TypeVariant};
-use crate::codegen::dart::utils::pretty_func_name;
+use crate::codegen::dart::utils::{pretty_func_name, param_c_ffi_call, param_c_ffi_defer_call, wrap_return};
 
 /// This function checks each function and determines whether there's an
 /// association with the passed on object (struct or enum), based on common name
-/// prefix, and maps the data into a Swift structure.
+/// prefix, and maps the data into a Dart structure.
 ///
-/// This function returns a tuple of associated Swift functions and the skipped
+/// This function returns a tuple of associated Dart functions and the skipped
 /// respectively non-associated functions.
 pub(super) fn process_methods(
     object: &ObjectVariant,
@@ -18,9 +18,9 @@ pub(super) fn process_methods(
 ) -> Result<(Vec<DartFunction>, Vec<FunctionInfo>)> {
     let mut dart_funcs = vec![];
     let mut skipped_funcs = vec![];
-    let mut has_defer = false;
 
     for func in functions {
+        let mut has_defer = false;
         if !func.name.starts_with(object.name()) {
             // Function is not associated with the object.
             skipped_funcs.push(func);
@@ -54,10 +54,11 @@ pub(super) fn process_methods(
         // function interface and add the necessary operations on how to process
         // those parameters.
         let mut params = vec![];
-        for param in func.params.clone() {
+        for param in &func.params {
             // Skip self parameter
             match &param.ty.variant {
-                TypeVariant::Enum(name) | TypeVariant::Struct(name) if name == object.name() => {
+                TypeVariant::Enum(name) | TypeVariant::Struct(name)
+                if name == object.name() => {
                     continue
                 }
                 _ => {}
@@ -95,12 +96,19 @@ pub(super) fn process_methods(
             ops.push(DartOperation::Call {
                 var_name,
                 call,
-                is_ffi_call: true
+                is_ffi_call: true,
             });
         }
 
         // Add Defer operation to release memory.
-        for param in func.params {
+        for param in &func.params {
+            match &param.ty.variant {
+                TypeVariant::Enum(name) | TypeVariant::Struct(name)
+                if name == object.name() => {
+                    continue
+                }
+                _ => {}
+            }
             if let Some(op) = param_c_ffi_defer_call(&param) {
                 has_defer = true;
                 ops.push(op)

@@ -5,7 +5,7 @@
 use super::*;
 use crate::manifest::PropertyInfo;
 use heck::ToLowerCamelCase;
-use crate::codegen::dart::utils::has_address_protocol;
+use crate::codegen::dart::utils::{has_address_protocol, wrap_return};
 
 /// This function checks each property and determines whether there's an
 /// association with the passed on object (struct or enum), based on common name
