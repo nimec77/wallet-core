@@ -46,3 +46,7 @@ pub(super) fn pretty_file_name(name: String) -> String {
 pub(super) fn import_name(name: &str) -> String {
     format!("import 'package:{}.dart';", pretty_file_name(name.to_string()))
 }
+
+pub(super) fn has_address_protocol(name: &str) -> bool {
+    pretty_name(name.to_string()).ends_with("Address")
+}

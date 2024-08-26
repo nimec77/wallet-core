@@ -3,7 +3,7 @@
 // Copyright © 2017 Trust Wallet.
 
 use super::{inits::process_deinits, *};
-use crate::codegen::dart::utils::{import_name, pretty_file_name, pretty_name};
+use crate::codegen::dart::utils::{has_address_protocol, import_name, pretty_file_name, pretty_name};
 
 #[derive(Debug, Clone)]
 pub struct RenderInput<'a> {
@@ -147,7 +147,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         if !deinits.is_empty() {
             superclasses.push("Disposable".to_string());
         }
-        if pretty_struct_name.ends_with("Address") {
+        if has_address_protocol(strct.name.as_str()) {
             superclasses.push("Address".to_string());
         }
 
@@ -175,6 +175,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             name: pretty_struct_name,
             is_class: strct.is_class,
             is_public: strct.is_public,
+            raw_type: "Pointer<Opaque>".to_string(),
             init_instance: strct.is_class,
             imports,
             superclasses,
@@ -188,6 +189,12 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
 
     // Render enums.
     for enm in info.enums {
+        let obj = ObjectVariant::Enum(&enm.name);
+        // Process items.
+        let (methods, properties);
+        (methods, info.functions) = process_methods(&obj, info.functions)?;
+        (properties, info.properties) = process_properties(&obj, info.properties)?;
+
         // Convert the name into an appropriate format.
         let pretty_enum_name = pretty_name(enm.name);
 
@@ -208,18 +215,28 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             })
             .collect();
 
-        //TODO: get value type from info.value
-        let value_type = "int";
-
         // Add the generated Dart code to the outputs
         outputs.enums.push(DartEnum {
             name: pretty_enum_name.clone(),
             is_public: enm.is_public,
             add_description: add_class,
             variants,
-            value_type: value_type.to_string(),
+            value_type: "int".to_string(),
+        });
+
+        // Avoid rendering empty extension for enums.
+        if methods.is_empty() && properties.is_empty() {
+            continue;
+        }
+
+        outputs.extensions.push(DartEnumExtension {
+            name: pretty_enum_name,
+            init_instance: true,
+            methods,
+            properties,
         });
     }
+
 
     // Render Protobufs.
     if !info.protos.is_empty() {

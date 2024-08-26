@@ -5,12 +5,12 @@
 use self::functions::process_methods;
 use self::inits::process_inits;
 use self::properties::process_properties;
-use crate::codegen::dart::utils::pretty_name;
 use crate::manifest::{DeinitInfo, FileInfo, ParamInfo, ProtoInfo, TypeInfo, TypeVariant};
 use crate::{Error, Result};
 use handlebars::Handlebars;
 use serde_json::json;
 use std::fmt::Display;
+use crate::codegen::dart::utils::pretty_name;
 
 mod functions;
 mod inits;
@@ -31,6 +31,7 @@ pub struct DartStruct {
     is_class: bool,
     is_public: bool,
     init_instance: bool,
+    raw_type: String,
     imports: Vec<String>,
     superclasses: Vec<String>,
     eq_operator: Option<DartOperatorEquality>,
@@ -85,6 +86,7 @@ pub struct DartFunction {
     pub name: String,
     pub is_public: bool,
     pub is_static: bool,
+    pub has_defer: bool,
     pub params: Vec<DartParam>,
     pub operations: Vec<DartOperation>,
     #[serde(rename = "return")]
@@ -116,6 +118,7 @@ pub enum DartOperation {
     Call {
         var_name: String,
         call: String,
+        is_ffi_call: bool,
     },
     // Results in:
     // ```dart
@@ -279,9 +282,16 @@ fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
 
             // If the parameter is nullable, add special handler.
             if param.ty.is_nullable {
-                DartOperation::CallOptional { var_name, call }
+                DartOperation::CallOptional {
+                    var_name,
+                    call,
+                }
             } else {
-                DartOperation::Call { var_name, call }
+                DartOperation::Call {
+                    var_name,
+                    call,
+                    is_ffi_call: true,
+                }
             }
         }
         TypeVariant::Data => {
@@ -292,32 +302,47 @@ fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
 
             // If the parameter is nullable, add special handler.
             if param.ty.is_nullable {
-                DartOperation::CallOptional { var_name, call }
+                DartOperation::CallOptional {
+                    var_name,
+                    call,
+                }
             } else {
-                DartOperation::Call { var_name, call }
+                DartOperation::Call {
+                    var_name,
+                    call,
+                    is_ffi_call: true,
+                }
             }
         }
         // E.g.
-        // - `final param = param.rawValue`
-        // - `final param = param?.rawValue`
+        // - `final param = param.rawValue;`
+        // - `final param = param?.rawValue;`
         TypeVariant::Struct(_) => {
             // For nullable structs, we do not use the special
             // `CallOptional` handler but rather use the question mark
             // operator.
             let (var_name, call) = if param.ty.is_nullable {
-                (param.name.clone(), format!("{}?.rawValue", param.name))
+                (
+                    param.name.clone(),
+                    format!("{}?.rawValue", param.name),
+                )
             } else {
                 (param.name.clone(), format!("{}.rawValue", param.name))
             };
 
-            DartOperation::Call { var_name, call }
+            DartOperation::Call {
+                var_name,
+                call,
+                is_ffi_call: false,
+            }
         }
-        // E.g. `final param = TWSomeEnum(rawValue: param.rawValue);`
+        // E.g. `final param = TWSomeEnum.fromValue(param.value);`
         // Note that it calls the constructor of the enum, which calls
         // the underlying "*Create*" C FFI function.
         TypeVariant::Enum(enm) => DartOperation::Call {
             var_name: param.name.clone(),
-            call: format!("{enm}(rawValue: {}.rawValue)", param.name),
+            call: format!("{enm}.fromValue({}.value)", param.name),
+            is_ffi_call: true,
         },
         // Skip processing parameter, reference the parameter by name
         // directly, as defined in the function interface (usually the

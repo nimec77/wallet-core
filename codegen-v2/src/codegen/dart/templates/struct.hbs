@@ -16,19 +16,21 @@ import 'package:generated_bindings.dart';
 {{/if}}
 
 final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} implements {{#each superclasses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
+    final TrustWalletCore _core;
     {{#if init_instance}}
-    final OpaquePointer rawValue;
+    final {{{raw_type}}} rawValue;
 
-    const {{name}}(this.rawValue);
+    const {{name}}(TrustWalletCore core, this.rawValue): _core = core;
     {{else}}
-    const {{name}}();
+
+    const {{name}}(TrustWalletCore core): _core = core;
     {{/if}}
 
     {{! Equality operator, if available }}
     {{#if eq_operator}}
     @override
     bool operator == ({{name}} other) {
-        return {{eq_operator.c_ffi_name}}(this.rawValue, other.rawValue);
+        return _core.{{eq_operator.c_ffi_name}}(this.rawValue, other.rawValue);
     }
 
     {{/if}}
@@ -42,7 +44,7 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
     @override
     dispose() {
     {{#each deinits}}
-        {{name}}(self.rawValue)
+        _core.{{name}}(rawValue)
     {{/each}}
     }
 
