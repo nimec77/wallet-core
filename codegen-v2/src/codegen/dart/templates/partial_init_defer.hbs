@@ -1,0 +1,34 @@
+    {{class_name}}.{{#unless is_public}}_{{/unless}}{{name}}({{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
+        try {
+        {{#each operations}}
+        {{#if call}}
+            final {{call.var_name}} = {{#if call.is_ffi_call}}_core.{{/if}}{{call.call}};
+        {{/if}}
+        {{#if guarded_call}}
+            final {{guarded_call.var_name}} = _core.{{guarded_call.call}};
+            if ({{guarded_call.var_name}} == null) {
+                throw ArgumentError('{{guarded_call.call}} returned null');
+            }
+        {{/if}}
+        {{#if return}}
+
+            return {{return.call}}
+        {{/if}}
+        {{/each}}
+
+            return {{class_name}}(result);
+        } finally {
+        {{#each operations}}
+        {{#if defer_optional_call.call}}
+            if ({{defer_optional_call.var_name}} != null) {
+                _core.{{defer_optional_call.call}};
+            }
+        {{/if}}
+        {{#if defer_call}}
+        {{#if defer_call.call}}
+            _core.{{defer_call.call}};
+        {{/if}}
+        {{/if}}
+        {{/each}}
+        }
+    }

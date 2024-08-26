@@ -158,7 +158,9 @@ fn generate_dart_bindings() -> Result<()> {
     let ext_t = read_to_string(&format!("{IN_DIR}/extension.hbs"))?;
     let proto_t = read_to_string(&format!("{IN_DIR}/proto.hbs"))?;
     let part_init_t = read_to_string(&format!("{IN_DIR}/partial_init.hbs"))?;
+    let part_init_defer_t = read_to_string(&format!("{IN_DIR}/partial_init_defer.hbs"))?;
     let part_func_t = read_to_string(&format!("{IN_DIR}/partial_func.hbs"))?;
+    let part_func_defer_t = read_to_string(&format!("{IN_DIR}/partial_func_defer.hbs"))?;
     let part_prop_t = read_to_string(&format!("{IN_DIR}/partial_prop.hbs"))?;
 
     // Read the manifest dir, generate bindings for each entry.
@@ -172,7 +174,9 @@ fn generate_dart_bindings() -> Result<()> {
             extension_template: &ext_t,
             proto_template: &proto_t,
             partial_init_template: &part_init_t,
+            partial_init_defer_template: &part_init_defer_t,
             partial_func_template: &part_func_t,
+            partial_func_defer_template: &part_func_defer_t,
             partial_prop_template: &part_prop_t,
         };
 
