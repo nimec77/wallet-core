@@ -3,7 +3,7 @@
 // Copyright © 2017 Trust Wallet.
 
 use super::*;
-use crate::codegen::dart::utils::{param_c_ffi_call, param_c_ffi_defer_call, pretty_func_name};
+use crate::codegen::dart::utils::*;
 use crate::manifest::InitInfo;
 
 /// This function checks each constructor and determines whether there's an
@@ -15,9 +15,10 @@ use crate::manifest::InitInfo;
 pub(super) fn process_inits(
     object: &ObjectVariant,
     inits: Vec<InitInfo>,
-) -> Result<(Vec<DartInit>, Vec<InitInfo>)> {
+) -> Result<(Vec<DartInit>, Vec<InitInfo>, Vec<DartImport>)> {
     let mut dart_inits = vec![];
     let mut skipped_inits = vec![];
+    let mut imports = vec![];
 
     for init in inits {
         let mut has_defer = false;
@@ -44,6 +45,15 @@ pub(super) fn process_inits(
             // Process parameter.
             if let Some(op) = param_c_ffi_call(&param) {
                 ops.push(op);
+            }
+
+            if let TypeVariant::Enum(name) | TypeVariant::Struct(name) = &param.ty.variant {
+                if name != object.name() {
+                    // Get imports for the parameter.
+                    if let Some(dart_import) = get_import_from_param(param) {
+                        imports.push(dart_import);
+                    }
+                }
             }
         }
 
@@ -82,7 +92,7 @@ pub(super) fn process_inits(
         // Prettify name, remove object name prefix from this property.
         let pretty_init_name = pretty_func_name(&init.name, object.name());
 
-        let class_name = pretty_name(String::from(object.name()));
+        let class_name = pretty_name(object.name());
 
         dart_inits.push(DartInit {
             name: pretty_init_name,
@@ -96,7 +106,7 @@ pub(super) fn process_inits(
         });
     }
 
-    Ok((dart_inits, skipped_inits))
+    Ok((dart_inits, skipped_inits, imports))
 }
 
 pub(super) fn process_deinits(

@@ -1,17 +1,21 @@
 use convert_case::{Case, Casing};
 use heck::ToLowerCamelCase;
-use crate::codegen::dart::{DartOperation, DartType};
+use crate::codegen::dart::{DartImport, DartOperation, DartType};
 use crate::manifest::{ParamInfo, TypeInfo, TypeVariant};
 
-pub fn pretty_name(name: String) -> String {
+pub fn pretty_name(name: &str) -> String {
     name.replace("_", "").replace("TW", "").replace("Proto", "")
 }
-pub fn pretty_func_name(name: &str, object_name: &str) -> String {
-    let pretty_name = name
-        .strip_prefix(object_name)
+
+pub fn pretty_name_without_prefix(name: &str, prefix: &str) -> String {
+    name
+        .strip_prefix(prefix)
         // Panicking implies bug, checked at the start of the loop.
         .unwrap()
-        .to_lower_camel_case();
+        .to_lower_camel_case()
+}
+pub fn pretty_func_name(name: &str, object_name: &str) -> String {
+    let pretty_name = pretty_name_without_prefix(name, object_name);
 
     if object_name == "TWStoredKey" {
         pretty_name
@@ -36,7 +40,7 @@ pub fn pretty_func_name(name: &str, object_name: &str) -> String {
     }
 }
 
-pub fn pretty_file_name(name: String) -> String {
+pub fn pretty_file_name(name: &str) -> String {
     let new_name = name
         .replace("+", "_")
         .replace("TW", "")
@@ -46,11 +50,26 @@ pub fn pretty_file_name(name: String) -> String {
 }
 
 pub fn import_name(name: &str) -> String {
-    format!("import 'package:{}.dart';", pretty_file_name(name.to_string()))
+    format!("import 'package:{}.dart';", pretty_file_name(name))
 }
 
 pub fn has_address_protocol(name: &str) -> bool {
-    pretty_name(name.to_string()).ends_with("Address")
+    pretty_name(name).ends_with("Address")
+}
+
+pub fn get_import_from_param(param: &ParamInfo) -> Option<DartImport> {
+    match &param.ty.variant {
+        TypeVariant::Struct(name) => {
+            let import = import_name(name);
+            Some(DartImport(import))
+        }
+        TypeVariant::Enum(name) => {
+            let enum_name = format!("enums/{}", name);
+            let import = import_name(enum_name.as_str());
+            Some(DartImport(import))
+        }
+        _ => None,
+    }
 }
 
 // Convenience function: process the parameter, returning the operation for
@@ -175,6 +194,21 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
     Some(op)
 }
 
+pub fn get_import_from_return(ty: &TypeInfo) -> Option<DartImport> {
+    match &ty.variant {
+        TypeVariant::Struct(name) => {
+            let import = import_name(name);
+            Some(DartImport(import))
+        }
+        TypeVariant::Enum(name) => {
+            let enum_name = format!("enums/{}", name);
+            let import = import_name(enum_name.as_str());
+            Some(DartImport(import))
+        }
+        _ => None,
+    }
+}
+
 // Convenience function: wrap the return value, returning the operation. Note
 // that types are wrapped differently when returning, compared to
 // `param_c_ffi_call`; such as using `TWStringNSString` instead of
@@ -204,3 +238,4 @@ pub fn wrap_return(ty: &TypeInfo) -> DartOperation {
         },
     }
 }
+

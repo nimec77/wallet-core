@@ -4,7 +4,7 @@
 
 use super::*;
 use crate::manifest::{FunctionInfo, TypeVariant};
-use crate::codegen::dart::utils::{pretty_func_name, param_c_ffi_call, param_c_ffi_defer_call, wrap_return};
+use crate::codegen::dart::utils::*;
 
 /// This function checks each function and determines whether there's an
 /// association with the passed on object (struct or enum), based on common name
@@ -15,9 +15,10 @@ use crate::codegen::dart::utils::{pretty_func_name, param_c_ffi_call, param_c_ff
 pub(super) fn process_methods(
     object: &ObjectVariant,
     functions: Vec<FunctionInfo>,
-) -> Result<(Vec<DartFunction>, Vec<FunctionInfo>)> {
+) -> Result<(Vec<DartFunction>, Vec<FunctionInfo>, Vec<DartImport>)> {
     let mut dart_funcs = vec![];
     let mut skipped_funcs = vec![];
+    let mut imports = vec![];
 
     for func in functions {
         let mut has_defer = false;
@@ -109,12 +110,26 @@ pub(super) fn process_methods(
                 }
                 _ => {}
             }
+
+            // Get imports for the parameter.
+            if let Some(dart_import) = get_import_from_param(param) {
+                imports.push(dart_import);
+            }
+
             if let Some(op) = param_c_ffi_defer_call(&param) {
                 has_defer = true;
                 ops.push(op)
             }
         }
 
+        if let TypeVariant::Enum(name) | TypeVariant::Struct(name) = &func.return_type.variant {
+            if name != object.name() {
+                // Get imports for the return type.
+                if let Some(dart_import) = get_import_from_return(&func.return_type) {
+                    imports.push(dart_import);
+                }
+            }
+        }
         // Wrap result.
         ops.push(wrap_return(&func.return_type));
 
@@ -139,5 +154,5 @@ pub(super) fn process_methods(
         });
     }
 
-    Ok((dart_funcs, skipped_funcs))
+    Ok((dart_funcs, skipped_funcs, imports))
 }

@@ -48,7 +48,7 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
     // The current year for the copyright header in the generated bindings.
     let current_year = crate::current_year();
     // Convert the name into an appropriate format.
-    let pretty_file_name = pretty_file_name(input.file_info.name.clone());
+    let pretty_file_name = pretty_file_name(&input.file_info.name);
 
     let mut engine = Handlebars::new();
     // Unmatched variables should result in an error.
@@ -131,14 +131,24 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
     // Render structs/classes.
     for strct in info.structs {
         let obj = ObjectVariant::Struct(&strct.name);
-        let mut imports = HashSet::new();
 
         // Process items.
-        let (inits, deinits, mut methods, properties);
-        (inits, info.inits) = process_inits(&obj, info.inits)?;
+        let (
+            inits,
+            deinits,
+            mut methods,
+            properties,
+            mut dart_imports
+        );
+
+        let mut imports = HashSet::new();
+        (inits, info.inits, dart_imports) = process_inits(&obj, info.inits)?;
+        imports.extend(dart_imports);
         (deinits, info.deinits) = process_deinits(&obj, info.deinits)?;
-        (methods, info.functions) = process_methods(&obj, info.functions)?;
-        (properties, info.properties) = process_properties(&obj, info.properties)?;
+        (methods, info.functions, dart_imports) = process_methods(&obj, info.functions)?;
+        imports.extend(dart_imports);
+        (properties, info.properties, dart_imports) = process_properties(&obj, info.properties)?;
+        imports.extend(dart_imports);
 
         // Avoid rendering empty structs.
         if inits.is_empty() && methods.is_empty() && properties.is_empty() {
@@ -146,7 +156,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         }
 
         // Convert the name into an appropriate format.
-        let pretty_struct_name = pretty_name(strct.name.clone());
+        let pretty_struct_name = pretty_name(&strct.name);
 
         // Add Disposable and superclasses
         let mut superclasses = vec![];
@@ -173,7 +183,8 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         };
 
         for super_class in &superclasses {
-            imports.insert(import_name(super_class.as_str()));
+            let import_string = import_name(&super_class);
+            imports.insert(DartImport(import_string));
         }
 
         outputs.structs.push(DartStruct {
@@ -195,14 +206,18 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
     // Render enums.
     for enm in info.enums {
         let obj = ObjectVariant::Enum(&enm.name);
+        let enum_name = format!("enums/{}", &enm.name);
+        let enum_import = import_name(&enum_name);
+        let mut imports = HashSet::from([DartImport(enum_import)]);
         // Process items.
-        let (methods, properties);
-        (methods, info.functions) = process_methods(&obj, info.functions)?;
-        (properties, info.properties) = process_properties(&obj, info.properties)?;
+        let (methods, properties, mut dart_imports);
+        (methods, info.functions, dart_imports) = process_methods(&obj, info.functions)?;
+        imports.extend(dart_imports);
+        (properties, info.properties, dart_imports) = process_properties(&obj, info.properties)?;
+        imports.extend(dart_imports);
 
         // Convert the name into an appropriate format.
-        let pretty_enum_name = pretty_name(enm.name);
-
+        let pretty_enum_name = pretty_name(&enm.name);
         let add_class = false;
 
         // Convert to Dart enum variants
@@ -237,6 +252,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         outputs.extensions.push(DartEnumExtension {
             name: pretty_enum_name,
             init_instance: true,
+            imports: imports.into_iter().collect(),
             methods,
             properties,
         });

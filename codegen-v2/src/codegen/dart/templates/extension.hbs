@@ -5,6 +5,14 @@
 // This is a GENERATED FILE, changes made here WILL BE LOST.
 //
 
+import 'package:ffi/ffi.dart';
+import 'package:generated_bindings.dart';
+{{#if imports}}
+{{#each imports}}
+{{{this}}}
+{{/each}}
+{{/if}}
+
 extension {{name}}Extension on {{name}} {
     {{! Methods }}
     {{#each methods}}
