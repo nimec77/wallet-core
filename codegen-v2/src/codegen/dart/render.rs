@@ -183,15 +183,15 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         };
 
         for super_class in &superclasses {
-            let import_string = import_name(&super_class);
+            let import_string = import_name(&super_class, None);
             imports.insert(DartImport(import_string));
         }
 
         outputs.structs.push(DartStruct {
-            name: pretty_struct_name,
+            name: pretty_struct_name.clone(),
             is_class: strct.is_class,
             is_public: strct.is_public,
-            raw_type: "Pointer<Opaque>".to_string(),
+            raw_type: format!("Pointer<{}>", &strct.name),
             init_instance: strct.is_class,
             imports: imports.into_iter().collect(),
             superclasses,
@@ -206,8 +206,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
     // Render enums.
     for enm in info.enums {
         let obj = ObjectVariant::Enum(&enm.name);
-        let enum_name = format!("enums/{}", &enm.name);
-        let enum_import = import_name(&enum_name);
+        let enum_import = import_name(&enm.name, Some("enums/"));
         let mut imports = HashSet::from([DartImport(enum_import)]);
         // Process items.
         let (methods, properties, mut dart_imports);

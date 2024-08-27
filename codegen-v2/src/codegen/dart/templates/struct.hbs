@@ -18,9 +18,12 @@ import 'package:generated_bindings.dart';
 final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} implements {{#each superclasses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
     final TrustWalletCore _core;
 {{#if init_instance}}
-    final {{{raw_type}}} rawValue;
+    final late {{{raw_type}}} _rawValue;
 
-    const {{name}}(TrustWalletCore core, this.rawValue): _core = core;
+    {{{raw_type}}} get rawValue => _rawValue;
+
+    {{name}}(TrustWalletCore core, {{{raw_type}}} rawValue)
+        : _core = core, _rawValue = rawValue;
 {{else}}
 
     const {{name}}(TrustWalletCore core): _core = core;
@@ -29,9 +32,13 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 {{! Equality operator, if available }}
 {{#if eq_operator}}
     @override
-    bool operator == ({{name}} other) {
-        return _core.{{eq_operator.c_ffi_name}}(this.rawValue, other.rawValue);
-    }
+    bool operator == (Object other) => switch(other) {
+        {{name}} obj => _core.{{eq_operator.c_ffi_name}}(_rawValue, obj.rawValue),
+        _ => false,
+    };
+
+    @override
+    int get hashCode => _rawValue.hashCode;
 
 {{/if}}
 {{! Inits }}

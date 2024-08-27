@@ -43,7 +43,7 @@ pub(super) fn process_inits(
             });
 
             // Process parameter.
-            if let Some(op) = param_c_ffi_call(&param) {
+            if let Some(op) = param_c_ffi_call(&param, true) {
                 ops.push(op);
             }
 
@@ -87,7 +87,7 @@ pub(super) fn process_inits(
         }
 
         // Note that we do not return a value here; the template sets a
-        // `return {{class_name}}(result);`
+        // `rawValue = result;`
 
         // Prettify name, remove object name prefix from this property.
         let pretty_init_name = pretty_func_name(&init.name, object.name());

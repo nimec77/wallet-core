@@ -73,7 +73,7 @@ pub(super) fn process_methods(
             });
 
             // Process parameter.
-            if let Some(op) = param_c_ffi_call(&param) {
+            if let Some(op) = param_c_ffi_call(&param, func.is_static) {
                 ops.push(op)
             }
         }

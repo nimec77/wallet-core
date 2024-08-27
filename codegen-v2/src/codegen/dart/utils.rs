@@ -50,8 +50,9 @@ pub fn pretty_file_name(name: &str) -> String {
     new_name.to_case(Case::Snake)
 }
 
-pub fn import_name(name: &str) -> String {
-    format!("import 'package:{}.dart';", pretty_file_name(name))
+pub fn import_name(name: &str, path: Option<&str>) -> String {
+    let path = path.unwrap_or_else(|| "");
+    format!("import 'package:{}{}.dart';", path, pretty_file_name(name))
 }
 
 pub fn has_address_protocol(name: &str) -> bool {
@@ -61,12 +62,11 @@ pub fn has_address_protocol(name: &str) -> bool {
 pub fn get_import_from_param(param: &ParamInfo) -> Option<DartImport> {
     match &param.ty.variant {
         TypeVariant::Struct(name) => {
-            let import = import_name(name);
+            let import = import_name(&name, None);
             Some(DartImport(import))
         }
         TypeVariant::Enum(name) => {
-            let enum_name = format!("enums/{}", name);
-            let import = import_name(enum_name.as_str());
+            let import = import_name(&name, Some("enums/"));
             Some(DartImport(import))
         }
         _ => None,
@@ -75,13 +75,18 @@ pub fn get_import_from_param(param: &ParamInfo) -> Option<DartImport> {
 
 // Convenience function: process the parameter, returning the operation for
 // handling the C FFI call (if any).
-pub fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
+pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool) -> Option<DartOperation> {
+    let core_var_name = if is_static_call {
+        "core".to_string()
+    } else {
+        "_core".to_string()
+    };
     let op = match &param.ty.variant {
         // E.g. `final param = TWStringCreateWithNSString(param);`
         TypeVariant::String => {
             let (var_name, call) = (
                 param.name.clone(),
-                format!("TWStringCreateWithNSString({})", param.name),
+                format!("StringImpl.createWithUTF8Bytes({}, {})", &core_var_name, param.name),
             );
 
             // If the parameter is nullable, add special handler.
@@ -95,14 +100,14 @@ pub fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
                 DartOperation::Call {
                     var_name,
                     call,
-                    is_ffi_call: true,
+                    is_ffi_call: false,
                 }
             }
         }
         TypeVariant::Data => {
             let (var_name, call) = (
                 param.name.clone(),
-                format!("TWDataCreateWithNSData({})", param.name),
+                format!("DataImpl.createWithBytes({}, {})", &core_var_name, param.name),
             );
 
             // If the parameter is nullable, add special handler.
@@ -116,7 +121,7 @@ pub fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
                 DartOperation::Call {
                     var_name,
                     call,
-                    is_ffi_call: true,
+                    is_ffi_call: false,
                 }
             }
         }
@@ -198,12 +203,11 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
 pub fn get_import_from_return(ty: &TypeInfo) -> Option<DartImport> {
     match &ty.variant {
         TypeVariant::Struct(name) => {
-            let import = import_name(name);
+            let import = import_name(&name, None);
             Some(DartImport(import))
         }
         TypeVariant::Enum(name) => {
-            let enum_name = format!("enums/{}", name);
-            let import = import_name(enum_name.as_str());
+            let import = import_name(&name, Some("enums/"));
             Some(DartImport(import))
         }
         _ => None,

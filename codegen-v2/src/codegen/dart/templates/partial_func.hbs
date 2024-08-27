@@ -1,19 +1,19 @@
-    {{#if is_static}}static{{/if}} {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}({{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
+    {{#if is_static}}static{{/if}} {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}({{#if is_static}}TrustWalletCore core{{#if params}}, {{/if}}{{/if}}{{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
     {{#each operations}}
     {{#if call}}
-        final {{call.var_name}} = {{#if call.is_ffi_call}}_core.{{/if}}{{call.call}};
+        final {{call.var_name}} = {{#if call.is_ffi_call}}{{#unless ../is_static}}_{{/unless}}core.{{/if}}{{call.call}};
     {{/if}}
     {{#if call_optional}}
         final {{{call_optional.var_type}}}? ptr;
         if ({{call_optional.var_name}} != null) {
-        ptr = _core.{{call_optional.call}};
+        ptr = {{#unless ../is_static}}_{{/unless}}core.{{call_optional.call}};
         } else {
         ptr = null;
         }
         final {{call_optional.var_name}} = ptr;
     {{/if}}
     {{#if guarded_call}}
-        final {{guarded_call.var_name}} = _core.{{guarded_call.call}};
+        final {{guarded_call.var_name}} = {{#unless ../is_static}}_{{/unless}}core.{{guarded_call.call}};
         if ({{guarded_call.var_name}} == null) {
             return null;
         }
