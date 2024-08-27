@@ -26,16 +26,16 @@
         {{/each}}
         } finally {
         {{#each operations}}
-            {{#if defer_optional_call.call}}
+        {{#if defer_optional_call.call}}
             if ({{defer_optional_call.var_name}} != null) {
-                _core.{{defer_optional_call.call}};
+                {{defer_optional_call.call}};
             }
-            {{/if}}
-            {{#if defer_call}}
-            {{#if defer_call.call}}
-            _core.{{defer_call.call}};
-            {{/if}}
-            {{/if}}
+        {{/if}}
+        {{#if defer_call}}
+        {{#if defer_call.call}}
+            {{defer_call.call}};
+        {{/if}}
+        {{/if}}
         {{/each}}
         }
     }

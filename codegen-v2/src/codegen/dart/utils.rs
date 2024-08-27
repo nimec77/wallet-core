@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use convert_case::{Case, Casing};
 use heck::ToLowerCamelCase;
 use crate::codegen::dart::{DartImport, DartOperation, DartType};
@@ -167,7 +168,7 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
         TypeVariant::String => {
             let (var_name, call) = (
                 param.name.clone(),
-                Some(format!("TWStringDelete({})", param.name)),
+                Some(format!("{}.dispose()", param.name)),
             );
 
             if param.ty.is_nullable {
@@ -179,7 +180,7 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
         TypeVariant::Data => {
             let (var_name, call) = (
                 param.name.clone(),
-                Some(format!("TWDataDelete({})", param.name)),
+                Some(format!("{}.dispose()", param.name)),
             );
 
             if param.ty.is_nullable {
@@ -236,6 +237,18 @@ pub fn wrap_return(ty: &TypeInfo) -> DartOperation {
         _ => DartOperation::Return {
             call: "result".to_string(),
         },
+    }
+}
+
+pub fn replace_forbidden_words(name: &str) -> String {
+    let replaced_map = HashMap::from([
+            ("default", "defaultValue"),
+            ("return", "returnValue"),
+        ]);
+
+    match replaced_map.get(name) {
+        Some(replacement) => replacement.to_string(),
+        None => name.to_string(),
     }
 }
 

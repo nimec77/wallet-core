@@ -4,7 +4,7 @@
 
 use std::collections::HashSet;
 use super::{inits::process_deinits, *};
-use crate::codegen::dart::utils::{has_address_protocol, import_name, pretty_file_name, pretty_name};
+use crate::codegen::dart::utils::*;
 
 #[derive(Debug, Clone)]
 pub struct RenderInput<'a> {
@@ -225,11 +225,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             .variants
             .into_iter()
             .map(|info| DartEnumVariant {
-                name: if info.name == "default" {
-                    "defaultValue".to_string()
-                } else {
-                    info.name
-                },
+                name: replace_forbidden_words(&info.name),
                 value: info.value,
                 as_string: info.as_string,
             })
