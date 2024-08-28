@@ -1,7 +1,7 @@
-use std::collections::HashMap;
 use convert_case::{Case, Casing};
 use heck::ToLowerCamelCase;
 use crate::codegen::dart::{DartImport, DartOperation, DartType};
+use crate::codegen::dart::res::{REPLACED_MAP, TRUST_WALLET_PACKAGE_PATH};
 use crate::manifest::{ParamInfo, TypeInfo, TypeVariant};
 
 pub fn pretty_name(name: &str) -> String {
@@ -51,8 +51,8 @@ pub fn pretty_file_name(name: &str) -> String {
 }
 
 pub fn import_name(name: &str, path: Option<&str>) -> String {
-    let path = path.unwrap_or_else(|| "");
-    format!("import 'package:{}{}.dart';", path, pretty_file_name(name))
+    let path = TRUST_WALLET_PACKAGE_PATH.to_owned() + path.unwrap_or_else(|| "");
+    format!("import '{}{}.dart';", path, pretty_file_name(name))
 }
 
 pub fn has_address_protocol(name: &str) -> bool {
@@ -67,6 +67,14 @@ pub fn get_import_from_param(param: &ParamInfo) -> Option<DartImport> {
         }
         TypeVariant::Enum(name) => {
             let import = import_name(&name, Some("enums/"));
+            Some(DartImport(import))
+        }
+        TypeVariant::String => {
+            let import = import_name("StringImpl", Some("common/"));
+            Some(DartImport(import))
+        }
+        TypeVariant::Data => {
+            let import = import_name("DataImpl", Some("common/"));
             Some(DartImport(import))
         }
         _ => None,
@@ -218,14 +226,25 @@ pub fn get_import_from_return(ty: &TypeInfo) -> Option<DartImport> {
 // that types are wrapped differently when returning, compared to
 // `param_c_ffi_call`; such as using `TWStringNSString` instead of
 // `TWDataCreateWithNSData` for Strings.
-pub fn wrap_return(ty: &TypeInfo) -> DartOperation {
+pub fn wrap_return(ty: &TypeInfo, is_static: bool) -> DartOperation {
+    let var_core_name = if is_static {
+        "core".to_string()
+    } else {
+        "_core".to_string()
+    };
     match &ty.variant {
         // E.g.`return TWStringNSString(result)`
         TypeVariant::String => DartOperation::Return {
-            call: "TWStringNSString(result)".to_string(),
+            call: format!(
+                "StringImpl.createWithUTF8Bytes({}, result)",
+                var_core_name
+            ),
         },
         TypeVariant::Data => DartOperation::Return {
-            call: "TWDataNSData(result)".to_string(),
+            call: format!(
+                "DataImpl.createWithBytes({}, result)",
+                var_core_name
+            ),
         },
         // E.g. `return SomeEnum(rawValue: result.rawValue)`
         TypeVariant::Enum(_) => DartOperation::Return {
@@ -245,12 +264,7 @@ pub fn wrap_return(ty: &TypeInfo) -> DartOperation {
 }
 
 pub fn replace_forbidden_words(name: &str) -> String {
-    let replaced_map = HashMap::from([
-            ("default", "defaultValue"),
-            ("return", "returnValue"),
-        ]);
-
-    match replaced_map.get(name) {
+    match REPLACED_MAP.get(name) {
         Some(replacement) => replacement.to_string(),
         None => name.to_string(),
     }

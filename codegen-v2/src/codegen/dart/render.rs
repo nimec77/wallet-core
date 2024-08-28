@@ -183,7 +183,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         };
 
         for super_class in &superclasses {
-            let import_string = import_name(&super_class, None);
+            let import_string = import_name(&super_class, Some("common/"));
             imports.insert(DartImport(import_string));
         }
 

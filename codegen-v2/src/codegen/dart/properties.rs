@@ -69,14 +69,14 @@ pub(super) fn process_properties(
             }
         }
         // Wrap result.
-        ops.push(wrap_return(&prop.return_type));
+        ops.push(wrap_return(&prop.return_type, false));
 
         // Prettify name, remove object name prefix from this property.
         let pretty_name = pretty_name_without_prefix(&prop.name, object.name());
 
         // Convert return type for property interface.
         let return_type = DartReturn {
-            param_type: DartType::from(prop.return_type.variant),
+            param_type: DartType::from(prop.return_type.variant).to_return_type(),
             is_nullable: prop.return_type.is_nullable,
         };
 

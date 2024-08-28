@@ -17,6 +17,7 @@ mod inits;
 mod properties;
 mod render;
 mod utils;
+mod res;
 
 // Re-exports
 pub use self::render::{
@@ -78,6 +79,18 @@ pub struct DartImport(String);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DartType(String);
 
+// Replace DartType to return type
+impl DartType {
+    fn to_return_type(&self) -> DartType {
+        let res = match self.0.as_str() {
+            "String" => "StringImpl",
+            "Data" => "DataImpl",
+            _ => &self.0,
+        };
+
+        DartType(res.to_string())
+    }
+}
 impl Display for DartType {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.0)

@@ -65,7 +65,7 @@ pub(super) fn process_methods(
                 _ => {}
             }
 
-            // Convert parameter to Swift parameter for the function interface.
+            // Convert parameter to Dart parameter for the function interface.
             params.push(DartParam {
                 name: param.name.clone(),
                 param_type: DartType::from(param.ty.variant.clone()),
@@ -131,11 +131,11 @@ pub(super) fn process_methods(
             }
         }
         // Wrap result.
-        ops.push(wrap_return(&func.return_type));
+        ops.push(wrap_return(&func.return_type, func.is_static));
 
         // Convert return type for function interface.
         let return_type = DartReturn {
-            param_type: DartType::from(func.return_type.variant),
+            param_type: DartType::from(func.return_type.variant).to_return_type(),
             is_nullable: func.return_type.is_nullable,
         };
 
