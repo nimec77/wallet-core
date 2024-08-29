@@ -8,31 +8,31 @@ final class StringImpl implements Disposable {
   final TrustWalletCore _core;
 
   /// It must be deleted at the end.
-  final Pointer<TWString> _data;
+  final Pointer<TWString> _pointer;
 
-  Pointer<TWString> get data => _data;
+  Pointer<TWString> get pointer => _pointer;
 
   StringImpl.createWithUTF8Bytes(
     TrustWalletCore core,
     String value,
   )   : _core = core,
-        _data = core.TWStringCreateWithUTF8Bytes(
+        _pointer = core.TWStringCreateWithUTF8Bytes(
           value.toNativeUtf8().cast<Char>(),
         );
 
-  int size(Pointer<TWString> value) => _core.TWStringSize(value);
+  int get size => _core.TWStringSize(_pointer);
 
-  String toDartString(Pointer<TWString> value) => _core.TWStringUTF8Bytes(value).cast<Utf8>().toDartString();
+  String get dartString => _core.TWStringUTF8Bytes(_pointer).cast<Utf8>().toDartString();
 
   @override
   bool operator ==(Object other) => switch (other) {
-        StringImpl v => _core.TWStringEqual(_data, v._data),
+        StringImpl v => _core.TWStringEqual(_pointer, v._pointer),
         _ => false,
       };
 
   @override
-  int get hashCode => _data.hashCode;
+  int get hashCode => _pointer.hashCode;
 
   @override
-  void dispose() => _core.TWStringDelete(_data);
+  void dispose() => _core.TWStringDelete(_pointer);
 }
