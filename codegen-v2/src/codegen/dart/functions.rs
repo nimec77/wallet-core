@@ -4,7 +4,7 @@
 
 use super::*;
 use crate::manifest::{FunctionInfo, TypeVariant};
-use crate::codegen::dart::utils::{pretty_func_name, param_c_ffi_call, param_c_ffi_defer_call, wrap_return};
+use crate::codegen::dart::utils::*;
 
 /// This function checks each function and determines whether there's an
 /// association with the passed on object (struct or enum), based on common name
@@ -15,17 +15,27 @@ use crate::codegen::dart::utils::{pretty_func_name, param_c_ffi_call, param_c_ff
 pub(super) fn process_methods(
     object: &ObjectVariant,
     functions: Vec<FunctionInfo>,
-) -> Result<(Vec<DartFunction>, Vec<FunctionInfo>)> {
+) -> Result<(Vec<DartFunction>, Vec<FunctionInfo>, Vec<DartImport>)> {
     let mut dart_funcs = vec![];
     let mut skipped_funcs = vec![];
+    let mut imports = vec![];
 
     for func in functions {
-        let mut has_defer = false;
+        let mut finally_vars = vec![];
         if !func.name.starts_with(object.name()) {
             // Function is not associated with the object.
             skipped_funcs.push(func);
             continue;
         }
+
+        let params_types = func
+            .params
+            .iter()
+            .map(|param| &param.ty.variant)
+            .collect::<Vec<&TypeVariant>>();
+        let has_finally = func.return_type.is_nullable
+            & params_types.contains(&&TypeVariant::String)
+            || params_types.contains(&&TypeVariant::Data);
 
         let mut ops = vec![];
 
@@ -41,11 +51,13 @@ pub(super) fn process_methods(
                     var_name: "obj".to_string(),
                     call: "rawValue".to_string(),
                     is_ffi_call: false,
+                    is_final: true,
                 },
                 ObjectVariant::Enum(name) => DartOperation::Call {
                     var_name: "obj".to_string(),
                     call: format!("{}.fromValue(value)", name),
                     is_ffi_call: true,
+                    is_final: true,
                 },
             });
         }
@@ -64,17 +76,27 @@ pub(super) fn process_methods(
                 _ => {}
             }
 
-            // Convert parameter to Swift parameter for the function interface.
-            params.push(DartParam {
+            // Convert parameter to Dart parameter for the function interface.
+            params.push(DartVariable {
                 name: param.name.clone(),
-                param_type: DartType::from(param.ty.variant.clone()),
+                var_type: DartType::from(param.ty.variant.clone()),
                 is_nullable: param.ty.is_nullable,
             });
 
             // Process parameter.
-            if let Some(op) = param_c_ffi_call(&param) {
+            if let Some(op) = param_c_ffi_call(&param, func.is_static, !has_finally) {
                 ops.push(op)
             }
+            if has_finally {
+                if let TypeVariant::String | TypeVariant::Data = &param.ty.variant {
+                    finally_vars.push(DartVariable {
+                        name: param.name.clone(),
+                        var_type: DartType::from(param.ty.variant.clone()).to_wrapper_type(),
+                        is_nullable: param.ty.is_nullable,
+                    });
+                }
+            }
+
         }
 
         // Prepepare parameter list to be passed on to the underlying C FFI function.
@@ -97,6 +119,7 @@ pub(super) fn process_methods(
                 var_name,
                 call,
                 is_ffi_call: true,
+                is_final: !has_finally,
             });
         }
 
@@ -109,18 +132,31 @@ pub(super) fn process_methods(
                 }
                 _ => {}
             }
+
+            // Get imports for the parameter.
+            if let Some(dart_import) = get_import_from_param(param) {
+                imports.push(dart_import);
+            }
+
             if let Some(op) = param_c_ffi_defer_call(&param) {
-                has_defer = true;
-                ops.push(op)
+                ops.push(op);
             }
         }
 
+        if let TypeVariant::Enum(name) | TypeVariant::Struct(name) = &func.return_type.variant {
+            if name != object.name() {
+                // Get imports for the return type.
+                if let Some(dart_import) = get_import_from_return(&func.return_type) {
+                    imports.push(dart_import);
+                }
+            }
+        }
         // Wrap result.
-        ops.push(wrap_return(&func.return_type));
+        ops.push(wrap_return(&func.return_type, func.is_static));
 
         // Convert return type for function interface.
         let return_type = DartReturn {
-            param_type: DartType::from(func.return_type.variant),
+            var_type: DartType::from(func.return_type.variant).to_return_type(),
             is_nullable: func.return_type.is_nullable,
         };
 
@@ -131,13 +167,14 @@ pub(super) fn process_methods(
             name: pretty_name,
             is_public: func.is_public,
             is_static: func.is_static,
-            has_defer,
+            has_finally,
             operations: ops,
+            finally_vars,
             params,
             return_type,
             comments: vec![],
         });
     }
 
-    Ok((dart_funcs, skipped_funcs))
+    Ok((dart_funcs, skipped_funcs, imports))
 }

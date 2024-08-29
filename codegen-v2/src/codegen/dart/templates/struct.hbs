@@ -6,9 +6,9 @@
 //
 
 import 'dart:ffi';
+import 'dart:typed_data';
 
-import 'package:ffi/ffi.dart';
-import 'package:generated_bindings.dart';
+import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
 {{#if imports}}
 {{#each imports}}
 {{{this}}}
@@ -18,9 +18,12 @@ import 'package:generated_bindings.dart';
 final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} implements {{#each superclasses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
     final TrustWalletCore _core;
 {{#if init_instance}}
-    final {{{raw_type}}} rawValue;
+    late final {{{raw_type}}} _rawValue;
 
-    const {{name}}(TrustWalletCore core, this.rawValue): _core = core;
+    {{{raw_type}}} get rawValue => _rawValue;
+
+    {{name}}(TrustWalletCore core, {{{raw_type}}} rawValue)
+        : _core = core, _rawValue = rawValue;
 {{else}}
 
     const {{name}}(TrustWalletCore core): _core = core;
@@ -29,15 +32,19 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 {{! Equality operator, if available }}
 {{#if eq_operator}}
     @override
-    bool operator == ({{name}} other) {
-        return _core.{{eq_operator.c_ffi_name}}(this.rawValue, other.rawValue);
-    }
+    bool operator == (Object other) => switch(other) {
+        {{name}} obj => _core.{{eq_operator.c_ffi_name}}(_rawValue, obj.rawValue),
+        _ => false,
+    };
+
+    @override
+    int get hashCode => _rawValue.hashCode;
 
 {{/if}}
 {{! Inits }}
 {{#each inits}}
-    {{#if has_defer}}
-    {{~> partial_init_defer}}
+    {{#if has_finally}}
+    {{~> partial_init_finally}}
     {{else}}
     {{~> partial_init}}
     {{/if}}
@@ -55,8 +62,8 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 {{/if}}
 {{! Methods }}
 {{#each methods}}
-    {{#if has_defer}}
-    {{~> partial_func_defer}}
+    {{#if has_finally}}
+    {{~> partial_func_finally}}
     {{else}}
     {{~> partial_func}}
     {{/if}}

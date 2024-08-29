@@ -17,6 +17,7 @@ mod inits;
 mod properties;
 mod render;
 mod utils;
+mod res;
 
 // Re-exports
 pub use self::render::{
@@ -24,7 +25,7 @@ pub use self::render::{
     RenderInput,
 };
 
-/// Represents a Swift struct or class.
+/// Represents a Dart struct or class.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DartStruct {
     name: String,
@@ -32,7 +33,7 @@ pub struct DartStruct {
     is_public: bool,
     init_instance: bool,
     raw_type: String,
-    imports: Vec<String>,
+    imports: Vec<DartImport>,
     superclasses: Vec<String>,
     eq_operator: Option<DartOperatorEquality>,
     inits: Vec<DartInit>,
@@ -51,7 +52,7 @@ pub struct DartEnum {
     value_type: String,
 }
 
-/// Represents a Swift enum variant.
+/// Represents a Dart enum variant.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DartEnumVariant {
     name: String,
@@ -65,36 +66,62 @@ pub struct DartEnumVariant {
 pub struct DartEnumExtension {
     name: String,
     init_instance: bool,
+    imports: Vec<DartImport>,
     methods: Vec<DartFunction>,
     properties: Vec<DartProperty>,
 }
+/// Represents a Dart import statement.
+#[derive(Debug, Clone, Eq, PartialEq, Hash, Serialize, Deserialize)]
+pub struct DartImport(String);
 
 // Wrapper around a valid Dart type (built in or custom). Meant to be used as
 // `<DartType as From<TypeVariant>>::from(...)`.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DartType(String);
 
+// Replace DartType to return type
+impl DartType {
+    fn to_return_type(&self) -> DartType {
+        let res = match self.0.as_str() {
+            "Data" => "DataImpl",
+            _ => &self.0,
+        };
+
+        DartType(res.to_string())
+    }
+
+    fn to_wrapper_type(&self) -> DartType {
+        let res = match self.0.as_str() {
+            "Data" => "DataImpl",
+            "String" => "StringImpl",
+            _ => &self.0,
+        };
+
+        DartType(res.to_string())
+    }
+}
 impl Display for DartType {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.0)
     }
 }
 
-/// Represents a Swift function or method.
+/// Represents a Dart function or method.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DartFunction {
     pub name: String,
     pub is_public: bool,
     pub is_static: bool,
-    pub has_defer: bool,
-    pub params: Vec<DartParam>,
+    pub has_finally: bool,
+    pub params: Vec<DartVariable>,
     pub operations: Vec<DartOperation>,
+    pub finally_vars: Vec<DartVariable>,
     #[serde(rename = "return")]
     pub return_type: DartReturn,
     pub comments: Vec<String>,
 }
 
-/// Represents a Swift property of a struct/class or enum.
+/// Represents a Dart property of a struct/class or enum.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct DartProperty {
     pub name: String,
@@ -108,7 +135,7 @@ struct DartProperty {
 
 /// The operation to be interpreted by the templating engine. This handles
 /// parameters and C FFI calls in an appropriate way, depending on context.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "snake_case")]
 pub enum DartOperation {
     // Results in:
@@ -118,7 +145,8 @@ pub enum DartOperation {
     Call {
         var_name: String,
         call: String,
-        is_ffi_call: bool,
+        is_ffi_call: bool, // Whether the call is a C FFI call.
+        is_final: bool,  // Is final variable.
     },
     // Results in:
     // ```dart
@@ -134,9 +162,10 @@ pub enum DartOperation {
         var_name: String,
         var_type: String,
         call: String,
+        is_final: bool,  // Is final variable.
     },
     // Results in:
-    // ```swift
+    // ```Dart
     // final <var_name> = <call>;
     // if <var_name> == null {
     //     return null;
@@ -170,20 +199,31 @@ pub enum DartOperation {
     Return {
         call: String,
     },
+    // Results in:
+    // ```dart
+    // final wrapper = <call>;
+    // final val = wrapper.<get_method>;
+    // wrapper.dispose();
+    // return val;
+    // ```
+    ReturnWithDispose {
+        call: String,
+        get_method: String,
+    },
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DartParam {
+pub struct DartVariable {
     pub name: String,
     #[serde(rename = "type")]
-    pub param_type: DartType,
+    pub var_type: DartType,
     pub is_nullable: bool,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DartReturn {
     #[serde(rename = "type")]
-    pub param_type: DartType,
+    pub var_type: DartType,
     pub is_nullable: bool,
 }
 
@@ -193,9 +233,10 @@ pub struct DartInit {
     pub class_name: String,
     pub is_nullable: bool,
     pub is_public: bool,
-    pub has_defer: bool,
-    pub params: Vec<DartParam>,
+    pub has_finally: bool,
+    pub params: Vec<DartVariable>,
     pub operations: Vec<DartOperation>,
+    pub finally_vars: Vec<DartVariable>,
     pub comments: Vec<String>,
 }
 
@@ -230,7 +271,7 @@ impl TryFrom<ProtoInfo> for DartProto {
     fn try_from(value: ProtoInfo) -> std::result::Result<Self, Self::Error> {
         Ok(DartProto {
             // Convert the name into an appropriate format.
-            name: pretty_name(value.0.clone()),
+            name: pretty_name(&value.0),
             c_ffi_name: value.0,
         })
     }
@@ -261,7 +302,7 @@ impl From<TypeVariant> for DartType {
             TypeVariant::String => "String".to_string(),
             TypeVariant::Data => "Data".to_string(),
             TypeVariant::Struct(n) | TypeVariant::Enum(n) => {
-                // We strip the "TW" prefix for Swift representations of
+                // We strip the "TW" prefix for Dart representations of
                 // structs/enums.
                 n.strip_prefix("TW").map(|n| n.to_string()).unwrap_or(n)
             }

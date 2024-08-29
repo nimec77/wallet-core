@@ -1,17 +1,22 @@
 use convert_case::{Case, Casing};
 use heck::ToLowerCamelCase;
-use crate::codegen::dart::{DartOperation, DartType};
+use crate::codegen::dart::{DartImport, DartOperation, DartType};
+use crate::codegen::dart::res::{REPLACED_MAP, TRUST_WALLET_PACKAGE_PATH};
 use crate::manifest::{ParamInfo, TypeInfo, TypeVariant};
 
-pub fn pretty_name(name: String) -> String {
+pub fn pretty_name(name: &str) -> String {
     name.replace("_", "").replace("TW", "").replace("Proto", "")
 }
-pub fn pretty_func_name(name: &str, object_name: &str) -> String {
-    let pretty_name = name
-        .strip_prefix(object_name)
+
+pub fn pretty_name_without_prefix(name: &str, prefix: &str) -> String {
+    name
+        .strip_prefix(prefix)
         // Panicking implies bug, checked at the start of the loop.
         .unwrap()
-        .to_lower_camel_case();
+        .to_lower_camel_case()
+}
+pub fn pretty_func_name(name: &str, object_name: &str) -> String {
+    let pretty_name = pretty_name_without_prefix(name, object_name);
 
     if object_name == "TWStoredKey" {
         pretty_name
@@ -36,7 +41,7 @@ pub fn pretty_func_name(name: &str, object_name: &str) -> String {
     }
 }
 
-pub fn pretty_file_name(name: String) -> String {
+pub fn pretty_file_name(name: &str) -> String {
     let new_name = name
         .replace("+", "_")
         .replace("TW", "")
@@ -45,44 +50,74 @@ pub fn pretty_file_name(name: String) -> String {
     new_name.to_case(Case::Snake)
 }
 
-pub fn import_name(name: &str) -> String {
-    format!("import 'package:{}.dart';", pretty_file_name(name.to_string()))
+pub fn import_name(name: &str, path: Option<&str>) -> String {
+    let path = TRUST_WALLET_PACKAGE_PATH.to_owned() + path.unwrap_or_else(|| "");
+    format!("import '{}{}.dart';", path, pretty_file_name(name))
 }
 
 pub fn has_address_protocol(name: &str) -> bool {
-    pretty_name(name.to_string()).ends_with("Address")
+    pretty_name(name).ends_with("Address")
+}
+
+pub fn get_import_from_param(param: &ParamInfo) -> Option<DartImport> {
+    match &param.ty.variant {
+        TypeVariant::Struct(name) => {
+            let import = import_name(&name, None);
+            Some(DartImport(import))
+        }
+        TypeVariant::Enum(name) => {
+            let import = import_name(&name, Some("enums/"));
+            Some(DartImport(import))
+        }
+        TypeVariant::String => {
+            let import = import_name("StringImpl", Some("common/"));
+            Some(DartImport(import))
+        }
+        TypeVariant::Data => {
+            let import = import_name("DataImpl", Some("common/"));
+            Some(DartImport(import))
+        }
+        _ => None,
+    }
 }
 
 // Convenience function: process the parameter, returning the operation for
 // handling the C FFI call (if any).
-pub fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
+pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool, is_final: bool) -> Option<DartOperation> {
+    let core_var_name = if is_static_call {
+        "core".to_string()
+    } else {
+        "_core".to_string()
+    };
     let op = match &param.ty.variant {
-        // E.g. `final param = TWStringCreateWithNSString(param);`
+        // E.g. `final param = TStringImpl.createWithUTF8Bytes(core, param);`
         TypeVariant::String => {
             let (var_name, call) = (
                 param.name.clone(),
-                format!("TWStringCreateWithNSString({})", param.name),
+                format!("StringImpl.createWithUTF8Bytes({}, {})", &core_var_name, param.name),
             );
 
             // If the parameter is nullable, add special handler.
             if param.ty.is_nullable {
                 DartOperation::CallOptional {
                     var_name,
-                    var_type: "Pointer<Void>".to_string(),
+                    var_type: "StringImpl".to_string(),
                     call,
+                    is_final,
                 }
             } else {
                 DartOperation::Call {
                     var_name,
                     call,
-                    is_ffi_call: true,
+                    is_ffi_call: false,
+                    is_final,
                 }
             }
         }
         TypeVariant::Data => {
             let (var_name, call) = (
                 param.name.clone(),
-                format!("TWDataCreateWithNSData({})", param.name),
+                format!("DataImpl.createWithBytes({}, {})", &core_var_name, param.name),
             );
 
             // If the parameter is nullable, add special handler.
@@ -91,12 +126,14 @@ pub fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
                     var_name,
                     var_type: "Pointer<Void>".to_string(),
                     call,
+                    is_final,
                 }
             } else {
                 DartOperation::Call {
                     var_name,
                     call,
-                    is_ffi_call: true,
+                    is_ffi_call: false,
+                    is_final,
                 }
             }
         }
@@ -123,6 +160,7 @@ pub fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
                 var_name,
                 call,
                 is_ffi_call: false,
+                is_final,
             }
         }
         // E.g. `final param = TWSomeEnum.fromValue(param.value);`
@@ -133,6 +171,7 @@ pub fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
                 var_name: param.name.clone(),
                 call: format!("{enm}.fromValue({}.value)", param.name),
                 is_ffi_call: true,
+                is_final,
             },
         // Skip processing parameter, reference the parameter by name
         // directly, as defined in the function interface (usually the
@@ -146,9 +185,14 @@ pub fn param_c_ffi_call(param: &ParamInfo) -> Option<DartOperation> {
 pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
     let op = match &param.ty.variant {
         TypeVariant::String => {
+            let format_str = if param.ty.is_nullable {
+                format!("{}?.dispose()", param.name)
+            } else {
+                format!("{}.dispose()", param.name)
+            };
             let (var_name, call) = (
                 param.name.clone(),
-                Some(format!("TWStringDelete({})", param.name)),
+                Some(format_str),
             );
 
             if param.ty.is_nullable {
@@ -158,9 +202,14 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
             }
         }
         TypeVariant::Data => {
+            let format_str = if param.ty.is_nullable {
+                format!("{}?.dispose()", param.name)
+            } else {
+                format!("{}.dispose()", param.name)
+            };
             let (var_name, call) = (
                 param.name.clone(),
-                Some(format!("TWDataDelete({})", param.name)),
+                Some(format_str),
             );
 
             if param.ty.is_nullable {
@@ -175,32 +224,67 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
     Some(op)
 }
 
-// Convenience function: wrap the return value, returning the operation. Note
-// that types are wrapped differently when returning, compared to
-// `param_c_ffi_call`; such as using `TWStringNSString` instead of
-// `TWDataCreateWithNSData` for Strings.
-pub fn wrap_return(ty: &TypeInfo) -> DartOperation {
+pub fn get_import_from_return(ty: &TypeInfo) -> Option<DartImport> {
+    match &ty.variant {
+        TypeVariant::Struct(name) => {
+            let import = import_name(&name, None);
+            Some(DartImport(import))
+        }
+        TypeVariant::Enum(name) => {
+            let import = import_name(&name, Some("enums/"));
+            Some(DartImport(import))
+        }
+        _ => None,
+    }
+}
+
+// Convenience function: wrap the return value, returning the operation.
+pub fn wrap_return(ty: &TypeInfo, is_static: bool) -> DartOperation {
+    let var_core_name = if is_static {
+        "core".to_string()
+    } else {
+        "_core".to_string()
+    };
     match &ty.variant {
         // E.g.`return TWStringNSString(result)`
-        TypeVariant::String => DartOperation::Return {
-            call: "TWStringNSString(result)".to_string(),
+        TypeVariant::String => DartOperation::ReturnWithDispose {
+            call: format!(
+                "StringImpl.createWithUTF8Bytes({}, result)",
+                var_core_name
+            ),
+            get_method: "dartString".to_string(),
         },
         TypeVariant::Data => DartOperation::Return {
-            call: "TWDataNSData(result)".to_string(),
+            call: format!(
+                "DataImpl.createWithBytes({}, result)",
+                var_core_name
+            ),
         },
         // E.g. `return SomeEnum(rawValue: result.rawValue)`
         TypeVariant::Enum(_) => DartOperation::Return {
             call: format!(
-                "{}(rawValue: result.rawValue)!",
+                "{}.fromValue(result.value)",
                 DartType::from(ty.variant.clone())
             ),
         },
-        // E.g. `return SomeStruct(rawValue: result)`
+        // E.g. `return SomeStruct(core, result);`
         TypeVariant::Struct(_) => DartOperation::Return {
-            call: format!("{}(rawValue: result)", DartType::from(ty.variant.clone())),
+            call: format!(
+                "{}({}, result)",
+                DartType::from(ty.variant.clone()),
+                var_core_name
+            ),
         },
         _ => DartOperation::Return {
             call: "result".to_string(),
         },
     }
 }
+
+pub fn replace_forbidden_words(name: &str) -> String {
+    match REPLACED_MAP.get(name) {
+        Some(replacement) => replacement.to_string(),
+        None => name.to_string(),
+    }
+}
+

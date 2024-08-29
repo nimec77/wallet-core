@@ -1,0 +1,37 @@
+    factory {{class_name}}.{{#unless is_public}}_{{/unless}}{{name}}(TrustWalletCore core{{#if params}}, {{/if}}{{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
+        {{#if finally_vars}}
+        {{#each finally_vars}}
+        final {{type}}{{#if is_nullable}}?{{/if}} {{name}};
+        {{/each}}
+        {{/if}}
+        try {
+        {{#each operations}}
+        {{#if call}}
+            {{#if call.is_final}}final {{/if}}{{call.var_name}} = {{#if call.is_ffi_call}}core.{{/if}}{{call.call}};
+        {{/if}}
+        {{#if guarded_call}}
+            final {{guarded_call.var_name}} = core.{{guarded_call.call}};
+            if ({{guarded_call.var_name}} == null) {
+                throw ArgumentError('{{guarded_call.call}} returned null');
+            }
+        {{/if}}
+        {{#if return}}
+
+            return {{return.call}}
+        {{/if}}
+        {{/each}}
+
+            return {{class_name}}(core, result);
+        } finally {
+        {{#each operations}}
+        {{#if defer_optional_call.call}}
+            {{defer_optional_call.call}};
+        {{/if}}
+        {{#if defer_call}}
+        {{#if defer_call.call}}
+            {{defer_call.call}};
+        {{/if}}
+        {{/if}}
+        {{/each}}
+        }
+    }

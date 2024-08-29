@@ -4,6 +4,15 @@
 //
 // This is a GENERATED FILE, changes made here WILL BE LOST.
 //
+import 'dart:ffi';
+import 'dart:typed_data';
+
+import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
+{{#if imports}}
+{{#each imports}}
+{{{this}}}
+{{/each}}
+{{/if}}
 
 extension {{name}}Extension on {{name}} {
     {{! Methods }}

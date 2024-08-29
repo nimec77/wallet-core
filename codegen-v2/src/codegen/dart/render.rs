@@ -4,7 +4,7 @@
 
 use std::collections::HashSet;
 use super::{inits::process_deinits, *};
-use crate::codegen::dart::utils::{has_address_protocol, import_name, pretty_file_name, pretty_name};
+use crate::codegen::dart::utils::*;
 
 #[derive(Debug, Clone)]
 pub struct RenderInput<'a> {
@@ -14,9 +14,9 @@ pub struct RenderInput<'a> {
     pub extension_template: &'a str,
     pub proto_template: &'a str,
     pub partial_init_template: &'a str,
-    pub partial_init_defer_template: &'a str,
+    pub partial_init_finally_template: &'a str,
     pub partial_func_template: &'a str,
-    pub partial_func_defer_template: &'a str,
+    pub partial_func_finally_template: &'a str,
     pub partial_prop_template: &'a str,
 }
 
@@ -48,7 +48,7 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
     // The current year for the copyright header in the generated bindings.
     let current_year = crate::current_year();
     // Convert the name into an appropriate format.
-    let pretty_file_name = pretty_file_name(input.file_info.name.clone());
+    let pretty_file_name = pretty_file_name(&input.file_info.name);
 
     let mut engine = Handlebars::new();
     // Unmatched variables should result in an error.
@@ -59,9 +59,9 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
     engine.register_partial("extension", input.extension_template)?;
     engine.register_partial("proto", input.proto_template)?;
     engine.register_partial("partial_init", input.partial_init_template)?;
-    engine.register_partial("partial_init_defer", input.partial_init_defer_template)?;
+    engine.register_partial("partial_init_finally", input.partial_init_finally_template)?;
     engine.register_partial("partial_func", input.partial_func_template)?;
-    engine.register_partial("partial_func_defer", input.partial_func_defer_template)?;
+    engine.register_partial("partial_func_finally", input.partial_func_finally_template)?;
     engine.register_partial("partial_prop", input.partial_prop_template)?;
 
     let rendered = generate_dart_types(input.file_info)?;
@@ -131,14 +131,24 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
     // Render structs/classes.
     for strct in info.structs {
         let obj = ObjectVariant::Struct(&strct.name);
-        let mut imports = HashSet::new();
 
         // Process items.
-        let (inits, deinits, mut methods, properties);
-        (inits, info.inits) = process_inits(&obj, info.inits)?;
+        let (
+            inits,
+            deinits,
+            mut methods,
+            properties,
+            mut dart_imports
+        );
+
+        let mut imports = HashSet::new();
+        (inits, info.inits, dart_imports) = process_inits(&obj, info.inits)?;
+        imports.extend(dart_imports);
         (deinits, info.deinits) = process_deinits(&obj, info.deinits)?;
-        (methods, info.functions) = process_methods(&obj, info.functions)?;
-        (properties, info.properties) = process_properties(&obj, info.properties)?;
+        (methods, info.functions, dart_imports) = process_methods(&obj, info.functions)?;
+        imports.extend(dart_imports);
+        (properties, info.properties, dart_imports) = process_properties(&obj, info.properties)?;
+        imports.extend(dart_imports);
 
         // Avoid rendering empty structs.
         if inits.is_empty() && methods.is_empty() && properties.is_empty() {
@@ -146,7 +156,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         }
 
         // Convert the name into an appropriate format.
-        let pretty_struct_name = pretty_name(strct.name.clone());
+        let pretty_struct_name = pretty_name(&strct.name);
 
         // Add Disposable and superclasses
         let mut superclasses = vec![];
@@ -155,6 +165,9 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         }
         if has_address_protocol(strct.name.as_str()) {
             superclasses.push("Address".to_string());
+        }
+        if !superclasses.is_empty() {
+            imports.insert(DartImport(import_name("abstractions", Some("common/"))));
         }
 
         // Handle equality operator.
@@ -172,15 +185,11 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             None
         };
 
-        for super_class in &superclasses {
-            imports.insert(import_name(super_class.as_str()));
-        }
-
         outputs.structs.push(DartStruct {
-            name: pretty_struct_name,
+            name: pretty_struct_name.clone(),
             is_class: strct.is_class,
             is_public: strct.is_public,
-            raw_type: "Pointer<Opaque>".to_string(),
+            raw_type: format!("Pointer<{}>", &strct.name),
             init_instance: strct.is_class,
             imports: imports.into_iter().collect(),
             superclasses,
@@ -195,14 +204,17 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
     // Render enums.
     for enm in info.enums {
         let obj = ObjectVariant::Enum(&enm.name);
+        let enum_import = import_name(&enm.name, Some("enums/"));
+        let mut imports = HashSet::from([DartImport(enum_import)]);
         // Process items.
-        let (methods, properties);
-        (methods, info.functions) = process_methods(&obj, info.functions)?;
-        (properties, info.properties) = process_properties(&obj, info.properties)?;
+        let (methods, properties, mut dart_imports);
+        (methods, info.functions, dart_imports) = process_methods(&obj, info.functions)?;
+        imports.extend(dart_imports);
+        (properties, info.properties, dart_imports) = process_properties(&obj, info.properties)?;
+        imports.extend(dart_imports);
 
         // Convert the name into an appropriate format.
-        let pretty_enum_name = pretty_name(enm.name);
-
+        let pretty_enum_name = pretty_name(&enm.name);
         let add_class = false;
 
         // Convert to Dart enum variants
@@ -210,11 +222,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             .variants
             .into_iter()
             .map(|info| DartEnumVariant {
-                name: if info.name == "default" {
-                    "defaultValue".to_string()
-                } else {
-                    info.name
-                },
+                name: replace_forbidden_words(&info.name),
                 value: info.value,
                 as_string: info.as_string,
             })
@@ -237,6 +245,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         outputs.extensions.push(DartEnumExtension {
             name: pretty_enum_name,
             init_instance: true,
+            imports: imports.into_iter().collect(),
             methods,
             properties,
         });
