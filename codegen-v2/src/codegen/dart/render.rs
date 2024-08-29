@@ -14,9 +14,9 @@ pub struct RenderInput<'a> {
     pub extension_template: &'a str,
     pub proto_template: &'a str,
     pub partial_init_template: &'a str,
-    pub partial_init_defer_template: &'a str,
+    pub partial_init_finally_template: &'a str,
     pub partial_func_template: &'a str,
-    pub partial_func_defer_template: &'a str,
+    pub partial_func_finally_template: &'a str,
     pub partial_prop_template: &'a str,
 }
 
@@ -59,9 +59,9 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
     engine.register_partial("extension", input.extension_template)?;
     engine.register_partial("proto", input.proto_template)?;
     engine.register_partial("partial_init", input.partial_init_template)?;
-    engine.register_partial("partial_init_defer", input.partial_init_defer_template)?;
+    engine.register_partial("partial_init_finally", input.partial_init_finally_template)?;
     engine.register_partial("partial_func", input.partial_func_template)?;
-    engine.register_partial("partial_func_defer", input.partial_func_defer_template)?;
+    engine.register_partial("partial_func_finally", input.partial_func_finally_template)?;
     engine.register_partial("partial_prop", input.partial_prop_template)?;
 
     let rendered = generate_dart_types(input.file_info)?;
@@ -166,6 +166,9 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         if has_address_protocol(strct.name.as_str()) {
             superclasses.push("Address".to_string());
         }
+        if !superclasses.is_empty() {
+            imports.insert(DartImport(import_name("abstractions", Some("common/"))));
+        }
 
         // Handle equality operator.
         let eq_method = methods.iter().enumerate().find(|(_, f)| f.name == "equal");
@@ -181,11 +184,6 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         } else {
             None
         };
-
-        for super_class in &superclasses {
-            let import_string = import_name(&super_class, Some("common/"));
-            imports.insert(DartImport(import_string));
-        }
 
         outputs.structs.push(DartStruct {
             name: pretty_struct_name.clone(),

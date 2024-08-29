@@ -83,14 +83,14 @@ pub fn get_import_from_param(param: &ParamInfo) -> Option<DartImport> {
 
 // Convenience function: process the parameter, returning the operation for
 // handling the C FFI call (if any).
-pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool) -> Option<DartOperation> {
+pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool, is_final: bool) -> Option<DartOperation> {
     let core_var_name = if is_static_call {
         "core".to_string()
     } else {
         "_core".to_string()
     };
     let op = match &param.ty.variant {
-        // E.g. `final param = TWStringCreateWithNSString(param);`
+        // E.g. `final param = TStringImpl.createWithUTF8Bytes(core, param);`
         TypeVariant::String => {
             let (var_name, call) = (
                 param.name.clone(),
@@ -101,14 +101,16 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool) -> Option<DartO
             if param.ty.is_nullable {
                 DartOperation::CallOptional {
                     var_name,
-                    var_type: "Pointer<Void>".to_string(),
+                    var_type: "StringImpl".to_string(),
                     call,
+                    is_final,
                 }
             } else {
                 DartOperation::Call {
                     var_name,
                     call,
                     is_ffi_call: false,
+                    is_final,
                 }
             }
         }
@@ -124,12 +126,14 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool) -> Option<DartO
                     var_name,
                     var_type: "Pointer<Void>".to_string(),
                     call,
+                    is_final,
                 }
             } else {
                 DartOperation::Call {
                     var_name,
                     call,
                     is_ffi_call: false,
+                    is_final,
                 }
             }
         }
@@ -156,6 +160,7 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool) -> Option<DartO
                 var_name,
                 call,
                 is_ffi_call: false,
+                is_final,
             }
         }
         // E.g. `final param = TWSomeEnum.fromValue(param.value);`
@@ -166,6 +171,7 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool) -> Option<DartO
                 var_name: param.name.clone(),
                 call: format!("{enm}.fromValue({}.value)", param.name),
                 is_ffi_call: true,
+                is_final,
             },
         // Skip processing parameter, reference the parameter by name
         // directly, as defined in the function interface (usually the
@@ -179,9 +185,14 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool) -> Option<DartO
 pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
     let op = match &param.ty.variant {
         TypeVariant::String => {
+            let format_str = if param.ty.is_nullable {
+                format!("{}?.dispose()", param.name)
+            } else {
+                format!("{}.dispose()", param.name)
+            };
             let (var_name, call) = (
                 param.name.clone(),
-                Some(format!("{}.dispose()", param.name)),
+                Some(format_str),
             );
 
             if param.ty.is_nullable {
@@ -191,9 +202,14 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
             }
         }
         TypeVariant::Data => {
+            let format_str = if param.ty.is_nullable {
+                format!("{}?.dispose()", param.name)
+            } else {
+                format!("{}.dispose()", param.name)
+            };
             let (var_name, call) = (
                 param.name.clone(),
-                Some(format!("{}.dispose()", param.name)),
+                Some(format_str),
             );
 
             if param.ty.is_nullable {
@@ -222,10 +238,7 @@ pub fn get_import_from_return(ty: &TypeInfo) -> Option<DartImport> {
     }
 }
 
-// Convenience function: wrap the return value, returning the operation. Note
-// that types are wrapped differently when returning, compared to
-// `param_c_ffi_call`; such as using `TWStringNSString` instead of
-// `TWDataCreateWithNSData` for Strings.
+// Convenience function: wrap the return value, returning the operation.
 pub fn wrap_return(ty: &TypeInfo, is_static: bool) -> DartOperation {
     let var_core_name = if is_static {
         "core".to_string()
@@ -234,11 +247,12 @@ pub fn wrap_return(ty: &TypeInfo, is_static: bool) -> DartOperation {
     };
     match &ty.variant {
         // E.g.`return TWStringNSString(result)`
-        TypeVariant::String => DartOperation::Return {
+        TypeVariant::String => DartOperation::ReturnWithDispose {
             call: format!(
                 "StringImpl.createWithUTF8Bytes({}, result)",
                 var_core_name
             ),
+            get_method: "dartString".to_string(),
         },
         TypeVariant::Data => DartOperation::Return {
             call: format!(
@@ -249,13 +263,17 @@ pub fn wrap_return(ty: &TypeInfo, is_static: bool) -> DartOperation {
         // E.g. `return SomeEnum(rawValue: result.rawValue)`
         TypeVariant::Enum(_) => DartOperation::Return {
             call: format!(
-                "{}(rawValue: result.rawValue)!",
+                "{}.fromValue(result.value)",
                 DartType::from(ty.variant.clone())
             ),
         },
-        // E.g. `return SomeStruct(rawValue: result)`
+        // E.g. `return SomeStruct(core, result);`
         TypeVariant::Struct(_) => DartOperation::Return {
-            call: format!("{}(rawValue: result)", DartType::from(ty.variant.clone())),
+            call: format!(
+                "{}({}, result)",
+                DartType::from(ty.variant.clone()),
+                var_core_name
+            ),
         },
         _ => DartOperation::Return {
             call: "result".to_string(),

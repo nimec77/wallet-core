@@ -21,12 +21,21 @@ pub(super) fn process_methods(
     let mut imports = vec![];
 
     for func in functions {
-        let mut has_defer = false;
+        let mut finally_vars = vec![];
         if !func.name.starts_with(object.name()) {
             // Function is not associated with the object.
             skipped_funcs.push(func);
             continue;
         }
+
+        let params_types = func
+            .params
+            .iter()
+            .map(|param| &param.ty.variant)
+            .collect::<Vec<&TypeVariant>>();
+        let has_finally = func.return_type.is_nullable
+            & params_types.contains(&&TypeVariant::String)
+            || params_types.contains(&&TypeVariant::Data);
 
         let mut ops = vec![];
 
@@ -42,11 +51,13 @@ pub(super) fn process_methods(
                     var_name: "obj".to_string(),
                     call: "rawValue".to_string(),
                     is_ffi_call: false,
+                    is_final: true,
                 },
                 ObjectVariant::Enum(name) => DartOperation::Call {
                     var_name: "obj".to_string(),
                     call: format!("{}.fromValue(value)", name),
                     is_ffi_call: true,
+                    is_final: true,
                 },
             });
         }
@@ -66,16 +77,26 @@ pub(super) fn process_methods(
             }
 
             // Convert parameter to Dart parameter for the function interface.
-            params.push(DartParam {
+            params.push(DartVariable {
                 name: param.name.clone(),
-                param_type: DartType::from(param.ty.variant.clone()),
+                var_type: DartType::from(param.ty.variant.clone()),
                 is_nullable: param.ty.is_nullable,
             });
 
             // Process parameter.
-            if let Some(op) = param_c_ffi_call(&param, func.is_static) {
+            if let Some(op) = param_c_ffi_call(&param, func.is_static, !has_finally) {
                 ops.push(op)
             }
+            if has_finally {
+                if let TypeVariant::String | TypeVariant::Data = &param.ty.variant {
+                    finally_vars.push(DartVariable {
+                        name: param.name.clone(),
+                        var_type: DartType::from(param.ty.variant.clone()).to_wrapper_type(),
+                        is_nullable: param.ty.is_nullable,
+                    });
+                }
+            }
+
         }
 
         // Prepepare parameter list to be passed on to the underlying C FFI function.
@@ -98,6 +119,7 @@ pub(super) fn process_methods(
                 var_name,
                 call,
                 is_ffi_call: true,
+                is_final: !has_finally,
             });
         }
 
@@ -117,8 +139,7 @@ pub(super) fn process_methods(
             }
 
             if let Some(op) = param_c_ffi_defer_call(&param) {
-                has_defer = true;
-                ops.push(op)
+                ops.push(op);
             }
         }
 
@@ -135,7 +156,7 @@ pub(super) fn process_methods(
 
         // Convert return type for function interface.
         let return_type = DartReturn {
-            param_type: DartType::from(func.return_type.variant).to_return_type(),
+            var_type: DartType::from(func.return_type.variant).to_return_type(),
             is_nullable: func.return_type.is_nullable,
         };
 
@@ -146,8 +167,9 @@ pub(super) fn process_methods(
             name: pretty_name,
             is_public: func.is_public,
             is_static: func.is_static,
-            has_defer,
+            has_finally,
             operations: ops,
+            finally_vars,
             params,
             return_type,
             comments: vec![],

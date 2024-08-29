@@ -37,12 +37,14 @@ pub(super) fn process_properties(
                 var_name: "obj".to_string(),
                 call: "rawValue".to_string(),
                 is_ffi_call: false,
+                is_final: true,
             },
             // E.g. `final obj = TWSomeEnum.fromValue(rawValue");`
             ObjectVariant::Enum(name) => DartOperation::Call {
                 var_name: "obj".to_string(),
                 call: format!("{}.fromValue(rawValue)", name),
                 is_ffi_call: true,
+                is_final: true,
             },
         });
 
@@ -57,6 +59,7 @@ pub(super) fn process_properties(
                 var_name,
                 call,
                 is_ffi_call: true,
+                is_final: true,
             });
         }
 
@@ -76,7 +79,7 @@ pub(super) fn process_properties(
 
         // Convert return type for property interface.
         let return_type = DartReturn {
-            param_type: DartType::from(prop.return_type.variant).to_return_type(),
+            var_type: DartType::from(prop.return_type.variant).to_return_type(),
             is_nullable: prop.return_type.is_nullable,
         };
 

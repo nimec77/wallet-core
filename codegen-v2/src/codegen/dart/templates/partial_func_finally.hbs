@@ -1,41 +1,51 @@
     {{#if is_static}}static{{/if}} {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}({{#if is_static}}TrustWalletCore core{{#if params}}, {{/if}}{{/if}}{{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
+    {{#if finally_vars}}
+    {{#each finally_vars}}
+        final {{type}}{{#if is_nullable}}?{{/if}} {{name}};
+    {{/each}}
+    {{/if}}
         try {
         {{#each operations}}
         {{#if call}}
-            final {{call.var_name}} = {{#if call.is_ffi_call}}{{#unless ../is_static}}_{{/unless}}core.{{/if}}{{call.call}};
+            {{#if call.is_final}}final {{/if}}{{call.var_name}} = {{#if call.is_ffi_call}}{{#unless ../is_static}}_{{/unless}}core.{{/if}}{{call.call}};
         {{/if}}
         {{#if call_optional}}
-            final {{{call_optional.var_type}}}? ptr;
+            final {{call_optional.var_type}}? ptr;
             if ({{call_optional.var_name}} != null) {
-                ptr = {{#unless ../is_static}}_{{/unless}}core.{{call_optional.call}};
+                ptr = {{call_optional.call}};
             } else {
                 ptr = null;
             }
             final {{call_optional.var_name}} = ptr;
-        {{/if}}
+            {{/if}}
         {{#if guarded_call}}
             final {{guarded_call.var_name}} = {{#unless ../is_static}}_{{/unless}}core.{{guarded_call.call}};
-            if ({{guarded_call.var_name}} == null) {
+            if ({{guarded_call.var_name}} == nullptr) {
                 return null;
             }
         {{/if}}
         {{#if return}}
 
             return {{return.call}};
+            {{/if}}
+            {{#if return_with_dispose}}
+            final wrapper = {{return_with_dispose.call}};
+            final val = wrapper.{{return_with_dispose.get_method}};
+            wrapper.dispose();
+
+            return val;
         {{/if}}
         {{/each}}
         } finally {
         {{#each operations}}
-        {{#if defer_optional_call.call}}
-            if ({{defer_optional_call.var_name}} != null) {
-                {{defer_optional_call.call}};
-            }
-        {{/if}}
-        {{#if defer_call}}
-        {{#if defer_call.call}}
+            {{#if defer_optional_call.call}}
+            {{defer_optional_call.call}};
+            {{/if}}
+            {{#if defer_call}}
+            {{#if defer_call.call}}
             {{defer_call.call}};
-        {{/if}}
-        {{/if}}
+            {{/if}}
+            {{/if}}
         {{/each}}
         }
     }

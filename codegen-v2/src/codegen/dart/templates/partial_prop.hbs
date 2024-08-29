@@ -1,15 +1,15 @@
     {{#if is_override}}@override{{/if}}
     {{return.type}}{{#if return.is_nullable}}?{{/if}} get {{#unless is_public}}_{{/unless}}{{name}} {
-        {{#each operations}}
+    {{#each operations}}
         {{#if call}}
         final {{call.var_name}} = {{#if call.is_ffi_call}}_core.{{/if}}{{call.call}};
         {{/if}}
         {{#if call_optional}}
-        final {{{var_type}}}? ptr;
+        final {{{var_type}}} ptr;
         if ({{call_optional.var_name}} != null) {
             ptr = _core.{{call_optional.call}};
         } else {
-            ptr = null;
+            ptr = nullptr;
         }
         final {{call_optional.var_name}} = ptr;
         {{/if}}
@@ -20,7 +20,7 @@
         }
         {{/if}}
         {{#if defer_optional_call.call}}
-        if ({{defer_optional_call.var_name}} != null) {
+        if ({{defer_optional_call.var_name}} != nullptr) {
             _core.{{defer_optional_call.call}};
         }
         {{/if}}
@@ -33,5 +33,12 @@
 
         return {{return.call}};
         {{/if}}
-        {{/each}}
+        {{#if return_with_dispose}}
+        final wrapper = {{return_with_dispose.call}};
+        final val = wrapper.{{return_with_dispose.get_method}};
+        wrapper.dispose();
+
+        return val;
+        {{/if}}
+    {{/each}}
     }

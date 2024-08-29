@@ -18,7 +18,7 @@ import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
 final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} implements {{#each superclasses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
     final TrustWalletCore _core;
 {{#if init_instance}}
-    final late {{{raw_type}}} _rawValue;
+    late final {{{raw_type}}} _rawValue;
 
     {{{raw_type}}} get rawValue => _rawValue;
 
@@ -43,8 +43,8 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 {{/if}}
 {{! Inits }}
 {{#each inits}}
-    {{#if has_defer}}
-    {{~> partial_init_defer}}
+    {{#if has_finally}}
+    {{~> partial_init_finally}}
     {{else}}
     {{~> partial_init}}
     {{/if}}
@@ -62,8 +62,8 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 {{/if}}
 {{! Methods }}
 {{#each methods}}
-    {{#if has_defer}}
-    {{~> partial_func_defer}}
+    {{#if has_finally}}
+    {{~> partial_func_finally}}
     {{else}}
     {{~> partial_func}}
     {{/if}}

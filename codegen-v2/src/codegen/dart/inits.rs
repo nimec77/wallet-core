@@ -21,7 +21,7 @@ pub(super) fn process_inits(
     let mut imports = vec![];
 
     for init in inits {
-        let mut has_defer = false;
+        let mut finally_vars = vec![];
         if !init.name.starts_with(object.name()) {
             // Init is not assciated with the object.
             skipped_inits.push(init);
@@ -30,21 +30,39 @@ pub(super) fn process_inits(
 
         let mut ops = vec![];
 
+        let type_variants = init
+            .params
+            .iter()
+            .map(|param| &param.ty.variant)
+            .collect::<Vec<&TypeVariant>>();
+        let has_finally = init.is_nullable
+            & type_variants.contains(&&TypeVariant::String)
+            || type_variants.contains(&&TypeVariant::Data);
         // For each parameter, we track a list of `params` which is used for the
         // function interface and add the necessary operations on how to process
         // those parameters.
         let mut params = vec![];
         for param in &init.params {
             // Convert parameter to Dart parameter.
-            params.push(DartParam {
+            params.push(DartVariable {
                 name: param.name.clone(),
-                param_type: DartType::from(param.ty.variant.clone()),
+                var_type: DartType::from(param.ty.variant.clone()),
                 is_nullable: param.ty.is_nullable,
             });
 
             // Process parameter.
-            if let Some(op) = param_c_ffi_call(&param, true) {
+            if let Some(op) = param_c_ffi_call(&param, true, !has_finally) {
                 ops.push(op);
+            }
+
+            if has_finally {
+                if let TypeVariant::String | TypeVariant::Data = &param.ty.variant {
+                    finally_vars.push(DartVariable {
+                        name: param.name.clone(),
+                        var_type: DartType::from(param.ty.variant.clone()).to_wrapper_type(),
+                        is_nullable: param.ty.is_nullable,
+                    });
+                }
             }
 
             if let TypeVariant::Enum(name) | TypeVariant::Struct(name) = &param.ty.variant {
@@ -75,33 +93,32 @@ pub(super) fn process_inits(
                 var_name: "result".to_string(),
                 call: format!("{}({})", init.name, param_names),
                 is_ffi_call: true,
+                is_final: true,
             });
         }
 
         // Add Defer operation to release memory.
         for param in &init.params {
             if let Some(op) = param_c_ffi_defer_call(&param) {
-                has_defer = true;
-                ops.push(op)
+                ops.push(op);
             }
         }
 
         // Note that we do not return a value here; the template sets a
-        // `rawValue = result;`
+        // `return SomeClass(core, result);`
 
         // Prettify name, remove object name prefix from this property.
         let pretty_init_name = pretty_func_name(&init.name, object.name());
 
-        let class_name = pretty_name(object.name());
-
         dart_inits.push(DartInit {
             name: pretty_init_name,
-            class_name,
+            class_name: pretty_name(object.name()),
             is_nullable: init.is_nullable,
             is_public: init.is_public,
-            has_defer,
+            has_finally,
             params,
             operations: ops,
+            finally_vars,
             comments: vec![],
         });
     }
