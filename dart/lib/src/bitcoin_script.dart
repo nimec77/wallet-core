@@ -10,26 +10,25 @@ import 'dart:typed_data';
 
 import 'package:trust_wallet_core/src/common/abstractions.dart';
 import 'package:trust_wallet_core/src/common/data_impl.dart';
+import 'package:trust_wallet_core/src/common/string_impl.dart';
 import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
 
 class BitcoinScript implements Disposable {
   final TrustWalletCore _core;
 
   /// It must be deleted at the end.
-  late Pointer<TWBitcoinScript> _rawValue;
-
-  Pointer<TWBitcoinScript> get rawValue => _rawValue;
+  late final Pointer<TWBitcoinScript> _pointer;
 
   BitcoinScript.create(TrustWalletCore core)
       : _core = core,
-        _rawValue = core.TWBitcoinScriptCreate();
+        _pointer = core.TWBitcoinScriptCreate();
 
   BitcoinScript.createWithData(
     TrustWalletCore core,
     Uint8List bytes,
   ) : _core = core {
     final data = DataImpl.createWithBytes(core, bytes);
-    _rawValue = _core.TWBitcoinScriptCreateWithData(data.data);
+    _pointer = _core.TWBitcoinScriptCreateWithData(data.pointer);
     data.dispose();
   }
 
@@ -37,206 +36,153 @@ class BitcoinScript implements Disposable {
     TrustWalletCore core,
     BitcoinScript script,
   )   : _core = core,
-        _rawValue = core.TWBitcoinScriptCreateCopy(script.rawValue);
+        _pointer = core.TWBitcoinScriptCreateCopy(script._pointer);
+
+  BitcoinScript.buildPayToPublicKey(
+    TrustWalletCore core,
+    Uint8List pubkey,
+  ) : _core = core {
+    final data = DataImpl.createWithBytes(_core, pubkey);
+    _pointer = _core.TWBitcoinScriptBuildPayToPublicKey(data.pointer);
+    data.dispose();
+  }
+
+  BitcoinScript.buildPayToPublicKeyHash(
+    TrustWalletCore core,
+    Uint8List hash,
+  ) : _core = core {
+    final data = DataImpl.createWithBytes(_core, hash);
+    _pointer = _core.TWBitcoinScriptBuildPayToPublicKeyHash(data.pointer);
+    data.dispose();
+  }
+
+  BitcoinScript.buildPayToScriptHash(
+    TrustWalletCore core,
+    Uint8List scriptHash,
+  ) : _core = core {
+    final data = DataImpl.createWithBytes(_core, scriptHash);
+    _pointer = _core.TWBitcoinScriptBuildPayToScriptHash(data.pointer);
+    data.dispose();
+  }
+
+  BitcoinScript.buildPayToWitnessPubkeyHash(
+    TrustWalletCore core,
+    Uint8List hash,
+  ) : _core = core {
+    final data = DataImpl.createWithBytes(_core, hash);
+    _pointer = _core.TWBitcoinScriptBuildPayToWitnessPubkeyHash(data.pointer);
+    data.dispose();
+  }
+
+  BitcoinScript.buildPayToWitnessScriptHash(
+    TrustWalletCore core,
+    Uint8List scriptHash,
+  ) : _core = core {
+    final data = DataImpl.createWithBytes(_core, scriptHash);
+    _pointer = _core.TWBitcoinScriptBuildPayToWitnessScriptHash(data.pointer);
+    data.dispose();
+  }
+
+  BitcoinScript.lockScriptForAddress(
+    TrustWalletCore core,
+    String address,
+    TWCoinType coin,
+  ) : _core = core {
+    final data = StringImpl.createWithUTF8Bytes(_core, address);
+    _pointer = _core.TWBitcoinScriptLockScriptForAddress(data.pointer, coin);
+    data.dispose();
+  }
 
   @override
   bool operator ==(Object other) => switch (other) {
-        BitcoinScript v => _core.TWBitcoinScriptEqual(_rawValue, v._rawValue),
+        BitcoinScript v => _core.TWBitcoinScriptEqual(_pointer, v._pointer),
         _ => false,
       };
 
   @override
-  int get hashCode => _rawValue.hashCode;
+  int get hashCode => _pointer.hashCode;
 
   @override
-  dispose() => _core.TWBitcoinScriptDelete(rawValue);
+  dispose() => _core.TWBitcoinScriptDelete(_pointer);
 
-  //  Data? matchPayToPubkey() {
+  Uint8List? matchPayToPubkey() {
+    final pointer = _core.TWBitcoinScriptMatchPayToPubkey(_pointer);
+    if (pointer == nullptr) return null;
+    final data = DataImpl.createWithData(_core, pointer);
+    final bytes = data.bytes;
+    data.dispose();
+    return bytes;
+  }
 
-  //         final obj = rawValue;
-  //         final result = _core.TWBitcoinScriptMatchPayToPubkey(obj);
-  //         if (result == null) {
-  //             return null;
-  //         }
+  Uint8List? matchPayToPubkeyHash() {
+    final pointer = _core.TWBitcoinScriptMatchPayToPubkeyHash(_pointer);
+    if (pointer == nullptr) return null;
+    final data = DataImpl.createWithData(_core, pointer);
+    final bytes = data.bytes;
+    data.dispose();
+    return bytes;
+  }
 
-  //         return TWDataNSData(result);
-  // }
+  Uint8List? matchPayToScriptHash() {
+    final pointer = _core.TWBitcoinScriptMatchPayToScriptHash(_pointer);
+    if (pointer == nullptr) return null;
+    final data = DataImpl.createWithData(_core, pointer);
+    final bytes = data.bytes;
+    data.dispose();
+    return bytes;
+  }
 
-  //  Data? matchPayToPubkeyHash() {
+  Uint8List? matchPayToWitnessPublicKeyHash() {
+    final pointer = _core.TWBitcoinScriptMatchPayToWitnessPublicKeyHash(_pointer);
+    if (pointer == nullptr) return null;
+    final data = DataImpl.createWithData(_core, pointer);
+    final bytes = data.bytes;
+    data.dispose();
+    return bytes;
+  }
 
-  //         final obj = rawValue;
-  //         final result = _core.TWBitcoinScriptMatchPayToPubkeyHash(obj);
-  //         if (result == null) {
-  //             return null;
-  //         }
+  Uint8List? matchPayToWitnessScriptHash() {
+    final pointer = _core.TWBitcoinScriptMatchPayToWitnessScriptHash(_pointer);
+    if (pointer == nullptr) return null;
+    final data = DataImpl.createWithData(_core, pointer);
+    final bytes = data.bytes;
+    data.dispose();
+    return bytes;
+  }
 
-  //         return TWDataNSData(result);
-  // }
+  Uint8List encode() {
+    final pointer = _core.TWBitcoinScriptEncode(_pointer);
+    final data = DataImpl.createWithData(_core, pointer);
+    final bytes = data.bytes;
+    data.dispose();
+    return bytes;
+  }
 
-  //  Data? matchPayToScriptHash() {
+  int hashTypeForCoin(TWCoinType coinType) => _core.TWBitcoinScriptHashTypeForCoin(coinType);
 
-  //         final obj = rawValue;
-  //         final result = _core.TWBitcoinScriptMatchPayToScriptHash(obj);
-  //         if (result == null) {
-  //             return null;
-  //         }
+  int get size => _core.TWBitcoinScriptSize(_pointer);
 
-  //         return TWDataNSData(result);
-  // }
+  Uint8List get data {
+    final pointer = _core.TWBitcoinScriptData(_pointer);
+    final data = DataImpl.createWithData(_core, pointer);
+    final bytes = data.bytes;
+    data.dispose();
+    return bytes;
+  }
 
-  //  Data? matchPayToWitnessPublicKeyHash() {
+  Uint8List get scriptHash {
+    final pointer = _core.TWBitcoinScriptScriptHash(_pointer);
+    final data = DataImpl.createWithData(_core, pointer);
+    final bytes = data.bytes;
+    data.dispose();
+    return bytes;
+  }
 
-  //         final obj = rawValue;
-  //         final result = _core.TWBitcoinScriptMatchPayToWitnessPublicKeyHash(obj);
-  //         if (result == null) {
-  //             return null;
-  //         }
+  bool get isPayToScriptHash => _core.TWBitcoinScriptIsPayToScriptHash(_pointer);
 
-  //         return TWDataNSData(result);
-  // }
+  bool get isPayToWitnessScriptHash => _core.TWBitcoinScriptIsPayToWitnessScriptHash(_pointer);
 
-  //  Data? matchPayToWitnessScriptHash() {
+  bool get isPayToWitnessPublicKeyHash => _core.TWBitcoinScriptIsPayToWitnessPublicKeyHash(_pointer);
 
-  //         final obj = rawValue;
-  //         final result = _core.TWBitcoinScriptMatchPayToWitnessScriptHash(obj);
-  //         if (result == null) {
-  //             return null;
-  //         }
-
-  //         return TWDataNSData(result);
-  // }
-
-  //  Data encode() {
-
-  //         final obj = rawValue;
-  //         final result = _core.TWBitcoinScriptEncode(obj);
-
-  //         return TWDataNSData(result);
-  // }
-
-  // static BitcoinScript buildPayToPublicKey(Data pubkey) {
-  //     try {
-  //         final pubkey = _core.TWDataCreateWithNSData(pubkey);
-  //         final result = _core.TWBitcoinScriptBuildPayToPublicKey(pubkey);
-
-  //         return BitcoinScript(rawValue: result);
-  //     } finally {
-  //         _core.TWDataDelete(pubkey);
-  //     }
-  // }
-
-  // static BitcoinScript buildPayToPublicKeyHash(Data hash) {
-  //     try {
-  //         final hash = _core.TWDataCreateWithNSData(hash);
-  //         final result = _core.TWBitcoinScriptBuildPayToPublicKeyHash(hash);
-
-  //         return BitcoinScript(rawValue: result);
-  //     } finally {
-  //         _core.TWDataDelete(hash);
-  //     }
-  // }
-
-  // static BitcoinScript buildPayToScriptHash(Data scriptHash) {
-  //     try {
-  //         final scriptHash = _core.TWDataCreateWithNSData(scriptHash);
-  //         final result = _core.TWBitcoinScriptBuildPayToScriptHash(scriptHash);
-
-  //         return BitcoinScript(rawValue: result);
-  //     } finally {
-  //         _core.TWDataDelete(scriptHash);
-  //     }
-  // }
-
-  // static BitcoinScript buildPayToWitnessPubkeyHash(Data hash) {
-  //     try {
-  //         final hash = _core.TWDataCreateWithNSData(hash);
-  //         final result = _core.TWBitcoinScriptBuildPayToWitnessPubkeyHash(hash);
-
-  //         return BitcoinScript(rawValue: result);
-  //     } finally {
-  //         _core.TWDataDelete(hash);
-  //     }
-  // }
-
-  // static BitcoinScript buildPayToWitnessScriptHash(Data scriptHash) {
-  //     try {
-  //         final scriptHash = _core.TWDataCreateWithNSData(scriptHash);
-  //         final result = _core.TWBitcoinScriptBuildPayToWitnessScriptHash(scriptHash);
-
-  //         return BitcoinScript(rawValue: result);
-  //     } finally {
-  //         _core.TWDataDelete(scriptHash);
-  //     }
-  // }
-
-  // static BitcoinScript lockScriptForAddress(String address, CoinType coin) {
-  //     try {
-  //         final address = _core.TWStringCreateWithNSString(address);
-  //         final coin = _core.TWCoinType.fromValue(coin.value);
-  //         final result = _core.TWBitcoinScriptLockScriptForAddress(address, coin);
-
-  //         return BitcoinScript(rawValue: result);
-  //     } finally {
-  //         _core.TWStringDelete(address);
-  //     }
-  // }
-
-  // static UInt32 hashTypeForCoin(CoinType coinType) {
-  //     try {
-  //         final coinType = _core.TWCoinType.fromValue(coinType.value);
-  //         final result = _core.TWBitcoinScriptHashTypeForCoin(coinType);
-
-  //         return result;
-  //     } finally {
-  //     }
-  // }
-
-  // Int get size {
-  //     final obj = rawValue;
-  //     final result = _core.TWBitcoinScriptSize(obj);
-
-  //     return result;
-  // }
-
-  // Data get data {
-  //     final obj = rawValue;
-  //     final result = _core.TWBitcoinScriptData(obj);
-
-  //     return TWDataNSData(result);
-  // }
-
-  // Data get scriptHash {
-  //     final obj = rawValue;
-  //     final result = _core.TWBitcoinScriptScriptHash(obj);
-
-  //     return TWDataNSData(result);
-  // }
-
-  // Bool get isPayToScriptHash {
-  //     final obj = rawValue;
-  //     final result = _core.TWBitcoinScriptIsPayToScriptHash(obj);
-
-  //     return result;
-  // }
-
-  // Bool get isPayToWitnessScriptHash {
-  //     final obj = rawValue;
-  //     final result = _core.TWBitcoinScriptIsPayToWitnessScriptHash(obj);
-
-  //     return result;
-  // }
-
-  // Bool get isPayToWitnessPublicKeyHash {
-  //     final obj = rawValue;
-  //     final result = _core.TWBitcoinScriptIsPayToWitnessPublicKeyHash(obj);
-
-  //     return result;
-  // }
-
-  // Bool get isWitnessProgram {
-  //     final obj = rawValue;
-  //     final result = _core.TWBitcoinScriptIsWitnessProgram(obj);
-
-  //     return result;
-  // }
+  bool get isWitnessProgram => _core.TWBitcoinScriptIsWitnessProgram(_pointer);
 }
