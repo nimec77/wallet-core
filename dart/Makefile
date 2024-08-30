@@ -1,6 +1,6 @@
-.PHONY:	ffi_gen	proto
+.PHONY:	gen	proto
 
-ffi_gen:
+gen:
 	@echo "* ffi generation *"
 	@dart run ffigen
 
