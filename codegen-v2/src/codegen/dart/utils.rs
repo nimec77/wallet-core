@@ -81,86 +81,91 @@ pub fn get_import_from_param(param: &ParamInfo) -> Option<DartImport> {
     }
 }
 
+pub fn get_local_var_name(name: &str) -> String {
+    format!("local_{}", name).to_lower_camel_case()
+}
+
+
 // Convenience function: process the parameter, returning the operation for
 // handling the C FFI call (if any).
-pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool, is_final: bool) -> Option<DartOperation> {
-    let core_var_name = if is_static_call {
-        "core".to_string()
-    } else {
-        "_core".to_string()
-    };
+pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool, core_var_name: &str) -> Option<DartOperation> {
+    let local_var_name = get_local_var_name(&param.name);
     let op = match &param.ty.variant {
         // E.g. `final param = TStringImpl.createWithUTF8Bytes(core, param);`
         TypeVariant::String => {
             let (var_name, call) = (
-                param.name.clone(),
+                local_var_name,
                 format!("StringImpl.createWithUTF8Bytes({}, {})", &core_var_name, param.name),
             );
 
             // If the parameter is nullable, add special handler.
             if param.ty.is_nullable {
                 DartOperation::CallOptional {
+                    param_name: param.name.clone(),
                     var_name,
                     var_type: "StringImpl".to_string(),
                     call,
                     is_final,
+                    core_var_name: None,
                 }
             } else {
                 DartOperation::Call {
                     var_name,
                     call,
-                    is_ffi_call: false,
                     is_final,
+                    core_var_name: None,
                 }
             }
         }
         TypeVariant::Data => {
             let (var_name, call) = (
-                param.name.clone(),
+                local_var_name,
                 format!("DataImpl.createWithBytes({}, {})", &core_var_name, param.name),
             );
 
             // If the parameter is nullable, add special handler.
             if param.ty.is_nullable {
                 DartOperation::CallOptional {
+                    param_name: param.name.clone(),
                     var_name,
                     var_type: "Pointer<Void>".to_string(),
                     call,
-                    is_final,
+                    is_final: true,
+                    core_var_name: None,
                 }
             } else {
                 DartOperation::Call {
                     var_name,
                     call,
-                    is_ffi_call: false,
-                    is_final,
+                    is_final: true,
+                    core_var_name: None,
                 }
             }
         }
         // E.g.
-        // - `final param = param.rawValue;`
-        // - `final param = param?.rawValue;`
+        // - `final param = param.pointer;`
+        // - `final param = param?.pointer;`
         TypeVariant::Struct(_) => {
             // For nullable structs, we do not use the special
             // `CallOptional` handler but rather use the question mark
             // operator.
             let (var_name, call) = if param.ty.is_nullable {
                 (
-                    param.name.clone(),
-                    format!("{}?.rawValue", param.name),
+                    local_var_name,
+                    format!("{}?.pointer", param.name),
                 )
             } else {
                 (
-                    param.name.clone(),
-                    format!("{}.rawValue", param.name)
+                    local_var_name,
+                    format!("{}.pointer", param.name)
                 )
             };
 
             DartOperation::Call {
                 var_name,
                 call,
-                is_ffi_call: false,
                 is_final,
+                core_var_name: None,
             }
         }
         // E.g. `final param = TWSomeEnum.fromValue(param.value);`
@@ -168,10 +173,10 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool, is_final: bool)
         // the underlying "*Create*" C FFI function.
         TypeVariant::Enum(enm) =>
             DartOperation::Call {
-                var_name: param.name.clone(),
+                var_name: local_var_name,
                 call: format!("{enm}.fromValue({}.value)", param.name),
-                is_ffi_call: true,
-                is_final,
+                is_final: true,
+                core_var_name: Some(core_var_name.to_string()),
             },
         // Skip processing parameter, reference the parameter by name
         // directly, as defined in the function interface (usually the
@@ -183,39 +188,56 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_static_call: bool, is_final: bool)
 }
 
 pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
+    let local_var_name = get_local_var_name(&param.name);
     let op = match &param.ty.variant {
         TypeVariant::String => {
             let format_str = if param.ty.is_nullable {
-                format!("{}?.dispose()", param.name)
+                format!("{}?.dispose()", local_var_name)
             } else {
-                format!("{}.dispose()", param.name)
+                format!("{}.dispose()", local_var_name)
             };
             let (var_name, call) = (
-                param.name.clone(),
+                local_var_name.clone(),
                 Some(format_str),
             );
 
             if param.ty.is_nullable {
-                DartOperation::DeferOptionalCall { var_name, call }
+                DartOperation::DeferOptionalCall {
+                    var_name,
+                    call,
+                    core_var_name: None,
+                }
             } else {
-                DartOperation::DeferCall { var_name, call }
+                DartOperation::DeferCall {
+                    var_name,
+                    call,
+                    core_var_name: None,
+                }
             }
         }
         TypeVariant::Data => {
             let format_str = if param.ty.is_nullable {
-                format!("{}?.dispose()", param.name)
+                format!("{}?.dispose()", local_var_name)
             } else {
-                format!("{}.dispose()", param.name)
+                format!("{}.dispose()", local_var_name)
             };
             let (var_name, call) = (
-                param.name.clone(),
+                local_var_name.clone(),
                 Some(format_str),
             );
 
             if param.ty.is_nullable {
-                DartOperation::DeferOptionalCall { var_name, call }
+                DartOperation::DeferOptionalCall {
+                    var_name,
+                    call,
+                    core_var_name: None,
+                }
             } else {
-                DartOperation::DeferCall { var_name, call }
+                DartOperation::DeferCall {
+                    var_name,
+                    call,
+                    core_var_name: None,
+                }
             }
         }
         _ => return None,
@@ -239,28 +261,23 @@ pub fn get_import_from_return(ty: &TypeInfo) -> Option<DartImport> {
 }
 
 // Convenience function: wrap the return value, returning the operation.
-pub fn wrap_return(ty: &TypeInfo, is_static: bool) -> DartOperation {
-    let var_core_name = if is_static {
-        "core".to_string()
-    } else {
-        "_core".to_string()
-    };
+pub fn wrap_return(ty: &TypeInfo, core_var_name: &str) -> DartOperation {
     match &ty.variant {
         // E.g.`return TWStringNSString(result)`
         TypeVariant::String => DartOperation::ReturnWithDispose {
             call: format!(
                 "StringImpl.createWithUTF8Bytes({}, result)",
-                var_core_name
+                core_var_name
             ),
             get_method: "dartString".to_string(),
         },
         TypeVariant::Data => DartOperation::Return {
             call: format!(
                 "DataImpl.createWithBytes({}, result)",
-                var_core_name
+                core_var_name
             ),
         },
-        // E.g. `return SomeEnum(rawValue: result.rawValue)`
+        // E.g. `return SomeEnum.fromValue(result.value)`
         TypeVariant::Enum(_) => DartOperation::Return {
             call: format!(
                 "{}.fromValue(result.value)",
@@ -272,7 +289,7 @@ pub fn wrap_return(ty: &TypeInfo, is_static: bool) -> DartOperation {
             call: format!(
                 "{}({}, result)",
                 DartType::from(ty.variant.clone()),
-                var_core_name
+                core_var_name
             ),
         },
         _ => DartOperation::Return {

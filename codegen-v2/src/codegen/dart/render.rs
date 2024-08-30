@@ -11,7 +11,6 @@ pub struct RenderInput<'a> {
     pub file_info: FileInfo,
     pub struct_template: &'a str,
     pub enum_template: &'a str,
-    pub extension_template: &'a str,
     pub proto_template: &'a str,
     pub partial_init_template: &'a str,
     pub partial_init_finally_template: &'a str,
@@ -56,7 +55,6 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
 
     engine.register_partial("struct", input.struct_template)?;
     engine.register_partial("enum", input.enum_template)?;
-    engine.register_partial("extension", input.extension_template)?;
     engine.register_partial("proto", input.proto_template)?;
     engine.register_partial("partial_init", input.partial_init_template)?;
     engine.register_partial("partial_init_finally", input.partial_init_finally_template)?;
@@ -204,8 +202,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
     // Render enums.
     for enm in info.enums {
         let obj = ObjectVariant::Enum(&enm.name);
-        let enum_import = import_name(&enm.name, Some("enums/"));
-        let mut imports = HashSet::from([DartImport(enum_import)]);
+        let mut imports = HashSet::new();
         // Process items.
         let (methods, properties, mut dart_imports);
         (methods, info.functions, dart_imports) = process_methods(&obj, info.functions)?;
@@ -235,16 +232,6 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             add_description: add_class,
             variants,
             value_type: "int".to_string(),
-        });
-
-        // Avoid rendering empty extension for enums.
-        if methods.is_empty() && properties.is_empty() {
-            continue;
-        }
-
-        outputs.extensions.push(DartEnumExtension {
-            name: pretty_enum_name,
-            init_instance: true,
             imports: imports.into_iter().collect(),
             methods,
             properties,

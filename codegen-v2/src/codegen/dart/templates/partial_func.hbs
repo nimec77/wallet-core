@@ -1,11 +1,11 @@
     {{#if is_static}}static{{/if}} {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}({{#if is_static}}TrustWalletCore core{{#if params}}, {{/if}}{{/if}}{{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
     {{#each operations}}
         {{#if call}}
-        final {{call.var_name}} = {{#if call.is_ffi_call}}{{#unless ../is_static}}_{{/unless}}core.{{/if}}{{call.call}};
+        final {{call.var_name}} = {{#if call.core_var_name}}{{call.core_var_name}}.{{/if}}{{call.call}};
         {{/if}}
         {{#if call_optional}}
         final {{{call_optional.var_type}}}? ptr;
-        if ({{call_optional.var_name}} != null) {
+        if ({{call_optional.param_name}} != null) {
             ptr = {{call_optional.call}};
         } else {
             ptr = null;
@@ -13,7 +13,7 @@
         final {{call_optional.var_name}} = ptr;
         {{/if}}
         {{#if guarded_call}}
-        final {{guarded_call.var_name}} = {{#unless ../is_static}}_{{/unless}}core.{{guarded_call.call}};
+        final {{guarded_call.var_name}} = {{#if guarded_call.core_var_name}}{{guarded_call.core_var_name}}.{{/if}}{{guarded_call.call}};
         if ({{guarded_call.var_name}} == nullptr) {
             return null;
         }

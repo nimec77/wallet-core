@@ -50,6 +50,9 @@ pub struct DartEnum {
     add_description: bool,
     variants: Vec<DartEnumVariant>,
     value_type: String,
+    imports: Vec<DartImport>,
+    methods: Vec<DartFunction>,
+    properties: Vec<DartProperty>,
 }
 
 /// Represents a Dart enum variant.
@@ -83,7 +86,7 @@ pub struct DartType(String);
 impl DartType {
     fn to_return_type(&self) -> DartType {
         let res = match self.0.as_str() {
-            "Data" => "DataImpl",
+            "Uint8List" => "DataImpl",
             _ => &self.0,
         };
 
@@ -92,7 +95,7 @@ impl DartType {
 
     fn to_wrapper_type(&self) -> DartType {
         let res = match self.0.as_str() {
-            "Data" => "DataImpl",
+            "Uint8List" => "DataImpl",
             "String" => "StringImpl",
             _ => &self.0,
         };
@@ -145,8 +148,8 @@ pub enum DartOperation {
     Call {
         var_name: String,
         call: String,
-        is_ffi_call: bool, // Whether the call is a C FFI call.
         is_final: bool,  // Is final variable.
+        core_var_name: Option<String>,
     },
     // Results in:
     // ```dart
@@ -159,10 +162,12 @@ pub enum DartOperation {
     // final alphabet = ptr;
     // ```
     CallOptional {
+        param_name: String,
         var_name: String,
         var_type: String,
         call: String,
         is_final: bool,  // Is final variable.
+        core_var_name: Option<String>,
     },
     // Results in:
     // ```Dart
@@ -174,6 +179,7 @@ pub enum DartOperation {
     GuardedCall {
         var_name: String,
         call: String,
+        core_var_name: Option<String>,
     },
     // Results in:
     // ```dart
@@ -181,6 +187,7 @@ pub enum DartOperation {
     DeferCall {
         var_name: String,
         call: Option<String>,
+        core_var_name: Option<String>,
     },
     // Results in:
     // ```dart
@@ -191,6 +198,7 @@ pub enum DartOperation {
     DeferOptionalCall {
         var_name: String,
         call: Option<String>,
+        core_var_name: Option<String>,
     },
     // Results in:
     // ```dart
@@ -215,6 +223,7 @@ pub enum DartOperation {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DartVariable {
     pub name: String,
+    pub local_name: String,
     #[serde(rename = "type")]
     pub var_type: DartType,
     pub is_nullable: bool,
@@ -300,7 +309,7 @@ impl From<TypeVariant> for DartType {
             TypeVariant::UInt32T => "UInt32".to_string(),
             TypeVariant::UInt64T => "UInt64".to_string(),
             TypeVariant::String => "String".to_string(),
-            TypeVariant::Data => "Data".to_string(),
+            TypeVariant::Data => "Uint8List".to_string(),
             TypeVariant::Struct(n) | TypeVariant::Enum(n) => {
                 // We strip the "TW" prefix for Dart representations of
                 // structs/enums.

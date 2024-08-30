@@ -34,8 +34,8 @@ pub(super) fn process_methods(
             .map(|param| &param.ty.variant)
             .collect::<Vec<&TypeVariant>>();
         let has_finally = func.return_type.is_nullable
-            & params_types.contains(&&TypeVariant::String)
-            || params_types.contains(&&TypeVariant::Data);
+            & (params_types.contains(&&TypeVariant::String)
+            || params_types.contains(&&TypeVariant::Data));
 
         let mut ops = vec![];
 
@@ -43,29 +43,43 @@ pub(super) fn process_methods(
         // C FFI function, assuming the function is not static.
         //
         // E.g:
-        // - `final obj = rawValue;`
-        // - `final obj = TWSomeEnum.fromValue(rawValue);`
+        // - `final obj = pointer;`
+        // - `final obj = TWSomeEnum.fromValue(value);`
+        let core_var_name: &str;
         if !func.is_static {
+            core_var_name = "_core";
             ops.push(match object {
                 ObjectVariant::Struct(_) => DartOperation::Call {
                     var_name: "obj".to_string(),
-                    call: "rawValue".to_string(),
-                    is_ffi_call: false,
+                    call: "pointer".to_string(),
                     is_final: true,
+                    core_var_name: None,
                 },
                 ObjectVariant::Enum(name) => DartOperation::Call {
                     var_name: "obj".to_string(),
                     call: format!("{}.fromValue(value)", name),
-                    is_ffi_call: true,
                     is_final: true,
+                    core_var_name: Some("_core".to_string()),
                 },
             });
+        } else {
+            core_var_name = "core";
         }
 
         // For each parameter, we track a list of `params` which is used for the
         // function interface and add the necessary operations on how to process
         // those parameters.
-        let mut params = vec![];
+        // let param_name = if func.is_static { vec![] } else { vec!["obj"] };
+        let mut params = if matches!(object, ObjectVariant::Enum(_)) {
+            vec![DartVariable {
+                name: "core".to_string(),
+                local_name: "core".to_string(),
+                var_type: DartType("TrustWalletCore".to_string()),
+                is_nullable: false,
+            }]
+        } else {
+            vec![]
+        };
         for param in &func.params {
             // Skip self parameter
             match &param.ty.variant {
@@ -76,34 +90,37 @@ pub(super) fn process_methods(
                 _ => {}
             }
 
+            let mut local_param_name = param.name.clone();
+            // Process parameter.
+            if let Some(op) = param_c_ffi_call(&param, !has_finally, core_var_name) {
+                local_param_name = get_local_var_name(&param.name);
+                ops.push(op)
+            }
             // Convert parameter to Dart parameter for the function interface.
             params.push(DartVariable {
                 name: param.name.clone(),
+                local_name: local_param_name.clone(),
                 var_type: DartType::from(param.ty.variant.clone()),
                 is_nullable: param.ty.is_nullable,
             });
 
-            // Process parameter.
-            if let Some(op) = param_c_ffi_call(&param, func.is_static, !has_finally) {
-                ops.push(op)
-            }
             if has_finally {
                 if let TypeVariant::String | TypeVariant::Data = &param.ty.variant {
                     finally_vars.push(DartVariable {
                         name: param.name.clone(),
+                        local_name: local_param_name.clone(),
                         var_type: DartType::from(param.ty.variant.clone()).to_wrapper_type(),
                         is_nullable: param.ty.is_nullable,
                     });
                 }
             }
-
         }
 
         // Prepepare parameter list to be passed on to the underlying C FFI function.
         let param_name = if func.is_static { vec![] } else { vec!["obj"] };
         let param_names = param_name
             .into_iter()
-            .chain(params.iter().map(|p| p.name.as_str()))
+            .chain(params.iter().map(|p| p.local_name.as_str()))
             .collect::<Vec<&str>>()
             .join(", ");
 
@@ -113,13 +130,17 @@ pub(super) fn process_methods(
             format!("{}({})", func.name, param_names),
         );
         if func.return_type.is_nullable {
-            ops.push(DartOperation::GuardedCall { var_name, call });
+            ops.push(DartOperation::GuardedCall {
+                var_name,
+                call,
+                core_var_name: Some(core_var_name.to_string()),
+            });
         } else {
             ops.push(DartOperation::Call {
                 var_name,
                 call,
-                is_ffi_call: true,
                 is_final: !has_finally,
+                core_var_name: Some(core_var_name.to_string()),
             });
         }
 
@@ -152,7 +173,7 @@ pub(super) fn process_methods(
             }
         }
         // Wrap result.
-        ops.push(wrap_return(&func.return_type, func.is_static));
+        ops.push(wrap_return(&func.return_type, core_var_name));
 
         // Convert return type for function interface.
         let return_type = DartReturn {

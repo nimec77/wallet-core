@@ -36,29 +36,32 @@ pub(super) fn process_inits(
             .map(|param| &param.ty.variant)
             .collect::<Vec<&TypeVariant>>();
         let has_finally = init.is_nullable
-            & type_variants.contains(&&TypeVariant::String)
-            || type_variants.contains(&&TypeVariant::Data);
+            & (type_variants.contains(&&TypeVariant::String)
+            || type_variants.contains(&&TypeVariant::Data));
         // For each parameter, we track a list of `params` which is used for the
         // function interface and add the necessary operations on how to process
         // those parameters.
         let mut params = vec![];
         for param in &init.params {
+            let mut local_param_name = param.name.clone();
+            // Process parameter.
+            if let Some(op) = param_c_ffi_call(&param, !has_finally, "core") {
+                local_param_name = get_local_var_name(&param.name);
+                ops.push(op);
+            }
             // Convert parameter to Dart parameter.
             params.push(DartVariable {
                 name: param.name.clone(),
+                local_name: local_param_name.clone(),
                 var_type: DartType::from(param.ty.variant.clone()),
                 is_nullable: param.ty.is_nullable,
             });
-
-            // Process parameter.
-            if let Some(op) = param_c_ffi_call(&param, true, !has_finally) {
-                ops.push(op);
-            }
 
             if has_finally {
                 if let TypeVariant::String | TypeVariant::Data = &param.ty.variant {
                     finally_vars.push(DartVariable {
                         name: param.name.clone(),
+                        local_name: local_param_name.clone(),
                         var_type: DartType::from(param.ty.variant.clone()).to_wrapper_type(),
                         is_nullable: param.ty.is_nullable,
                     });
@@ -78,7 +81,7 @@ pub(super) fn process_inits(
         // Prepare parameter list to be passed on to the underlying C FFI function.
         let param_names = params
             .iter()
-            .map(|p| p.name.as_str())
+            .map(|p| p.local_name.as_str())
             .collect::<Vec<&str>>()
             .join(", ");
 
@@ -87,13 +90,14 @@ pub(super) fn process_inits(
             ops.push(DartOperation::GuardedCall {
                 var_name: "result".to_string(),
                 call: format!("{}({})", init.name, param_names),
+                core_var_name: Some("core".to_string()),
             });
         } else {
             ops.push(DartOperation::Call {
                 var_name: "result".to_string(),
                 call: format!("{}({})", init.name, param_names),
-                is_ffi_call: true,
                 is_final: true,
+                core_var_name: Some("core".to_string()),
             });
         }
 

@@ -2,7 +2,7 @@
     {{return.type}}{{#if return.is_nullable}}?{{/if}} get {{#unless is_public}}_{{/unless}}{{name}} {
     {{#each operations}}
         {{#if call}}
-        final {{call.var_name}} = {{#if call.is_ffi_call}}_core.{{/if}}{{call.call}};
+        final {{call.var_name}} = {{#if call.core_var_name}}{{call.core_var_name}}.{{/if}}{{call.call}};
         {{/if}}
         {{#if call_optional}}
         final {{{var_type}}} ptr;
@@ -14,7 +14,7 @@
         final {{call_optional.var_name}} = ptr;
         {{/if}}
         {{#if guarded_call}}
-        final {{guarded_call.var_name}} = _core.{{guarded_call.call}};
+        final {{guarded_call.var_name}} = {{#if guarded_call.core_var_name}}{{guarded_call.core_var_name}}.{{/if}}{{guarded_call.call}};
         if ({{guarded_call.var_name}} == null) {
             return null;
         }

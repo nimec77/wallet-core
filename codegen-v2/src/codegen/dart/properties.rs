@@ -32,19 +32,19 @@ pub(super) fn process_properties(
         // Initialize the 'self' type, which is then passed on to the underlying
         // C FFI function.
         ops.push(match object {
-            // E.g. `final obj = rawValue;`
+            // E.g. `final obj = pointer;`
             ObjectVariant::Struct(_) => DartOperation::Call {
                 var_name: "obj".to_string(),
-                call: "rawValue".to_string(),
-                is_ffi_call: false,
+                call: "pointer".to_string(),
                 is_final: true,
+                core_var_name: None,
             },
-            // E.g. `final obj = TWSomeEnum.fromValue(rawValue");`
+            // E.g. `final obj = TWSomeEnum.fromValue(value");`
             ObjectVariant::Enum(name) => DartOperation::Call {
                 var_name: "obj".to_string(),
-                call: format!("{}.fromValue(rawValue)", name),
-                is_ffi_call: true,
+                call: format!("{}.fromValue(value)", name),
                 is_final: true,
+                core_var_name: Some("_core".to_string()),
             },
         });
 
@@ -53,13 +53,17 @@ pub(super) fn process_properties(
         // E.g: `final result = TWSomeFunc(obj);`.
         let (var_name, call) = ("result".to_string(), format!("{}(obj)", prop.name));
         if prop.return_type.is_nullable {
-            ops.push(DartOperation::GuardedCall { var_name, call });
+            ops.push(DartOperation::GuardedCall {
+                var_name,
+                call,
+                core_var_name: Some("_core".to_string()),
+            });
         } else {
             ops.push(DartOperation::Call {
                 var_name,
                 call,
-                is_ffi_call: true,
                 is_final: true,
+                core_var_name: Some("_core".to_string()),
             });
         }
 
@@ -72,7 +76,7 @@ pub(super) fn process_properties(
             }
         }
         // Wrap result.
-        ops.push(wrap_return(&prop.return_type, false));
+        ops.push(wrap_return(&prop.return_type, "_core"));
 
         // Prettify name, remove object name prefix from this property.
         let pretty_name = pretty_name_without_prefix(&prop.name, object.name());

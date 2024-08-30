@@ -4,6 +4,15 @@
 //
 // This is a GENERATED FILE, changes made here WILL BE LOST.
 //
+{{#if imports}}
+import 'dart:ffi';
+import 'dart:typed_data';
+
+import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
+{{#each imports}}
+{{{this}}}
+{{/each}}
+{{/if}}
 
 enum {{#unless is_public}}_{{/unless}}{{name}} {
 {{#each variants}}
@@ -25,4 +34,19 @@ String get description => switch (value) {
       {{/each}}
         _ => throw ArgumentError("Unknown value for TWCoinType: $value"),
       };
+
+{{! Methods }}
+{{#each methods}}
+    {{~> partial_func}}
+    {{#unless @last}}
+    {{/unless}}
+
+{{/each}}
+{{! Properties }}
+{{#each properties}}
+    {{~> partial_prop}}
+    {{#unless @last}}
+    {{/unless}}
+
+{{/each}}
 }
