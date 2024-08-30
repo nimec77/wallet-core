@@ -12,7 +12,7 @@ class StringImpl implements Disposable {
 
   Pointer<TWString> get pointer => _pointer;
 
-  StringImpl(
+  StringImpl.createWithPointer(
     TrustWalletCore core,
     Pointer<TWString> pointer,
   )   : _core = core,

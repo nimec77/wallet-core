@@ -17,80 +17,98 @@ class BitcoinScript implements Disposable {
   final TrustWalletCore _core;
 
   /// It must be deleted at the end.
-  late final Pointer<TWBitcoinScript> _pointer;
+  final Pointer<TWBitcoinScript> _pointer;
 
-  BitcoinScript.create(TrustWalletCore core)
-      : _core = core,
-        _pointer = core.TWBitcoinScriptCreate();
+  Pointer<TWBitcoinScript> get pointer => _pointer;
 
-  BitcoinScript.createWithData(
+  const BitcoinScript(
+    TrustWalletCore core,
+    Pointer<TWBitcoinScript> pointer,
+  )   : _core = core,
+        _pointer = pointer;
+
+  factory BitcoinScript.create(TrustWalletCore core) {
+    final pointer = core.TWBitcoinScriptCreate();
+    return BitcoinScript(core, pointer);
+  }
+
+  factory BitcoinScript.createWithData(
     TrustWalletCore core,
     Uint8List bytes,
-  ) : _core = core {
+  ) {
     final data = DataImpl.createWithBytes(core, bytes);
-    _pointer = _core.TWBitcoinScriptCreateWithData(data.pointer);
+    final pointer = core.TWBitcoinScriptCreateWithData(data.pointer);
     data.dispose();
+    return BitcoinScript(core, pointer);
   }
 
-  BitcoinScript.createCopy(
+  factory BitcoinScript.createCopy(
     TrustWalletCore core,
     BitcoinScript script,
-  )   : _core = core,
-        _pointer = core.TWBitcoinScriptCreateCopy(script._pointer);
+  ) {
+    final pointer = core.TWBitcoinScriptCreateCopy(script._pointer);
+    return BitcoinScript(core, pointer);
+  }
 
-  BitcoinScript.buildPayToPublicKey(
+  static BitcoinScript buildPayToPublicKey(
     TrustWalletCore core,
     Uint8List pubkey,
-  ) : _core = core {
-    final data = DataImpl.createWithBytes(_core, pubkey);
-    _pointer = _core.TWBitcoinScriptBuildPayToPublicKey(data.pointer);
+  ) {
+    final data = DataImpl.createWithBytes(core, pubkey);
+    final script = core.TWBitcoinScriptBuildPayToPublicKey(data.pointer);
     data.dispose();
+    return BitcoinScript(core, script);
   }
 
-  BitcoinScript.buildPayToPublicKeyHash(
+  static BitcoinScript buildPayToPublicKeyHash(
     TrustWalletCore core,
     Uint8List hash,
-  ) : _core = core {
-    final data = DataImpl.createWithBytes(_core, hash);
-    _pointer = _core.TWBitcoinScriptBuildPayToPublicKeyHash(data.pointer);
+  ) {
+    final data = DataImpl.createWithBytes(core, hash);
+    final script = core.TWBitcoinScriptBuildPayToPublicKeyHash(data.pointer);
     data.dispose();
+    return BitcoinScript(core, script);
   }
 
-  BitcoinScript.buildPayToScriptHash(
+  static BitcoinScript buildPayToScriptHash(
     TrustWalletCore core,
     Uint8List scriptHash,
-  ) : _core = core {
-    final data = DataImpl.createWithBytes(_core, scriptHash);
-    _pointer = _core.TWBitcoinScriptBuildPayToScriptHash(data.pointer);
+  ) {
+    final data = DataImpl.createWithBytes(core, scriptHash);
+    final script = core.TWBitcoinScriptBuildPayToScriptHash(data.pointer);
     data.dispose();
+    return BitcoinScript(core, script);
   }
 
-  BitcoinScript.buildPayToWitnessPubkeyHash(
+  static BitcoinScript buildPayToWitnessPubkeyHash(
     TrustWalletCore core,
     Uint8List hash,
-  ) : _core = core {
-    final data = DataImpl.createWithBytes(_core, hash);
-    _pointer = _core.TWBitcoinScriptBuildPayToWitnessPubkeyHash(data.pointer);
+  ) {
+    final data = DataImpl.createWithBytes(core, hash);
+    final script = core.TWBitcoinScriptBuildPayToWitnessPubkeyHash(data.pointer);
     data.dispose();
+    return BitcoinScript(core, script);
   }
 
-  BitcoinScript.buildPayToWitnessScriptHash(
+  static BitcoinScript buildPayToWitnessScriptHash(
     TrustWalletCore core,
     Uint8List scriptHash,
-  ) : _core = core {
-    final data = DataImpl.createWithBytes(_core, scriptHash);
-    _pointer = _core.TWBitcoinScriptBuildPayToWitnessScriptHash(data.pointer);
+  ) {
+    final data = DataImpl.createWithBytes(core, scriptHash);
+    final script = core.TWBitcoinScriptBuildPayToWitnessScriptHash(data.pointer);
     data.dispose();
+    return BitcoinScript(core, script);
   }
 
-  BitcoinScript.lockScriptForAddress(
+  static BitcoinScript lockScriptForAddress(
     TrustWalletCore core,
     String address,
     TWCoinType coin,
-  ) : _core = core {
-    final data = StringImpl.createWithUTF8Bytes(_core, address);
-    _pointer = _core.TWBitcoinScriptLockScriptForAddress(data.pointer, coin);
+  ) {
+    final data = StringImpl.createWithString(core, address);
+    final script = core.TWBitcoinScriptLockScriptForAddress(data.pointer, coin);
     data.dispose();
+    return BitcoinScript(core, script);
   }
 
   @override
