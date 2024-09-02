@@ -73,6 +73,7 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 {{#each properties}}
     {{~> partial_prop}}
     {{#unless @last}}
+
     {{/unless}}
 {{/each}}
 }

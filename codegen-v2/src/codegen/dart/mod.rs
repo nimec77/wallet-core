@@ -50,9 +50,6 @@ pub struct DartEnum {
     add_description: bool,
     variants: Vec<DartEnumVariant>,
     value_type: String,
-    imports: Vec<DartImport>,
-    methods: Vec<DartFunction>,
-    properties: Vec<DartProperty>,
 }
 
 /// Represents a Dart enum variant.
@@ -84,15 +81,6 @@ pub struct DartType(String);
 
 // Replace DartType to return type
 impl DartType {
-    fn to_return_type(&self) -> DartType {
-        let res = match self.0.as_str() {
-            "Uint8List" => "DataImpl",
-            _ => &self.0,
-        };
-
-        DartType(res.to_string())
-    }
-
     fn to_wrapper_type(&self) -> DartType {
         let res = match self.0.as_str() {
             "Uint8List" => "DataImpl",
@@ -292,29 +280,30 @@ impl From<TypeVariant> for DartType {
         let res = match value {
             TypeVariant::Void => "void".to_string(),
             TypeVariant::Bool => "bool".to_string(),
-            TypeVariant::Char => "Character".to_string(),
-            TypeVariant::ShortInt => "Int16".to_string(),
-            TypeVariant::Int => "Int32".to_string(),
-            TypeVariant::UnsignedInt => "UInt32".to_string(),
-            TypeVariant::LongInt => "Int64".to_string(),
-            TypeVariant::Float => "Float".to_string(),
-            TypeVariant::Double => "Double".to_string(),
+            TypeVariant::Char => "int".to_string(),
+            TypeVariant::ShortInt => "int".to_string(),
+            TypeVariant::Int => "int".to_string(),
+            TypeVariant::UnsignedInt => "int".to_string(),
+            TypeVariant::LongInt => "int".to_string(),
+            TypeVariant::Float => "double".to_string(),
+            TypeVariant::Double => "double".to_string(),
             TypeVariant::SizeT => "int".to_string(),
-            TypeVariant::Int8T => "Int8".to_string(),
-            TypeVariant::Int16T => "Int16".to_string(),
-            TypeVariant::Int32T => "Int32".to_string(),
-            TypeVariant::Int64T => "Int64".to_string(),
-            TypeVariant::UInt8T => "UInt8".to_string(),
-            TypeVariant::UInt16T => "UInt16".to_string(),
-            TypeVariant::UInt32T => "UInt32".to_string(),
-            TypeVariant::UInt64T => "UInt64".to_string(),
+            TypeVariant::Int8T => "int".to_string(),
+            TypeVariant::Int16T => "int".to_string(),
+            TypeVariant::Int32T => "int".to_string(),
+            TypeVariant::Int64T => "int".to_string(),
+            TypeVariant::UInt8T => "int".to_string(),
+            TypeVariant::UInt16T => "int".to_string(),
+            TypeVariant::UInt32T => "int".to_string(),
+            TypeVariant::UInt64T => "int".to_string(),
             TypeVariant::String => "String".to_string(),
             TypeVariant::Data => "Uint8List".to_string(),
-            TypeVariant::Struct(n) | TypeVariant::Enum(n) => {
+            TypeVariant::Struct(n) => {
                 // We strip the "TW" prefix for Dart representations of
                 // structs/enums.
                 n.strip_prefix("TW").map(|n| n.to_string()).unwrap_or(n)
             }
+            TypeVariant::Enum(n) => n
         };
 
         DartType(res)
