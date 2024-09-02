@@ -155,7 +155,6 @@ fn generate_dart_bindings() -> Result<()> {
 
     let struct_t = read_to_string(&format!("{IN_DIR}/struct.hbs"))?;
     let ext_t = read_to_string(&format!("{IN_DIR}/extension.hbs"))?;
-    let proto_t = read_to_string(&format!("{IN_DIR}/proto.hbs"))?;
     let part_init_t = read_to_string(&format!("{IN_DIR}/partial_init.hbs"))?;
     let part_init_finally_t = read_to_string(&format!("{IN_DIR}/partial_init_finally.hbs"))?;
     let part_func_t = read_to_string(&format!("{IN_DIR}/partial_func.hbs"))?;
@@ -172,7 +171,6 @@ fn generate_dart_bindings() -> Result<()> {
             file_info,
             struct_template: &struct_t,
             extension_template: &ext_t,
-            proto_template: &proto_t,
             partial_init_template: &part_init_t,
             partial_init_finally_template: &part_init_finally_t,
             partial_func_template: &part_func_t,
@@ -202,12 +200,6 @@ fn generate_dart_bindings() -> Result<()> {
         // Enum extensions.
         for (name, rendered) in rendered.extensions {
             let file_path = format!("{OUT_DIR}/{name}_extension.dart");
-            std::fs::write(&file_path, rendered.as_bytes())?;
-        }
-
-        // Protobuf messages.
-        for (name, rendered) in rendered.protos {
-            let file_path = format!("{OUT_DIR}/protobuf/{name}_proto.dart");
             std::fs::write(&file_path, rendered.as_bytes())?;
         }
     }

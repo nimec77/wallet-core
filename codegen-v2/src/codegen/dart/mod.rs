@@ -5,10 +5,9 @@
 use self::functions::process_methods;
 use self::inits::process_inits;
 use self::properties::process_properties;
-use crate::manifest::{DeinitInfo, FileInfo, ProtoInfo, TypeVariant};
-use crate::{Error, Result};
+use crate::manifest::{DeinitInfo, FileInfo, TypeVariant};
+use crate::{Result};
 use handlebars::Handlebars;
-use serde_json::json;
 use std::fmt::Display;
 use crate::codegen::dart::utils::pretty_name;
 
@@ -238,12 +237,6 @@ pub struct DartInit {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DartProto {
-    pub name: String,
-    pub c_ffi_name: String,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DartOperatorEquality {
     pub c_ffi_name: String,
 }
@@ -259,18 +252,6 @@ impl<'a> ObjectVariant<'a> {
         match self {
             ObjectVariant::Struct(n) | ObjectVariant::Enum(n) => n,
         }
-    }
-}
-
-impl TryFrom<ProtoInfo> for DartProto {
-    type Error = Error;
-
-    fn try_from(value: ProtoInfo) -> std::result::Result<Self, Self::Error> {
-        Ok(DartProto {
-            // Convert the name into an appropriate format.
-            name: pretty_name(&value.0),
-            c_ffi_name: value.0,
-        })
     }
 }
 

@@ -107,7 +107,6 @@ pub(super) fn process_methods(
             }
         }
 
-        // TODO: Think about how to pass a pointer to a function instead of a wrapper
         // Prepepare parameter list to be passed on to the underlying C FFI function.
         let param_name = if func.is_static { vec![] } else { vec!["obj".to_string()] };
         let param_names = param_name

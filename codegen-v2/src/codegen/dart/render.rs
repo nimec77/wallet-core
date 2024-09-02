@@ -11,7 +11,6 @@ pub struct RenderInput<'a> {
     pub file_info: FileInfo,
     pub struct_template: &'a str,
     pub extension_template: &'a str,
-    pub proto_template: &'a str,
     pub partial_init_template: &'a str,
     pub partial_init_finally_template: &'a str,
     pub partial_func_template: &'a str,
@@ -34,7 +33,6 @@ pub struct GeneratedDartTypes {
     pub structs: Vec<DartStruct>,
     pub enums: Vec<DartEnum>,
     pub extensions: Vec<DartEnumExtension>,
-    pub protos: Vec<DartProto>,
 }
 
 /// Convenience wrapper for setting copyright year when generating bindings.
@@ -57,7 +55,6 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
 
     engine.register_partial("struct", input.struct_template)?;
     engine.register_partial("extension", input.extension_template)?;
-    engine.register_partial("proto", input.proto_template)?;
     engine.register_partial("partial_init", input.partial_init_template)?;
     engine.register_partial("partial_init_finally", input.partial_init_finally_template)?;
     engine.register_partial("partial_func", input.partial_func_template)?;
@@ -93,21 +90,6 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
         )?;
 
         out_str.extensions.push((pretty_file_name.clone(), out));
-    }
-
-    //  Render protos.
-    if !rendered.protos.is_empty() {
-        let out = engine.render(
-            "proto",
-            &WithYear {
-                current_year,
-                data: &json!({
-                    "protos": &rendered.protos
-                }),
-            },
-        )?;
-
-        out_str.protos.push((pretty_file_name, out));
     }
 
     Ok(out_str)
@@ -213,14 +195,6 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             methods,
             properties,
         });
-    }
-
-
-    // Render Protobufs.
-    if !info.protos.is_empty() {
-        for proto in info.protos {
-            outputs.protos.push(DartProto::try_from(proto)?);
-        }
     }
 
     Ok(outputs)
