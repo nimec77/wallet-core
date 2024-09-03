@@ -6,13 +6,10 @@
 // https://flutter.dev/to/pubspec-plugin-platforms.
 
 import 'dart:ffi';
-// import 'dart:io';
 
 export 'src/bitcoin_script.dart';
-export 'src/gen/ffi/generated_bindings.dart';
-export 'src/common/index.dart';
-// export 'src/gen/proto/index.dart';
-export 'src/gen/proto/Bitcoin.pb.dart';
+export 'src/bindings/generated_bindings.dart';
+export 'src/common/common.dart';
 
 // const String _libName = 'trust_wallet_core';
 

@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:trust_wallet_core/src/common/abstractions.dart';
 import 'package:trust_wallet_core/src/extensions/extensions.dart';
-import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
+import 'package:trust_wallet_core/src/bindings/generated_bindings.dart';
 
 final class DataImpl implements Disposable {
   final TrustWalletCoreBindings _core;

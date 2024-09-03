@@ -4,7 +4,8 @@ import 'package:convert/convert.dart';
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:http_interceptor/http/intercepted_http.dart';
 import 'package:trust_wallet_core/trust_wallet_core.dart';
-import 'package:trust_wallet_core/src/gen/proto/Bitcoin.pb.dart' as bitcoin;
+// import 'package:trust_wallet_core/src/gen/proto/Bitcoin.pb.dart' as bitcoin;
+import 'package:trust_wallet_core/protobuf/Bitcoin.pb.dart' as bitcoin;
 
 import 'package:trust_wallet_core_example/common/utils.dart';
 import 'package:trust_wallet_core_example/data/abstractions/base_blockchain_wallet.dart';

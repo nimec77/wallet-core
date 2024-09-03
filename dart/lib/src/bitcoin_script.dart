@@ -11,7 +11,7 @@ import 'dart:typed_data';
 import 'package:trust_wallet_core/src/common/abstractions.dart';
 import 'package:trust_wallet_core/src/common/data_impl.dart';
 import 'package:trust_wallet_core/src/common/string_impl.dart';
-import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
+import 'package:trust_wallet_core/src/bindings/generated_bindings.dart';
 
 class BitcoinScript implements Disposable {
   final TrustWalletCoreBindings _core;
