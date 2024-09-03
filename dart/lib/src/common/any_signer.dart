@@ -8,13 +8,13 @@ import 'package:trust_wallet_core/src/bindings/generated_bindings.dart';
 typedef SigningInput = GeneratedMessage;
 
 abstract class AnySigner {
-  // /// Signs a transaction by [SigningInput] message and coin type
-  // ///
-  // /// - Parameters:
-  // /// - core: The [TrustWalletCore] instance
-  // /// - input: The generic [SigningInput] Protobuf message
-  // /// - coin: [TWCoinType]
-  // /// - Returns: The generic SigningOutput Protobuf message
+  /// Signs a transaction by [SigningInput] message and coin type
+  ///
+  /// - Parameters:
+  /// - core: The [TrustWalletCore] instance
+  /// - input: The generic [SigningInput] Protobuf message
+  /// - coin: [TWCoinType]
+  /// - Returns: The generic SigningOutput Protobuf message
   // static T sign<T extends GeneratedMessage>(TrustWalletCore core, SigningInput input, TWCoinType coin) {
   //   // TODO: Think about how to handle the error
   //   final outputData = nativeSign(core, input.writeToBuffer(), coin);
@@ -23,13 +23,13 @@ abstract class AnySigner {
   //   return input as T;
   // }
 
-  // /// Signs a transaction by serialized data of a SigningInput and coin type
-  // ///
-  // /// - Parameters:
-  // /// - core: The [TrustWalletCore] instance
-  // /// - data: The serialized data of a [SigningInput]
-  // /// - coin: [TWCoinType]
-  // /// - Returns: The serialized data of a SigningOutput
+  /// Signs a transaction by serialized data of a SigningInput and coin type
+  ///
+  /// - Parameters:
+  /// - core: The [TrustWalletCore] instance
+  /// - data: The serialized data of a [SigningInput]
+  /// - coin: [TWCoinType]
+  /// - Returns: The serialized data of a SigningOutput
   // static Uint8List nativeSign(TrustWalletCore core, Uint8List data, TWCoinType coint) {
   //   final inputData = DataImpl.createWithBytes(core, data);
 
