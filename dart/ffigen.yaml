@@ -1,14 +1,11 @@
 # Run with `dart run ffigen --config ffigen.yaml`.
 name: TrustWalletCoreBindings
-description: |
-  Bindings for `src/trust_wallet_core.h`.
-
-  Regenerate bindings with `dart run ffigen --config ffigen.yaml`.
+description: Regenerate bindings with `dart run ffigen --config ffigen.yaml`.
 headers:
     entry-points:
-      - 'gen/headers/**.h'
+      - 'include/headers/**.h'
     include-directives:
-      - 'gen/headers/**.h'
+      - 'include/headers/**.h'
 output:
   bindings: 'lib/src/gen/ffi/generated_bindings.dart'  
 preamble: |

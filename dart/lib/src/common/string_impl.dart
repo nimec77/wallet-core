@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:trust_wallet_core/src/common/abstractions.dart';
-import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
+import 'package:trust_wallet_core/src/bindings/generated_bindings.dart';
 
 class StringImpl implements Disposable {
   final TrustWalletCoreBindings _core;
