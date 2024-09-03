@@ -1,0 +1,20 @@
+# Run with `dart run ffigen --config ffigen.yaml`.
+name: TrustWalletCoreBindings
+description: |
+  Bindings for `src/trust_wallet_core.h`.
+
+  Regenerate bindings with `dart run ffigen --config ffigen.yaml`.
+headers:
+    entry-points:
+      - 'gen/headers/**.h'
+    include-directives:
+      - 'gen/headers/**.h'
+output:
+  bindings: 'lib/src/gen/ffi/generated_bindings.dart'  
+preamble: |
+  // ignore_for_file: always_specify_types
+  // ignore_for_file: camel_case_types
+  // ignore_for_file: non_constant_identifier_names
+comments:
+  style: any
+  length: full
