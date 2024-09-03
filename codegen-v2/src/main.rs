@@ -154,14 +154,14 @@ fn generate_dart_bindings() -> Result<()> {
     std::fs::create_dir_all(OUT_DIR)?;
 
     let struct_t = read_to_string(&format!("{IN_DIR}/struct.hbs"))?;
-    let enum_t = read_to_string(&format!("{IN_DIR}/enum.hbs"))?;
     let ext_t = read_to_string(&format!("{IN_DIR}/extension.hbs"))?;
-    let proto_t = read_to_string(&format!("{IN_DIR}/proto.hbs"))?;
     let part_init_t = read_to_string(&format!("{IN_DIR}/partial_init.hbs"))?;
     let part_init_finally_t = read_to_string(&format!("{IN_DIR}/partial_init_finally.hbs"))?;
     let part_func_t = read_to_string(&format!("{IN_DIR}/partial_func.hbs"))?;
     let part_func_finally_t = read_to_string(&format!("{IN_DIR}/partial_func_finally.hbs"))?;
+    let part_func_ex_t = read_to_string(&format!("{IN_DIR}/partial_func_ex.hbs"))?;
     let part_prop_t = read_to_string(&format!("{IN_DIR}/partial_prop.hbs"))?;
+    let part_prop_ex_t = read_to_string(&format!("{IN_DIR}/partial_prop_ex.hbs"))?;
 
     // Read the manifest dir, generate bindings for each entry.
     let file_infos = parse_dir("manifest/")?;
@@ -170,14 +170,14 @@ fn generate_dart_bindings() -> Result<()> {
         let input = libparser::codegen::dart::RenderInput {
             file_info,
             struct_template: &struct_t,
-            enum_template: &enum_t,
             extension_template: &ext_t,
-            proto_template: &proto_t,
             partial_init_template: &part_init_t,
             partial_init_finally_template: &part_init_finally_t,
             partial_func_template: &part_func_t,
             partial_func_finally_template: &part_func_finally_t,
+            partial_func_ex_template: &part_func_ex_t,
             partial_prop_template: &part_prop_t,
+            partial_prop_ex_template: &part_prop_ex_t,
         };
 
         let rendered = libparser::codegen::dart::render_to_strings(input)?;
@@ -197,20 +197,9 @@ fn generate_dart_bindings() -> Result<()> {
             std::fs::write(&file_path, rendered.as_bytes())?;
         }
 
-        for (name, rendered) in rendered.enums {
-            let file_path = format!("{OUT_DIR}/enums/{name}.dart");
-            std::fs::write(&file_path, rendered.as_bytes())?;
-        }
-
         // Enum extensions.
         for (name, rendered) in rendered.extensions {
             let file_path = format!("{OUT_DIR}/{name}_extension.dart");
-            std::fs::write(&file_path, rendered.as_bytes())?;
-        }
-
-        // Protobuf messages.
-        for (name, rendered) in rendered.protos {
-            let file_path = format!("{OUT_DIR}/protobuf/{name}_proto.dart");
             std::fs::write(&file_path, rendered.as_bytes())?;
         }
     }

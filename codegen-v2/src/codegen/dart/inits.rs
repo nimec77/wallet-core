@@ -36,29 +36,32 @@ pub(super) fn process_inits(
             .map(|param| &param.ty.variant)
             .collect::<Vec<&TypeVariant>>();
         let has_finally = init.is_nullable
-            & type_variants.contains(&&TypeVariant::String)
-            || type_variants.contains(&&TypeVariant::Data);
+            & (type_variants.contains(&&TypeVariant::String)
+            || type_variants.contains(&&TypeVariant::Data));
         // For each parameter, we track a list of `params` which is used for the
         // function interface and add the necessary operations on how to process
         // those parameters.
         let mut params = vec![];
         for param in &init.params {
-            // Convert parameter to Dart parameter.
-            params.push(DartVariable {
-                name: param.name.clone(),
-                var_type: DartType::from(param.ty.variant.clone()),
-                is_nullable: param.ty.is_nullable,
-            });
-
+            let mut local_param_name = param.name.clone();
             // Process parameter.
-            if let Some(op) = param_c_ffi_call(&param, true, !has_finally) {
+            if let Some(op) = param_c_ffi_call(&param, !has_finally, "core") {
+                local_param_name = get_local_var_name(param);
                 ops.push(op);
             }
+            // Convert parameter to Dart parameter.
+            params.push((DartVariable {
+                name: param.name.clone(),
+                local_name: local_param_name.clone(),
+                var_type: DartType::from(param.ty.variant.clone()),
+                is_nullable: param.ty.is_nullable,
+            }, matches!(param.ty.variant, TypeVariant::String | TypeVariant::Data)));
 
             if has_finally {
                 if let TypeVariant::String | TypeVariant::Data = &param.ty.variant {
                     finally_vars.push(DartVariable {
                         name: param.name.clone(),
+                        local_name: local_param_name.clone(),
                         var_type: DartType::from(param.ty.variant.clone()).to_wrapper_type(),
                         is_nullable: param.ty.is_nullable,
                     });
@@ -78,8 +81,15 @@ pub(super) fn process_inits(
         // Prepare parameter list to be passed on to the underlying C FFI function.
         let param_names = params
             .iter()
-            .map(|p| p.name.as_str())
-            .collect::<Vec<&str>>()
+            .map(|(p, is_wrapped)| {
+                let param_name = p.local_name.as_str();
+                if *is_wrapped {
+                    format!("{}.pointer", param_name)
+                } else {
+                    param_name.to_string()
+                }
+            })
+            .collect::<Vec<String>>()
             .join(", ");
 
         // Call the underlying C FFI function, passing on the parameter list.
@@ -87,13 +97,14 @@ pub(super) fn process_inits(
             ops.push(DartOperation::GuardedCall {
                 var_name: "result".to_string(),
                 call: format!("{}({})", init.name, param_names),
+                core_var_name: Some("core".to_string()),
             });
         } else {
             ops.push(DartOperation::Call {
                 var_name: "result".to_string(),
                 call: format!("{}({})", init.name, param_names),
-                is_ffi_call: true,
                 is_final: true,
+                core_var_name: Some("core".to_string()),
             });
         }
 
@@ -116,7 +127,7 @@ pub(super) fn process_inits(
             is_nullable: init.is_nullable,
             is_public: init.is_public,
             has_finally,
-            params,
+            params: params.into_iter().map(|(p, _)| p).collect(),
             operations: ops,
             finally_vars,
             comments: vec![],

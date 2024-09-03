@@ -10,14 +10,14 @@ use crate::codegen::dart::utils::*;
 pub struct RenderInput<'a> {
     pub file_info: FileInfo,
     pub struct_template: &'a str,
-    pub enum_template: &'a str,
     pub extension_template: &'a str,
-    pub proto_template: &'a str,
     pub partial_init_template: &'a str,
     pub partial_init_finally_template: &'a str,
     pub partial_func_template: &'a str,
     pub partial_func_finally_template: &'a str,
+    pub partial_func_ex_template: &'a str,
     pub partial_prop_template: &'a str,
+    pub partial_prop_ex_template: &'a str,
 }
 
 #[derive(Debug, Clone, Default)]
@@ -31,9 +31,7 @@ pub struct GeneratedDartTypesStrings {
 #[derive(Debug, Clone, Default)]
 pub struct GeneratedDartTypes {
     pub structs: Vec<DartStruct>,
-    pub enums: Vec<DartEnum>,
     pub extensions: Vec<DartEnumExtension>,
-    pub protos: Vec<DartProto>,
 }
 
 /// Convenience wrapper for setting copyright year when generating bindings.
@@ -55,14 +53,14 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
     engine.set_strict_mode(true);
 
     engine.register_partial("struct", input.struct_template)?;
-    engine.register_partial("enum", input.enum_template)?;
     engine.register_partial("extension", input.extension_template)?;
-    engine.register_partial("proto", input.proto_template)?;
     engine.register_partial("partial_init", input.partial_init_template)?;
     engine.register_partial("partial_init_finally", input.partial_init_finally_template)?;
     engine.register_partial("partial_func", input.partial_func_template)?;
     engine.register_partial("partial_func_finally", input.partial_func_finally_template)?;
+    engine.register_partial("partial_func_ex", input.partial_func_ex_template)?;
     engine.register_partial("partial_prop", input.partial_prop_template)?;
+    engine.register_partial("partial_prop_ex", input.partial_prop_ex_template)?;
 
     let rendered = generate_dart_types(input.file_info)?;
     let mut out_str = GeneratedDartTypesStrings::default();
@@ -80,19 +78,6 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
         out_str.structs.push((pretty_file_name.clone(), out));
     }
 
-    //  Render enums.
-    for enm in rendered.enums {
-        let out = engine.render(
-            "enum",
-            &WithYear {
-                current_year,
-                data: &enm,
-            },
-        )?;
-
-        out_str.enums.push((pretty_file_name.clone(), out));
-    }
-
     //  Render extensions.
     for ext in rendered.extensions {
         let out = engine.render(
@@ -104,21 +89,6 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
         )?;
 
         out_str.extensions.push((pretty_file_name.clone(), out));
-    }
-
-    //  Render protos.
-    if !rendered.protos.is_empty() {
-        let out = engine.render(
-            "proto",
-            &WithYear {
-                current_year,
-                data: &json!({
-                    "protos": &rendered.protos
-                }),
-            },
-        )?;
-
-        out_str.protos.push((pretty_file_name, out));
     }
 
     Ok(out_str)
@@ -145,9 +115,9 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         (inits, info.inits, dart_imports) = process_inits(&obj, info.inits)?;
         imports.extend(dart_imports);
         (deinits, info.deinits) = process_deinits(&obj, info.deinits)?;
-        (methods, info.functions, dart_imports) = process_methods(&obj, info.functions)?;
+        (methods, info.functions, dart_imports) = process_methods(&obj, info.functions, None)?;
         imports.extend(dart_imports);
-        (properties, info.properties, dart_imports) = process_properties(&obj, info.properties)?;
+        (properties, info.properties, dart_imports) = process_properties(&obj, info.properties, "_core")?;
         imports.extend(dart_imports);
 
         // Avoid rendering empty structs.
@@ -204,59 +174,48 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
     // Render enums.
     for enm in info.enums {
         let obj = ObjectVariant::Enum(&enm.name);
-        let enum_import = import_name(&enm.name, Some("enums/"));
-        let mut imports = HashSet::from([DartImport(enum_import)]);
+        let mut imports = HashSet::new();
         // Process items.
         let (methods, properties, mut dart_imports);
-        (methods, info.functions, dart_imports) = process_methods(&obj, info.functions)?;
+        (methods, info.functions, dart_imports) = process_methods(&obj, info.functions, Some("core"))?;
         imports.extend(dart_imports);
-        (properties, info.properties, dart_imports) = process_properties(&obj, info.properties)?;
+        (properties, info.properties, dart_imports) = process_properties(&obj, info.properties, "core")?;
         imports.extend(dart_imports);
 
-        // Convert the name into an appropriate format.
-        let pretty_enum_name = pretty_name(&enm.name);
-        let add_class = false;
+        if !methods.is_empty() || !properties.is_empty() {
+            imports.insert(DartImport(import_name("generated_bindings", Some("gen/ffi/"))));
+        }
 
-        // Convert to Dart enum variants
-        let variants: Vec<DartEnumVariant> = enm
+        let mut add_description = false;
+        let variants = enm
             .variants
             .into_iter()
-            .map(|info| DartEnumVariant {
-                name: replace_forbidden_words(&info.name),
-                value: info.value,
-                as_string: info.as_string,
+            .map(|info| {
+                if info.as_string.is_some() {
+                    add_description = true;
+                }
+                DartEnumVariant {
+                    name: info.name,
+                    value: info.value,
+                    as_string: info.as_string,
+                }
             })
             .collect();
 
-        // Add the generated Dart code to the outputs
-        outputs.enums.push(DartEnum {
-            name: pretty_enum_name.clone(),
-            is_public: enm.is_public,
-            add_description: add_class,
-            variants,
-            value_type: "int".to_string(),
-        });
-
         // Avoid rendering empty extension for enums.
-        if methods.is_empty() && properties.is_empty() {
+        if !add_description && methods.is_empty() && properties.is_empty() {
             continue;
         }
 
         outputs.extensions.push(DartEnumExtension {
-            name: pretty_enum_name,
+            name: enm.name,
             init_instance: true,
+            add_description,
             imports: imports.into_iter().collect(),
             methods,
             properties,
+            variants,
         });
-    }
-
-
-    // Render Protobufs.
-    if !info.protos.is_empty() {
-        for proto in info.protos {
-            outputs.protos.push(DartProto::try_from(proto)?);
-        }
     }
 
     Ok(outputs)

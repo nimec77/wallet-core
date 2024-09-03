@@ -18,12 +18,12 @@ import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
 final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} implements {{#each superclasses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
     final TrustWalletCore _core;
 {{#if init_instance}}
-    late final {{{raw_type}}} _rawValue;
+    final {{{raw_type}}} _pointer;
 
-    {{{raw_type}}} get rawValue => _rawValue;
+    {{{raw_type}}} get pointer => _pointer;
 
-    {{name}}(TrustWalletCore core, {{{raw_type}}} rawValue)
-        : _core = core, _rawValue = rawValue;
+    const {{name}}(TrustWalletCore core, {{{raw_type}}} pointer)
+        : _core = core, _pointer = pointer;
 {{else}}
 
     const {{name}}(TrustWalletCore core): _core = core;
@@ -33,12 +33,12 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 {{#if eq_operator}}
     @override
     bool operator == (Object other) => switch(other) {
-        {{name}} obj => _core.{{eq_operator.c_ffi_name}}(_rawValue, obj.rawValue),
+        {{name}} obj => _core.{{eq_operator.c_ffi_name}}(_pointer, obj.pointer),
         _ => false,
     };
 
     @override
-    int get hashCode => _rawValue.hashCode;
+    int get hashCode => _pointer.hashCode;
 
 {{/if}}
 {{! Inits }}
@@ -55,7 +55,7 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
     @override
     dispose() {
     {{#each deinits}}
-        _core.{{name}}(rawValue)
+        _core.{{name}}(pointer)
     {{/each}}
     }
 
@@ -73,6 +73,7 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 {{#each properties}}
     {{~> partial_prop}}
     {{#unless @last}}
+
     {{/unless}}
 {{/each}}
 }

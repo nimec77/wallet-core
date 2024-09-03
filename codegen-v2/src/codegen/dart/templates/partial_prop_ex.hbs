@@ -1,29 +1,31 @@
-    {{#if is_static}}static{{/if}} {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}({{#if is_static}}TrustWalletCore core{{#if params}}, {{/if}}{{/if}}{{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
+    {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}(TrustWalletCore core) {
     {{#each operations}}
         {{#if call}}
         final {{call.var_name}} = {{#if call.core_var_name}}{{call.core_var_name}}.{{/if}}{{call.call}};
         {{/if}}
         {{#if call_optional}}
-        final {{{call_optional.var_type}}}? ptr;
-        if ({{call_optional.param_name}} != null) {
-            ptr = {{call_optional.call}};
+        final {{{var_type}}} ptr;
+        if ({{call_optional.var_name}} != null) {
+            ptr = {{#if call_optional.core_var_name}}{{call_optional.core_var_name}}.{{/if}}{{call_optional.call}};
         } else {
-            ptr = null;
+            ptr = nullptr;
         }
         final {{call_optional.var_name}} = ptr;
         {{/if}}
         {{#if guarded_call}}
         final {{guarded_call.var_name}} = {{#if guarded_call.core_var_name}}{{guarded_call.core_var_name}}.{{/if}}{{guarded_call.call}};
-        if ({{guarded_call.var_name}} == nullptr) {
+            if ({{guarded_call.var_name}} == null) {
             return null;
         }
         {{/if}}
         {{#if defer_optional_call.call}}
-        {{defer_optional_call.call}};
+        if ({{defer_optional_call.var_name}} != nullptr) {
+            {{#if defer_optional_call.core_var_name}}{{defer_optional_call.core_var_name}}.{{/if}}{{defer_optional_call.call}};
+        }
         {{/if}}
         {{#if defer_call}}
         {{#if defer_call.call}}
-        {{defer_call.call}};
+        {{#if defer_call.core_var_name}}{{defer_call.core_var_name}}.{{/if}}{{defer_call.call}};
         {{/if}}
         {{/if}}
         {{#if return}}
