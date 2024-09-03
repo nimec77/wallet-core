@@ -4,11 +4,10 @@
 //
 // This is a GENERATED FILE, changes made here WILL BE LOST.
 //
+{{#if imports}}
 import 'dart:ffi';
 import 'dart:typed_data';
 
-import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
-{{#if imports}}
 {{#each imports}}
 {{{this}}}
 {{/each}}
@@ -16,6 +15,13 @@ import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
 
 extension {{name}}Extension on {{name}} {
 
+    {{#if add_description}}
+    String get description => switch (value) {
+    {{#each variants}}
+        {{value}} => '{{as_string}}',
+    {{/each}}
+    }
+    {{/if}}
     {{! Methods }}
     {{#each methods}}
     {{~> partial_func_ex}}

@@ -6,23 +6,21 @@ import 'package:trust_wallet_core/src/common/string_impl.dart';
 import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
 
 typedef SigningInput = GeneratedMessage;
-typedef SigningOutput = GeneratedMessage;
-typedef TransactionPlan = GeneratedMessage;
 
-final class AnySigner {
+abstract class AnySigner {
   /// Signs a transaction by [SigningInput] message and coin type
   ///
   /// - Parameters:
   /// - core: The [TrustWalletCore] instance
   /// - input: The generic [SigningInput] Protobuf message
   /// - coin: [TWCoinType]
-  /// - Returns: The generic [SigningOutput] Protobuf message
-  static SigningOutput sign(TrustWalletCore core, SigningInput input, TWCoinType coin) {
+  /// - Returns: The generic SigningOutput Protobuf message
+  static T sign<T extends GeneratedMessage>(TrustWalletCore core, SigningInput input, TWCoinType coin) {
     // TODO: Think about how to handle the error
     final outputData = nativeSign(core, input.writeToBuffer(), coin);
     input.mergeFromBuffer(outputData);
 
-    return input;
+    return input as T;
   }
 
   /// Signs a transaction by serialized data of a SigningInput and coin type
@@ -31,7 +29,7 @@ final class AnySigner {
   /// - core: The [TrustWalletCore] instance
   /// - data: The serialized data of a [SigningInput]
   /// - coin: [TWCoinType]
-  /// - Returns: The serialized data of a [SigningOutput]
+  /// - Returns: The serialized data of a SigningOutput
   static Uint8List nativeSign(TrustWalletCore core, Uint8List data, TWCoinType coint) {
     final inputData = DataImpl.createWithBytes(core, data);
 
@@ -52,10 +50,11 @@ final class AnySigner {
   /// Signs a transaction specified by the JSON representation of a SigningInput, coin type and a private key
   ///
   /// - Parameters:
+  /// - core: The [TrustWalletCore] instance
   /// - json: JSON representation of a [SigningInput]
   /// - key: The private key data
   /// - coin: [TWCoinType]
-  /// - Returns: The JSON representation of a [SigningOutput].
+  /// - Returns: The JSON representation of a SigningOutput.
   static String signJSON(TrustWalletCore core, String json, Uint8List key, TWCoinType coin) {
     final jsonString = StringImpl.createWithString(core, json);
     final keyUint8List = DataImpl.createWithBytes(core, key);
@@ -73,23 +72,25 @@ final class AnySigner {
   /// Plans a transaction (for UTXO chains only).
   ///
   /// - Parameters:
+  /// - core: The [TrustWalletCore] instance
   /// - input: The generic [SigningInput] Protobuf message
   /// - coin: [TWCoinType]
-  /// - Returns: [TransactionPlan] Protobuf message
-  static TransactionPlan plan(TrustWalletCore core, SigningInput input, TWCoinType coin) {
+  /// - Returns: TransactionPlan Protobuf message
+  static T plan<T extends GeneratedMessage>(TrustWalletCore core, SigningInput input, TWCoinType coin) {
     // TODO: Think about how to handle the error
     final outputData = nativePlan(core, input.writeToBuffer(), coin);
     input.mergeFromBuffer(outputData);
 
-    return input;
+    return input as T;
   }
 
-  /// Plans a transaction (for UTXO chains only).
-  ///
-  /// - Parameters:
-  /// - input: The serialized data of a [SigningInput]
-  /// - coin: [TWCoinType]
-  /// - Returns: The serialized data of a [TransactionPlan]
+    /// Plans a transaction (for UTXO chains only).
+    ///
+    /// - Parameters:
+    /// - core: The [TrustWalletCore] instance
+    /// - input: The serialized data of a SigningInput
+    /// - coin: [TWCoinType]
+    /// - Returns: The serialized data of a TransactionPlan
   static Uint8List nativePlan(TrustWalletCore core, Uint8List data, TWCoinType coin) {
     final inputData = DataImpl.createWithBytes(core, data);
 

@@ -41,16 +41,6 @@ pub struct DartStruct {
     properties: Vec<DartProperty>,
 }
 
-/// Represents a Dart enum.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DartEnum {
-    name: String,
-    is_public: bool,
-    add_description: bool,
-    variants: Vec<DartEnumVariant>,
-    value_type: String,
-}
-
 /// Represents a Dart enum variant.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DartEnumVariant {
@@ -65,9 +55,11 @@ pub struct DartEnumVariant {
 pub struct DartEnumExtension {
     name: String,
     init_instance: bool,
+    add_description: bool,
     imports: Vec<DartImport>,
     methods: Vec<DartFunction>,
     properties: Vec<DartProperty>,
+    variants: Vec<DartEnumVariant>,
 }
 /// Represents a Dart import statement.
 #[derive(Debug, Clone, Eq, PartialEq, Hash, Serialize, Deserialize)]

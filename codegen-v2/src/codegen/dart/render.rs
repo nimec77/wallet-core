@@ -31,7 +31,6 @@ pub struct GeneratedDartTypesStrings {
 #[derive(Debug, Clone, Default)]
 pub struct GeneratedDartTypes {
     pub structs: Vec<DartStruct>,
-    pub enums: Vec<DartEnum>,
     pub extensions: Vec<DartEnumExtension>,
 }
 
@@ -183,17 +182,39 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         (properties, info.properties, dart_imports) = process_properties(&obj, info.properties, "core")?;
         imports.extend(dart_imports);
 
+        if !methods.is_empty() || !properties.is_empty() {
+            imports.insert(DartImport(import_name("generated_bindings", Some("gen/ffi/"))));
+        }
+
+        let mut add_description = false;
+        let variants = enm
+            .variants
+            .into_iter()
+            .map(|info| {
+                if info.as_string.is_some() {
+                    add_description = true;
+                }
+                DartEnumVariant {
+                    name: info.name,
+                    value: info.value,
+                    as_string: info.as_string,
+                }
+            })
+            .collect();
+
         // Avoid rendering empty extension for enums.
-        if methods.is_empty() && properties.is_empty() {
+        if !add_description && methods.is_empty() && properties.is_empty() {
             continue;
         }
 
         outputs.extensions.push(DartEnumExtension {
             name: enm.name,
             init_instance: true,
+            add_description,
             imports: imports.into_iter().collect(),
             methods,
             properties,
+            variants,
         });
     }
 
