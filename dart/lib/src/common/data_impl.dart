@@ -6,7 +6,7 @@ import 'package:trust_wallet_core/src/extensions/extensions.dart';
 import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
 
 final class DataImpl implements Disposable {
-  final TrustWalletCore _core;
+  final TrustWalletCoreBindings _core;
 
   /// It must be deleted at the end.
   final Pointer<TWData> _pointer;
@@ -14,7 +14,7 @@ final class DataImpl implements Disposable {
   Pointer<TWData> get pointer => _pointer;
 
   DataImpl.createWithBytes(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     Uint8List bytes,
   )   : _core = core,
         _pointer = core.TWDataCreateWithBytes(
@@ -23,7 +23,7 @@ final class DataImpl implements Disposable {
         );
 
   DataImpl.createWithData(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     Pointer<TWData> data,
   )   : _core = core,
         _pointer = core.TWDataCreateWithData(

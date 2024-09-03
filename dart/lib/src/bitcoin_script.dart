@@ -14,7 +14,7 @@ import 'package:trust_wallet_core/src/common/string_impl.dart';
 import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
 
 class BitcoinScript implements Disposable {
-  final TrustWalletCore _core;
+  final TrustWalletCoreBindings _core;
 
   /// It must be deleted at the end.
   final Pointer<TWBitcoinScript> _pointer;
@@ -22,18 +22,18 @@ class BitcoinScript implements Disposable {
   Pointer<TWBitcoinScript> get pointer => _pointer;
 
   const BitcoinScript(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     Pointer<TWBitcoinScript> pointer,
   )   : _core = core,
         _pointer = pointer;
 
-  factory BitcoinScript.create(TrustWalletCore core) {
+  factory BitcoinScript.create(TrustWalletCoreBindings core) {
     final pointer = core.TWBitcoinScriptCreate();
     return BitcoinScript(core, pointer);
   }
 
   factory BitcoinScript.createWithData(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     Uint8List bytes,
   ) {
     final data = DataImpl.createWithBytes(core, bytes);
@@ -43,7 +43,7 @@ class BitcoinScript implements Disposable {
   }
 
   factory BitcoinScript.createCopy(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     BitcoinScript script,
   ) {
     final pointer = core.TWBitcoinScriptCreateCopy(script._pointer);
@@ -51,7 +51,7 @@ class BitcoinScript implements Disposable {
   }
 
   static BitcoinScript buildPayToPublicKey(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     Uint8List pubkey,
   ) {
     final data = DataImpl.createWithBytes(core, pubkey);
@@ -61,7 +61,7 @@ class BitcoinScript implements Disposable {
   }
 
   static BitcoinScript buildPayToPublicKeyHash(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     Uint8List hash,
   ) {
     final data = DataImpl.createWithBytes(core, hash);
@@ -71,7 +71,7 @@ class BitcoinScript implements Disposable {
   }
 
   static BitcoinScript buildPayToScriptHash(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     Uint8List scriptHash,
   ) {
     final data = DataImpl.createWithBytes(core, scriptHash);
@@ -81,7 +81,7 @@ class BitcoinScript implements Disposable {
   }
 
   static BitcoinScript buildPayToWitnessPubkeyHash(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     Uint8List hash,
   ) {
     final data = DataImpl.createWithBytes(core, hash);
@@ -91,7 +91,7 @@ class BitcoinScript implements Disposable {
   }
 
   static BitcoinScript buildPayToWitnessScriptHash(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     Uint8List scriptHash,
   ) {
     final data = DataImpl.createWithBytes(core, scriptHash);
@@ -101,13 +101,13 @@ class BitcoinScript implements Disposable {
   }
 
   static BitcoinScript lockScriptForAddress(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     String address,
     TWCoinType coin,
   ) {
-    final data = StringImpl.createWithString(core, address);
-    final script = core.TWBitcoinScriptLockScriptForAddress(data.pointer, coin);
-    data.dispose();
+    final dataString = StringImpl.createWithString(core, address);
+    final script = core.TWBitcoinScriptLockScriptForAddress(dataString.pointer, coin);
+    dataString.dispose();
     return BitcoinScript(core, script);
   }
 
