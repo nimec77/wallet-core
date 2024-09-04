@@ -3,6 +3,7 @@
 // Copyright © 2017 Trust Wallet.
 
 use std::collections::HashSet;
+use crate::codegen::dart::res::DART_FFI_IMPORT;
 use super::{inits::process_deinits, *};
 use crate::codegen::dart::utils::*;
 
@@ -108,17 +109,22 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             deinits,
             mut methods,
             properties,
-            mut dart_imports
+            mut dart_imports,
+            mut package_imports,
         );
 
-        let mut imports = HashSet::new();
-        (inits, info.inits, dart_imports) = process_inits(&obj, info.inits)?;
-        imports.extend(dart_imports);
+        let mut dart_imports_map = HashSet::new();
+        let mut package_imports_map = HashSet::new();
+        (inits, info.inits, dart_imports, package_imports) = process_inits(&obj, info.inits)?;
+        dart_imports_map.extend(dart_imports);
+        package_imports_map.extend(package_imports);
         (deinits, info.deinits) = process_deinits(&obj, info.deinits)?;
-        (methods, info.functions, dart_imports) = process_methods(&obj, info.functions, None)?;
-        imports.extend(dart_imports);
-        (properties, info.properties, dart_imports) = process_properties(&obj, info.properties, "_core")?;
-        imports.extend(dart_imports);
+        (methods, info.functions, dart_imports, package_imports) = process_methods(&obj, info.functions, None)?;
+        dart_imports_map.extend(dart_imports);
+        package_imports_map.extend(package_imports);
+        (properties, info.properties, dart_imports, package_imports) = process_properties(&obj, info.properties, "_core")?;
+        dart_imports_map.extend(dart_imports);
+        package_imports_map.extend(package_imports);
 
         // Avoid rendering empty structs.
         if inits.is_empty() && methods.is_empty() && properties.is_empty() {
@@ -137,7 +143,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             superclasses.push("Address".to_string());
         }
         if !superclasses.is_empty() {
-            imports.insert(DartImport(import_name("abstractions", Some("common/"))));
+            package_imports_map.insert(PackageImport(import_name("abstractions", Some("common/"))));
         }
 
         // Handle equality operator.
@@ -155,13 +161,22 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             None
         };
 
+        let init_instance = strct.is_class;
+        if init_instance {
+            dart_imports_map.insert(DartImport(DART_FFI_IMPORT.to_string()));
+        }
+        dart_imports = dart_imports_map.into_iter().collect();
+        dart_imports.sort();
+        package_imports = package_imports_map.into_iter().collect();
+        package_imports.sort();
         outputs.structs.push(DartStruct {
             name: pretty_struct_name.clone(),
             is_class: strct.is_class,
             is_public: strct.is_public,
             raw_type: format!("Pointer<{}>", &strct.name),
             init_instance: strct.is_class,
-            imports: imports.into_iter().collect(),
+            dart_imports,
+            package_imports,
             superclasses,
             eq_operator,
             inits,
@@ -174,16 +189,19 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
     // Render enums.
     for enm in info.enums {
         let obj = ObjectVariant::Enum(&enm.name);
-        let mut imports = HashSet::new();
+        let mut dart_imports_map = HashSet::new();
+        let mut package_imports_map = HashSet::new();
         // Process items.
-        let (methods, properties, mut dart_imports);
-        (methods, info.functions, dart_imports) = process_methods(&obj, info.functions, Some("core"))?;
-        imports.extend(dart_imports);
-        (properties, info.properties, dart_imports) = process_properties(&obj, info.properties, "core")?;
-        imports.extend(dart_imports);
+        let (methods, properties, mut dart_imports, mut package_imports);
+        (methods, info.functions, dart_imports, package_imports) = process_methods(&obj, info.functions, Some("core"))?;
+        dart_imports_map.extend(dart_imports);
+        package_imports_map.extend(package_imports);
+        (properties, info.properties, dart_imports, package_imports) = process_properties(&obj, info.properties, "core")?;
+        dart_imports_map.extend(dart_imports);
+        package_imports_map.extend(package_imports);
 
         if !methods.is_empty() || !properties.is_empty() {
-            imports.insert(DartImport(import_name("generated_bindings", Some("gen/ffi/"))));
+            package_imports_map.insert(PackageImport(import_name("generated_bindings", Some("gen/ffi/"))));
         }
 
         let mut add_description = false;
@@ -206,12 +224,16 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         if !add_description && methods.is_empty() && properties.is_empty() {
             continue;
         }
-
+        dart_imports = dart_imports_map.into_iter().collect();
+        dart_imports.sort();
+        package_imports = package_imports_map.into_iter().collect();
+        package_imports.sort();
         outputs.extensions.push(DartEnumExtension {
             name: enm.name,
             init_instance: true,
             add_description,
-            imports: imports.into_iter().collect(),
+            dart_imports,
+            package_imports,
             methods,
             properties,
             variants,

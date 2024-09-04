@@ -26,6 +26,12 @@ class StringImpl implements Disposable {
           value.toNativeUtf8().cast<Char>(),
         );
 
+  static String toDartString(
+    TrustWalletCoreBindings core,
+    Pointer<TWString> pointer,
+  ) =>
+      core.TWStringUTF8Bytes(pointer).cast<Utf8>().toDartString();
+
   int get size => _core.TWStringSize(_pointer);
 
   String get dartString => _core.TWStringUTF8Bytes(_pointer).cast<Utf8>().toDartString();

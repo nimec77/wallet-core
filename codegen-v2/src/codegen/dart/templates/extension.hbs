@@ -4,11 +4,15 @@
 //
 // This is a GENERATED FILE, changes made here WILL BE LOST.
 //
-{{#if imports}}
-import 'dart:ffi';
-import 'dart:typed_data';
+{{#if dart_imports}}
 
-{{#each imports}}
+{{#each dart_imports}}
+{{{this}}}
+{{/each}}
+{{/if}}
+{{#if package_imports}}
+
+{{#each package_imports}}
 {{{this}}}
 {{/each}}
 {{/if}}

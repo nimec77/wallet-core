@@ -4,20 +4,22 @@
 //
 // This is a GENERATED FILE, changes made here WILL BE LOST.
 //
+{{#if dart_imports}}
 
-import 'dart:ffi';
-import 'dart:typed_data';
+{{#each dart_imports}}
+{{{this}}}
+{{/each}}
+{{/if}}
+{{#if package_imports}}
 
-import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
-{{#if imports}}
-{{#each imports}}
+{{#each package_imports}}
 {{{this}}}
 {{/each}}
 {{/if}}
 
 final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} implements {{#each superclasses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
-    final TrustWalletCore _core;
 {{#if init_instance}}
+    final TrustWalletCore _core;
     final {{{raw_type}}} _pointer;
 
     {{{raw_type}}} get pointer => _pointer;
@@ -26,7 +28,7 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
         : _core = core, _pointer = pointer;
 {{else}}
 
-    const {{name}}(TrustWalletCore core): _core = core;
+    const {{name}}();
 {{/if}}
 
 {{! Equality operator, if available }}
@@ -55,7 +57,7 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
     @override
     dispose() {
     {{#each deinits}}
-        _core.{{name}}(pointer)
+        _core.{{name}}(pointer);
     {{/each}}
     }
 
@@ -67,13 +69,12 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
     {{else}}
     {{~> partial_func}}
     {{/if}}
+    {{#unless @last}}
 
+    {{/unless}}
 {{/each}}
 {{! Properties }}
 {{#each properties}}
     {{~> partial_prop}}
-    {{#unless @last}}
-
-    {{/unless}}
 {{/each}}
 }

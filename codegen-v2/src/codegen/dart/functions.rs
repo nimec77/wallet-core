@@ -15,11 +15,12 @@ use crate::codegen::dart::utils::*;
 pub(super) fn process_methods(
     object: &ObjectVariant,
     functions: Vec<FunctionInfo>,
-    core_var_name: Option<&str>
-) -> Result<(Vec<DartFunction>, Vec<FunctionInfo>, Vec<DartImport>)> {
+    core_var_name: Option<&str>,
+) -> Result<(Vec<DartFunction>, Vec<FunctionInfo>, Vec<DartImport>, Vec<PackageImport>)> {
     let mut dart_funcs = vec![];
     let mut skipped_funcs = vec![];
-    let mut imports = vec![];
+    let mut dart_imports = vec![];
+    let mut package_imports = vec![];
 
     for func in functions {
         let mut finally_vars = vec![];
@@ -111,7 +112,7 @@ pub(super) fn process_methods(
         let param_name = if func.is_static { vec![] } else { vec!["obj".to_string()] };
         let param_names = param_name
             .into_iter()
-            .chain(params.iter().map(|(p, is_wrapped) | {
+            .chain(params.iter().map(|(p, is_wrapped)| {
                 let param_name = p.local_name.as_str();
                 if *is_wrapped {
                     format!("{}.pointer", param_name)
@@ -153,9 +154,9 @@ pub(super) fn process_methods(
             }
 
             // Get imports for the parameter.
-            if let Some(dart_import) = get_import_from_param(param) {
-                imports.push(dart_import);
-            }
+            let (mut dart_vec, mut package_vec) = get_import_from_param(param);
+            dart_imports.append(dart_vec.as_mut());
+            package_imports.append(package_vec.as_mut());
 
             if let Some(op) = param_c_ffi_defer_call(&param) {
                 ops.push(op);
@@ -165,9 +166,9 @@ pub(super) fn process_methods(
         if let TypeVariant::Enum(name) | TypeVariant::Struct(name) = &func.return_type.variant {
             if name != object.name() {
                 // Get imports for the return type.
-                if let Some(dart_import) = get_import_from_return(&func.return_type) {
-                    imports.push(dart_import);
-                }
+                let (mut dart_vec, mut package_vec) = get_import_from_return(&func.return_type);
+                dart_imports.append(dart_vec.as_mut());
+                package_imports.append(package_vec.as_mut());
             }
         }
         // Wrap result.
@@ -195,5 +196,5 @@ pub(super) fn process_methods(
         });
     }
 
-    Ok((dart_funcs, skipped_funcs, imports))
+    Ok((dart_funcs, skipped_funcs, dart_imports, package_imports))
 }

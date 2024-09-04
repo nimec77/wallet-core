@@ -32,7 +32,8 @@ pub struct DartStruct {
     is_public: bool,
     init_instance: bool,
     raw_type: String,
-    imports: Vec<DartImport>,
+    dart_imports: Vec<DartImport>,
+    package_imports: Vec<PackageImport>,
     superclasses: Vec<String>,
     eq_operator: Option<DartOperatorEquality>,
     inits: Vec<DartInit>,
@@ -56,14 +57,19 @@ pub struct DartEnumExtension {
     name: String,
     init_instance: bool,
     add_description: bool,
-    imports: Vec<DartImport>,
+    dart_imports: Vec<DartImport>,
+    package_imports: Vec<PackageImport>,
     methods: Vec<DartFunction>,
     properties: Vec<DartProperty>,
     variants: Vec<DartEnumVariant>,
 }
 /// Represents a Dart import statement.
-#[derive(Debug, Clone, Eq, PartialEq, Hash, Serialize, Deserialize)]
+#[derive(Debug, Clone, Eq, PartialEq, Hash, Serialize, Deserialize, Ord, PartialOrd)]
 pub struct DartImport(String);
+
+/// Represents a Dart import statement.
+#[derive(Debug, Clone, Eq, PartialEq, Hash, Serialize, Deserialize, Ord, PartialOrd)]
+pub struct PackageImport(String);
 
 // Wrapper around a valid Dart type (built in or custom). Meant to be used as
 // `<DartType as From<TypeVariant>>::from(...)`.
