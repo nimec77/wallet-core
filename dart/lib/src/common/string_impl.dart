@@ -2,10 +2,10 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:trust_wallet_core/src/common/abstractions.dart';
-import 'package:trust_wallet_core/src/gen/ffi/generated_bindings.dart';
+import 'package:trust_wallet_core/src/bindings/generated_bindings.dart';
 
 class StringImpl implements Disposable {
-  final TrustWalletCore _core;
+  final TrustWalletCoreBindings _core;
 
   /// It must be deleted at the end.
   final Pointer<TWString> _pointer;
@@ -13,13 +13,13 @@ class StringImpl implements Disposable {
   Pointer<TWString> get pointer => _pointer;
 
   StringImpl.createWithPointer(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     Pointer<TWString> pointer,
   )   : _core = core,
         _pointer = pointer;
 
   StringImpl.createWithString(
-    TrustWalletCore core,
+    TrustWalletCoreBindings core,
     String value,
   )   : _core = core,
         _pointer = core.TWStringCreateWithUTF8Bytes(
