@@ -15,11 +15,12 @@ use crate::codegen::dart::utils::*;
 pub(super) fn process_properties(
     object: &ObjectVariant,
     properties: Vec<PropertyInfo>,
-    core_var_name: &str
-) -> Result<(Vec<DartProperty>, Vec<PropertyInfo>, Vec<DartImport>)> {
+    core_var_name: &str,
+) -> Result<(Vec<DartProperty>, Vec<PropertyInfo>, Vec<DartImport>, Vec<PackageImport>)> {
     let mut dart_props = vec![];
     let mut skipped_props = vec![];
-    let mut imports = vec![];
+    let mut dart_imports = vec![];
+    let mut package_imports = vec![];
 
     for prop in properties {
         if !prop.name.starts_with(object.name()) {
@@ -68,13 +69,15 @@ pub(super) fn process_properties(
             });
         }
 
+        let mut add_import_required = true;
         if let TypeVariant::Enum(name) | TypeVariant::Struct(name) = &prop.return_type.variant {
-            if name != object.name() {
-                // Get imports for the return type.
-                if let Some(dart_import) = get_import_from_return(&prop.return_type) {
-                    imports.push(dart_import);
-                }
-            }
+            add_import_required = name != object.name();
+        }
+        if add_import_required {
+            // Get imports for the return type.
+            let (mut dart_vec, mut package_vec) = get_import_from_return(&prop.return_type);
+            dart_imports.append(dart_vec.as_mut());
+            package_imports.append(package_vec.as_mut());
         }
         // Wrap result.
         ops.push(wrap_return(&prop.return_type, core_var_name));
@@ -88,7 +91,7 @@ pub(super) fn process_properties(
             is_nullable: prop.return_type.is_nullable,
         };
 
-        let is_override =  pretty_name == "description" && has_address_protocol(object.name());
+        let is_override = pretty_name == "description" && has_address_protocol(object.name());
 
         dart_props.push(DartProperty {
             name: pretty_name,
@@ -100,5 +103,5 @@ pub(super) fn process_properties(
         });
     }
 
-    Ok((dart_props, skipped_props, imports))
+    Ok((dart_props, skipped_props, dart_imports, package_imports))
 }

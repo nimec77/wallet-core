@@ -1,14 +1,11 @@
     {{#if is_static}}static{{/if}} {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}({{#if is_static}}TrustWalletCore core{{#if params}}, {{/if}}{{/if}}{{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
-    {{#if finally_vars}}
-    {{#each finally_vars}}
-        final {{type}}{{#if is_nullable}}?{{/if}} {{local_name}};
-    {{/each}}
-    {{/if}}
-        try {
         {{#each operations}}
         {{#if call}}
-            {{#if call.is_final}}final {{/if}}{{call.var_name}} = {{#if call.core_var_name}}{{call.core_var_name}}.{{/if}}{{call.call}};
+        final {{call.var_name}} = {{#if call.core_var_name}}{{call.core_var_name}}.{{/if}}{{call.call}};
         {{/if}}
+        {{/each}}
+        try {
+        {{#each operations}}
         {{#if call_optional}}
             final {{call_optional.var_type}}? ptr;
             if ({{call_optional.param_name}} != null) {

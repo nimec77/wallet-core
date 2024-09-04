@@ -1,6 +1,6 @@
 use convert_case::{Case, Casing};
 use heck::ToLowerCamelCase;
-use crate::codegen::dart::{DartImport, DartOperation, DartType};
+use crate::codegen::dart::{DartImport, DartOperation, DartType, PackageImport};
 use crate::codegen::dart::res::*;
 use crate::manifest::{ParamInfo, TypeInfo, TypeVariant};
 
@@ -59,35 +59,31 @@ pub fn has_address_protocol(name: &str) -> bool {
     pretty_name(name).ends_with("Address")
 }
 
-pub fn get_import_from_param(param: &ParamInfo) -> Option<DartImport> {
+pub fn get_import_from_param(param: &ParamInfo) -> (Vec<DartImport>, Vec<PackageImport>) {
     match &param.ty.variant {
         TypeVariant::Struct(name) => {
             let import = import_name(&name, None);
-            Some(DartImport(import))
+            (vec![], [PackageImport(import)].to_vec())
         }
         TypeVariant::String => {
             let import = import_name(STRING_WRAPPER_CLASS, Some("common/"));
-            Some(DartImport(import))
+            (vec![], [PackageImport(import)].to_vec())
         }
         TypeVariant::Data => {
             let import = import_name(DATA_WRAPPER_CLASS, Some("common/"));
-            Some(DartImport(import))
+            ([DartImport(DART_TYPED_DATA_IMPORT.to_string())].to_vec(), [PackageImport(import)].to_vec())
         }
-        _ => None,
+        _ => (vec![], vec![]),
     }
 }
 
 pub fn get_local_var_name(param: &ParamInfo) -> String {
     let dart_type = DartType::from(param.ty.variant.clone()).0.to_string();
     let suffix = match &param.ty.variant {
-        TypeVariant::Struct(_) | TypeVariant::Enum(_) => None,
-        _ => Some(&dart_type),
+        TypeVariant::Struct(name) | TypeVariant::Enum(name) => name,
+        _ => &dart_type,
     };
-    if suffix.is_none() {
-        param.name.clone()
-    } else {
-        format!("{}_{}", &param.name, suffix.unwrap()).to_lower_camel_case()
-    }
+    format!("{}_{}", &param.name, suffix).to_lower_camel_case()
 }
 
 
@@ -241,13 +237,21 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
     Some(op)
 }
 
-pub fn get_import_from_return(ty: &TypeInfo) -> Option<DartImport> {
+pub fn get_import_from_return(ty: &TypeInfo) -> (Vec<DartImport>, Vec<PackageImport>) {
     match &ty.variant {
         TypeVariant::Struct(name) => {
             let import = import_name(&name, None);
-            Some(DartImport(import))
+            (vec![], [PackageImport(import)].to_vec())
         }
-        _ => None,
+        TypeVariant::String => {
+            let import = import_name(STRING_WRAPPER_CLASS, Some("common/"));
+            (vec![], [PackageImport(import)].to_vec())
+        }
+        TypeVariant::Data => {
+            let import = import_name(DATA_WRAPPER_CLASS, Some("common/"));
+            ([DartImport(DART_TYPED_DATA_IMPORT.to_string())].to_vec(), [PackageImport(import)].to_vec())
+        }
+        _ => (vec![], vec![]),
     }
 }
 

@@ -2,6 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
+use crate::codegen::dart::res::{TRUST_WALLET_CORE_PATH};
 use super::*;
 use crate::codegen::dart::utils::*;
 use crate::manifest::InitInfo;
@@ -15,10 +16,11 @@ use crate::manifest::InitInfo;
 pub(super) fn process_inits(
     object: &ObjectVariant,
     inits: Vec<InitInfo>,
-) -> Result<(Vec<DartInit>, Vec<InitInfo>, Vec<DartImport>)> {
+) -> Result<(Vec<DartInit>, Vec<InitInfo>, Vec<DartImport>, Vec<PackageImport>)> {
     let mut dart_inits = vec![];
     let mut skipped_inits = vec![];
-    let mut imports = vec![];
+    let mut dart_imports = vec![];
+    let mut package_imports = vec![];
 
     for init in inits {
         let mut finally_vars = vec![];
@@ -68,14 +70,17 @@ pub(super) fn process_inits(
                 }
             }
 
-            if let TypeVariant::Enum(name) | TypeVariant::Struct(name) = &param.ty.variant {
-                if name != object.name() {
-                    // Get imports for the parameter.
-                    if let Some(dart_import) = get_import_from_param(param) {
-                        imports.push(dart_import);
-                    }
+            match &param.ty.variant {
+                TypeVariant::Enum(name) | TypeVariant::Struct(name)
+                if name == object.name() => {
+                    continue
                 }
+                _ => {}
             }
+            // Get imports for the parameter.
+            let (mut dart_vec, mut package_vec) = get_import_from_param(param);
+            dart_imports.append(dart_vec.as_mut());
+            package_imports.append(package_vec.as_mut());
         }
 
         // Prepare parameter list to be passed on to the underlying C FFI function.
@@ -133,8 +138,13 @@ pub(super) fn process_inits(
             comments: vec![],
         });
     }
+    if !dart_inits.is_empty() {
+        let import = import_name(TRUST_WALLET_CORE_PATH, None);
 
-    Ok((dart_inits, skipped_inits, imports))
+        package_imports.push(PackageImport(import));
+    }
+
+    Ok((dart_inits, skipped_inits, dart_imports, package_imports))
 }
 
 pub(super) fn process_deinits(
