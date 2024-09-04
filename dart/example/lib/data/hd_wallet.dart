@@ -8,10 +8,6 @@ abstract interface class HdWallet {
   void createWithMnemonic(String mnemonic, {String passphrase = ''});
   String getAddressForCoin(TWCoinType coinType);
   Uint8List getKeyForCoin(TWCoinType coinType);
-  signerPlan(
-    Uint8List bytes,
-    TWCoinType coin,
-  );
   bool mnemonicIsValid(String mnemonic);
   String mnemonic();
 }
@@ -65,12 +61,6 @@ class HdWalletImpl implements HdWallet, Disposable {
     final Pointer<Void> data = _bindings.TWPrivateKeyData(pointer);
 
     return _bindings.TWDataBytes(data).asTypedList(_bindings.TWDataSize(data));
-  }
-
-  @override
-  signerPlan(Uint8List bytes, TWCoinType coin) {
-    // TODO: implement signerPlan
-    throw UnimplementedError();
   }
 
   @override

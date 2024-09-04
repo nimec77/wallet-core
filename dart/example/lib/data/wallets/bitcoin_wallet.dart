@@ -20,7 +20,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
 
   const BitcoinWallet({
     required InterceptedHttp http,
-    required super.bindings,
+    required TrustWalletCoreBindings bindings,
     required super.hdWallet,
   })  : _bindings = bindings,
         _hdWallet = hdWallet,
@@ -96,11 +96,11 @@ final class BitcoinWallet extends BaseBlockchainWallet {
     bitcoinScript.dispose();
 
     final transactionPlan = bitcoin.TransactionPlan.fromBuffer(
-      _hdWallet.signerPlan(signingInput.writeToBuffer(), coin).toList(),
+      AnySigner.signerPlan(_bindings, signingInput.writeToBuffer(), coin).toList(),
     );
     signingInput.plan = transactionPlan;
     signingInput.amount = transactionPlan.amount;
-    final signResult = sign(signingInput.writeToBuffer(), coin);
+    final signResult = AnySigner.sign(_bindings, signingInput.writeToBuffer(), coin);
     final signingOutput = bitcoin.SigningOutput.fromBuffer(signResult);
     final rawTx = Utils.bytesToHex(signingOutput.encoded);
 

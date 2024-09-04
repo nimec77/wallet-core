@@ -21,15 +21,15 @@ abstract class AnySigner {
 
   static String signJSON(
     TrustWalletCoreBindings core,
-    String string,
+    String json,
     Uint8List bytes,
     TWCoinType coin,
   ) {
-    final _string = StringImpl.createWithString(core, string);
-    final _data = DataImpl.createWithBytes(core, bytes);
-    final signer = core.TWAnySignerSignJSON(_string.pointer, _data.pointer, coin);
-    _data.dispose();
-    _string.dispose();
+    final string = StringImpl.createWithString(core, json);
+    final data = DataImpl.createWithBytes(core, bytes);
+    final signer = core.TWAnySignerSignJSON(string.pointer, data.pointer, coin);
+    data.dispose();
+    string.dispose();
 
     return StringImpl.toDartString(core, signer);
   }
