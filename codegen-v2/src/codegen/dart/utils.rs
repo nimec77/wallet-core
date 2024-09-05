@@ -123,14 +123,16 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool, core_var_name: &str) 
                     call,
                     is_final,
                     core_var_name: None,
-                }, Some(call_var_name))
+                },
+                 Some(call_var_name))
             } else {
                 (DartOperation::Call {
                     var_name,
                     call,
                     is_final,
                     core_var_name: None,
-                }, None)
+                },
+                 None)
             }
         }
         TypeVariant::Data => {
@@ -149,14 +151,16 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool, core_var_name: &str) 
                     call,
                     is_final: true,
                     core_var_name: None,
-                }, Some(call_var_name))
+                },
+                 Some(call_var_name))
             } else {
                 (DartOperation::Call {
                     var_name,
                     call,
                     is_final: true,
                     core_var_name: None,
-                }, None)
+                },
+                 None)
             }
         }
         // E.g.
@@ -203,14 +207,10 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
             } else {
                 format!("{}.dispose()", local_var_name)
             };
-            let (var_name, call) = (
-                local_var_name.clone(),
-                format_str,
-            );
 
             DartOperation::DeferCall {
-                var_name,
-                call,
+                var_name: local_var_name,
+                call: format_str,
                 core_var_name: None,
             }
         }
@@ -220,14 +220,10 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
             } else {
                 format!("{}.dispose()", local_var_name)
             };
-            let (var_name, call) = (
-                local_var_name.clone(),
-                format_str,
-            );
 
             DartOperation::DeferCall {
-                var_name,
-                call,
+                var_name: local_var_name,
+                call: format_str,
                 core_var_name: None,
             }
         }

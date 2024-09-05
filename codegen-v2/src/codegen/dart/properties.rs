@@ -71,10 +71,12 @@ pub(super) fn process_properties(
             });
         }
 
-        let mut add_import_required = true;
-        if let TypeVariant::Enum(name) | TypeVariant::Struct(name) = &prop.return_type.variant {
-            add_import_required = name != object.name();
-        }
+        let add_import_required =
+            if let TypeVariant::Enum(name) | TypeVariant::Struct(name) = &prop.return_type.variant {
+                name != object.name()
+            } else {
+                true
+            };
         if add_import_required {
             // Get imports for the return type.
             let (mut dart_vec, mut package_vec) = get_import_from_return(&prop.return_type);

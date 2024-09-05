@@ -138,13 +138,11 @@ pub enum DartOperation {
     },
     // Results in:
     // ```dart
-    // final UnsafeRawPointer? ptr;
+    // StringImpl? alphabetString;
     // if alphabet != null {
-    //     ptr = TWStringCreateWithNSString(alphabet);
-    // } else {
-    //     ptr = null;
+    //     <call_var_name> = StringImpl.createWithString(core, string);
     // }
-    // final alphabet = ptr;
+    // final alphabetStringPtr = alphabetString?.pointer ?? nullptr;
     // ```
     CallOptional {
         param_name: String,
@@ -221,7 +219,7 @@ pub struct DartInit {
     pub has_finally: bool,
     pub params: Vec<DartVariable>,
     pub operations: Vec<DartOperation>,
-    pub finally_vars: Vec<DartVariable>,
+    pub defined_vars: Vec<DartVariable>,
     pub comments: Vec<String>,
 }
 

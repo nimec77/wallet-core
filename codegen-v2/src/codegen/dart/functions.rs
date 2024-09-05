@@ -24,13 +24,13 @@ pub(super) fn process_methods(
     let mut package_imports = vec![];
 
     for func in functions {
-        let mut defined_vars = vec![];
         if !func.name.starts_with(object.name()) {
             // Function is not associated with the object.
             skipped_funcs.push(func);
             continue;
         }
 
+        let mut defined_vars = vec![];
         let params_types = func
             .params
             .iter()
@@ -85,30 +85,31 @@ pub(super) fn process_methods(
                 _ => {}
             }
 
-            let mut local_param_name = param.name.clone();
-            let mut call_name = get_call_var_name(&param);
+            let local_name: String;
+            let mut call_name = get_call_var_name(param);
             // Process parameter.
             if let (Some(op), call_var_name) = param_c_ffi_call(&param, !has_finally, core_var) {
-                local_param_name = get_local_var_name(param);
+                local_name = get_local_var_name(param);
                 if let Some(call_var_name) = call_var_name {
                     call_name = call_var_name;
                 }
                 ops.push(op)
+            } else {
+                local_name = param.name.clone();
             }
             // Convert parameter to Dart parameter for the function interface.
             let var = DartVariable {
                 name: param.name.clone(),
-                local_name: local_param_name.clone(),
+                local_name,
                 call_name,
                 var_type: DartType::from(param.ty.variant.clone()),
                 is_nullable: param.ty.is_nullable,
             };
             if param.ty.is_nullable && !matches!(param.ty.variant, TypeVariant::Struct(_)) {
-                let defined_var = DartVariable {
+                defined_vars.push(DartVariable {
                     var_type: DartType(var.var_type.to_wrapper_type().to_string()),
                     ..var.clone()
-                };
-                defined_vars.push(defined_var);
+                });
             }
             params.push(var);
         }
