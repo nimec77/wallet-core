@@ -3,27 +3,23 @@ import 'dart:convert';
 import 'package:convert/convert.dart';
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:http_interceptor/http/intercepted_http.dart';
-import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core/protobuf/Bitcoin.pb.dart' as bitcoin;
-
+import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
 import 'package:trust_wallet_core_example/data/abstractions/base_blockchain_wallet.dart';
-import 'package:trust_wallet_core_example/data/hd_wallet.dart';
 import 'package:trust_wallet_core_example/data/model/bitcoin_address_info.dart';
 import 'package:trust_wallet_core_example/data/model/result.dart';
 import 'package:trust_wallet_core_example/data/model/utxo.dart';
 
 final class BitcoinWallet extends BaseBlockchainWallet {
   final TrustWalletCoreBindings _bindings;
-  final HdWallet _hdWallet;
   final InterceptedHttp _http;
 
   const BitcoinWallet({
+    required super.hdWallet,
     required InterceptedHttp http,
     required TrustWalletCoreBindings bindings,
-    required super.hdWallet,
   })  : _bindings = bindings,
-        _hdWallet = hdWallet,
         _http = http;
 
   @override
@@ -62,7 +58,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
 
     final addressBtc = getAddressForCoin(TWCoinType.TWCoinTypeBitcoin);
     final changeAddress = addressBtc;
-    final secretPrivateKeyBtc = _hdWallet.getKeyForCoin(TWCoinType.TWCoinTypeBitcoin).toList();
+    final secretPrivateKeyBtc = getKeyForCoin(TWCoinType.TWCoinTypeBitcoin).toList();
 
     List<Utxo> selectedUtxos = await _loadUtxos(addressBtc, amountBtc);
 
@@ -82,7 +78,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
 
     final signingInput = bitcoin.SigningInput(
       amount: $fixnum.Int64.parseInt(amountBtc),
-      hashType: bitcoinScript.hashTypeForCoin(coin),
+      hashType: BitcoinScript.hashTypeForCoin(_bindings, coin),
       toAddress: toAddress,
       changeAddress: changeAddress,
       byteFee: $fixnum.Int64(10),

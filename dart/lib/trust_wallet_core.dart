@@ -6,33 +6,35 @@
 // https://flutter.dev/to/pubspec-plugin-platforms.
 
 import 'dart:ffi';
+import 'dart:io';
 
-export 'src/bitcoin_script.dart';
-export 'src/bindings/generated_bindings.dart';
-export 'src/common/common.dart';
+import 'package:trust_wallet_core/src/bindings/generated_bindings.dart';
 
-// const String _libName = 'trust_wallet_core';
+export 'src/index.dart';
+
+const String _libName = 'WalletCore';
 
 final class TrustWalletCore {
   late final DynamicLibrary _library;
+  late final TrustWalletCoreBindings _bindings;
 
   DynamicLibrary get library => _library;
+  TrustWalletCoreBindings get bindings => _bindings;
 
   Pointer<T> Function<T extends NativeType>(String symbolName) get lookup => library.lookup;
 
   void init() {
-    //TODO: проверить
-    _library = DynamicLibrary.open('libTrustWalletCore.dylib');
-
-    // if (Platform.isMacOS || Platform.isIOS) {
-    //   _library = DynamicLibrary.open('$_libName.framework/$_libName');
-    // }
-    // if (Platform.isAndroid || Platform.isLinux) {
-    //   _library = DynamicLibrary.open('lib$_libName.so');
-    // }
-    // if (Platform.isWindows) {
-    //   _library = DynamicLibrary.open('$_libName.dll');
-    // }
-    // throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
+    if (Platform.isMacOS || Platform.isIOS) {
+      _library = DynamicLibrary.open('$_libName.framework/$_libName');
+      _bindings = TrustWalletCoreBindings(_library);
+    } else if (Platform.isAndroid || Platform.isLinux) {
+      _library = DynamicLibrary.open('lib$_libName.so');
+      _bindings = TrustWalletCoreBindings(_library);
+    } else if (Platform.isWindows) {
+      _library = DynamicLibrary.open('$_libName.dll');
+      _bindings = TrustWalletCoreBindings(_library);
+    } else {
+      throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
+    }
   }
 }

@@ -1,9 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:meta/meta.dart';
 import 'package:trust_wallet_core/trust_wallet_core.dart';
-import 'package:trust_wallet_core_example/data/hd_wallet.dart';
 
 abstract interface class BlockchainWallet {
   String getAddressForCoin(TWCoinType coinType);
+  Uint8List getKeyForCoin(TWCoinType coinType);
 
   Future<String> sendTransaction({
     required String toAddress,
@@ -14,15 +16,24 @@ abstract interface class BlockchainWallet {
 }
 
 abstract base class BaseBlockchainWallet implements BlockchainWallet {
-  final HdWallet _hdWallet;
+  @mustCallSuper
+  final HDWallet _hdWallet;
 
   const BaseBlockchainWallet({
-    required HdWallet hdWallet,
+    required HDWallet hdWallet,
   }) : _hdWallet = hdWallet;
 
   @override
   @nonVirtual
   String getAddressForCoin(TWCoinType coinType) => _hdWallet.getAddressForCoin(coinType);
+
+  @override
+  @nonVirtual
+  Uint8List getKeyForCoin(TWCoinType coinType) {
+    //TODO: dispose privateKey
+    final privateKey = _hdWallet.getKeyForCoin(coinType);
+    return privateKey.data;
+  }
 
   @override
   Future<double> getBalance();

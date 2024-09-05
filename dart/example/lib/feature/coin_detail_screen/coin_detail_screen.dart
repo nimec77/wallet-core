@@ -3,16 +3,20 @@ import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
 import 'package:trust_wallet_core_example/data/factory/wallet_service_factory.dart';
 import 'package:trust_wallet_core_example/data/wallets/bitcoin_wallet.dart';
-import 'package:trust_wallet_core_example/di/dependency_scope.dart';
 
 class CoinDetailScreen extends StatelessWidget {
+  final HDWallet hdWallet;
   final TWCoinType coinType;
 
-  const CoinDetailScreen({super.key, required this.coinType});
+  const CoinDetailScreen({
+    super.key,
+    required this.hdWallet,
+    required this.coinType,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final address = DependencyScope.of(context).hdWallet.getAddressForCoin(coinType);
+    final address = hdWallet.getAddressForCoin(coinType);
 
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +30,7 @@ class CoinDetailScreen extends StatelessWidget {
             children: [
               if (coinType == TWCoinType.TWCoinTypeBitcoin) ...[
                 FutureBuilder(
-                  future: WalletServiceFactory.getService<BitcoinWallet>(context).getBalance(),
+                  future: WalletServiceFactory.getService<BitcoinWallet>(context, hdWallet).getBalance(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const CircularProgressIndicator();
