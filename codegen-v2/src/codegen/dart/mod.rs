@@ -103,7 +103,7 @@ pub struct DartFunction {
     pub has_finally: bool,
     pub params: Vec<DartVariable>,
     pub operations: Vec<DartOperation>,
-    pub finally_vars: Vec<DartVariable>,
+    pub defined_vars: Vec<DartVariable>,
     #[serde(rename = "return")]
     pub return_type: DartReturn,
     pub comments: Vec<String>,
@@ -149,6 +149,7 @@ pub enum DartOperation {
     CallOptional {
         param_name: String,
         var_name: String,
+        call_var_name: String,
         var_type: String,
         call: String,
         is_final: bool,  // Is final variable.
@@ -170,17 +171,6 @@ pub enum DartOperation {
     // ```dart
     //  <call>(<var_name>);
     DeferCall {
-        var_name: String,
-        call: Option<String>,
-        core_var_name: Option<String>,
-    },
-    // Results in:
-    // ```dart
-    // if (ptr != null) {
-    //    <call>(<var_name>);
-    // }
-    // ```
-    DeferOptionalCall {
         var_name: String,
         call: Option<String>,
         core_var_name: Option<String>,
@@ -209,6 +199,7 @@ pub enum DartOperation {
 pub struct DartVariable {
     pub name: String,
     pub local_name: String,
+    pub call_name: String,
     #[serde(rename = "type")]
     pub var_type: DartType,
     pub is_nullable: bool,

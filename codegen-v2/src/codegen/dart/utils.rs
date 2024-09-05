@@ -80,18 +80,32 @@ pub fn get_import_from_param(param: &ParamInfo) -> (Vec<DartImport>, Vec<Package
 pub fn get_local_var_name(param: &ParamInfo) -> String {
     let dart_type = DartType::from(param.ty.variant.clone()).0.to_string();
     let suffix = match &param.ty.variant {
-        TypeVariant::Struct(name) | TypeVariant::Enum(name) => name,
-        _ => &dart_type,
+        TypeVariant::Struct(name) | TypeVariant::Enum(name) => pretty_name(name),
+        _ => dart_type,
     };
     format!("{}_{}", &param.name, suffix).to_lower_camel_case()
 }
 
+pub fn get_call_var_name(param: &ParamInfo) -> String {
+    let local_var_name = get_local_var_name(param);
+    if param.ty.is_nullable {
+        return format!("{}Ptr", &local_var_name);
+    }
+    match param.ty.variant {
+        TypeVariant::String | TypeVariant::Data => {
+            format!("{}.pointer", &local_var_name)
+        }
+        _ => param.name.clone(),
+    }
+}
 
 // Convenience function: process the parameter, returning the operation for
 // handling the C FFI call (if any).
-pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool, core_var_name: &str) -> Option<DartOperation> {
+pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool, core_var_name: &str) ->
+(Option<DartOperation>, Option<String>) {
     let local_var_name = get_local_var_name(param);
-    let op = match &param.ty.variant {
+    let call_var_name = get_call_var_name(param);
+    let (op, call_name) = match &param.ty.variant {
         // E.g. `final param = TStringImpl.createWithUTF8Bytes(core, param);`
         TypeVariant::String => {
             let (var_name, call) = (
@@ -101,21 +115,22 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool, core_var_name: &str) 
 
             // If the parameter is nullable, add special handler.
             if param.ty.is_nullable {
-                DartOperation::CallOptional {
+                (DartOperation::CallOptional {
                     param_name: param.name.clone(),
                     var_name,
+                    call_var_name: call_var_name.clone(),
                     var_type: STRING_WRAPPER_CLASS.to_string(),
                     call,
                     is_final,
                     core_var_name: None,
-                }
+                }, Some(call_var_name))
             } else {
-                DartOperation::Call {
+                (DartOperation::Call {
                     var_name,
                     call,
                     is_final,
                     core_var_name: None,
-                }
+                }, None)
             }
         }
         TypeVariant::Data => {
@@ -126,56 +141,57 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool, core_var_name: &str) 
 
             // If the parameter is nullable, add special handler.
             if param.ty.is_nullable {
-                DartOperation::CallOptional {
+                (DartOperation::CallOptional {
                     param_name: param.name.clone(),
                     var_name,
+                    call_var_name: call_var_name.clone(),
                     var_type: "Pointer<Void>".to_string(),
                     call,
                     is_final: true,
                     core_var_name: None,
-                }
+                }, Some(call_var_name))
             } else {
-                DartOperation::Call {
+                (DartOperation::Call {
                     var_name,
                     call,
                     is_final: true,
                     core_var_name: None,
-                }
+                }, None)
             }
         }
         // E.g.
-        // - `final param = param.pointer;`
-        // - `final param = param?.pointer;`
+        // - `final paramStruct = param.pointer;`
+        // - `final paramStruct = param?.pointer;`
         TypeVariant::Struct(_) => {
             // For nullable structs, we do not use the special
             // `CallOptional` handler but rather use the question mark
             // operator.
             let (var_name, call) = if param.ty.is_nullable {
                 (
-                    local_var_name,
+                    local_var_name.clone(),
                     format!("{}?.pointer", param.name),
                 )
             } else {
                 (
-                    local_var_name,
+                    local_var_name.clone(),
                     format!("{}.pointer", param.name)
                 )
             };
 
-            DartOperation::Call {
+            (DartOperation::Call {
                 var_name,
                 call,
                 is_final,
                 core_var_name: None,
-            }
+            }, Some(local_var_name))
         }
         // Skip processing parameter, reference the parameter by name
         // directly, as defined in the function interface (usually the
         // case for primitive types).
-        _ => return None,
+        _ => return (None, None),
     };
 
-    Some(op)
+    (Some(op), call_name)
 }
 
 pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
@@ -192,18 +208,10 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
                 Some(format_str),
             );
 
-            if param.ty.is_nullable {
-                DartOperation::DeferOptionalCall {
-                    var_name,
-                    call,
-                    core_var_name: None,
-                }
-            } else {
-                DartOperation::DeferCall {
-                    var_name,
-                    call,
-                    core_var_name: None,
-                }
+            DartOperation::DeferCall {
+                var_name,
+                call,
+                core_var_name: None,
             }
         }
         TypeVariant::Data => {
@@ -217,18 +225,10 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
                 Some(format_str),
             );
 
-            if param.ty.is_nullable {
-                DartOperation::DeferOptionalCall {
-                    var_name,
-                    call,
-                    core_var_name: None,
-                }
-            } else {
-                DartOperation::DeferCall {
-                    var_name,
-                    call,
-                    core_var_name: None,
-                }
+            DartOperation::DeferCall {
+                var_name,
+                call,
+                core_var_name: None,
             }
         }
         _ => return None,
@@ -295,4 +295,3 @@ pub fn wrap_return(ty: &TypeInfo, core_var_name: &str) -> DartOperation {
         },
     }
 }
-

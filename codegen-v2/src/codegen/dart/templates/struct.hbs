@@ -19,12 +19,12 @@
 
 final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} implements {{#each superclasses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
 {{#if init_instance}}
-    final TrustWalletCore _core;
+    final TrustWalletCoreBindings _core;
     final {{{raw_type}}} _pointer;
 
     {{{raw_type}}} get pointer => _pointer;
 
-    const {{name}}(TrustWalletCore core, {{{raw_type}}} pointer)
+    const {{name}}(TrustWalletCoreBindings core, {{{raw_type}}} pointer)
         : _core = core, _pointer = pointer;
 {{else}}
 

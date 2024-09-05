@@ -2,6 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
+use crate::codegen::dart::res::*;
 use super::*;
 use crate::manifest::{FunctionInfo, TypeVariant};
 use crate::codegen::dart::utils::*;
@@ -23,7 +24,7 @@ pub(super) fn process_methods(
     let mut package_imports = vec![];
 
     for func in functions {
-        let mut finally_vars = vec![];
+        let mut defined_vars = vec![];
         if !func.name.starts_with(object.name()) {
             // Function is not associated with the object.
             skipped_funcs.push(func);
@@ -66,6 +67,8 @@ pub(super) fn process_methods(
             });
         } else {
             core_var = core_var_name.unwrap_or("core");
+            let import = import_name(TRUST_WALLET_CORE_PATH, None);
+            package_imports.push(PackageImport(import));
         }
 
         // For each parameter, we track a list of `params` which is used for the
@@ -83,43 +86,38 @@ pub(super) fn process_methods(
             }
 
             let mut local_param_name = param.name.clone();
+            let mut call_name = get_call_var_name(&param);
             // Process parameter.
-            if let Some(op) = param_c_ffi_call(&param, !has_finally, core_var) {
+            if let (Some(op), call_var_name) = param_c_ffi_call(&param, !has_finally, core_var) {
                 local_param_name = get_local_var_name(param);
+                if let Some(call_var_name) = call_var_name {
+                    call_name = call_var_name;
+                }
                 ops.push(op)
             }
             // Convert parameter to Dart parameter for the function interface.
-            params.push((DartVariable {
+            let var = DartVariable {
                 name: param.name.clone(),
                 local_name: local_param_name.clone(),
+                call_name,
                 var_type: DartType::from(param.ty.variant.clone()),
                 is_nullable: param.ty.is_nullable,
-            }, matches!(param.ty.variant, TypeVariant::String | TypeVariant::Data)));
-
-            if has_finally {
-                if let TypeVariant::String | TypeVariant::Data = &param.ty.variant {
-                    finally_vars.push(DartVariable {
-                        name: param.name.clone(),
-                        local_name: local_param_name.clone(),
-                        var_type: DartType::from(param.ty.variant.clone()).to_wrapper_type(),
-                        is_nullable: param.ty.is_nullable,
-                    });
-                }
+            };
+            if param.ty.is_nullable {
+                let defined_var = DartVariable {
+                    var_type: DartType(var.var_type.to_wrapper_type().to_string()),
+                    ..var.clone()
+                };
+                defined_vars.push(defined_var);
             }
+            params.push(var);
         }
 
         // Prepepare parameter list to be passed on to the underlying C FFI function.
         let param_name = if func.is_static { vec![] } else { vec!["obj".to_string()] };
         let param_names = param_name
             .into_iter()
-            .chain(params.iter().map(|(p, is_wrapped)| {
-                let param_name = p.local_name.as_str();
-                if *is_wrapped {
-                    format!("{}.pointer", param_name)
-                } else {
-                    param_name.to_string()
-                }
-            }))
+            .chain(params.iter().map(|p| p.call_name.clone()))
             .collect::<Vec<String>>()
             .join(", ");
 
@@ -134,6 +132,7 @@ pub(super) fn process_methods(
                 call,
                 core_var_name: Some(core_var.to_string()),
             });
+            dart_imports.push(DartImport(DART_FFI_IMPORT.to_string()));
         } else {
             ops.push(DartOperation::Call {
                 var_name,
@@ -172,7 +171,21 @@ pub(super) fn process_methods(
             }
         }
         // Wrap result.
-        ops.push(wrap_return(&func.return_type, core_var));
+        let op = wrap_return(&func.return_type, core_var);
+        ops.push(op.clone());
+        if matches!(op, DartOperation::ReturnWithDispose { .. }) {
+            match func.return_type.variant {
+                TypeVariant::String => {
+                    let import = import_name(STRING_WRAPPER_CLASS, Some("common/"));
+                    package_imports.push(PackageImport(import));
+                }
+                TypeVariant::Data => {
+                    let import = import_name(DATA_WRAPPER_CLASS, Some("common/"));
+                    package_imports.push(PackageImport(import));
+                }
+                _ => {}
+            }
+        }
 
         // Convert return type for function interface.
         let return_type = DartReturn {
@@ -188,9 +201,9 @@ pub(super) fn process_methods(
             is_public: func.is_public,
             is_static: func.is_static,
             has_finally,
+            defined_vars,
             operations: ops,
-            finally_vars,
-            params: params.into_iter().map(|(p, _)| p).collect(),
+            params: params.into_iter().collect(),
             return_type,
             comments: vec![],
         });

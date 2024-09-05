@@ -1,4 +1,4 @@
-    {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}(TrustWalletCore core) {
+    {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}(TrustWalletCoreBindings core) {
     {{#each operations}}
         {{#if call}}
         final {{call.var_name}} = {{#if call.core_var_name}}{{call.core_var_name}}.{{/if}}{{call.call}};

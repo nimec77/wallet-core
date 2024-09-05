@@ -2,6 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
+use crate::codegen::dart::res::*;
 use super::*;
 use crate::manifest::PropertyInfo;
 use crate::codegen::dart::utils::*;
@@ -60,9 +61,10 @@ pub(super) fn process_properties(
                 call,
                 core_var_name: Some(core_var_name.to_string()),
             });
+            dart_imports.push(DartImport(DART_FFI_IMPORT.to_string()));
         } else {
             ops.push(DartOperation::Call {
-                var_name,
+                var_name: var_name.clone(),
                 call,
                 is_final: true,
                 core_var_name: Some(core_var_name.to_string()),
@@ -80,7 +82,21 @@ pub(super) fn process_properties(
             package_imports.append(package_vec.as_mut());
         }
         // Wrap result.
-        ops.push(wrap_return(&prop.return_type, core_var_name));
+        let op = wrap_return(&prop.return_type, core_var_name);
+        ops.push(op.clone());
+        if matches!(op, DartOperation::ReturnWithDispose { .. }) {
+            match prop.return_type.variant {
+                TypeVariant::String => {
+                    let import = import_name(STRING_WRAPPER_CLASS, Some("common/"));
+                    package_imports.push(PackageImport(import));
+                }
+                TypeVariant::Data => {
+                    let import = import_name(DATA_WRAPPER_CLASS, Some("common/"));
+                    package_imports.push(PackageImport(import));
+                }
+                _ => {}
+            }
+        }
 
         // Prettify name, remove object name prefix from this property.
         let pretty_name = pretty_name_without_prefix(&prop.name, object.name());

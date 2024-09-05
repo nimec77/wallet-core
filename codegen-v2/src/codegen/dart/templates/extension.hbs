@@ -24,7 +24,8 @@ extension {{name}}Extension on {{name}} {
     {{#each variants}}
         {{value}} => '{{as_string}}',
     {{/each}}
-    }
+        _ => '',
+    };
     {{/if}}
     {{! Methods }}
     {{#each methods}}

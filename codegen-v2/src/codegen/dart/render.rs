@@ -3,7 +3,7 @@
 // Copyright © 2017 Trust Wallet.
 
 use std::collections::HashSet;
-use crate::codegen::dart::res::DART_FFI_IMPORT;
+use crate::codegen::dart::res::{DART_FFI_IMPORT, TRUST_WALLET_CORE_PATH};
 use super::{inits::process_deinits, *};
 use crate::codegen::dart::utils::*;
 
@@ -201,7 +201,8 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         package_imports_map.extend(package_imports);
 
         if !methods.is_empty() || !properties.is_empty() {
-            package_imports_map.insert(PackageImport(import_name("generated_bindings", Some("gen/ffi/"))));
+            let import = import_name(TRUST_WALLET_CORE_PATH, None);
+            package_imports_map.insert(PackageImport(import));
         }
 
         let mut add_description = false;

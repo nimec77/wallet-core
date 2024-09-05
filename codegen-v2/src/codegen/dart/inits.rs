@@ -2,7 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
-use crate::codegen::dart::res::{TRUST_WALLET_CORE_PATH};
+use crate::codegen::dart::res::{DART_FFI_IMPORT, TRUST_WALLET_CORE_PATH};
 use super::*;
 use crate::codegen::dart::utils::*;
 use crate::manifest::InitInfo;
@@ -46,15 +46,20 @@ pub(super) fn process_inits(
         let mut params = vec![];
         for param in &init.params {
             let mut local_param_name = param.name.clone();
+            let mut call_name = get_call_var_name(&param);
             // Process parameter.
-            if let Some(op) = param_c_ffi_call(&param, !has_finally, "core") {
+            if let (Some(op), call_var_name) = param_c_ffi_call(&param, !has_finally, "core") {
                 local_param_name = get_local_var_name(param);
+                if let Some(call_var_name) = call_var_name {
+                    call_name = call_var_name;
+                }
                 ops.push(op);
             }
             // Convert parameter to Dart parameter.
             params.push((DartVariable {
                 name: param.name.clone(),
                 local_name: local_param_name.clone(),
+                call_name: call_name.clone(),
                 var_type: DartType::from(param.ty.variant.clone()),
                 is_nullable: param.ty.is_nullable,
             }, matches!(param.ty.variant, TypeVariant::String | TypeVariant::Data)));
@@ -64,6 +69,7 @@ pub(super) fn process_inits(
                     finally_vars.push(DartVariable {
                         name: param.name.clone(),
                         local_name: local_param_name.clone(),
+                        call_name,
                         var_type: DartType::from(param.ty.variant.clone()).to_wrapper_type(),
                         is_nullable: param.ty.is_nullable,
                     });
@@ -104,6 +110,7 @@ pub(super) fn process_inits(
                 call: format!("{}({})", init.name, param_names),
                 core_var_name: Some("core".to_string()),
             });
+            dart_imports.push(DartImport(DART_FFI_IMPORT.to_string()));
         } else {
             ops.push(DartOperation::Call {
                 var_name: "result".to_string(),
