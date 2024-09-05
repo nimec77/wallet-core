@@ -5,7 +5,12 @@ import 'package:trust_wallet_core_example/common/widgets/highlighted_text.dart';
 import 'package:trust_wallet_core_example/feature/coin_detail_screen/coin_detail_screen.dart';
 
 class CoinListScreen extends StatefulWidget {
-  const CoinListScreen({super.key});
+  final HDWallet hdWallet;
+
+  const CoinListScreen({
+    super.key,
+    required this.hdWallet,
+  });
 
   @override
   State<CoinListScreen> createState() => _CoinListScreenState();
@@ -66,7 +71,10 @@ class _CoinListScreenState extends State<CoinListScreen> {
                           onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CoinDetailScreen(coinType: coinType),
+                              builder: (context) => CoinDetailScreen(
+                                hdWallet: widget.hdWallet,
+                                coinType: coinType,
+                              ),
                             ),
                           ),
                         );

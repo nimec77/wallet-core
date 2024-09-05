@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:trust_wallet_core_example/data/hd_wallet.dart';
+import 'package:trust_wallet_core/trust_wallet_core.dart' show HDWallet;
 import 'package:trust_wallet_core_example/di/dependency_scope.dart';
 import 'package:trust_wallet_core_example/feature/main/main_screen.dart';
 
@@ -12,14 +12,7 @@ class ImportWalletScreen extends StatefulWidget {
 }
 
 class _ImportWalletScreenState extends State<ImportWalletScreen> {
-  var mnemonic = '';
-  late final HdWallet _hdWallet;
-
-  @override
-  void initState() {
-    super.initState();
-    _hdWallet = DependencyScope.of(context).hdWallet;
-  }
+  String mnemonic = '';
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +54,31 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
   }
 
   void _importWallet() {
-    _hdWallet.createWithMnemonic(mnemonic);
+    final bindings = DependencyScope.of(context).bindings;
 
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const MainScreen()));
+    try {
+      final hdWallet = HDWallet.createWithMnemonic(bindings, mnemonic, '');
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => MainScreen(
+            hdWallet: hdWallet,
+          ),
+        ),
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 
   void _createNewWallet() {
-    _hdWallet.create();
-    final mnemonic = _hdWallet.mnemonic();
+    final bindings = DependencyScope.of(context).bindings;
+    final hdWallet = HDWallet.create(bindings, 128, '');
+
+    setState(() {
+      mnemonic = hdWallet.mnemonic;
+    });
+
     Clipboard.setData(ClipboardData(text: mnemonic));
 
     //TODO: implement this case
