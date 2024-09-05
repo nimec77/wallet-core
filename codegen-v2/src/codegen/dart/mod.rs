@@ -172,7 +172,7 @@ pub enum DartOperation {
     //  <call>(<var_name>);
     DeferCall {
         var_name: String,
-        call: Option<String>,
+        call: String,
         core_var_name: Option<String>,
     },
     // Results in:

@@ -1,4 +1,9 @@
     {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}(TrustWalletCoreBindings core{{#if params}}, {{/if}}{{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
+    {{#if defined_vars}}
+    {{#each defined_vars}}
+        {{this.type}}? {{this.local_name}};
+    {{/each}}
+    {{/if}}
     {{#each operations}}
     {{#if call}}
         final {{call.var_name}} = {{#if call.core_var_name}}{{call.core_var_name}}.{{/if}}{{call.call}};
@@ -22,9 +27,7 @@
         {{defer_optional_call.call}};
     {{/if}}
     {{#if defer_call}}
-    {{#if defer_call.call}}
         {{defer_call.call}};
-    {{/if}}
     {{/if}}
     {{#if return}}
 

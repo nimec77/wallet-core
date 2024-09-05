@@ -47,7 +47,7 @@ pub(super) fn process_properties(
                 var_name: "obj".to_string(),
                 call: format!("{}.fromValue(value)", name),
                 is_final: true,
-                core_var_name: Some(core_var_name.to_string()),
+                core_var_name: None,
             },
         });
 

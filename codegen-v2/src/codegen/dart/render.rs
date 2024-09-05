@@ -200,10 +200,8 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         dart_imports_map.extend(dart_imports);
         package_imports_map.extend(package_imports);
 
-        if !methods.is_empty() || !properties.is_empty() {
-            let import = import_name(TRUST_WALLET_CORE_PATH, None);
-            package_imports_map.insert(PackageImport(import));
-        }
+        let import = import_name(TRUST_WALLET_CORE_PATH, None);
+        package_imports_map.insert(PackageImport(import));
 
         let mut add_description = false;
         let variants = enm

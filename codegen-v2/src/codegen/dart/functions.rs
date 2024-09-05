@@ -62,7 +62,7 @@ pub(super) fn process_methods(
                     var_name: "obj".to_string(),
                     call: format!("{}.fromValue(value)", name),
                     is_final: true,
-                    core_var_name: Some(core_var.to_string()),
+                    core_var_name: None,
                 },
             });
         } else {
@@ -103,7 +103,7 @@ pub(super) fn process_methods(
                 var_type: DartType::from(param.ty.variant.clone()),
                 is_nullable: param.ty.is_nullable,
             };
-            if param.ty.is_nullable {
+            if param.ty.is_nullable && !matches!(param.ty.variant, TypeVariant::Struct(_)) {
                 let defined_var = DartVariable {
                     var_type: DartType(var.var_type.to_wrapper_type().to_string()),
                     ..var.clone()

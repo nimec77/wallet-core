@@ -145,7 +145,7 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool, core_var_name: &str) 
                     param_name: param.name.clone(),
                     var_name,
                     call_var_name: call_var_name.clone(),
-                    var_type: "Pointer<Void>".to_string(),
+                    var_type: DATA_WRAPPER_CLASS.to_string(),
                     call,
                     is_final: true,
                     core_var_name: None,
@@ -161,7 +161,7 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool, core_var_name: &str) 
         }
         // E.g.
         // - `final paramStruct = param.pointer;`
-        // - `final paramStruct = param?.pointer;`
+        // - `final paramStruct = param?.pointer ?? nullptr;`
         TypeVariant::Struct(_) => {
             // For nullable structs, we do not use the special
             // `CallOptional` handler but rather use the question mark
@@ -169,7 +169,7 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool, core_var_name: &str) 
             let (var_name, call) = if param.ty.is_nullable {
                 (
                     local_var_name.clone(),
-                    format!("{}?.pointer", param.name),
+                    format!("{}?.pointer ?? nullptr", param.name),
                 )
             } else {
                 (
@@ -205,7 +205,7 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
             };
             let (var_name, call) = (
                 local_var_name.clone(),
-                Some(format_str),
+                format_str,
             );
 
             DartOperation::DeferCall {
@@ -222,7 +222,7 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
             };
             let (var_name, call) = (
                 local_var_name.clone(),
-                Some(format_str),
+                format_str,
             );
 
             DartOperation::DeferCall {

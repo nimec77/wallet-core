@@ -209,36 +209,6 @@ functions:
     is_constant: false
     is_nullable: false
     is_pointer: true
-- name: TWPrivateKeyGetSharedKey
-  is_public: true
-  is_static: false
-  params:
-  - name: pk
-    type:
-      variant: struct
-      value: TWPrivateKey
-      is_constant: true
-      is_nullable: false
-      is_pointer: true
-  - name: publicKey
-    type:
-      variant: struct
-      value: TWPublicKey
-      is_constant: true
-      is_nullable: false
-      is_pointer: true
-  - name: curve
-    type:
-      variant: enum
-      value: TWCurve
-      is_constant: false
-      is_nullable: false
-      is_pointer: false
-  return_type:
-    variant: data
-    is_constant: true
-    is_nullable: true
-    is_pointer: true
 - name: TWPrivateKeySign
   is_public: true
   is_static: false
