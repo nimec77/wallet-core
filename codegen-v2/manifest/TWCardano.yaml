@@ -37,15 +37,15 @@ functions:
       is_pointer: true
   - name: coinsPerUtxoByte
     type:
-      variant: u_int64_t
+      variant: string
       is_constant: false
       is_nullable: false
-      is_pointer: false
+      is_pointer: true
   return_type:
-    variant: u_int64_t
+    variant: string
     is_constant: false
     is_nullable: false
-    is_pointer: false
+    is_pointer: true
 - name: TWCardanoGetStakingAddress
   is_public: true
   is_static: true

@@ -2,6 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
+use crate::codegen::dart::res::*;
 use super::*;
 use crate::manifest::PropertyInfo;
 use crate::codegen::dart::utils::*;
@@ -46,7 +47,7 @@ pub(super) fn process_properties(
                 var_name: "obj".to_string(),
                 call: format!("{}.fromValue(value)", name),
                 is_final: true,
-                core_var_name: Some(core_var_name.to_string()),
+                core_var_name: None,
             },
         });
 
@@ -60,19 +61,22 @@ pub(super) fn process_properties(
                 call,
                 core_var_name: Some(core_var_name.to_string()),
             });
+            dart_imports.push(DartImport(DART_FFI_IMPORT.to_string()));
         } else {
             ops.push(DartOperation::Call {
-                var_name,
+                var_name: var_name.clone(),
                 call,
                 is_final: true,
                 core_var_name: Some(core_var_name.to_string()),
             });
         }
 
-        let mut add_import_required = true;
-        if let TypeVariant::Enum(name) | TypeVariant::Struct(name) = &prop.return_type.variant {
-            add_import_required = name != object.name();
-        }
+        let add_import_required =
+            if let TypeVariant::Enum(name) | TypeVariant::Struct(name) = &prop.return_type.variant {
+                name != object.name()
+            } else {
+                true
+            };
         if add_import_required {
             // Get imports for the return type.
             let (mut dart_vec, mut package_vec) = get_import_from_return(&prop.return_type);
@@ -80,7 +84,21 @@ pub(super) fn process_properties(
             package_imports.append(package_vec.as_mut());
         }
         // Wrap result.
-        ops.push(wrap_return(&prop.return_type, core_var_name));
+        let op = wrap_return(&prop.return_type, core_var_name);
+        ops.push(op.clone());
+        if matches!(op, DartOperation::ReturnWithDispose { .. }) {
+            match prop.return_type.variant {
+                TypeVariant::String => {
+                    let import = import_name(STRING_WRAPPER_CLASS, Some("common/"));
+                    package_imports.push(PackageImport(import));
+                }
+                TypeVariant::Data => {
+                    let import = import_name(DATA_WRAPPER_CLASS, Some("common/"));
+                    package_imports.push(PackageImport(import));
+                }
+                _ => {}
+            }
+        }
 
         // Prettify name, remove object name prefix from this property.
         let pretty_name = pretty_name_without_prefix(&prop.name, object.name());

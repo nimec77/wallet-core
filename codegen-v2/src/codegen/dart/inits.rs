@@ -2,7 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
-use crate::codegen::dart::res::{TRUST_WALLET_CORE_PATH};
+use crate::codegen::dart::res::{DART_FFI_IMPORT, TRUST_WALLET_CORE_PATH};
 use super::*;
 use crate::codegen::dart::utils::*;
 use crate::manifest::InitInfo;
@@ -23,13 +23,13 @@ pub(super) fn process_inits(
     let mut package_imports = vec![];
 
     for init in inits {
-        let mut finally_vars = vec![];
         if !init.name.starts_with(object.name()) {
             // Init is not assciated with the object.
             skipped_inits.push(init);
             continue;
         }
 
+        let mut defined_vars = vec![];
         let mut ops = vec![];
 
         let type_variants = init
@@ -45,30 +45,33 @@ pub(super) fn process_inits(
         // those parameters.
         let mut params = vec![];
         for param in &init.params {
-            let mut local_param_name = param.name.clone();
+            let local_name: String;
+            let mut call_name = get_call_var_name(&param);
             // Process parameter.
-            if let Some(op) = param_c_ffi_call(&param, !has_finally, "core") {
-                local_param_name = get_local_var_name(param);
+            if let (Some(op), call_var_name) = param_c_ffi_call(&param, !has_finally, "core") {
+                local_name = get_local_var_name(param);
+                if let Some(call_var_name) = call_var_name {
+                    call_name = call_var_name;
+                }
                 ops.push(op);
+            } else {
+                local_name = param.name.clone();
             }
-            // Convert parameter to Dart parameter.
-            params.push((DartVariable {
+            // Convert parameter to Dart parameter for the function interface.
+            let var = DartVariable {
                 name: param.name.clone(),
-                local_name: local_param_name.clone(),
+                local_name,
+                call_name,
                 var_type: DartType::from(param.ty.variant.clone()),
                 is_nullable: param.ty.is_nullable,
-            }, matches!(param.ty.variant, TypeVariant::String | TypeVariant::Data)));
-
-            if has_finally {
-                if let TypeVariant::String | TypeVariant::Data = &param.ty.variant {
-                    finally_vars.push(DartVariable {
-                        name: param.name.clone(),
-                        local_name: local_param_name.clone(),
-                        var_type: DartType::from(param.ty.variant.clone()).to_wrapper_type(),
-                        is_nullable: param.ty.is_nullable,
-                    });
-                }
+            };
+            if param.ty.is_nullable && !matches!(param.ty.variant, TypeVariant::Struct(_)) {
+                defined_vars.push(DartVariable {
+                    var_type: DartType(var.var_type.to_wrapper_type().to_string()),
+                    ..var.clone()
+                });
             }
+            params.push(var);
 
             match &param.ty.variant {
                 TypeVariant::Enum(name) | TypeVariant::Struct(name)
@@ -86,14 +89,7 @@ pub(super) fn process_inits(
         // Prepare parameter list to be passed on to the underlying C FFI function.
         let param_names = params
             .iter()
-            .map(|(p, is_wrapped)| {
-                let param_name = p.local_name.as_str();
-                if *is_wrapped {
-                    format!("{}.pointer", param_name)
-                } else {
-                    param_name.to_string()
-                }
-            })
+            .map(|p| p.call_name.clone())
             .collect::<Vec<String>>()
             .join(", ");
 
@@ -104,6 +100,7 @@ pub(super) fn process_inits(
                 call: format!("{}({})", init.name, param_names),
                 core_var_name: Some("core".to_string()),
             });
+            dart_imports.push(DartImport(DART_FFI_IMPORT.to_string()));
         } else {
             ops.push(DartOperation::Call {
                 var_name: "result".to_string(),
@@ -132,9 +129,9 @@ pub(super) fn process_inits(
             is_nullable: init.is_nullable,
             is_public: init.is_public,
             has_finally,
-            params: params.into_iter().map(|(p, _)| p).collect(),
+            params: params.into_iter().collect(),
             operations: ops,
-            finally_vars,
+            defined_vars,
             comments: vec![],
         });
     }

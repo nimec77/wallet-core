@@ -19,25 +19,29 @@
 
 extension {{name}}Extension on {{name}} {
 
-    {{#if add_description}}
+{{#if add_description}}
     String get description => switch (value) {
     {{#each variants}}
         {{value}} => '{{as_string}}',
     {{/each}}
-    }
-    {{/if}}
-    {{! Methods }}
-    {{#each methods}}
+        _ => '',
+    };
+{{/if}}
+{{! Methods }}
+{{#each methods}}
     {{~> partial_func_ex}}
     {{#unless @last}}
 
     {{/unless}}
-    {{/each}}
-    {{! Properties }}
-    {{#each properties}}
+{{/each}}
+{{! Properties }}
+{{#each properties}}
+    {{#if @first}}
+
+    {{/if}}
     {{~> partial_prop_ex}}
     {{#unless @last}}
 
     {{/unless}}
-    {{/each}}
+{{/each}}
 }
