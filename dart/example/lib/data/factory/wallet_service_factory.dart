@@ -12,16 +12,13 @@ abstract class WalletServiceFactory {
     HDWallet hdWallet,
   ) {
     final http = DependencyScope.of(context).http;
-    final bindings = DependencyScope.of(context).bindings;
 
     final blockchainWallet = switch (T) {
       const (BitcoinWallet) => BitcoinWallet(
-          bindings: bindings,
           hdWallet: hdWallet,
           http: http,
         ),
       const (EthereumWallet) => EthereumWallet(
-          bindings: bindings,
           hdWallet: hdWallet,
           http: http,
         ),

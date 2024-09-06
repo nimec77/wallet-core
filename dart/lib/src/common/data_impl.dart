@@ -1,46 +1,30 @@
-import 'dart:ffi';
-import 'dart:typed_data';
-
-import 'package:trust_wallet_core/src/common/abstractions.dart';
-import 'package:trust_wallet_core/src/extensions/extensions.dart';
-import 'package:trust_wallet_core/src/bindings/generated_bindings.dart';
+part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class DataImpl implements Disposable {
-  final TrustWalletCoreBindings _core;
-
   /// It must be deleted at the end.
   final Pointer<TWData> _pointer;
 
   Pointer<TWData> get pointer => _pointer;
 
-  DataImpl.createWithBytes(
-    TrustWalletCoreBindings core,
-    Uint8List bytes,
-  )   : _core = core,
-        _pointer = core.TWDataCreateWithBytes(
+  DataImpl.createWithBytes(Uint8List bytes)
+      : _pointer = _bindings.TWDataCreateWithBytes(
           bytes.toPointerUint8(),
           bytes.length,
         );
 
-  DataImpl.createWithData(
-    TrustWalletCoreBindings core,
-    Pointer<TWData> data,
-  )   : _core = core,
-        _pointer = core.TWDataCreateWithData(
-          data,
-        );
+  DataImpl.createWithData(Pointer<TWData> data) : _pointer = _bindings.TWDataCreateWithData(data);
 
-  int get size => _core.TWDataSize(_pointer);
+  int get size => _bindings.TWDataSize(_pointer);
 
   Uint8List get bytes {
-    final size = _core.TWDataSize(_pointer);
-    final data = _core.TWDataBytes(_pointer);
+    final size = _bindings.TWDataSize(_pointer);
+    final data = _bindings.TWDataBytes(_pointer);
     return data.asTypedList(size);
   }
 
   @override
   bool operator ==(Object other) => switch (other) {
-        DataImpl v => _core.TWDataEqual(_pointer, v._pointer),
+        DataImpl v => _bindings.TWDataEqual(_pointer, v._pointer),
         _ => false,
       };
 
@@ -48,5 +32,5 @@ final class DataImpl implements Disposable {
   int get hashCode => _pointer.hashCode;
 
   @override
-  void dispose() => _core.TWDataDelete(_pointer);
+  void dispose() => _bindings.TWDataDelete(_pointer);
 }

@@ -5,116 +5,78 @@
 // This is a GENERATED FILE, changes made here WILL BE LOST.
 //
 
-import 'dart:ffi';
-import 'dart:typed_data';
-
-import 'package:trust_wallet_core/src/common/abstractions.dart';
-import 'package:trust_wallet_core/src/common/data_impl.dart';
-import 'package:trust_wallet_core/src/bindings/generated_bindings.dart';
-import 'package:trust_wallet_core/src/common/string_impl.dart';
+part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 class BitcoinScript implements Disposable {
-  final TrustWalletCoreBindings _core;
-
   /// It must be deleted at the end.
   final Pointer<TWBitcoinScript> _pointer;
 
   Pointer<TWBitcoinScript> get pointer => _pointer;
 
-  //TODO: make private constructor when generate file
-  const BitcoinScript._(
-    TrustWalletCoreBindings core,
-    Pointer<TWBitcoinScript> pointer,
-  )   : _core = core,
-        _pointer = pointer;
+  const BitcoinScript._(Pointer<TWBitcoinScript> pointer) : _pointer = pointer;
 
-  factory BitcoinScript.create(TrustWalletCoreBindings core) {
-    final pointer = core.TWBitcoinScriptCreate();
-    return BitcoinScript._(core, pointer);
+  factory BitcoinScript.create() {
+    final pointer = _bindings.TWBitcoinScriptCreate();
+    return BitcoinScript._(pointer);
   }
 
-  factory BitcoinScript.createWithData(
-    TrustWalletCoreBindings core,
-    Uint8List bytes,
-  ) {
-    final data = DataImpl.createWithBytes(core, bytes);
-    final pointer = core.TWBitcoinScriptCreateWithData(data.pointer);
+  factory BitcoinScript.createWithData(Uint8List bytes) {
+    final data = DataImpl.createWithBytes(bytes);
+    final pointer = _bindings.TWBitcoinScriptCreateWithData(data.pointer);
     data.dispose();
-    return BitcoinScript._(core, pointer);
+    return BitcoinScript._(pointer);
   }
 
-  factory BitcoinScript.createCopy(
-    TrustWalletCoreBindings core,
-    BitcoinScript script,
-  ) {
-    final pointer = core.TWBitcoinScriptCreateCopy(script._pointer);
-    return BitcoinScript._(core, pointer);
+  factory BitcoinScript.createCopy(BitcoinScript script) {
+    final pointer = _bindings.TWBitcoinScriptCreateCopy(script._pointer);
+    return BitcoinScript._(pointer);
   }
 
-  static BitcoinScript buildPayToPublicKey(
-    TrustWalletCoreBindings core,
-    Uint8List pubkey,
-  ) {
-    final data = DataImpl.createWithBytes(core, pubkey);
-    final script = core.TWBitcoinScriptBuildPayToPublicKey(data.pointer);
+  static BitcoinScript buildPayToPublicKey(Uint8List pubkey) {
+    final data = DataImpl.createWithBytes(pubkey);
+    final script = _bindings.TWBitcoinScriptBuildPayToPublicKey(data.pointer);
     data.dispose();
-    return BitcoinScript._(core, script);
+    return BitcoinScript._(script);
   }
 
-  static BitcoinScript buildPayToPublicKeyHash(
-    TrustWalletCoreBindings core,
-    Uint8List hash,
-  ) {
-    final data = DataImpl.createWithBytes(core, hash);
-    final script = core.TWBitcoinScriptBuildPayToPublicKeyHash(data.pointer);
+  static BitcoinScript buildPayToPublicKeyHash(Uint8List hash) {
+    final data = DataImpl.createWithBytes(hash);
+    final script = _bindings.TWBitcoinScriptBuildPayToPublicKeyHash(data.pointer);
     data.dispose();
-    return BitcoinScript._(core, script);
+    return BitcoinScript._(script);
   }
 
-  static BitcoinScript buildPayToScriptHash(
-    TrustWalletCoreBindings core,
-    Uint8List scriptHash,
-  ) {
-    final data = DataImpl.createWithBytes(core, scriptHash);
-    final script = core.TWBitcoinScriptBuildPayToScriptHash(data.pointer);
+  static BitcoinScript buildPayToScriptHash(Uint8List scriptHash) {
+    final data = DataImpl.createWithBytes(scriptHash);
+    final script = _bindings.TWBitcoinScriptBuildPayToScriptHash(data.pointer);
     data.dispose();
-    return BitcoinScript._(core, script);
+    return BitcoinScript._(script);
   }
 
-  static BitcoinScript buildPayToWitnessPubkeyHash(
-    TrustWalletCoreBindings core,
-    Uint8List hash,
-  ) {
-    final data = DataImpl.createWithBytes(core, hash);
-    final script = core.TWBitcoinScriptBuildPayToWitnessPubkeyHash(data.pointer);
+  static BitcoinScript buildPayToWitnessPubkeyHash(Uint8List hash) {
+    final data = DataImpl.createWithBytes(hash);
+    final script = _bindings.TWBitcoinScriptBuildPayToWitnessPubkeyHash(data.pointer);
     data.dispose();
-    return BitcoinScript._(core, script);
+    return BitcoinScript._(script);
   }
 
-  static BitcoinScript buildPayToWitnessScriptHash(
-    TrustWalletCoreBindings core,
-    Uint8List scriptHash,
-  ) {
-    final data = DataImpl.createWithBytes(core, scriptHash);
-    final script = core.TWBitcoinScriptBuildPayToWitnessScriptHash(data.pointer);
+  static BitcoinScript buildPayToWitnessScriptHash(Uint8List scriptHash) {
+    final data = DataImpl.createWithBytes(scriptHash);
+    final script = _bindings.TWBitcoinScriptBuildPayToWitnessScriptHash(data.pointer);
     data.dispose();
-    return BitcoinScript._(core, script);
+    return BitcoinScript._(script);
   }
 
-  static BitcoinScript lockScriptForAddress(
-    TrustWalletCoreBindings core,
-    String address,
-    TWCoinType coin,
-  ) {
-    final dataString = StringImpl.createWithString(core, address);
-    final script = core.TWBitcoinScriptLockScriptForAddress(dataString.pointer, coin);
+  static BitcoinScript lockScriptForAddress(String address, TWCoinType coin) {
+    final dataString = StringImpl.createWithString(address);
+    final script = _bindings.TWBitcoinScriptLockScriptForAddress(dataString.pointer, coin);
     dataString.dispose();
-    return BitcoinScript._(core, script);
+    return BitcoinScript._(script);
   }
 
   @override
   bool operator ==(Object other) => switch (other) {
-        BitcoinScript v => _core.TWBitcoinScriptEqual(_pointer, v._pointer),
+        BitcoinScript v => _bindings.TWBitcoinScriptEqual(_pointer, v._pointer),
         _ => false,
       };
 
@@ -122,90 +84,86 @@ class BitcoinScript implements Disposable {
   int get hashCode => _pointer.hashCode;
 
   @override
-  dispose() => _core.TWBitcoinScriptDelete(_pointer);
+  dispose() => _bindings.TWBitcoinScriptDelete(_pointer);
 
-  static int hashTypeForCoin(
-    TrustWalletCoreBindings core,
-    TWCoinType coinType,
-  ) =>
-      core.TWBitcoinScriptHashTypeForCoin(coinType);
+  static int hashTypeForCoin(TWCoinType coinType) => _bindings.TWBitcoinScriptHashTypeForCoin(coinType);
 
   Uint8List? matchPayToPubkey() {
-    final pointer = _core.TWBitcoinScriptMatchPayToPubkey(_pointer);
+    final pointer = _bindings.TWBitcoinScriptMatchPayToPubkey(_pointer);
     if (pointer == nullptr) return null;
-    final data = DataImpl.createWithData(_core, pointer);
+    final data = DataImpl.createWithData(pointer);
     final bytes = data.bytes;
     data.dispose();
     return bytes;
   }
 
   Uint8List? matchPayToPubkeyHash() {
-    final pointer = _core.TWBitcoinScriptMatchPayToPubkeyHash(_pointer);
+    final pointer = _bindings.TWBitcoinScriptMatchPayToPubkeyHash(_pointer);
     if (pointer == nullptr) return null;
-    final data = DataImpl.createWithData(_core, pointer);
+    final data = DataImpl.createWithData(pointer);
     final bytes = data.bytes;
     data.dispose();
     return bytes;
   }
 
   Uint8List? matchPayToScriptHash() {
-    final pointer = _core.TWBitcoinScriptMatchPayToScriptHash(_pointer);
+    final pointer = _bindings.TWBitcoinScriptMatchPayToScriptHash(_pointer);
     if (pointer == nullptr) return null;
-    final data = DataImpl.createWithData(_core, pointer);
+    final data = DataImpl.createWithData(pointer);
     final bytes = data.bytes;
     data.dispose();
     return bytes;
   }
 
   Uint8List? matchPayToWitnessPublicKeyHash() {
-    final pointer = _core.TWBitcoinScriptMatchPayToWitnessPublicKeyHash(_pointer);
+    final pointer = _bindings.TWBitcoinScriptMatchPayToWitnessPublicKeyHash(_pointer);
     if (pointer == nullptr) return null;
-    final data = DataImpl.createWithData(_core, pointer);
+    final data = DataImpl.createWithData(pointer);
     final bytes = data.bytes;
     data.dispose();
     return bytes;
   }
 
   Uint8List? matchPayToWitnessScriptHash() {
-    final pointer = _core.TWBitcoinScriptMatchPayToWitnessScriptHash(_pointer);
+    final pointer = _bindings.TWBitcoinScriptMatchPayToWitnessScriptHash(_pointer);
     if (pointer == nullptr) return null;
-    final data = DataImpl.createWithData(_core, pointer);
+    final data = DataImpl.createWithData(pointer);
     final bytes = data.bytes;
     data.dispose();
     return bytes;
   }
 
   Uint8List encode() {
-    final pointer = _core.TWBitcoinScriptEncode(_pointer);
-    final data = DataImpl.createWithData(_core, pointer);
+    final pointer = _bindings.TWBitcoinScriptEncode(_pointer);
+    final data = DataImpl.createWithData(pointer);
     final bytes = data.bytes;
     data.dispose();
     return bytes;
   }
 
-  int get size => _core.TWBitcoinScriptSize(_pointer);
+  int get size => _bindings.TWBitcoinScriptSize(_pointer);
 
   Uint8List get data {
-    final pointer = _core.TWBitcoinScriptData(_pointer);
-    final data = DataImpl.createWithData(_core, pointer);
+    final pointer = _bindings.TWBitcoinScriptData(_pointer);
+    final data = DataImpl.createWithData(pointer);
     final bytes = data.bytes;
     data.dispose();
     return bytes;
   }
 
   Uint8List get scriptHash {
-    final pointer = _core.TWBitcoinScriptScriptHash(_pointer);
-    final data = DataImpl.createWithData(_core, pointer);
+    final pointer = _bindings.TWBitcoinScriptScriptHash(_pointer);
+    final data = DataImpl.createWithData(pointer);
     final bytes = data.bytes;
     data.dispose();
     return bytes;
   }
 
-  bool get isPayToScriptHash => _core.TWBitcoinScriptIsPayToScriptHash(_pointer);
+  bool get isPayToScriptHash => _bindings.TWBitcoinScriptIsPayToScriptHash(_pointer);
 
-  bool get isPayToWitnessScriptHash => _core.TWBitcoinScriptIsPayToWitnessScriptHash(_pointer);
+  bool get isPayToWitnessScriptHash => _bindings.TWBitcoinScriptIsPayToWitnessScriptHash(_pointer);
 
-  bool get isPayToWitnessPublicKeyHash => _core.TWBitcoinScriptIsPayToWitnessPublicKeyHash(_pointer);
+  bool get isPayToWitnessPublicKeyHash => _bindings.TWBitcoinScriptIsPayToWitnessPublicKeyHash(_pointer);
 
-  bool get isWitnessProgram => _core.TWBitcoinScriptIsWitnessProgram(_pointer);
+  bool get isWitnessProgram => _bindings.TWBitcoinScriptIsWitnessProgram(_pointer);
 }

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http_interceptor/http/intercepted_http.dart';
+import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
 import 'package:trust_wallet_core/protobuf/Ethereum.pb.dart' as ethereum;
 import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
@@ -14,15 +15,12 @@ import 'package:trust_wallet_core_example/data/model/result.dart';
 const String _url = 'https://rpc.ankr.com/eth_holesky';
 
 final class EthereumWallet extends BaseBlockchainWallet {
-  final TrustWalletCoreBindings _bindings;
   final InterceptedHttp _http;
 
   const EthereumWallet({
     required super.hdWallet,
-    required TrustWalletCoreBindings bindings,
     required InterceptedHttp http,
-  })  : _bindings = bindings,
-        _http = http;
+  }) : _http = http;
 
   @override
   Future<double> getBalance() async {
@@ -134,7 +132,7 @@ final class EthereumWallet extends BaseBlockchainWallet {
           );
 
           TWCoinType coin = TWCoinType.TWCoinTypeEthereum;
-          final sign = AnySigner.sign(_bindings, signedTransaction.writeToBuffer(), coin);
+          final sign = AnySigner.sign(signedTransaction.writeToBuffer(), coin);
           final signingOutput = ethereum.SigningOutput.fromBuffer(sign);
           final rawTx = Utils.bytesToHex(signingOutput.encoded);
 

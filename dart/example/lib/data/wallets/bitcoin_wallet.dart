@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:convert/convert.dart';
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:http_interceptor/http/intercepted_http.dart';
+import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
 import 'package:trust_wallet_core/protobuf/Bitcoin.pb.dart' as bitcoin;
 import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
@@ -12,15 +13,12 @@ import 'package:trust_wallet_core_example/data/model/result.dart';
 import 'package:trust_wallet_core_example/data/model/utxo.dart';
 
 final class BitcoinWallet extends BaseBlockchainWallet {
-  final TrustWalletCoreBindings _bindings;
   final InterceptedHttp _http;
 
   const BitcoinWallet({
     required super.hdWallet,
-    required TrustWalletCoreBindings bindings,
     required InterceptedHttp http,
-  })  : _bindings = bindings,
-        _http = http;
+  }) : _http = http;
 
   @override
   Future<double> getBalance() async {
@@ -62,7 +60,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
 
     List<Utxo> selectedUtxos = await _loadUtxos(addressBtc, amountBtc);
 
-    final bitcoinScript = BitcoinScript.lockScriptForAddress(_bindings, addressBtc, coin);
+    final bitcoinScript = BitcoinScript.lockScriptForAddress(addressBtc, coin);
 
     final Iterable<bitcoin.UnspentTransaction> unspentTransactions = selectedUtxos.map((utxo) {
       return bitcoin.UnspentTransaction(
@@ -78,7 +76,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
 
     final signingInput = bitcoin.SigningInput(
       amount: $fixnum.Int64.parseInt(amountBtc),
-      hashType: BitcoinScript.hashTypeForCoin(_bindings, coin),
+      hashType: BitcoinScript.hashTypeForCoin(coin),
       toAddress: toAddress,
       changeAddress: changeAddress,
       byteFee: $fixnum.Int64(10),
@@ -92,11 +90,11 @@ final class BitcoinWallet extends BaseBlockchainWallet {
     bitcoinScript.dispose();
 
     final transactionPlan = bitcoin.TransactionPlan.fromBuffer(
-      AnySigner.signerPlan(_bindings, signingInput.writeToBuffer(), coin).toList(),
+      AnySigner.signerPlan(signingInput.writeToBuffer(), coin).toList(),
     );
     signingInput.plan = transactionPlan;
     signingInput.amount = transactionPlan.amount;
-    final signResult = AnySigner.sign(_bindings, signingInput.writeToBuffer(), coin);
+    final signResult = AnySigner.sign(signingInput.writeToBuffer(), coin);
     final signingOutput = bitcoin.SigningOutput.fromBuffer(signResult);
     final rawTx = Utils.bytesToHex(signingOutput.encoded);
 

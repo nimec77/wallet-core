@@ -5,6 +5,7 @@ import 'package:trust_wallet_core_example/data/factory/wallet_service_factory.da
 import 'package:trust_wallet_core_example/data/services/wallet_service.dart';
 import 'package:trust_wallet_core_example/data/wallets/bitcoin_wallet.dart';
 import 'package:trust_wallet_core_example/data/wallets/ethereum_wallet.dart';
+import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
 
 enum LoadingStatus {
   idle,
