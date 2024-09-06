@@ -10,9 +10,9 @@ part of 'package:trust_wallet_core/trust_wallet_core.dart';
 final class HDWallet implements Disposable {
   final Pointer<TWHDWallet> _pointer;
 
-  //TODO: Убрать он не нужен
-  // Pointer<TWHDWallet> get pointer => _pointer;
+  Pointer<TWHDWallet> get pointer => _pointer;
 
+  //TODO: желательно сделать конструктор приватным
   const HDWallet._(Pointer<TWHDWallet> pointer) : _pointer = pointer;
 
   // HDWallet({int strength = 128, String passphrase = ""}) {
@@ -107,25 +107,25 @@ final class HDWallet implements Disposable {
 
   @override
   dispose() {
-    _bindings.TWHDWalletDelete(_pointer);
+    _bindings.TWHDWalletDelete(pointer);
   }
 
   PrivateKey getMasterKey(TWCurve curve) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetMasterKey(obj, curve);
 
     return PrivateKey._(result);
   }
 
   PrivateKey getKeyForCoin(TWCoinType coin) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetKeyForCoin(obj, coin);
 
     return PrivateKey._(result);
   }
 
   String getAddressForCoin(TWCoinType coin) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetAddressForCoin(obj, coin);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -135,7 +135,7 @@ final class HDWallet implements Disposable {
   }
 
   String getAddressDerivation(TWCoinType coin, TWDerivation derivation) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetAddressDerivation(obj, coin, derivation);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -145,7 +145,7 @@ final class HDWallet implements Disposable {
   }
 
   PrivateKey getKey(TWCoinType coin, String derivationPath) {
-    final obj = _pointer;
+    final obj = pointer;
     final derivationPathString = StringImpl.createWithString(derivationPath);
     final result = _bindings.TWHDWalletGetKey(obj, coin, derivationPathString.pointer);
     derivationPathString.dispose();
@@ -154,14 +154,14 @@ final class HDWallet implements Disposable {
   }
 
   PrivateKey getKeyDerivation(TWCoinType coin, TWDerivation derivation) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetKeyDerivation(obj, coin, derivation);
 
     return PrivateKey._(result);
   }
 
   PrivateKey getKeyByCurve(TWCurve curve, String derivationPath) {
-    final obj = _pointer;
+    final obj = pointer;
     final derivationPathString = StringImpl.createWithString(derivationPath);
     final result = _bindings.TWHDWalletGetKeyByCurve(obj, curve, derivationPathString.pointer);
     derivationPathString.dispose();
@@ -170,14 +170,14 @@ final class HDWallet implements Disposable {
   }
 
   PrivateKey getDerivedKey(TWCoinType coin, int account, int change, int address) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetDerivedKey(obj, coin, account, change, address);
 
     return PrivateKey._(result);
   }
 
   String getExtendedPrivateKey(TWPurpose purpose, TWCoinType coin, TWHDVersion version) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetExtendedPrivateKey(obj, purpose, coin, version);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -187,7 +187,7 @@ final class HDWallet implements Disposable {
   }
 
   String getExtendedPublicKey(TWPurpose purpose, TWCoinType coin, TWHDVersion version) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetExtendedPublicKey(obj, purpose, coin, version);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -198,7 +198,7 @@ final class HDWallet implements Disposable {
 
   String getExtendedPrivateKeyAccount(
       TWPurpose purpose, TWCoinType coin, TWDerivation derivation, TWHDVersion version, int account) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetExtendedPrivateKeyAccount(obj, purpose, coin, derivation, version, account);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -209,7 +209,7 @@ final class HDWallet implements Disposable {
 
   String getExtendedPublicKeyAccount(
       TWPurpose purpose, TWCoinType coin, TWDerivation derivation, TWHDVersion version, int account) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetExtendedPublicKeyAccount(obj, purpose, coin, derivation, version, account);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -220,7 +220,7 @@ final class HDWallet implements Disposable {
 
   String getExtendedPrivateKeyDerivation(
       TWPurpose purpose, TWCoinType coin, TWDerivation derivation, TWHDVersion version) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetExtendedPrivateKeyDerivation(obj, purpose, coin, derivation, version);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -231,7 +231,7 @@ final class HDWallet implements Disposable {
 
   String getExtendedPublicKeyDerivation(
       TWPurpose purpose, TWCoinType coin, TWDerivation derivation, TWHDVersion version) {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletGetExtendedPublicKeyDerivation(obj, purpose, coin, derivation, version);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -258,7 +258,7 @@ final class HDWallet implements Disposable {
   }
 
   Uint8List get seed {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletSeed(obj);
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
@@ -268,7 +268,7 @@ final class HDWallet implements Disposable {
   }
 
   String get mnemonic {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletMnemonic(obj);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -278,7 +278,7 @@ final class HDWallet implements Disposable {
   }
 
   Uint8List get entropy {
-    final obj = _pointer;
+    final obj = pointer;
     final result = _bindings.TWHDWalletEntropy(obj);
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
