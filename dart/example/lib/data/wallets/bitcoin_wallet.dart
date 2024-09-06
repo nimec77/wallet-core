@@ -17,8 +17,8 @@ final class BitcoinWallet extends BaseBlockchainWallet {
 
   const BitcoinWallet({
     required super.hdWallet,
-    required InterceptedHttp http,
     required TrustWalletCoreBindings bindings,
+    required InterceptedHttp http,
   })  : _bindings = bindings,
         _http = http;
 

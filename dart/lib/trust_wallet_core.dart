@@ -26,15 +26,14 @@ final class TrustWalletCore {
   void init() {
     if (Platform.isMacOS || Platform.isIOS) {
       _library = DynamicLibrary.open('$_libName.framework/$_libName');
-      _bindings = TrustWalletCoreBindings(_library);
     } else if (Platform.isAndroid || Platform.isLinux) {
       _library = DynamicLibrary.open('lib$_libName.so');
-      _bindings = TrustWalletCoreBindings(_library);
     } else if (Platform.isWindows) {
       _library = DynamicLibrary.open('$_libName.dll');
-      _bindings = TrustWalletCoreBindings(_library);
     } else {
       throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
     }
+
+    _bindings = TrustWalletCoreBindings(_library);
   }
 }

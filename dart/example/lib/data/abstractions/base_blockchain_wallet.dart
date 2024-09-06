@@ -30,9 +30,10 @@ abstract base class BaseBlockchainWallet implements BlockchainWallet {
   @override
   @nonVirtual
   Uint8List getKeyForCoin(TWCoinType coinType) {
-    //TODO: dispose privateKey
     final privateKey = _hdWallet.getKeyForCoin(coinType);
-    return privateKey.data;
+    final privateKeyBytes = privateKey.data;
+    privateKey.dispose();
+    return privateKeyBytes;
   }
 
   @override

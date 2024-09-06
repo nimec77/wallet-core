@@ -3,6 +3,8 @@ import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
 import 'package:trust_wallet_core_example/data/factory/wallet_service_factory.dart';
 import 'package:trust_wallet_core_example/data/wallets/bitcoin_wallet.dart';
+import 'package:trust_wallet_core_example/data/wallets/ethereum_wallet.dart';
+import 'package:trust_wallet_core_example/feature/transaction_screen/transaction_screen.dart';
 
 class CoinDetailScreen extends StatelessWidget {
   final HDWallet hdWallet;
@@ -45,27 +47,23 @@ class CoinDetailScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
               ],
-              // if (coinType == TWCoinType.TWCoinTypeEthereum) ...[
-              //   FutureBuilder(
-              //     future: WalletServiceFactory.getService<EthereumWallet>(context).getBalance(),
-              //     builder: (context, snapshot) {
-              //       if (snapshot.connectionState == ConnectionState.waiting) {
-              //         return const CircularProgressIndicator();
-              //       }
+              if (coinType == TWCoinType.TWCoinTypeEthereum) ...[
+                FutureBuilder(
+                  future: WalletServiceFactory.getService<EthereumWallet>(context, hdWallet).getBalance(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    }
 
-              //       final balance = snapshot.data ?? '?';
-              //       return Text(
-              //         'Balance: $balance ETH',
-              //         style: const TextStyle(fontSize: 24),
-              //       );
-              //     },
-              //   ),
-              //   const SizedBox(height: 32),
-              // ],
-              // QrImageView(
-              //   data: address,
-              //   size: 200,
-              // ),
+                    final balance = snapshot.data ?? '?';
+                    return Text(
+                      'Balance: $balance ETH',
+                      style: const TextStyle(fontSize: 24),
+                    );
+                  },
+                ),
+                const SizedBox(height: 32),
+              ],
               const SizedBox(height: 24),
               Text(
                 address,
@@ -74,10 +72,14 @@ class CoinDetailScreen extends StatelessWidget {
               ),
               if (coinType == TWCoinType.TWCoinTypeBitcoin || coinType == TWCoinType.TWCoinTypeEthereum) ...[
                 const SizedBox(height: 32),
-                // ElevatedButton(
-                //   onPressed: () => _openBitcoinScreen(context, coinType),
-                //   child: const Text('Send'),
-                // ),
+                ElevatedButton(
+                  onPressed: () => _openTransactionScreen(
+                    context,
+                    hdWallet,
+                    coinType,
+                  ),
+                  child: const Text('Send'),
+                ),
               ],
             ],
           ),
@@ -86,12 +88,18 @@ class CoinDetailScreen extends StatelessWidget {
     );
   }
 
-  // void _openBitcoinScreen(BuildContext context, TWCoinType coinType) => Navigator.push(
-  //       context,
-  //       MaterialPageRoute(
-  //         builder: (context) => BitcoinTransactionScreen(
-  //           coinType: coinType,
-  //         ),
-  //       ),
-  //     );
+  void _openTransactionScreen(
+    BuildContext context,
+    HDWallet hdWallet,
+    TWCoinType coinType,
+  ) =>
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => TransactionScreen(
+            hdWallet: hdWallet,
+            coinType: coinType,
+          ),
+        ),
+      );
 }
