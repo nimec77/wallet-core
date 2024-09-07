@@ -3,5 +3,5 @@ abstract interface class Disposable {
 }
 
 abstract interface class Address {
-  String get value;
+  String get description;
 }

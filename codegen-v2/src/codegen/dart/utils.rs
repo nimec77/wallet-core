@@ -62,7 +62,7 @@ pub fn has_address_protocol(name: &str) -> bool {
 pub fn get_import_from_param(param: &ParamInfo) -> (Vec<DartImport>, Vec<PackageImport>) {
     match &param.ty.variant {
         TypeVariant::Struct(name) => {
-            let import = import_name(&name, None);
+            let import = import_name(&name, Some("generated/"));
             (vec![], [PackageImport(import)].to_vec())
         }
         TypeVariant::String => {
@@ -236,7 +236,7 @@ pub fn param_c_ffi_defer_call(param: &ParamInfo) -> Option<DartOperation> {
 pub fn get_import_from_return(ty: &TypeInfo) -> (Vec<DartImport>, Vec<PackageImport>) {
     match &ty.variant {
         TypeVariant::Struct(name) => {
-            let import = import_name(&name, None);
+            let import = import_name(&name, Some("generated/"));
             (vec![], [PackageImport(import)].to_vec())
         }
         TypeVariant::String => {
