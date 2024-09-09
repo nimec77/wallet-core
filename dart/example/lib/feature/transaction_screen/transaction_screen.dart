@@ -41,6 +41,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
   void initState() {
     super.initState();
 
+    //TODO: уалить адреса кошешьков и сделать возможность ввода адреса через TextField
     _wallets = switch (_coinType) {
       TWCoinType.TWCoinTypeBitcoin => {
           'Макс': 'bc1q92e0ujhxml6wtd9gsn3aa7276f5qpxr6gtk9qh',
