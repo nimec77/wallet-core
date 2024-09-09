@@ -21,7 +21,7 @@ const String _libName = 'WalletCore';
 late final DynamicLibrary _library;
 late final TrustWalletCoreBindings _bindings;
 
-final class TrustWalletCore {
+abstract class TrustWalletCore {
   const TrustWalletCore._();
 
   DynamicLibrary get library => _library;

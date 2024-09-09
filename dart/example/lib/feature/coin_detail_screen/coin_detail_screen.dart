@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:http_interceptor/http/intercepted_http.dart';
 import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
 import 'package:trust_wallet_core_example/data/factory/wallet_service_factory.dart';
-import 'package:trust_wallet_core_example/data/wallets/bitcoin_wallet.dart';
-import 'package:trust_wallet_core_example/data/wallets/ethereum_wallet.dart';
+import 'package:trust_wallet_core_example/data/services/wallet_service.dart';
+import 'package:trust_wallet_core_example/di/dependency_scope.dart';
 import 'package:trust_wallet_core_example/feature/transaction_screen/transaction_screen.dart';
 import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
 
-class CoinDetailScreen extends StatelessWidget {
+class CoinDetailScreen extends StatefulWidget {
   final HDWallet hdWallet;
   final TWCoinType coinType;
 
@@ -18,76 +19,83 @@ class CoinDetailScreen extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final address = hdWallet.getAddressForCoin(coinType);
+  State<CoinDetailScreen> createState() => _CoinDetailScreenState();
+}
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(Utils.getCoinName(coinType)),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (coinType == TWCoinType.TWCoinTypeBitcoin) ...[
+class _CoinDetailScreenState extends State<CoinDetailScreen> {
+  late final InterceptedHttp httpClient;
+  late final WalletService walletService;
+  late final String address;
+
+  HDWallet get hdWallet => widget.hdWallet;
+
+  @override
+  void initState() {
+    super.initState();
+
+    httpClient = DependencyScope.of(context).http;
+    walletService = WalletServiceFactory.getService(
+      httpClient,
+      hdWallet,
+    );
+    address = hdWallet.getAddressForCoin(widget.coinType);
+  }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text(Utils.getCoinName(widget.coinType)),
+        ),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
                 FutureBuilder(
-                  future: WalletServiceFactory.getService<BitcoinWallet>(context, hdWallet).getBalance(),
+                  future: walletService.getBalance(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const CircularProgressIndicator();
                     }
 
                     final balance = snapshot.data ?? '?';
-                    return Text(
-                      'Balance: $balance BTC',
-                      style: const TextStyle(fontSize: 24),
-                    );
-                  },
-                ),
-                const SizedBox(height: 32),
-              ],
-              if (coinType == TWCoinType.TWCoinTypeEthereum) ...[
-                FutureBuilder(
-                  future: WalletServiceFactory.getService<EthereumWallet>(context, hdWallet).getBalance(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
-                    }
+                    final text = switch (widget.coinType) {
+                      const (TWCoinType.TWCoinTypeBitcoin) => 'Balance: $balance BTC',
+                      const (TWCoinType.TWCoinTypeEthereum) => 'Balance: $balance ETH',
+                      _ => 'Unknown coin',
+                    };
 
-                    final balance = snapshot.data ?? '?';
                     return Text(
-                      'Balance: $balance ETH',
+                      text,
                       style: const TextStyle(fontSize: 24),
                     );
                   },
                 ),
                 const SizedBox(height: 32),
-              ],
-              const SizedBox(height: 24),
-              Text(
-                address,
-                style: const TextStyle(fontSize: 24),
-                textAlign: TextAlign.center,
-              ),
-              if (coinType == TWCoinType.TWCoinTypeBitcoin || coinType == TWCoinType.TWCoinTypeEthereum) ...[
-                const SizedBox(height: 32),
-                ElevatedButton(
-                  onPressed: () => _openTransactionScreen(
-                    context,
-                    hdWallet,
-                    coinType,
+                const SizedBox(height: 24),
+                Text(
+                  address,
+                  style: const TextStyle(fontSize: 24),
+                  textAlign: TextAlign.center,
+                ),
+                if (widget.coinType == TWCoinType.TWCoinTypeBitcoin ||
+                    widget.coinType == TWCoinType.TWCoinTypeEthereum) ...[
+                  const SizedBox(height: 32),
+                  ElevatedButton(
+                    onPressed: () => _openTransactionScreen(
+                      context,
+                      hdWallet,
+                      widget.coinType,
+                    ),
+                    child: const Text('Send'),
                   ),
-                  child: const Text('Send'),
-                ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 
   void _openTransactionScreen(
     BuildContext context,

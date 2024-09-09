@@ -6,6 +6,7 @@ import 'package:trust_wallet_core_example/data/services/wallet_service.dart';
 import 'package:trust_wallet_core_example/data/wallets/bitcoin_wallet.dart';
 import 'package:trust_wallet_core_example/data/wallets/ethereum_wallet.dart';
 import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
+import 'package:trust_wallet_core_example/di/dependency_scope.dart';
 
 enum LoadingStatus {
   idle,
@@ -54,9 +55,17 @@ class _TransactionScreenState extends State<TransactionScreen> {
       _ => throw UnimplementedError(),
     };
 
+    final httpClient = DependencyScope.of(context).http;
+
     _walletService = switch (_coinType) {
-      TWCoinType.TWCoinTypeBitcoin => WalletServiceFactory.getService<BitcoinWallet>(context, _hdWallet),
-      TWCoinType.TWCoinTypeEthereum => WalletServiceFactory.getService<EthereumWallet>(context, _hdWallet),
+      TWCoinType.TWCoinTypeBitcoin => WalletServiceFactory.getService<BitcoinWallet>(
+          httpClient,
+          _hdWallet,
+        ),
+      TWCoinType.TWCoinTypeEthereum => WalletServiceFactory.getService<EthereumWallet>(
+          httpClient,
+          _hdWallet,
+        ),
       _ => throw UnimplementedError(),
     };
   }
@@ -121,7 +130,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
   void _sendBitcoinTransaction() async {
     final toAddress = _addressController.text;
     if (toAddress.isEmpty || amount.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please fill in all fields')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please fill in all fields'),
+        ),
+      );
       return;
     }
 
@@ -137,7 +150,13 @@ class _TransactionScreenState extends State<TransactionScreen> {
         amount: amount,
       );
     } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+          ),
+        );
+      }
       return;
     } finally {
       setState(() {
@@ -156,7 +175,9 @@ class _TransactionScreenState extends State<TransactionScreen> {
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: result));
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Transaction hash copied to clipboard')),
+                  const SnackBar(
+                    content: Text('Transaction hash copied to clipboard'),
+                  ),
                 );
               },
               child: const Text('COPY'),

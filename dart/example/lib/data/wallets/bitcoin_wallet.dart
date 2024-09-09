@@ -14,6 +14,7 @@ import 'package:trust_wallet_core_example/data/model/utxo.dart';
 
 final class BitcoinWallet extends BaseBlockchainWallet {
   final InterceptedHttp _http;
+  final String _apiUrl = 'https://rpc.ankr.com/http/btc_blockbook/api/v2/';
 
   const BitcoinWallet({
     required super.hdWallet,
@@ -24,7 +25,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
   Future<double> getBalance() async {
     try {
       final addressBtc = getAddressForCoin(TWCoinType.TWCoinTypeBitcoin);
-      final url = 'https://rpc.ankr.com/http/btc_blockbook/api/v2/address/$addressBtc';
+      final url = '${_apiUrl}address$addressBtc';
 
       final response = await _http.get(
         Uri.parse(url),
@@ -102,7 +103,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
   }
 
   Future<List<Utxo>> _loadUtxos(String addressBtc, String amount) async {
-    String url = 'https://rpc.ankr.com/http/btc_blockbook/api/v2/utxo/$addressBtc';
+    String url = '${_apiUrl}utxo/$addressBtc';
 
     final responseUtxos = await _http.get(
       Uri.parse(url),
@@ -143,7 +144,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
   }
 
   Future<String> _sendRawTransaction(String rawTx) async {
-    String url = 'https://rpc.ankr.com/http/btc_blockbook/api/v2/sendtx/$rawTx';
+    String url = '${_apiUrl}sendtx/$rawTx';
 
     final response = await _http.get(
       Uri.parse(url),
