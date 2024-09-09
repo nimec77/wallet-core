@@ -156,7 +156,7 @@ fn generate_dart_bindings() -> Result<()> {
 
     let trust_wallet_core_t = read_to_string(&format!("{IN_DIR}/trust_wallet_core.hbs"))?;
     let struct_t = read_to_string(&format!("{IN_DIR}/struct.hbs"))?;
-    let ext_t = read_to_string(&format!("{IN_DIR}/extension.hbs"))?;
+    let enum_t = read_to_string(&format!("{IN_DIR}/enum.hbs"))?;
     let part_init_t = read_to_string(&format!("{IN_DIR}/partial_init.hbs"))?;
     let part_init_finally_t = read_to_string(&format!("{IN_DIR}/partial_init_finally.hbs"))?;
     let part_func_t = read_to_string(&format!("{IN_DIR}/partial_func.hbs"))?;
@@ -171,7 +171,7 @@ fn generate_dart_bindings() -> Result<()> {
         let input = libparser::codegen::dart::RenderInput {
             file_info,
             struct_template: &struct_t,
-            extension_template: &ext_t,
+            enum_template: &enum_t,
             partial_init_template: &part_init_t,
             partial_init_finally_template: &part_init_finally_t,
             partial_func_template: &part_func_t,
@@ -196,11 +196,10 @@ fn generate_dart_bindings() -> Result<()> {
             std::fs::write(&file_path, rendered.as_bytes())?;
         }
 
-        // Enum extensions.
-        for (name, rendered) in rendered.extensions {
-            let extension_name = format!("{name}_extension");
-            part_names.insert(extension_name.clone());
-            let file_path = format!("{OUT_DIR}//src/generated/{extension_name}");
+        for (name, rendered) in rendered.enums {
+            let enum_path = format!("enums/{name}");
+            part_names.insert(enum_path.clone());
+            let file_path = format!("{OUT_DIR}/src/generated/{enum_path}.dart");
             std::fs::write(&file_path, rendered.as_bytes())?;
         }
     }

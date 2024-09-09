@@ -14,13 +14,10 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
     {{{raw_type}}} get pointer => _pointer;
 
     const {{name}}({{{raw_type}}} pointer) : _pointer = pointer;
-{{else}}
-
-    const {{name}}();
 {{/if}}
-
 {{! Equality operator, if available }}
 {{#if eq_operator}}
+
     @override
     bool operator == (Object other) => switch(other) {
         {{name}} obj => _bindings.{{eq_operator.c_ffi_name}}(_pointer, obj.pointer),
@@ -29,28 +26,34 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 
     @override
     int get hashCode => _pointer.hashCode;
-
 {{/if}}
 {{! Inits }}
+{{#if inits}}
+
 {{#each inits}}
     {{#if has_finally}}
     {{~> partial_init_finally}}
     {{else}}
     {{~> partial_init}}
     {{/if}}
+    {{#unless @last}}
 
+    {{/unless}}
 {{/each}}
+{{/if}}
 {{! Deinits }}
 {{#if deinits}}
+
     @override
     dispose() {
     {{#each deinits}}
         _bindings.{{name}}(pointer);
     {{/each}}
     }
-
 {{/if}}
 {{! Methods }}
+{{#if methods}}
+
 {{#each methods}}
     {{#if has_finally}}
     {{~> partial_func_finally}}
@@ -61,8 +64,15 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 
     {{/unless}}
 {{/each}}
+{{/if}}
 {{! Properties }}
+{{#if properties}}
+
 {{#each properties}}
     {{~> partial_prop}}
+    {{#unless @last}}
+
+    {{/unless}}
 {{/each}}
+{{/if}}
 }

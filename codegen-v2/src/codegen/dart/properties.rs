@@ -2,6 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
+use crate::codegen::dart::res::CORE_VAR_NAME;
 use super::*;
 use crate::manifest::PropertyInfo;
 use crate::codegen::dart::utils::*;
@@ -30,39 +31,41 @@ pub(super) fn process_properties(
 
         // Initialize the 'self' type, which is then passed on to the underlying
         // C FFI function.
-        ops.push(match object {
-            // E.g. `final obj = pointer;`
-            ObjectVariant::Struct(_) => DartOperation::Call {
-                var_name: "obj".to_string(),
-                call: "pointer".to_string(),
-                is_final: true,
-                core_var_name: None,
-            },
-            // E.g. `final obj = TWSomeEnum.fromValue(value");`
-            ObjectVariant::Enum(name) => DartOperation::Call {
-                var_name: "obj".to_string(),
-                call: format!("{}.fromValue(value)", name),
-                is_final: true,
-                core_var_name: None,
-            },
-        });
+        ops.push(
+            match object {
+                // E.g. `final obj = pointer;`
+                ObjectVariant::Struct(_) => DartOperation::Call {
+                    var_name: "obj".to_string(),
+                    call: "pointer".to_string(),
+                    is_final: true,
+                    core_var_name: None,
+                },
+                // E.g. `final obj = TWSomeEnum.fromValue(value");`
+                ObjectVariant::Enum(name) => DartOperation::Call {
+                    var_name: "obj".to_string(),
+                    call: format!("{name}.fromValue(value)"),
+                    is_final: true,
+                    core_var_name: None,
+                },
+            }
+        );
 
         // Call the underlying C FFI function, passing on the `obj` instance.
         //
-        // E.g: `final result = TWSomeFunc(obj);`.
+        // E.g: `final result = _bindings.TWSomeFunc(obj);`.
         let (var_name, call) = ("result".to_string(), format!("{}(obj)", prop.name));
         if prop.return_type.is_nullable {
             ops.push(DartOperation::GuardedCall {
                 var_name,
                 call,
-                core_var_name: Some("_bindings".to_string()),
+                core_var_name: Some(CORE_VAR_NAME.to_string()),
             });
         } else {
             ops.push(DartOperation::Call {
                 var_name: var_name.clone(),
                 call,
                 is_final: true,
-                core_var_name: Some("_bindings".to_string()),
+                core_var_name: Some(CORE_VAR_NAME.to_string()),
             });
         }
 

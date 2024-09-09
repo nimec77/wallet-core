@@ -48,6 +48,17 @@ pub struct DartStruct {
     properties: Vec<DartProperty>,
 }
 
+/// Represents a Dart enum.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DartEnum {
+    name: String,
+    is_public: bool,
+    add_description: bool,
+    variants: Vec<DartEnumVariant>,
+    value_type: String,
+    methods: Vec<DartFunction>,
+    properties: Vec<DartProperty>,
+}
 /// Represents a Dart enum variant.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DartEnumVariant {
@@ -56,17 +67,6 @@ pub struct DartEnumVariant {
     as_string: Option<String>,
 }
 
-/// Represents associated methods and properties of an enum. Based on the first
-/// codegen, those extensions are placed in a separate file.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DartEnumExtension {
-    name: String,
-    init_instance: bool,
-    add_description: bool,
-    methods: Vec<DartFunction>,
-    properties: Vec<DartProperty>,
-    variants: Vec<DartEnumVariant>,
-}
 /// Represents a Dart import statement.
 #[derive(Debug, Clone, Eq, PartialEq, Hash, Serialize, Deserialize, Ord, PartialOrd)]
 pub struct DartImport(String);
@@ -270,12 +270,11 @@ impl From<TypeVariant> for DartType {
             TypeVariant::UInt64T => "int".to_string(),
             TypeVariant::String => "String".to_string(),
             TypeVariant::Data => "Uint8List".to_string(),
-            TypeVariant::Struct(n) => {
+            TypeVariant::Struct(n) | TypeVariant::Enum(n) => {
                 // We strip the "TW" prefix for Dart representations of
                 // structs/enums.
                 n.strip_prefix("TW").map(|n| n.to_string()).unwrap_or(n)
             }
-            TypeVariant::Enum(n) => n
         };
 
         DartType(res)

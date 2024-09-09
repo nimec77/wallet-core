@@ -2,6 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
+use crate::codegen::dart::res::CORE_VAR_NAME;
 use super::*;
 use crate::manifest::{FunctionInfo, TypeVariant};
 use crate::codegen::dart::utils::*;
@@ -54,7 +55,7 @@ pub(super) fn process_methods(
                 },
                 ObjectVariant::Enum(name) => DartOperation::Call {
                     var_name: "obj".to_string(),
-                    call: format!("{}.fromValue(value)", name),
+                    call: format!("{name}.fromValue(value)"),
                     is_final: true,
                     core_var_name: None,
                 },
@@ -121,14 +122,14 @@ pub(super) fn process_methods(
             ops.push(DartOperation::GuardedCall {
                 var_name,
                 call,
-                core_var_name: Some("_bindings".to_string()),
+                core_var_name: Some(CORE_VAR_NAME.to_string()),
             });
         } else {
             ops.push(DartOperation::Call {
                 var_name,
                 call,
                 is_final: !has_finally,
-                core_var_name: Some("_bindings".to_string()),
+                core_var_name: Some(CORE_VAR_NAME.to_string()),
             });
         }
 

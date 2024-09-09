@@ -3,6 +3,7 @@
 // Copyright © 2017 Trust Wallet.
 
 use std::collections::HashSet;
+use crate::codegen::dart::res::ENUM_VALUE_TYPE;
 use super::{inits::process_deinits, *};
 use crate::codegen::dart::utils::*;
 
@@ -16,7 +17,7 @@ pub struct RenderTrustCoreInput<'a> {
 pub struct RenderInput<'a> {
     pub file_info: FileInfo,
     pub struct_template: &'a str,
-    pub extension_template: &'a str,
+    pub enum_template: &'a str,
     pub partial_init_template: &'a str,
     pub partial_init_finally_template: &'a str,
     pub partial_func_template: &'a str,
@@ -28,14 +29,12 @@ pub struct RenderInput<'a> {
 pub struct GeneratedDartTypesStrings {
     pub structs: Vec<(String, String)>,
     pub enums: Vec<(String, String)>,
-    pub extensions: Vec<(String, String)>,
-    pub protos: Vec<(String, String)>,
 }
 
 #[derive(Debug, Clone, Default)]
 pub struct GeneratedDartTypes {
     pub structs: Vec<DartStruct>,
-    pub extensions: Vec<DartEnumExtension>,
+    pub enums: Vec<DartEnum>,
 }
 
 /// Convenience wrapper for setting copyright year when generating bindings.
@@ -89,7 +88,7 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
     engine.set_strict_mode(true);
 
     engine.register_partial("struct", input.struct_template)?;
-    engine.register_partial("extension", input.extension_template)?;
+    engine.register_partial("enum", input.enum_template)?;
     engine.register_partial("partial_init", input.partial_init_template)?;
     engine.register_partial("partial_init_finally", input.partial_init_finally_template)?;
     engine.register_partial("partial_func", input.partial_func_template)?;
@@ -112,17 +111,17 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
         out_str.structs.push((pretty_file_name.clone(), out));
     }
 
-    //  Render extensions.
-    for ext in rendered.extensions {
+    //  Render enums.
+    for enm in rendered.enums {
         let out = engine.render(
-            "extension",
+            "enum",
             &WithYear {
                 current_year,
-                data: &ext,
+                data: &enm,
             },
         )?;
 
-        out_str.extensions.push((pretty_file_name.clone(), out));
+        out_str.enums.push((pretty_file_name.clone(), out));
     }
 
     Ok(out_str)
@@ -204,8 +203,12 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         (methods, info.functions) = process_methods(&obj, info.functions)?;
         (properties, info.properties) = process_properties(&obj, info.properties)?;
 
+        // Convert the name into an appropriate format.
+        let pretty_enum_name = pretty_name(&enm.name);
+
         let mut add_description = false;
-        let variants = enm
+        // Convert to Dart enum variants
+        let variants: Vec<DartEnumVariant> = enm
             .variants
             .into_iter()
             .map(|info| {
@@ -213,24 +216,22 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
                     add_description = true;
                 }
                 DartEnumVariant {
-                    name: info.name,
+                    name: replace_forbidden_words(&info.name),
                     value: info.value,
                     as_string: info.as_string,
                 }
             })
             .collect();
 
-        // Avoid rendering empty extension for enums.
-        if !add_description && methods.is_empty() && properties.is_empty() {
-            continue;
-        }
-        outputs.extensions.push(DartEnumExtension {
-            name: enm.name,
-            init_instance: true,
+        // Add the generated Dart code to the outputs
+        outputs.enums.push(DartEnum {
+            name: pretty_enum_name,
+            is_public: enm.is_public,
             add_description,
+            variants,
+            value_type: ENUM_VALUE_TYPE.to_string(),
             methods,
             properties,
-            variants,
         });
     }
 

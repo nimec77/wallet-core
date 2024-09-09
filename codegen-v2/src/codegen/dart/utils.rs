@@ -57,20 +57,21 @@ pub fn has_address_protocol(name: &str) -> bool {
 pub fn get_local_var_name(param: &ParamInfo) -> String {
     let dart_type = DartType::from(param.ty.variant.clone()).0.to_string();
     let suffix = match &param.ty.variant {
-        TypeVariant::Struct(name) | TypeVariant::Enum(name) => pretty_name(name),
+        TypeVariant::Struct(name) => pretty_name(name),
+        TypeVariant::Enum(_) => "enum".to_string(),
         _ => dart_type,
     };
-    format!("{}_{}", &param.name, suffix).to_lower_camel_case()
+    format!("{}_{suffix}", &param.name).to_lower_camel_case()
 }
 
 pub fn get_call_var_name(param: &ParamInfo) -> String {
     let local_var_name = get_local_var_name(param);
     if param.ty.is_nullable {
-        return format!("{}Ptr", &local_var_name);
+        return format!("{local_var_name}Ptr");
     }
     match param.ty.variant {
         TypeVariant::String | TypeVariant::Data => {
-            format!("{}.pointer", &local_var_name)
+            format!("{local_var_name}.pointer")
         }
         _ => param.name.clone(),
     }
@@ -87,7 +88,7 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool) ->
         TypeVariant::String => {
             let (var_name, call) = (
                 local_var_name,
-                format!("{}.createWithString({})", STRING_WRAPPER_CLASS, param.name),
+                format!("{STRING_WRAPPER_CLASS}.createWithString({})", param.name),
             );
 
             // If the parameter is nullable, add special handler.
@@ -115,7 +116,7 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool) ->
         TypeVariant::Data => {
             let (var_name, call) = (
                 local_var_name,
-                format!("{}.createWithBytes({})", DATA_WRAPPER_CLASS, param.name),
+                format!("{DATA_WRAPPER_CLASS}.createWithBytes({})", param.name),
             );
 
             // If the parameter is nullable, add special handler.
@@ -166,6 +167,16 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool) ->
                 core_var_name: None,
             }, Some(local_var_name))
         }
+        // E.g. `final param = TWSomeEnum.fromValue(param.value);`
+        // Note that it calls the constructor of the enum, which calls
+        // the underlying "*Create*" C FFI function.
+        TypeVariant::Enum(name) =>
+            (DartOperation::Call {
+                var_name: local_var_name.clone(),
+                call: format!("{name}.fromValue({}.value)", param.name),
+                is_final: true,
+                core_var_name: None,
+            }, Some(local_var_name)),
         // Skip processing parameter, reference the parameter by name
         // directly, as defined in the function interface (usually the
         // case for primitive types).
@@ -215,17 +226,11 @@ pub fn wrap_return(ty: &TypeInfo) -> DartOperation {
     match &ty.variant {
         // E.g.`return TWStringNSString(result)`
         TypeVariant::String => DartOperation::ReturnWithDispose {
-            call: format!(
-                "{}.createWithPointer(result)",
-                STRING_WRAPPER_CLASS,
-            ),
+            call: format!("{STRING_WRAPPER_CLASS}.createWithPointer(result)"),
             get_method: "dartString".to_string(),
         },
         TypeVariant::Data => DartOperation::ReturnWithDispose {
-            call: format!(
-                "{}.createWithData(result)",
-                DATA_WRAPPER_CLASS,
-            ),
+            call: format!("{DATA_WRAPPER_CLASS}.createWithData(result)"),
             get_method: "bytes".to_string(),
         },
         // E.g. `return SomeEnum.fromValue(result.value)`
@@ -249,7 +254,14 @@ pub fn wrap_return(ty: &TypeInfo) -> DartOperation {
 }
 
 pub fn get_parts_from_file_info(struct_name: &str) -> DartPart {
-    let part_path = format!("{}/src/generated/{}.dart", TRUST_WALLET_PACKAGE_PATH, struct_name.to_case(Case::Snake));
+    let part_path = format!("{TRUST_WALLET_PACKAGE_PATH}/src/generated/{}.dart", struct_name.to_case(Case::Snake));
 
     DartPart(part_path)
+}
+
+pub fn replace_forbidden_words(name: &str) -> String {
+    match REPLACED_MAP.get(name) {
+        Some(replacement) => replacement.to_string(),
+        None => name.to_string(),
+    }
 }

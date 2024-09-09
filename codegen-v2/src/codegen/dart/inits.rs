@@ -2,6 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
+use crate::codegen::dart::res::CORE_VAR_NAME;
 use super::*;
 use crate::codegen::dart::utils::*;
 use crate::manifest::InitInfo;
@@ -91,14 +92,14 @@ pub(super) fn process_inits(
             ops.push(DartOperation::GuardedCall {
                 var_name: "result".to_string(),
                 call: format!("{}({})", init.name, param_names),
-                core_var_name: Some("_bindings".to_string()),
+                core_var_name: Some(CORE_VAR_NAME.to_string()),
             });
         } else {
             ops.push(DartOperation::Call {
                 var_name: "result".to_string(),
                 call: format!("{}({})", init.name, param_names),
                 is_final: true,
-                core_var_name: Some("_bindings".to_string()),
+                core_var_name: Some(CORE_VAR_NAME.to_string()),
             });
         }
 
