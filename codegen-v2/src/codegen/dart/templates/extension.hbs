@@ -4,18 +4,8 @@
 //
 // This is a GENERATED FILE, changes made here WILL BE LOST.
 //
-{{#if dart_imports}}
 
-{{#each dart_imports}}
-{{{this}}}
-{{/each}}
-{{/if}}
-{{#if package_imports}}
-
-{{#each package_imports}}
-{{{this}}}
-{{/each}}
-{{/if}}
+part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 extension {{name}}Extension on {{name}} {
 
@@ -29,7 +19,7 @@ extension {{name}}Extension on {{name}} {
 {{/if}}
 {{! Methods }}
 {{#each methods}}
-    {{~> partial_func_ex}}
+    {{~> partial_func}}
     {{#unless @last}}
 
     {{/unless}}
@@ -39,7 +29,7 @@ extension {{name}}Extension on {{name}} {
     {{#if @first}}
 
     {{/if}}
-    {{~> partial_prop_ex}}
+    {{~> partial_prop}}
     {{#unless @last}}
 
     {{/unless}}

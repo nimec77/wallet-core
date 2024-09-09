@@ -1,4 +1,4 @@
-    factory {{class_name}}.{{#unless is_public}}_{{/unless}}{{name}}(TrustWalletCoreBindings core{{#if params}}, {{/if}}{{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
+    factory {{class_name}}.{{#unless is_public}}_{{/unless}}{{name}}({{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
     {{#if defined_vars}}
     {{#each defined_vars}}
         {{this.type}}? {{this.local_name}};
@@ -29,7 +29,7 @@
         {{/if}}
         {{/each}}
 
-            return {{class_name}}(core, result);
+            return {{class_name}}(result);
         } finally {
         {{#each operations}}
         {{#if defer_optional_call.call}}

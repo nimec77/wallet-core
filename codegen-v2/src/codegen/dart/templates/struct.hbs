@@ -4,28 +4,16 @@
 //
 // This is a GENERATED FILE, changes made here WILL BE LOST.
 //
-{{#if dart_imports}}
 
-{{#each dart_imports}}
-{{{this}}}
-{{/each}}
-{{/if}}
-{{#if package_imports}}
-
-{{#each package_imports}}
-{{{this}}}
-{{/each}}
-{{/if}}
+part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} implements {{#each superclasses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
 {{#if init_instance}}
-    final TrustWalletCoreBindings _core;
     final {{{raw_type}}} _pointer;
 
     {{{raw_type}}} get pointer => _pointer;
 
-    const {{name}}(TrustWalletCoreBindings core, {{{raw_type}}} pointer)
-        : _core = core, _pointer = pointer;
+    const {{name}}({{{raw_type}}} pointer) : _pointer = pointer;
 {{else}}
 
     const {{name}}();
@@ -35,7 +23,7 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 {{#if eq_operator}}
     @override
     bool operator == (Object other) => switch(other) {
-        {{name}} obj => _core.{{eq_operator.c_ffi_name}}(_pointer, obj.pointer),
+        {{name}} obj => _bindings.{{eq_operator.c_ffi_name}}(_pointer, obj.pointer),
         _ => false,
     };
 
@@ -57,7 +45,7 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
     @override
     dispose() {
     {{#each deinits}}
-        _core.{{name}}(pointer);
+        _bindings.{{name}}(pointer);
     {{/each}}
     }
 

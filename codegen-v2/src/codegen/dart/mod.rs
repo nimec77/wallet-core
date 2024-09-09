@@ -20,9 +20,17 @@ mod res;
 
 // Re-exports
 pub use self::render::{
-    generate_dart_types, render_to_strings, GeneratedDartTypes, GeneratedDartTypesStrings,
-    RenderInput,
+    generate_dart_types, render_to_strings, render_trust_core_to_string, GeneratedDartTypes,
+    GeneratedDartTypesStrings, RenderTrustCoreInput, RenderInput,
 };
+
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+pub struct DartTrustWallet {
+    pub parts: Vec<DartPart>,
+}
+
+#[derive(Debug, Clone, Eq, PartialEq, Hash, Serialize, Deserialize, Ord, PartialOrd)]
+pub struct DartPart(String);
 
 /// Represents a Dart struct or class.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -32,8 +40,6 @@ pub struct DartStruct {
     is_public: bool,
     init_instance: bool,
     raw_type: String,
-    dart_imports: Vec<DartImport>,
-    package_imports: Vec<PackageImport>,
     superclasses: Vec<String>,
     eq_operator: Option<DartOperatorEquality>,
     inits: Vec<DartInit>,
@@ -57,8 +63,6 @@ pub struct DartEnumExtension {
     name: String,
     init_instance: bool,
     add_description: bool,
-    dart_imports: Vec<DartImport>,
-    package_imports: Vec<PackageImport>,
     methods: Vec<DartFunction>,
     properties: Vec<DartProperty>,
     variants: Vec<DartEnumVariant>,
