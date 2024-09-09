@@ -1,4 +1,4 @@
-    {{#if is_static}}static{{/if}} {{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}({{#if is_static}}TrustWalletCoreBindings core{{#if params}}, {{/if}}{{/if}}{{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
+    {{#if is_static}}static {{/if}}{{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}({{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
     {{#if defined_vars}}
     {{#each defined_vars}}
         {{this.type}}? {{this.local_name}};

@@ -2,7 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
-use crate::codegen::dart::res::{DART_FFI_IMPORT, TRUST_WALLET_CORE_PATH};
+use crate::codegen::dart::res::CORE_VAR_NAME;
 use super::*;
 use crate::codegen::dart::utils::*;
 use crate::manifest::InitInfo;
@@ -16,11 +16,9 @@ use crate::manifest::InitInfo;
 pub(super) fn process_inits(
     object: &ObjectVariant,
     inits: Vec<InitInfo>,
-) -> Result<(Vec<DartInit>, Vec<InitInfo>, Vec<DartImport>, Vec<PackageImport>)> {
+) -> Result<(Vec<DartInit>, Vec<InitInfo>)> {
     let mut dart_inits = vec![];
     let mut skipped_inits = vec![];
-    let mut dart_imports = vec![];
-    let mut package_imports = vec![];
 
     for init in inits {
         if !init.name.starts_with(object.name()) {
@@ -48,7 +46,7 @@ pub(super) fn process_inits(
             let local_name: String;
             let mut call_name = get_call_var_name(&param);
             // Process parameter.
-            if let (Some(op), call_var_name) = param_c_ffi_call(&param, !has_finally, "core") {
+            if let (Some(op), call_var_name) = param_c_ffi_call(&param, !has_finally) {
                 local_name = get_local_var_name(param);
                 if let Some(call_var_name) = call_var_name {
                     call_name = call_var_name;
@@ -80,10 +78,6 @@ pub(super) fn process_inits(
                 }
                 _ => {}
             }
-            // Get imports for the parameter.
-            let (mut dart_vec, mut package_vec) = get_import_from_param(param);
-            dart_imports.append(dart_vec.as_mut());
-            package_imports.append(package_vec.as_mut());
         }
 
         // Prepare parameter list to be passed on to the underlying C FFI function.
@@ -98,15 +92,14 @@ pub(super) fn process_inits(
             ops.push(DartOperation::GuardedCall {
                 var_name: "result".to_string(),
                 call: format!("{}({})", init.name, param_names),
-                core_var_name: Some("core".to_string()),
+                core_var_name: Some(CORE_VAR_NAME.to_string()),
             });
-            dart_imports.push(DartImport(DART_FFI_IMPORT.to_string()));
         } else {
             ops.push(DartOperation::Call {
                 var_name: "result".to_string(),
                 call: format!("{}({})", init.name, param_names),
                 is_final: true,
-                core_var_name: Some("core".to_string()),
+                core_var_name: Some(CORE_VAR_NAME.to_string()),
             });
         }
 
@@ -118,7 +111,7 @@ pub(super) fn process_inits(
         }
 
         // Note that we do not return a value here; the template sets a
-        // `return SomeClass(core, result);`
+        // `return SomeClass(result);`
 
         // Prettify name, remove object name prefix from this property.
         let pretty_init_name = pretty_func_name(&init.name, object.name());
@@ -135,13 +128,7 @@ pub(super) fn process_inits(
             comments: vec![],
         });
     }
-    if !dart_inits.is_empty() {
-        let import = import_name(TRUST_WALLET_CORE_PATH, None);
-
-        package_imports.push(PackageImport(import));
-    }
-
-    Ok((dart_inits, skipped_inits, dart_imports, package_imports))
+    Ok((dart_inits, skipped_inits))
 }
 
 pub(super) fn process_deinits(

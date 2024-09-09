@@ -4,7 +4,7 @@ import 'dart:typed_data';
 
 import 'package:convert/convert.dart';
 import 'package:ffi/ffi.dart';
-import 'package:trust_wallet_core/trust_wallet_core.dart';
+import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
 
 const _oneBtcInSatoshi = 100000000;
 

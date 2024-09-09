@@ -2,6 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
+use std::collections::HashSet;
 use libparser::codegen::{cpp, proto, rust};
 use libparser::coin_id::CoinId;
 use libparser::manifest::parse_dir;
@@ -153,56 +154,63 @@ fn generate_dart_bindings() -> Result<()> {
 
     std::fs::create_dir_all(OUT_DIR)?;
 
+    let trust_wallet_core_t = read_to_string(&format!("{IN_DIR}/trust_wallet_core.hbs"))?;
     let struct_t = read_to_string(&format!("{IN_DIR}/struct.hbs"))?;
-    let ext_t = read_to_string(&format!("{IN_DIR}/extension.hbs"))?;
+    let enum_t = read_to_string(&format!("{IN_DIR}/enum.hbs"))?;
     let part_init_t = read_to_string(&format!("{IN_DIR}/partial_init.hbs"))?;
     let part_init_finally_t = read_to_string(&format!("{IN_DIR}/partial_init_finally.hbs"))?;
     let part_func_t = read_to_string(&format!("{IN_DIR}/partial_func.hbs"))?;
     let part_func_finally_t = read_to_string(&format!("{IN_DIR}/partial_func_finally.hbs"))?;
-    let part_func_ex_t = read_to_string(&format!("{IN_DIR}/partial_func_ex.hbs"))?;
     let part_prop_t = read_to_string(&format!("{IN_DIR}/partial_prop.hbs"))?;
-    let part_prop_ex_t = read_to_string(&format!("{IN_DIR}/partial_prop_ex.hbs"))?;
 
     // Read the manifest dir, generate bindings for each entry.
     let file_infos = parse_dir("manifest/")?;
+    let mut part_names = HashSet::new();
 
     for file_info in file_infos {
         let input = libparser::codegen::dart::RenderInput {
             file_info,
             struct_template: &struct_t,
-            extension_template: &ext_t,
+            enum_template: &enum_t,
             partial_init_template: &part_init_t,
             partial_init_finally_template: &part_init_finally_t,
             partial_func_template: &part_func_t,
             partial_func_finally_template: &part_func_finally_t,
-            partial_func_ex_template: &part_func_ex_t,
             partial_prop_template: &part_prop_t,
-            partial_prop_ex_template: &part_prop_ex_t,
         };
 
         let rendered = libparser::codegen::dart::render_to_strings(input)?;
 
-        // Enum declarations go into their own subfolder.
-        if !rendered.enums.is_empty() {
-            std::fs::create_dir_all(format!("{OUT_DIR}/enums"))?;
+        if !rendered.structs.is_empty() {
+            std::fs::create_dir_all(format!("{OUT_DIR}/src/generated"))?;
         }
 
-        // Protobuf declarations go into their own subfolder.
-        if !rendered.protos.is_empty() {
-            std::fs::create_dir_all(format!("{OUT_DIR}/protobuf"))?;
+        // Enum declarations go into their own subfolder.
+        if !rendered.enums.is_empty() {
+            std::fs::create_dir_all(format!("{OUT_DIR}/src/generated/enums"))?;
         }
 
         for (name, rendered) in rendered.structs {
-            let file_path = format!("{OUT_DIR}/{name}.dart");
+            part_names.insert(name.clone());
+            let file_path = format!("{OUT_DIR}/src/generated/{name}.dart");
             std::fs::write(&file_path, rendered.as_bytes())?;
         }
 
-        // Enum extensions.
-        for (name, rendered) in rendered.extensions {
-            let file_path = format!("{OUT_DIR}/{name}_extension.dart");
+        for (name, rendered) in rendered.enums {
+            let enum_path = format!("enums/{name}");
+            part_names.insert(enum_path.clone());
+            let file_path = format!("{OUT_DIR}/src/generated/{enum_path}.dart");
             std::fs::write(&file_path, rendered.as_bytes())?;
         }
     }
+
+    let input = libparser::codegen::dart::RenderTrustCoreInput {
+        trust_core_template: &trust_wallet_core_t,
+        part_names: &part_names,
+    };
+    let render = libparser::codegen::dart::render_trust_core_to_string(input)?;
+    let file_path = format!("{OUT_DIR}/trust_wallet_core.dart");
+    std::fs::write(&file_path, render)?;
 
     println!("Created bindings in directory '{}'!", OUT_DIR);
     Ok(())

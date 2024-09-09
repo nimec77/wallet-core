@@ -1,0 +1,57 @@
+// SPDX-License-Identifier: Apache-2.0
+//
+// Copyright © 2017 Trust Wallet.
+//
+// This is a GENERATED FILE, changes made here WILL BE LOST.
+//
+
+part of 'package:trust_wallet_core/trust_wallet_core.dart';
+
+enum {{#unless is_public}}_{{/unless}}{{name}} {
+{{#each variants}}
+    {{name}}({{value}}){{#unless @last}},{{else}};{{/unless}}
+{{/each}}
+
+    final {{value_type}} value;
+
+    const {{name}}(this.value);
+
+    static {{#unless is_public}}_{{/unless}}{{name}} fromValue({{value_type}} value) => switch (value) {
+    {{#each variants}}
+        {{value}} => {{name}},
+    {{/each}}
+        _ => throw ArgumentError("Unknown value for {{name}}: $value"),
+    };
+{{#if add_description}}
+
+    String get description => switch (value) {
+    {{#each variants}}
+        {{value}} => '{{as_string}}',
+    {{/each}}
+    };
+{{/if}}
+{{! Methods }}
+{{#if methods}}
+
+{{#each methods}}
+    {{#if has_finally}}
+    {{~> partial_func_finally}}
+    {{else}}
+    {{~> partial_func}}
+    {{/if}}
+    {{#unless @last}}
+
+    {{/unless}}
+{{/each}}
+{{/if}}
+{{! Properties }}
+{{#if properties}}
+
+{{#each properties}}
+    {{~> partial_prop}}
+    {{#unless @last}}
+
+    {{/unless}}
+{{/each}}
+{{/if}}
+}

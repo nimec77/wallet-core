@@ -12,9 +12,7 @@ abstract interface class WalletService {
 class WalletServiceImpl implements WalletService {
   final BlockchainWallet _blockchainWallet;
 
-  const WalletServiceImpl({
-    required BlockchainWallet blockchainWallet,
-  }) : _blockchainWallet = blockchainWallet;
+  const WalletServiceImpl({required BlockchainWallet blockchainWallet}) : _blockchainWallet = blockchainWallet;
 
   @override
   Future<double> getBalance() => _blockchainWallet.getBalance();

@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:meta/meta.dart';
+import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
 import 'package:trust_wallet_core/trust_wallet_core.dart';
 
 abstract interface class BlockchainWallet {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:trust_wallet_core/trust_wallet_core.dart' show HDWallet, TrustWalletCoreBindings;
-import 'package:trust_wallet_core_example/di/dependency_scope.dart';
+import 'package:trust_wallet_core/trust_wallet_core.dart' show HDWallet;
 import 'package:trust_wallet_core_example/feature/main/main_screen.dart';
 import 'package:trust_wallet_core_example/feature/mnemonic_screen/mnemonic_screen.dart';
 
@@ -14,13 +13,6 @@ class ImportWalletScreen extends StatefulWidget {
 
 class _ImportWalletScreenState extends State<ImportWalletScreen> {
   String mnemonic = '';
-  late final TrustWalletCoreBindings bindings;
-
-  @override
-  void initState() {
-    super.initState();
-    bindings = DependencyScope.of(context).bindings;
-  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -43,12 +35,12 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
-                  onPressed: () => _importWallet(bindings),
+                  onPressed: _importWallet,
                   child: const Text('Import Wallet'),
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
-                  onPressed: () => _createNewWallet(bindings),
+                  onPressed: _createNewWallet,
                   child: const Text('Create new wallet'),
                 ),
               ],
@@ -57,8 +49,8 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
         ),
       );
 
-  void _importWallet(TrustWalletCoreBindings bindings) {
-    final hdWallet = HDWallet.createWithMnemonic(bindings, mnemonic, '');
+  void _importWallet() {
+    final hdWallet = HDWallet.createWithMnemonic(mnemonic, '');
 
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
@@ -69,8 +61,8 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
     );
   }
 
-  void _createNewWallet(TrustWalletCoreBindings bindings) {
-    final hdWallet = HDWallet.create(bindings, 128, '');
+  void _createNewWallet() {
+    final hdWallet = HDWallet.create(128, '');
 
     setState(() {
       mnemonic = hdWallet.mnemonic;

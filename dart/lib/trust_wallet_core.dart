@@ -5,25 +5,29 @@
 // add platforms in the `pubspec.yaml` at
 // https://flutter.dev/to/pubspec-plugin-platforms.
 
-import 'dart:ffi';
-import 'dart:io';
+import 'src/index.dart';
 
-import 'package:trust_wallet_core/src/bindings/generated_bindings.dart';
-
-export 'src/index.dart';
+part 'package:trust_wallet_core/src/common/data_impl.dart';
+part 'package:trust_wallet_core/src/common/string_impl.dart';
+part 'package:trust_wallet_core/src/extensions/extensions.dart';
+part 'package:trust_wallet_core/src/generated/any_signer.dart';
+part 'package:trust_wallet_core/src/generated/bitcoin_script.dart';
+part 'package:trust_wallet_core/src/generated/hd_wallet.dart';
+part 'package:trust_wallet_core/src/generated/private_key.dart';
+part 'package:trust_wallet_core/src/generated/public_key.dart';
 
 const String _libName = 'WalletCore';
 
-final class TrustWalletCore {
-  late final DynamicLibrary _library;
-  late final TrustWalletCoreBindings _bindings;
+late final DynamicLibrary _library;
+late final TrustWalletCoreBindings _bindings;
+
+abstract class TrustWalletCore {
+  const TrustWalletCore._();
 
   DynamicLibrary get library => _library;
   TrustWalletCoreBindings get bindings => _bindings;
 
-  Pointer<T> Function<T extends NativeType>(String symbolName) get lookup => library.lookup;
-
-  void init() {
+  static void init() {
     if (Platform.isMacOS || Platform.isIOS) {
       _library = DynamicLibrary.open('$_libName.framework/$_libName');
     } else if (Platform.isAndroid || Platform.isLinux) {

@@ -7,15 +7,14 @@ import 'package:trust_wallet_core_example/di/dependency_scope.dart';
 import 'package:trust_wallet_core_example/feature/app/app.dart';
 
 Future<void> main() async {
-  final plugin = TrustWalletCore()..init();
-  final bindings = TrustWalletCoreBindings(plugin.library);
+  TrustWalletCore.init();
+
   final http = InterceptedHttp.build(interceptors: [
     LoggerInterceptor(),
   ]);
 
   runApp(
     DependencyScope(
-      bindings: bindings,
       http: http,
       child: const App(),
     ),

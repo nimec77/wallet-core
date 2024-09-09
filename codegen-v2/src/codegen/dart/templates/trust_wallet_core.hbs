@@ -1,0 +1,44 @@
+// SPDX-License-Identifier: Apache-2.0
+//
+// Copyright © 2017 Trust Wallet.
+//
+// This is a GENERATED FILE, changes made here WILL BE LOST.
+//
+
+import 'src/index.dart';
+{{#if parts}}
+
+part 'package:trust_wallet_core/src/common/any_signer.dart';
+part 'package:trust_wallet_core/src/common/data_impl.dart';
+part 'package:trust_wallet_core/src/common/string_impl.dart';
+part 'package:trust_wallet_core/src/extensions/extensions.dart';
+{{#each parts}}
+part '{{this}}';
+{{/each}}
+
+{{/if}}
+const String _libName = 'WalletCore';
+
+late final DynamicLibrary _library;
+late final TrustWalletCoreBindings _bindings;
+
+final class TrustWalletCore {
+    const TrustWalletCore._();
+
+    DynamicLibrary get library => _library;
+    TrustWalletCoreBindings get bindings => _bindings;
+
+    static void init() {
+        if (Platform.isMacOS || Platform.isIOS) {
+            _library = DynamicLibrary.open('$_libName.framework/$_libName');
+        } else if (Platform.isAndroid || Platform.isLinux) {
+            _library = DynamicLibrary.open('lib$_libName.so');
+        } else if (Platform.isWindows) {
+        _library = DynamicLibrary.open('$_libName.dll');
+        } else {
+            throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
+        }
+
+        _bindings = TrustWalletCoreBindings(_library);
+    }
+}

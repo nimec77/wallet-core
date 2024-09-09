@@ -3,36 +3,38 @@
 // Copyright © 2017 Trust Wallet.
 
 use std::collections::HashSet;
-use crate::codegen::dart::res::{DART_FFI_IMPORT, TRUST_WALLET_CORE_PATH};
+use crate::codegen::dart::res::ENUM_VALUE_TYPE;
 use super::{inits::process_deinits, *};
 use crate::codegen::dart::utils::*;
+
+#[derive(Debug, Clone)]
+pub struct RenderTrustCoreInput<'a> {
+    pub trust_core_template: &'a str,
+    pub part_names: &'a HashSet<String>,
+}
 
 #[derive(Debug, Clone)]
 pub struct RenderInput<'a> {
     pub file_info: FileInfo,
     pub struct_template: &'a str,
-    pub extension_template: &'a str,
+    pub enum_template: &'a str,
     pub partial_init_template: &'a str,
     pub partial_init_finally_template: &'a str,
     pub partial_func_template: &'a str,
     pub partial_func_finally_template: &'a str,
-    pub partial_func_ex_template: &'a str,
     pub partial_prop_template: &'a str,
-    pub partial_prop_ex_template: &'a str,
 }
 
 #[derive(Debug, Clone, Default)]
 pub struct GeneratedDartTypesStrings {
     pub structs: Vec<(String, String)>,
     pub enums: Vec<(String, String)>,
-    pub extensions: Vec<(String, String)>,
-    pub protos: Vec<(String, String)>,
 }
 
 #[derive(Debug, Clone, Default)]
 pub struct GeneratedDartTypes {
     pub structs: Vec<DartStruct>,
-    pub extensions: Vec<DartEnumExtension>,
+    pub enums: Vec<DartEnum>,
 }
 
 /// Convenience wrapper for setting copyright year when generating bindings.
@@ -41,6 +43,38 @@ struct WithYear<'a, T> {
     pub current_year: u64,
     #[serde(flatten)]
     pub data: &'a T,
+}
+
+pub fn render_trust_core_to_string(input: RenderTrustCoreInput) -> Result<String> {
+    // The current year for the copyright header in the generated bindings.
+    let current_year = crate::current_year();
+
+    let mut engine = Handlebars::new();
+    // Unmatched variables should result in an error.
+    engine.set_strict_mode(true);
+
+    engine.register_partial("trust_core", input.trust_core_template)?;
+
+    let mut parts = input.part_names
+        .iter()
+        .map(|name| get_parts_from_file_info(name))
+        .collect::<Vec<DartPart>>();
+    parts.sort();
+
+    let render = DartTrustWallet {
+        parts,
+    };
+
+
+    let out = engine.render(
+        "trust_core",
+        &WithYear {
+            current_year,
+            data: &render,
+        },
+    )?;
+
+    Ok(out)
 }
 
 pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings> {
@@ -54,14 +88,12 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
     engine.set_strict_mode(true);
 
     engine.register_partial("struct", input.struct_template)?;
-    engine.register_partial("extension", input.extension_template)?;
+    engine.register_partial("enum", input.enum_template)?;
     engine.register_partial("partial_init", input.partial_init_template)?;
     engine.register_partial("partial_init_finally", input.partial_init_finally_template)?;
     engine.register_partial("partial_func", input.partial_func_template)?;
     engine.register_partial("partial_func_finally", input.partial_func_finally_template)?;
-    engine.register_partial("partial_func_ex", input.partial_func_ex_template)?;
     engine.register_partial("partial_prop", input.partial_prop_template)?;
-    engine.register_partial("partial_prop_ex", input.partial_prop_ex_template)?;
 
     let rendered = generate_dart_types(input.file_info)?;
     let mut out_str = GeneratedDartTypesStrings::default();
@@ -79,17 +111,17 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
         out_str.structs.push((pretty_file_name.clone(), out));
     }
 
-    //  Render extensions.
-    for ext in rendered.extensions {
+    //  Render enums.
+    for enm in rendered.enums {
         let out = engine.render(
-            "extension",
+            "enum",
             &WithYear {
                 current_year,
-                data: &ext,
+                data: &enm,
             },
         )?;
 
-        out_str.extensions.push((pretty_file_name.clone(), out));
+        out_str.enums.push((pretty_file_name.clone(), out));
     }
 
     Ok(out_str)
@@ -109,25 +141,15 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             deinits,
             mut methods,
             properties,
-            mut dart_imports,
-            mut package_imports,
         );
 
-        let mut dart_imports_map = HashSet::new();
-        let mut package_imports_map = HashSet::new();
-        (inits, info.inits, dart_imports, package_imports) = process_inits(&obj, info.inits)?;
-        dart_imports_map.extend(dart_imports);
-        package_imports_map.extend(package_imports);
+        (inits, info.inits,) = process_inits(&obj, info.inits)?;
         (deinits, info.deinits) = process_deinits(&obj, info.deinits)?;
-        (methods, info.functions, dart_imports, package_imports) = process_methods(&obj, info.functions, None)?;
-        dart_imports_map.extend(dart_imports);
-        package_imports_map.extend(package_imports);
-        (properties, info.properties, dart_imports, package_imports) = process_properties(&obj, info.properties, "_core")?;
-        dart_imports_map.extend(dart_imports);
-        package_imports_map.extend(package_imports);
+        (methods, info.functions) = process_methods(&obj, info.functions)?;
+        (properties, info.properties) = process_properties(&obj, info.properties)?;
 
         // Avoid rendering empty structs.
-        if inits.is_empty() && methods.is_empty() && properties.is_empty() {
+        if methods.is_empty() && properties.is_empty() {
             continue;
         }
 
@@ -141,9 +163,6 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         }
         if has_address_protocol(strct.name.as_str()) {
             superclasses.push("Address".to_string());
-        }
-        if !superclasses.is_empty() {
-            package_imports_map.insert(PackageImport(import_name("abstractions", Some("common/"))));
         }
 
         // Handle equality operator.
@@ -161,22 +180,12 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             None
         };
 
-        let init_instance = strct.is_class;
-        if init_instance {
-            dart_imports_map.insert(DartImport(DART_FFI_IMPORT.to_string()));
-        }
-        dart_imports = dart_imports_map.into_iter().collect();
-        dart_imports.sort();
-        package_imports = package_imports_map.into_iter().collect();
-        package_imports.sort();
         outputs.structs.push(DartStruct {
             name: pretty_struct_name.clone(),
             is_class: strct.is_class,
             is_public: strct.is_public,
             raw_type: format!("Pointer<{}>", &strct.name),
             init_instance: strct.is_class,
-            dart_imports,
-            package_imports,
             superclasses,
             eq_operator,
             inits,
@@ -189,22 +198,17 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
     // Render enums.
     for enm in info.enums {
         let obj = ObjectVariant::Enum(&enm.name);
-        let mut dart_imports_map = HashSet::new();
-        let mut package_imports_map = HashSet::new();
         // Process items.
-        let (methods, properties, mut dart_imports, mut package_imports);
-        (methods, info.functions, dart_imports, package_imports) = process_methods(&obj, info.functions, Some("core"))?;
-        dart_imports_map.extend(dart_imports);
-        package_imports_map.extend(package_imports);
-        (properties, info.properties, dart_imports, package_imports) = process_properties(&obj, info.properties, "core")?;
-        dart_imports_map.extend(dart_imports);
-        package_imports_map.extend(package_imports);
+        let (methods, properties);
+        (methods, info.functions) = process_methods(&obj, info.functions)?;
+        (properties, info.properties) = process_properties(&obj, info.properties)?;
 
-        let import = import_name(TRUST_WALLET_CORE_PATH, None);
-        package_imports_map.insert(PackageImport(import));
+        // Convert the name into an appropriate format.
+        let pretty_enum_name = pretty_name(&enm.name);
 
         let mut add_description = false;
-        let variants = enm
+        // Convert to Dart enum variants
+        let variants: Vec<DartEnumVariant> = enm
             .variants
             .into_iter()
             .map(|info| {
@@ -212,30 +216,22 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
                     add_description = true;
                 }
                 DartEnumVariant {
-                    name: info.name,
+                    name: replace_forbidden_words(&info.name),
                     value: info.value,
                     as_string: info.as_string,
                 }
             })
             .collect();
 
-        // Avoid rendering empty extension for enums.
-        if !add_description && methods.is_empty() && properties.is_empty() {
-            continue;
-        }
-        dart_imports = dart_imports_map.into_iter().collect();
-        dart_imports.sort();
-        package_imports = package_imports_map.into_iter().collect();
-        package_imports.sort();
-        outputs.extensions.push(DartEnumExtension {
-            name: enm.name,
-            init_instance: true,
+        // Add the generated Dart code to the outputs
+        outputs.enums.push(DartEnum {
+            name: pretty_enum_name,
+            is_public: enm.is_public,
             add_description,
-            dart_imports,
-            package_imports,
+            variants,
+            value_type: ENUM_VALUE_TYPE.to_string(),
             methods,
             properties,
-            variants,
         });
     }
 

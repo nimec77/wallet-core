@@ -3,6 +3,7 @@ import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
 import 'package:trust_wallet_core_example/common/widgets/highlighted_text.dart';
 import 'package:trust_wallet_core_example/feature/coin_detail_screen/coin_detail_screen.dart';
+import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
 
 class CoinListScreen extends StatefulWidget {
   final HDWallet hdWallet;

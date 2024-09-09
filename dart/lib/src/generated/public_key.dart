@@ -5,33 +5,24 @@
 // This is a GENERATED FILE, changes made here WILL BE LOST.
 //
 
-import 'dart:ffi';
-import 'dart:typed_data';
-
-import 'package:trust_wallet_core/src/bindings/generated_bindings.dart';
-import 'package:trust_wallet_core/src/common/abstractions.dart';
-import 'package:trust_wallet_core/src/common/data_impl.dart';
-import 'package:trust_wallet_core/src/common/string_impl.dart';
+part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class PublicKey implements Disposable {
-  final TrustWalletCoreBindings _core;
   final Pointer<TWPublicKey> _pointer;
 
   Pointer<TWPublicKey> get pointer => _pointer;
 
-  const PublicKey(TrustWalletCoreBindings core, Pointer<TWPublicKey> pointer)
-      : _core = core,
-        _pointer = pointer;
+  const PublicKey._(Pointer<TWPublicKey> pointer) : _pointer = pointer;
 
-  factory PublicKey.createWithData(TrustWalletCoreBindings core, Uint8List data, TWPublicKeyType type) {
-    final dataUint8List = DataImpl.createWithBytes(core, data);
+  factory PublicKey.createWithData(Uint8List data, TWPublicKeyType type) {
+    final dataUint8List = DataImpl.createWithBytes(data);
     try {
-      final result = core.TWPublicKeyCreateWithData(dataUint8List.pointer, type);
+      final result = _bindings.TWPublicKeyCreateWithData(dataUint8List.pointer, type);
       if (result == nullptr) {
         throw ArgumentError('TWPublicKeyCreateWithData(dataUint8List.pointer, type) returned null');
       }
 
-      return PublicKey(core, result);
+      return PublicKey._(result);
     } finally {
       dataUint8List.dispose();
     }
@@ -39,12 +30,12 @@ final class PublicKey implements Disposable {
 
   @override
   dispose() {
-    _core.TWPublicKeyDelete(pointer);
+    _bindings.TWPublicKeyDelete(pointer);
   }
 
-  static bool isValid(TrustWalletCoreBindings core, Uint8List data, TWPublicKeyType type) {
-    final dataUint8List = DataImpl.createWithBytes(core, data);
-    final result = core.TWPublicKeyIsValid(dataUint8List.pointer, type);
+  static bool isValid(Uint8List data, TWPublicKeyType type) {
+    final dataUint8List = DataImpl.createWithBytes(data);
+    final result = _bindings.TWPublicKeyIsValid(dataUint8List.pointer, type);
     dataUint8List.dispose();
 
     return result;
@@ -52,9 +43,9 @@ final class PublicKey implements Disposable {
 
   bool verify(Uint8List signature, Uint8List message) {
     final obj = pointer;
-    final signatureUint8List = DataImpl.createWithBytes(_core, signature);
-    final messageUint8List = DataImpl.createWithBytes(_core, message);
-    final result = _core.TWPublicKeyVerify(obj, signatureUint8List.pointer, messageUint8List.pointer);
+    final signatureUint8List = DataImpl.createWithBytes(signature);
+    final messageUint8List = DataImpl.createWithBytes(message);
+    final result = _bindings.TWPublicKeyVerify(obj, signatureUint8List.pointer, messageUint8List.pointer);
     signatureUint8List.dispose();
     messageUint8List.dispose();
 
@@ -63,9 +54,9 @@ final class PublicKey implements Disposable {
 
   bool verifyAsDER(Uint8List signature, Uint8List message) {
     final obj = pointer;
-    final signatureUint8List = DataImpl.createWithBytes(_core, signature);
-    final messageUint8List = DataImpl.createWithBytes(_core, message);
-    final result = _core.TWPublicKeyVerifyAsDER(obj, signatureUint8List.pointer, messageUint8List.pointer);
+    final signatureUint8List = DataImpl.createWithBytes(signature);
+    final messageUint8List = DataImpl.createWithBytes(message);
+    final result = _bindings.TWPublicKeyVerifyAsDER(obj, signatureUint8List.pointer, messageUint8List.pointer);
     signatureUint8List.dispose();
     messageUint8List.dispose();
 
@@ -74,25 +65,25 @@ final class PublicKey implements Disposable {
 
   bool verifyZilliqaSchnorr(Uint8List signature, Uint8List message) {
     final obj = pointer;
-    final signatureUint8List = DataImpl.createWithBytes(_core, signature);
-    final messageUint8List = DataImpl.createWithBytes(_core, message);
-    final result = _core.TWPublicKeyVerifyZilliqaSchnorr(obj, signatureUint8List.pointer, messageUint8List.pointer);
+    final signatureUint8List = DataImpl.createWithBytes(signature);
+    final messageUint8List = DataImpl.createWithBytes(message);
+    final result = _bindings.TWPublicKeyVerifyZilliqaSchnorr(obj, signatureUint8List.pointer, messageUint8List.pointer);
     signatureUint8List.dispose();
     messageUint8List.dispose();
 
     return result;
   }
 
-  static PublicKey? recover(TrustWalletCoreBindings core, Uint8List signature, Uint8List message) {
-    final signatureUint8List = DataImpl.createWithBytes(core, signature);
-    final messageUint8List = DataImpl.createWithBytes(core, message);
+  static PublicKey? recover(Uint8List signature, Uint8List message) {
+    final signatureUint8List = DataImpl.createWithBytes(signature);
+    final messageUint8List = DataImpl.createWithBytes(message);
     try {
-      final result = core.TWPublicKeyRecover(signatureUint8List.pointer, messageUint8List.pointer);
+      final result = _bindings.TWPublicKeyRecover(signatureUint8List.pointer, messageUint8List.pointer);
       if (result == nullptr) {
         return null;
       }
 
-      return PublicKey(core, result);
+      return PublicKey._(result);
     } finally {
       signatureUint8List.dispose();
       messageUint8List.dispose();
@@ -101,29 +92,29 @@ final class PublicKey implements Disposable {
 
   bool get isCompressed {
     final obj = pointer;
-    final result = _core.TWPublicKeyIsCompressed(obj);
+    final result = _bindings.TWPublicKeyIsCompressed(obj);
 
     return result;
   }
 
   PublicKey get compressed {
     final obj = pointer;
-    final result = _core.TWPublicKeyCompressed(obj);
+    final result = _bindings.TWPublicKeyCompressed(obj);
 
-    return PublicKey(_core, result);
+    return PublicKey._(result);
   }
 
   PublicKey get uncompressed {
     final obj = pointer;
-    final result = _core.TWPublicKeyUncompressed(obj);
+    final result = _bindings.TWPublicKeyUncompressed(obj);
 
-    return PublicKey(_core, result);
+    return PublicKey._(result);
   }
 
   Uint8List get data {
     final obj = pointer;
-    final result = _core.TWPublicKeyData(obj);
-    final wrapper = DataImpl.createWithData(_core, result);
+    final result = _bindings.TWPublicKeyData(obj);
+    final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -132,15 +123,15 @@ final class PublicKey implements Disposable {
 
   TWPublicKeyType get keyType {
     final obj = pointer;
-    final result = _core.TWPublicKeyKeyType(obj);
+    final result = _bindings.TWPublicKeyKeyType(obj);
 
     return TWPublicKeyType.fromValue(result.value);
   }
 
   String get description {
     final obj = pointer;
-    final result = _core.TWPublicKeyDescription(obj);
-    final wrapper = StringImpl.createWithPointer(_core, result);
+    final result = _bindings.TWPublicKeyDescription(obj);
+    final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
     wrapper.dispose();
 
