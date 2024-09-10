@@ -29,7 +29,7 @@
         {{/if}}
         {{/each}}
 
-            return {{class_name}}(result);
+            return {{class_name}}._(result);
         } finally {
         {{#each operations}}
         {{#if defer_optional_call.call}}

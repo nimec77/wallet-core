@@ -67,6 +67,7 @@ pub(super) fn process_methods(
         // those parameters.
         let mut params = vec![];
         for param in &func.params {
+            let param_name = || param.name.to_string();
             // Skip self parameter
             match &param.ty.variant {
                 TypeVariant::Enum(name) | TypeVariant::Struct(name)
@@ -86,11 +87,11 @@ pub(super) fn process_methods(
                 }
                 ops.push(op)
             } else {
-                local_name = param.name.clone();
+                local_name = param_name();
             }
             // Convert parameter to Dart parameter for the function interface.
-            let var = DartVariable {
-                name: param.name.clone(),
+            let var  =  DartVariable {
+                name: param_name(),
                 local_name,
                 call_name,
                 var_type: DartType::from(param.ty.variant.clone()),
@@ -106,10 +107,10 @@ pub(super) fn process_methods(
         }
 
         // Prepepare parameter list to be passed on to the underlying C FFI function.
-        let param_name = if func.is_static { vec![] } else { vec!["obj".to_string()] };
-        let param_names = param_name
+        let param_name_vec = if func.is_static { vec![] } else { vec!["obj".to_string()] };
+        let param_names = param_name_vec
             .into_iter()
-            .chain(params.iter().map(|p| p.call_name.clone()))
+            .chain(params.iter().map(|p| p.call_name.to_string()))
             .collect::<Vec<String>>()
             .join(", ");
 
@@ -149,8 +150,7 @@ pub(super) fn process_methods(
         }
 
         // Wrap result.
-        let op = wrap_return(&func.return_type);
-        ops.push(op.clone());
+        ops.push(wrap_return(&func.return_type));
 
         // Convert return type for function interface.
         let return_type = DartReturn {

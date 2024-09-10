@@ -70,8 +70,7 @@ pub(super) fn process_properties(
         }
 
         // Wrap result.
-        let op = wrap_return(&prop.return_type);
-        ops.push(op.clone());
+        ops.push(wrap_return(&prop.return_type));
 
         // Prettify name, remove object name prefix from this property.
         let pretty_name = pretty_name_without_prefix(&prop.name, object.name());
