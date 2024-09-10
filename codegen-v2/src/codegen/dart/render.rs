@@ -81,7 +81,8 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
     // The current year for the copyright header in the generated bindings.
     let current_year = crate::current_year();
     // Convert the name into an appropriate format.
-    let pretty_file_name = pretty_file_name(&input.file_info.name);
+    let name = input.file_info.name.to_string();
+    let pretty_file_name = || pretty_file_name(&name);
 
     let mut engine = Handlebars::new();
     // Unmatched variables should result in an error.
@@ -108,7 +109,7 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
             },
         )?;
 
-        out_str.structs.push((pretty_file_name.clone(), out));
+        out_str.structs.push((pretty_file_name(), out));
     }
 
     //  Render enums.
@@ -121,7 +122,7 @@ pub fn render_to_strings(input: RenderInput) -> Result<GeneratedDartTypesStrings
             },
         )?;
 
-        out_str.enums.push((pretty_file_name.clone(), out));
+        out_str.enums.push((pretty_file_name(), out));
     }
 
     Ok(out_str)
@@ -181,7 +182,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         };
 
         outputs.structs.push(DartStruct {
-            name: pretty_struct_name.clone(),
+            name: pretty_struct_name,
             is_class: strct.is_class,
             is_public: strct.is_public,
             raw_type: format!("Pointer<{}>", &strct.name),

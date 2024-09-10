@@ -43,6 +43,7 @@ pub(super) fn process_inits(
         // those parameters.
         let mut params = vec![];
         for param in &init.params {
+            let param_name = || param.name.to_string();
             let local_name: String;
             let mut call_name = get_call_var_name(&param);
             // Process parameter.
@@ -53,11 +54,11 @@ pub(super) fn process_inits(
                 }
                 ops.push(op);
             } else {
-                local_name = param.name.clone();
+                local_name = param_name();
             }
             // Convert parameter to Dart parameter for the function interface.
             let var = DartVariable {
-                name: param.name.clone(),
+                name: param_name(),
                 local_name,
                 call_name,
                 var_type: DartType::from(param.ty.variant.clone()),
