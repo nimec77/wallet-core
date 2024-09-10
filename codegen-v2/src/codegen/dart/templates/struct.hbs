@@ -13,7 +13,7 @@ final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} impl
 
     {{{raw_type}}} get pointer => _pointer;
 
-    const {{name}}({{{raw_type}}} pointer) : _pointer = pointer;
+    const {{name}}._({{{raw_type}}} pointer) : _pointer = pointer;
 {{/if}}
 {{! Equality operator, if available }}
 {{#if eq_operator}}
