@@ -28,6 +28,7 @@ enum {{#unless is_public}}_{{/unless}}{{name}} {
     {{#each variants}}
         {{value}} => '{{as_string}}',
     {{/each}}
+        _ => throw ArgumentError("Unknown value for {{name}}: $value"),
     };
 {{/if}}
 {{! Methods }}

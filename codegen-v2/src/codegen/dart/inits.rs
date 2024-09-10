@@ -111,7 +111,7 @@ pub(super) fn process_inits(
         }
 
         // Note that we do not return a value here; the template sets a
-        // `return SomeClass(result);`
+        // `return SomeClass._(result);`
 
         // Prettify name, remove object name prefix from this property.
         let pretty_init_name = pretty_func_name(&init.name, object.name());

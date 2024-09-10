@@ -240,10 +240,10 @@ pub fn wrap_return(ty: &TypeInfo) -> DartOperation {
                 DartType::from(ty.variant.clone())
             ),
         },
-        // E.g. `return SomeStruct(core, result);`
+        // E.g. `return SomeStruct._(result);`
         TypeVariant::Struct(_) => DartOperation::Return {
             call: format!(
-                "{}(result)",
+                "{}._(result)",
                 DartType::from(ty.variant.clone()),
             ),
         },
