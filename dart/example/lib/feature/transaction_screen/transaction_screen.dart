@@ -5,7 +5,7 @@ import 'package:trust_wallet_core_example/data/factory/wallet_service_factory.da
 import 'package:trust_wallet_core_example/data/services/wallet_service.dart';
 import 'package:trust_wallet_core_example/data/wallets/bitcoin_wallet.dart';
 import 'package:trust_wallet_core_example/data/wallets/ethereum_wallet.dart';
-import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
+import 'package:trust_wallet_core_example/di/dependency_scope.dart';
 
 enum LoadingStatus {
   idle,
@@ -14,7 +14,7 @@ enum LoadingStatus {
 
 class TransactionScreen extends StatefulWidget {
   final HDWallet hdWallet;
-  final TWCoinType coinType;
+  final CoinType coinType;
 
   const TransactionScreen({
     super.key,
@@ -34,19 +34,20 @@ class _TransactionScreenState extends State<TransactionScreen> {
   final _addressController = TextEditingController();
 
   HDWallet get _hdWallet => widget.hdWallet;
-  TWCoinType get _coinType => widget.coinType;
+  CoinType get _coinType => widget.coinType;
 
   @override
   void initState() {
     super.initState();
 
+    //TODO: уалить адреса кошешьков и сделать возможность ввода адреса через TextField
     _wallets = switch (_coinType) {
-      TWCoinType.TWCoinTypeBitcoin => {
+      CoinType.bitcoin => {
           'Макс': 'bc1q92e0ujhxml6wtd9gsn3aa7276f5qpxr6gtk9qh',
           'Толя': 'bc1q8st5wrn60v25lr9jpa7t7h058y5x4w44ffqjhp',
           'Олег': 'bc1qff4tp6dn3sgq0kfedyg509qedlc8j9d33prmtv',
         },
-      TWCoinType.TWCoinTypeEthereum => {
+      CoinType.ethereum => {
           'Макс': '0xF35080873f54519C0aC40D11435e0205a998fFaf',
           'Толя': '0xB76b77AeA6f5bBe1685E0F13020Dc6cE8c7C4C6F',
           'Олег': '0xE0b77680f7423f60023259e9A42a180BDEb49BC6',
@@ -54,9 +55,17 @@ class _TransactionScreenState extends State<TransactionScreen> {
       _ => throw UnimplementedError(),
     };
 
+    final httpClient = DependencyScope.of(context).http;
+
     _walletService = switch (_coinType) {
-      TWCoinType.TWCoinTypeBitcoin => WalletServiceFactory.getService<BitcoinWallet>(context, _hdWallet),
-      TWCoinType.TWCoinTypeEthereum => WalletServiceFactory.getService<EthereumWallet>(context, _hdWallet),
+      CoinType.bitcoin => WalletServiceFactory.getService<BitcoinWallet>(
+          httpClient,
+          _hdWallet,
+        ),
+      CoinType.ethereum => WalletServiceFactory.getService<EthereumWallet>(
+          httpClient,
+          _hdWallet,
+        ),
       _ => throw UnimplementedError(),
     };
   }
@@ -121,7 +130,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
   void _sendBitcoinTransaction() async {
     final toAddress = _addressController.text;
     if (toAddress.isEmpty || amount.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please fill in all fields')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please fill in all fields'),
+        ),
+      );
       return;
     }
 
@@ -137,7 +150,13 @@ class _TransactionScreenState extends State<TransactionScreen> {
         amount: amount,
       );
     } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+          ),
+        );
+      }
       return;
     } finally {
       setState(() {
@@ -156,7 +175,9 @@ class _TransactionScreenState extends State<TransactionScreen> {
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: result));
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Transaction hash copied to clipboard')),
+                  const SnackBar(
+                    content: Text('Transaction hash copied to clipboard'),
+                  ),
                 );
               },
               child: const Text('COPY'),

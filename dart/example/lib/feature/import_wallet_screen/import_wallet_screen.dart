@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:trust_wallet_core/trust_wallet_core.dart' show HDWallet;
+import 'package:trust_wallet_core/trust_wallet_core.dart' show HDWallet, Mnemonic;
 import 'package:trust_wallet_core_example/feature/main/main_screen.dart';
 import 'package:trust_wallet_core_example/feature/mnemonic_screen/mnemonic_screen.dart';
 
@@ -50,6 +50,8 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
       );
 
   void _importWallet() {
+    if (!Mnemonic.isValid(mnemonic)) throw Exception(["mnemonic is invalid"]);
+
     final hdWallet = HDWallet.createWithMnemonic(mnemonic, '');
 
     Navigator.of(context).pushReplacement(
@@ -62,6 +64,8 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
   }
 
   void _createNewWallet() {
+    //TODO: implement assert
+    // assert(strength >= 128 && strength <= 256 && strength % 32 == 0);
     final hdWallet = HDWallet.create(128, '');
 
     setState(() {

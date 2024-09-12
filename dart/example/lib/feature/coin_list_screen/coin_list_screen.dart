@@ -3,7 +3,6 @@ import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
 import 'package:trust_wallet_core_example/common/widgets/highlighted_text.dart';
 import 'package:trust_wallet_core_example/feature/coin_detail_screen/coin_detail_screen.dart';
-import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
 
 class CoinListScreen extends StatefulWidget {
   final HDWallet hdWallet;
@@ -19,13 +18,13 @@ class CoinListScreen extends StatefulWidget {
 
 class _CoinListScreenState extends State<CoinListScreen> {
   final _searchController = TextEditingController();
-  final _coins = <TWCoinType>[];
+  final _coins = <CoinType>[];
 
   @override
   void initState() {
     super.initState();
 
-    _coins.addAll(TWCoinType.values);
+    _coins.addAll(CoinType.values);
   }
 
   @override
@@ -94,7 +93,7 @@ class _CoinListScreenState extends State<CoinListScreen> {
 
       final query = _searchController.text.toLowerCase();
 
-      for (final coin in TWCoinType.values) {
+      for (final coin in CoinType.values) {
         if (Utils.getCoinName(coin).toLowerCase().contains(query) ||
             Utils.getCoinTicker(coin).toLowerCase().contains(query)) {
           _coins.add(coin);

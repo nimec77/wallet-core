@@ -5,10 +5,13 @@ typedef SigningInput = GeneratedMessage;
 abstract class AnySigner {
   static Uint8List sign(
     Uint8List bytes,
-    TWCoinType coin,
+    CoinType coin,
   ) {
     final data = DataImpl.createWithBytes(bytes);
-    final signer = _bindings.TWAnySignerSign(data.pointer, coin);
+    final signer = _bindings.TWAnySignerSign(
+      data.pointer,
+      TWCoinType.fromValue(coin.value),
+    );
     data.dispose();
 
     return _toUint8List(signer);
@@ -32,10 +35,13 @@ abstract class AnySigner {
 
   static Uint8List signerPlan(
     Uint8List bytes,
-    TWCoinType coin,
+    CoinType coin,
   ) {
     final data = DataImpl.createWithBytes(bytes);
-    final signer = _bindings.TWAnySignerPlan(data.pointer, coin);
+    final signer = _bindings.TWAnySignerPlan(
+      data.pointer,
+      TWCoinType.fromValue(coin.value),
+    );
     data.dispose();
 
     return _toUint8List(signer);
