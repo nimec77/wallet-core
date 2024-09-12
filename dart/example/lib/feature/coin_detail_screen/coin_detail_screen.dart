@@ -6,11 +6,10 @@ import 'package:trust_wallet_core_example/data/factory/wallet_service_factory.da
 import 'package:trust_wallet_core_example/data/services/wallet_service.dart';
 import 'package:trust_wallet_core_example/di/dependency_scope.dart';
 import 'package:trust_wallet_core_example/feature/transaction_screen/transaction_screen.dart';
-import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
 
 class CoinDetailScreen extends StatefulWidget {
   final HDWallet hdWallet;
-  final TWCoinType coinType;
+  final CoinType coinType;
 
   const CoinDetailScreen({
     super.key,
@@ -61,8 +60,8 @@ class _CoinDetailScreenState extends State<CoinDetailScreen> {
 
                     final balance = snapshot.data ?? '?';
                     final text = switch (widget.coinType) {
-                      const (TWCoinType.TWCoinTypeBitcoin) => 'Balance: $balance BTC',
-                      const (TWCoinType.TWCoinTypeEthereum) => 'Balance: $balance ETH',
+                      const (CoinType.bitcoin) => 'Balance: $balance BTC',
+                      const (CoinType.ethereum) => 'Balance: $balance ETH',
                       _ => 'Unknown coin',
                     };
 
@@ -79,8 +78,7 @@ class _CoinDetailScreenState extends State<CoinDetailScreen> {
                   style: const TextStyle(fontSize: 24),
                   textAlign: TextAlign.center,
                 ),
-                if (widget.coinType == TWCoinType.TWCoinTypeBitcoin ||
-                    widget.coinType == TWCoinType.TWCoinTypeEthereum) ...[
+                if (widget.coinType == CoinType.bitcoin || widget.coinType == CoinType.ethereum) ...[
                   const SizedBox(height: 32),
                   ElevatedButton(
                     onPressed: () => _openTransactionScreen(
@@ -100,7 +98,7 @@ class _CoinDetailScreenState extends State<CoinDetailScreen> {
   void _openTransactionScreen(
     BuildContext context,
     HDWallet hdWallet,
-    TWCoinType coinType,
+    CoinType coinType,
   ) =>
       Navigator.push(
         context,
