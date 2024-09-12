@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http_interceptor/http/intercepted_http.dart';
-import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
 import 'package:trust_wallet_core/protobuf/Ethereum.pb.dart' as ethereum;
 import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
@@ -24,7 +23,7 @@ final class EthereumWallet extends BaseBlockchainWallet {
 
   @override
   Future<double> getBalance() async {
-    final addressEth = getAddressForCoin(TWCoinType.TWCoinTypeEthereum);
+    final addressEth = getAddressForCoin(CoinType.ethereum);
 
     final payload = {
       'jsonrpc': '2.0',
@@ -64,8 +63,8 @@ final class EthereumWallet extends BaseBlockchainWallet {
 
   @override
   Future<String> sendTransaction({required String toAddress, required String amount}) async {
-    final addressEth = getAddressForCoin(TWCoinType.TWCoinTypeEthereum);
-    final privateKeyEth = getKeyForCoin(TWCoinType.TWCoinTypeEthereum).toList();
+    final addressEth = getAddressForCoin(CoinType.ethereum);
+    final privateKeyEth = getKeyForCoin(CoinType.ethereum).toList();
 
     try {
       // Receive nonce
@@ -131,7 +130,7 @@ final class EthereumWallet extends BaseBlockchainWallet {
             nonce: nonce,
           );
 
-          TWCoinType coin = TWCoinType.TWCoinTypeEthereum;
+          CoinType coin = CoinType.ethereum;
           final sign = AnySigner.sign(signedTransaction.writeToBuffer(), coin);
           final signingOutput = ethereum.SigningOutput.fromBuffer(sign);
           final rawTx = Utils.bytesToHex(signingOutput.encoded);

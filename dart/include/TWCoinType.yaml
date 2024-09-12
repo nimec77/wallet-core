@@ -1,0 +1,853 @@
+name: TWCoinType
+structs:
+- name: TWPrivateKey
+  is_public: false
+  is_class: false
+- name: TWPublicKey
+  is_public: false
+  is_class: false
+enums:
+- name: TWCoinType
+  is_public: true
+  value_type:
+    variant: u_int32_t
+  variants:
+  - name: aeternity
+    value: 457
+    description: Aeternity
+    ticker: AE
+  - name: aion
+    value: 425
+    description: Aion
+    ticker: AION
+  - name: binance
+    value: 714
+    description: Binance Coin
+    ticker: BNB
+  - name: bitcoin
+    value: 0
+    description: Bitcoin
+    ticker: BTC
+  - name: bitcoinCash
+    value: 145
+    description: Bitcoin Cash
+    ticker: BCH
+  - name: bitcoinGold
+    value: 156
+    description: Bitcoin Gold
+    ticker: BTG
+  - name: callisto
+    value: 820
+    description: Callisto
+    ticker: CLO
+  - name: cardano
+    value: 1815
+    description: Cardano
+    ticker: ADA
+  - name: cosmos
+    value: 118
+    description: Cosmos
+    ticker: ATOM
+  - name: pivx
+    value: 119
+    description: PIVX
+    ticker: PIVX
+  - name: dash
+    value: 5
+    description: Dash
+    ticker: DASH
+  - name: decred
+    value: 42
+    description: Decred
+    ticker: DCR
+  - name: digiByte
+    value: 20
+    description: DigiByte
+    ticker: DGB
+  - name: dogecoin
+    value: 3
+    description: Dogecoin
+    ticker: DOGE
+  - name: eos
+    value: 194
+    description: EOS
+    ticker: EOS
+  - name: wax
+    value: 14001
+    description: WAX
+    ticker: WAXP
+  - name: ethereum
+    value: 60
+    description: Ethereum
+    ticker: ETH
+  - name: ethereumClassic
+    value: 61
+    description: Ethereum Classic
+    ticker: ETC
+  - name: fio
+    value: 235
+    description: FIO
+    ticker: FIO
+  - name: goChain
+    value: 6060
+    description: GoChain
+    ticker: GO
+  - name: groestlcoin
+    value: 17
+    description: Groestlcoin
+    ticker: GRS
+  - name: icon
+    value: 74
+    description: ICON
+    ticker: ICX
+  - name: ioTeX
+    value: 304
+    description: IoTeX
+    ticker: IOTX
+  - name: kava
+    value: 459
+    description: Kava
+    ticker: KAVA
+  - name: kin
+    value: 2017
+    description: Kin
+    ticker: KIN
+  - name: litecoin
+    value: 2
+    description: Litecoin
+    ticker: LTC
+  - name: monacoin
+    value: 22
+    description: MonaCoin
+    ticker: MONA
+  - name: nebulas
+    value: 2718
+    description: Nebulas
+    ticker: NAS
+  - name: nuls
+    value: 8964
+    description: NULS
+    ticker: NULS
+  - name: nano
+    value: 165
+    description: Nano
+    ticker: XNO
+  - name: near
+    value: 397
+    description: NEAR Protocol
+    ticker: NEAR
+  - name: nimiq
+    value: 242
+    description: Nimiq
+    ticker: NIM
+  - name: ontology
+    value: 1024
+    description: Ontology
+    ticker: ONT
+  - name: poaNetwork
+    value: 178
+    description: POA Network
+    ticker: POA
+  - name: qtum
+    value: 2301
+    description: Qtum
+    ticker: QTUM
+  - name: xrp
+    value: 144
+    description: XRP
+    ticker: XRP
+  - name: solana
+    value: 501
+    description: Solana
+    ticker: SOL
+  - name: stellar
+    value: 148
+    description: Stellar
+    ticker: XLM
+  - name: tezos
+    value: 1729
+    description: Tezos
+    ticker: XTZ
+  - name: theta
+    value: 500
+    description: Theta Network
+    ticker: THETA
+  - name: thunderCore
+    value: 1001
+    description: ThunderCore
+    ticker: TT
+  - name: neo
+    value: 888
+    description: Neo
+    ticker: NEO
+  - name: viction
+    value: 889
+    description: Viction
+    ticker: VIC
+  - name: tron
+    value: 195
+    description: TRON
+    ticker: TRX
+  - name: veChain
+    value: 818
+    description: VeChain
+    ticker: VET
+  - name: viacoin
+    value: 14
+    description: Viacoin
+    ticker: VIA
+  - name: wanchain
+    value: 5718350
+    description: Wanchain
+    ticker: WAN
+  - name: zcash
+    value: 133
+    description: Zcash
+    ticker: ZEC
+  - name: firo
+    value: 136
+    description: Firo
+    ticker: FIRO
+  - name: zilliqa
+    value: 313
+    description: Zilliqa
+    ticker: ZIL
+  - name: zelcash
+    value: 19167
+    description: Zelcash
+    ticker: ZEL
+  - name: ravencoin
+    value: 175
+    description: Ravencoin
+    ticker: RVN
+  - name: waves
+    value: 5741564
+    description: Waves
+    ticker: WAVES
+  - name: terra
+    value: 330
+    description: Terra
+    ticker: LUNA
+  - name: terraV2
+    value: 10000330
+    description: Terra V2
+    ticker: LUNA2
+  - name: harmony
+    value: 1023
+    description: Harmony
+    ticker: ONE
+  - name: algorand
+    value: 283
+    description: Algorand
+    ticker: ALGO
+  - name: kusama
+    value: 434
+    description: Kusama
+    ticker: KSM
+  - name: polkadot
+    value: 354
+    description: Polkadot
+    ticker: DOT
+  - name: filecoin
+    value: 461
+    description: Filecoin
+    ticker: FIL
+  - name: multiversX
+    value: 508
+    description: MultiversX
+    ticker: EGLD
+  - name: bandChain
+    value: 494
+    description: Band Protocol
+    ticker: BAND
+  - name: smartChainLegacy
+    value: 10000714
+    description: SmartChain Legacy
+    ticker: BSC
+  - name: smartChain
+    value: 20000714
+    description: SmartChain
+    ticker: BNB
+  - name: tBinance
+    value: 30000714
+    description: Binance Testnet
+    ticker: BNB
+  - name: oasis
+    value: 474
+    description: Oasis Network
+    ticker: ROSE
+  - name: polygon
+    value: 966
+    description: Polygon
+    ticker: MATIC
+  - name: thorChain
+    value: 931
+    description: THORChain
+    ticker: RUNE
+  - name: bluzelle
+    value: 483
+    description: Bluzelle
+    ticker: BLZ
+  - name: optimism
+    value: 10000070
+    description: Optimism
+    ticker: OP
+  - name: zkSync
+    value: 10000324
+    description: zkSync
+    ticker: ZKS
+  - name: arbitrum
+    value: 10042221
+    description: Arbitrum
+    ticker: ARB
+  - name: ecoChain
+    value: 10000553
+    description: ECO Chain
+    ticker: ECOC
+  - name: avalancheCChain
+    value: 10009000
+    description: Avalanche C-Chain
+    ticker: AVAX
+  - name: xDai
+    value: 10000100
+    description: xDai
+    ticker: XDAI
+  - name: fantom
+    value: 10000250
+    description: Fantom
+    ticker: FTM
+  - name: cryptoOrg
+    value: 394
+    description: Crypto.org Coin
+    ticker: CRO
+  - name: celo
+    value: 52752
+    description: Celo
+    ticker: CELO
+  - name: ronin
+    value: 10002020
+    description: Ronin
+    ticker: RON
+  - name: osmosis
+    value: 10000118
+    description: Osmosis
+    ticker: OSMO
+  - name: eCash
+    value: 899
+    description: eCash
+    ticker: XEC
+  - name: iost
+    value: 291
+    description: IOST
+    ticker: IOST
+  - name: cronosChain
+    value: 10000025
+    description: Cronos
+    ticker: CRO
+  - name: smartBitcoinCash
+    value: 10000145
+    description: Smart Bitcoin Cash
+    ticker: BCH
+  - name: kuCoinCommunityChain
+    value: 10000321
+    description: KuCoin Community Chain
+    ticker: KCS
+  - name: bitcoinDiamond
+    value: 999
+    description: Bitcoin Diamond
+    ticker: BCD
+  - name: boba
+    value: 10000288
+    description: Boba Network
+    ticker: BOBA
+  - name: syscoin
+    value: 57
+    description: Syscoin
+    ticker: SYS
+  - name: verge
+    value: 77
+    description: Verge
+    ticker: XVG
+  - name: zen
+    value: 121
+    description: Horizen (Zen)
+    ticker: ZEN
+  - name: metis
+    value: 10001088
+    description: Metis
+    ticker: METIS
+  - name: aurora
+    value: 1323161554
+    description: Aurora
+    ticker: AURORA
+  - name: evmos
+    value: 10009001
+    description: Evmos
+    ticker: EVMOS
+  - name: nativeEvmos
+    value: 20009001
+    description: Native Evmos
+    ticker: EVMOS
+  - name: moonriver
+    value: 10001285
+    description: Moonriver
+    ticker: MOVR
+  - name: moonbeam
+    value: 10001284
+    description: Moonbeam
+    ticker: GLMR
+  - name: kavaEvm
+    value: 10002222
+    description: Kava EVM
+    ticker: KAVA
+  - name: klaytn
+    value: 10008217
+    description: Klaytn
+    ticker: KLAY
+  - name: meter
+    value: 18000
+    description: Meter
+    ticker: MTRG
+  - name: okxChain
+    value: 996
+    description: OKX Chain
+    ticker: OKT
+  - name: stratis
+    value: 105105
+    description: Stratis
+    ticker: STRAX
+  - name: komodo
+    value: 141
+    description: Komodo
+    ticker: KMD
+  - name: nervos
+    value: 309
+    description: Nervos Network
+    ticker: CKB
+  - name: everscale
+    value: 396
+    description: Everscale
+    ticker: EVER
+  - name: aptos
+    value: 637
+    description: Aptos
+    ticker: APT
+  - name: nebl
+    value: 146
+    description: Neblio
+    ticker: NEBL
+  - name: hedera
+    value: 3030
+    description: Hedera
+    ticker: HBAR
+  - name: secret
+    value: 529
+    description: Secret Network
+    ticker: SCRT
+  - name: nativeInjective
+    value: 10000060
+    description: Native Injective
+    ticker: INJ
+  - name: agoric
+    value: 564
+    description: Agoric
+    ticker: BLD
+  - name: ton
+    value: 607
+    description: TON (The Open Network)
+    ticker: TON
+  - name: sui
+    value: 784
+    description: Sui
+    ticker: SUI
+  - name: stargaze
+    value: 20000118
+    description: Stargaze
+    ticker: STARS
+  - name: polygonzkEVM
+    value: 10001101
+    description: Polygon zkEVM
+    ticker: POL
+  - name: juno
+    value: 30000118
+    description: Juno
+    ticker: JUNO
+  - name: stride
+    value: 40000118
+    description: Stride
+    ticker: STRD
+  - name: axelar
+    value: 50000118
+    description: Axelar
+    ticker: AXL
+  - name: crescent
+    value: 60000118
+    description: Crescent
+    ticker: CRE
+  - name: kujira
+    value: 70000118
+    description: Kujira
+    ticker: KUJI
+  - name: ioTeXEVM
+    value: 10004689
+    description: IoTeX EVM
+    ticker: IOTX
+  - name: nativeCanto
+    value: 10007700
+    description: Native Canto
+    ticker: CANTO
+  - name: comdex
+    value: 80000118
+    description: Comdex
+    ticker: CMDX
+  - name: neutron
+    value: 90000118
+    description: Neutron
+    ticker: NTRN
+  - name: sommelier
+    value: 11000118
+    description: Sommelier
+    ticker: SOMM
+  - name: fetchAI
+    value: 12000118
+    description: Fetch.ai
+    ticker: FET
+  - name: mars
+    value: 13000118
+    description: Mars Protocol
+    ticker: MARS
+  - name: umee
+    value: 14000118
+    description: Umee
+    ticker: UMEE
+  - name: coreum
+    value: 10000990
+    description: Coreum
+    ticker: COREUM
+  - name: quasar
+    value: 15000118
+    description: Quasar
+    ticker: QSR
+  - name: persistence
+    value: 16000118
+    description: Persistence
+    ticker: XPRT
+  - name: akash
+    value: 17000118
+    description: Akash Network
+    ticker: AKT
+  - name: noble
+    value: 18000118
+    description: Noble
+    ticker: NOBL
+  - name: scroll
+    value: 534352
+    description: Scroll
+    ticker: SCRL
+  - name: rootstock
+    value: 137
+    description: Rootstock (RSK)
+    ticker: RSK
+  - name: thetaFuel
+    value: 361
+    description: Theta Fuel
+    ticker: TFUEL
+  - name: confluxeSpace
+    value: 1030
+    description: Conflux eSpace
+    ticker: CFX
+  - name: acala
+    value: 787
+    description: Acala
+    ticker: ACA
+  - name: acalaEVM
+    value: 10000787
+    description: Acala EVM
+    ticker: ACA
+  - name: opBNB
+    value: 204
+    description: opBNB
+    ticker: OPBNB
+  - name: neon
+    value: 245022934
+    description: Neon
+    ticker: NEON
+  - name: base
+    value: 8453
+    description: Base
+    ticker: 8453
+  - name: sei
+    value: 19000118
+    description: Sei Network
+    ticker: SEI
+  - name: arbitrumNova
+    value: 10042170
+    description: Arbitrum Nova
+    ticker: ANOV
+  - name: linea
+    value: 59144
+    description: Linea
+    ticker: TBA
+  - name: greenfield
+    value: 5600
+    description: Greenfield
+    ticker: GNFD
+  - name: mantle
+    value: 5000
+    description: Mantle
+    ticker: MNT
+  - name: zenEON
+    value: 7332
+    description: ZenEON
+    ticker: ZEON
+  - name: internetComputer
+    value: 223
+    description: Internet Computer
+    ticker: ICP
+  - name: tia
+    value: 21000118
+    description: TIA
+    ticker: TIA
+  - name: mantaPacific
+    value: 169
+    description: Manta Pacific
+    ticker: MANTA
+  - name: nativeZetaChain
+    value: 10007000
+    description: Native ZetaChain
+    ticker: ZETA
+  - name: zetaEVM
+    value: 20007000
+    description: Zeta EVM
+    ticker: ZETA
+  - name: dydx
+    value: 22000118
+    description: dYdX
+    ticker: DYDX
+  - name: merlin
+    value: 4200
+    description: Merlin
+    ticker: MERL
+  - name: lightlink
+    value: 1890
+    description: Lightlink
+    ticker: LL
+  - name: blast
+    value: 81457
+    description: Blast
+    ticker: BLAST
+  - name: bounceBit
+    value: 6001
+    description: Bounce Bit
+    ticker: BB
+  - name: zkLinkNova
+    value: 810180
+    description: zkLink Nova
+    ticker: ZKLN
+functions:
+- name: TWCoinTypeValidate
+  is_public: true
+  is_static: false
+  params:
+  - name: coin
+    type:
+      variant: enum
+      value: TWCoinType
+      is_constant: false
+      is_nullable: false
+      is_pointer: false
+  - name: address
+    type:
+      variant: string
+      is_constant: true
+      is_nullable: false
+      is_pointer: true
+  return_type:
+    variant: bool
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypeDerivationPath
+  is_public: true
+  is_static: false
+  params:
+  - name: coin
+    type:
+      variant: enum
+      value: TWCoinType
+      is_constant: false
+      is_nullable: false
+      is_pointer: false
+  return_type:
+    variant: string
+    is_constant: true
+    is_nullable: false
+    is_pointer: true
+- name: TWCoinTypeDerivationPathWithDerivation
+  is_public: true
+  is_static: false
+  params:
+  - name: coin
+    type:
+      variant: enum
+      value: TWCoinType
+      is_constant: false
+      is_nullable: false
+      is_pointer: false
+  - name: derivation
+    type:
+      variant: enum
+      value: TWDerivation
+      is_constant: false
+      is_nullable: false
+      is_pointer: false
+  return_type:
+    variant: string
+    is_constant: true
+    is_nullable: false
+    is_pointer: true
+- name: TWCoinTypeDeriveAddress
+  is_public: true
+  is_static: false
+  params:
+  - name: coin
+    type:
+      variant: enum
+      value: TWCoinType
+      is_constant: false
+      is_nullable: false
+      is_pointer: false
+  - name: privateKey
+    type:
+      variant: struct
+      value: TWPrivateKey
+      is_constant: false
+      is_nullable: false
+      is_pointer: true
+  return_type:
+    variant: string
+    is_constant: true
+    is_nullable: false
+    is_pointer: true
+- name: TWCoinTypeDeriveAddressFromPublicKey
+  is_public: true
+  is_static: false
+  params:
+  - name: coin
+    type:
+      variant: enum
+      value: TWCoinType
+      is_constant: false
+      is_nullable: false
+      is_pointer: false
+  - name: publicKey
+    type:
+      variant: struct
+      value: TWPublicKey
+      is_constant: false
+      is_nullable: false
+      is_pointer: true
+  return_type:
+    variant: string
+    is_constant: true
+    is_nullable: false
+    is_pointer: true
+properties:
+- name: TWCoinTypeBlockchain
+  is_public: true
+  return_type:
+    variant: enum
+    value: TWBlockchain
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypePurpose
+  is_public: true
+  return_type:
+    variant: enum
+    value: TWPurpose
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypeCurve
+  is_public: true
+  return_type:
+    variant: enum
+    value: TWCurve
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypeXpubVersion
+  is_public: true
+  return_type:
+    variant: enum
+    value: TWHDVersion
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypeXprvVersion
+  is_public: true
+  return_type:
+    variant: enum
+    value: TWHDVersion
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypeHRP
+  is_public: true
+  return_type:
+    variant: enum
+    value: TWHRP
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypeP2pkhPrefix
+  is_public: true
+  return_type:
+    variant: u_int8_t
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypeP2shPrefix
+  is_public: true
+  return_type:
+    variant: u_int8_t
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypeStaticPrefix
+  is_public: true
+  return_type:
+    variant: u_int8_t
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypeChainId
+  is_public: true
+  return_type:
+    variant: string
+    is_constant: true
+    is_nullable: false
+    is_pointer: true
+- name: TWCoinTypeSlip44Id
+  is_public: true
+  return_type:
+    variant: u_int32_t
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypeSS58Prefix
+  is_public: true
+  return_type:
+    variant: u_int32_t
+    is_constant: false
+    is_nullable: false
+    is_pointer: false
+- name: TWCoinTypePublicKeyType
+  is_public: true
+  return_type:
+    variant: enum
+    value: TWPublicKeyType
+    is_constant: false
+    is_nullable: false
+    is_pointer: false

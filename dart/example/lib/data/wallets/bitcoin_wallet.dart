@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:convert/convert.dart';
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:http_interceptor/http/intercepted_http.dart';
-import 'package:trust_wallet_core/bindings/generated_bindings.dart' show TWCoinType;
 import 'package:trust_wallet_core/protobuf/Bitcoin.pb.dart' as bitcoin;
 import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
@@ -24,7 +23,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
   @override
   Future<double> getBalance() async {
     try {
-      final addressBtc = getAddressForCoin(TWCoinType.TWCoinTypeBitcoin);
+      final addressBtc = getAddressForCoin(CoinType.bitcoin);
       final url = '${_apiUrl}address$addressBtc';
 
       final response = await _http.get(
@@ -53,11 +52,11 @@ final class BitcoinWallet extends BaseBlockchainWallet {
   }) async {
     final amountBtc = Utils.btcToSatoshi(amount);
 
-    TWCoinType coin = TWCoinType.TWCoinTypeBitcoin;
+    CoinType coin = CoinType.bitcoin;
 
-    final addressBtc = getAddressForCoin(TWCoinType.TWCoinTypeBitcoin);
+    final addressBtc = getAddressForCoin(CoinType.bitcoin);
     final changeAddress = addressBtc;
-    final secretPrivateKeyBtc = getKeyForCoin(TWCoinType.TWCoinTypeBitcoin).toList();
+    final secretPrivateKeyBtc = getKeyForCoin(CoinType.bitcoin).toList();
 
     List<Utxo> selectedUtxos = await _loadUtxos(addressBtc, amountBtc);
 
@@ -91,11 +90,17 @@ final class BitcoinWallet extends BaseBlockchainWallet {
     bitcoinScript.dispose();
 
     final transactionPlan = bitcoin.TransactionPlan.fromBuffer(
-      AnySigner.signerPlan(signingInput.writeToBuffer(), coin).toList(),
+      AnySigner.signerPlan(
+        signingInput.writeToBuffer(),
+        coin,
+      ).toList(),
     );
     signingInput.plan = transactionPlan;
     signingInput.amount = transactionPlan.amount;
-    final signResult = AnySigner.sign(signingInput.writeToBuffer(), coin);
+    final signResult = AnySigner.sign(
+      signingInput.writeToBuffer(),
+      coin,
+    );
     final signingOutput = bitcoin.SigningOutput.fromBuffer(signResult);
     final rawTx = Utils.bytesToHex(signingOutput.encoded);
 
