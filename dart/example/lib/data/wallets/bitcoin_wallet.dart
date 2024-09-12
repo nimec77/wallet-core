@@ -24,7 +24,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
   Future<double> getBalance() async {
     try {
       final addressBtc = getAddressForCoin(CoinType.bitcoin);
-      final url = '${_apiUrl}address$addressBtc';
+      final url = '${_apiUrl}address/$addressBtc';
 
       final response = await _http.get(
         Uri.parse(url),
