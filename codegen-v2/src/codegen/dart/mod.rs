@@ -54,6 +54,7 @@ pub struct DartEnum {
     name: String,
     is_public: bool,
     add_description: bool,
+    add_tickers: bool,
     variants: Vec<DartEnumVariant>,
     value_type: String,
     methods: Vec<DartFunction>,
@@ -65,6 +66,7 @@ pub struct DartEnumVariant {
     name: String,
     value: String,
     as_string: Option<String>,
+    ticker: Option<String>,
 }
 
 /// Represents a Dart import statement.

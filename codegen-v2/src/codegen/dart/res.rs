@@ -12,5 +12,6 @@ pub static REPLACED_MAP: LazyLock<HashMap<&str, &str>> = LazyLock::new(|| {
     HashMap::from([
         ("default", "defaultValue"),
         ("return", "returnValue"),
+        ("base", "baseValue"),
     ])
 });

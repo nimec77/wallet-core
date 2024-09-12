@@ -14,248 +14,636 @@ enums:
   variants:
   - name: aeternity
     value: 457
+    as_string: Aeternity
+    ticker: AE
   - name: aion
     value: 425
+    as_string: Aion
+    ticker: AION
   - name: binance
     value: 714
+    as_string: Binance Coin
+    ticker: BNB
   - name: bitcoin
     value: 0
+    as_string: Bitcoin
+    ticker: BTC
   - name: bitcoinCash
     value: 145
+    as_string: Bitcoin Cash
+    ticker: BCH
   - name: bitcoinGold
     value: 156
+    as_string: Bitcoin Gold
+    ticker: BTG
   - name: callisto
     value: 820
+    as_string: Callisto
+    ticker: CLO
   - name: cardano
     value: 1815
+    as_string: Cardano
+    ticker: ADA
   - name: cosmos
     value: 118
+    as_string: Cosmos
+    ticker: ATOM
+  - name: pivx
+    value: 119
+    as_string: PIVX
+    ticker: PIVX
   - name: dash
     value: 5
+    as_string: Dash
+    ticker: DASH
   - name: decred
     value: 42
+    as_string: Decred
+    ticker: DCR
   - name: digiByte
     value: 20
+    as_string: DigiByte
+    ticker: DGB
   - name: dogecoin
     value: 3
+    as_string: Dogecoin
+    ticker: DOGE
   - name: eos
     value: 194
+    as_string: EOS
+    ticker: EOS
   - name: wax
     value: 14001
+    as_string: WAX
+    ticker: WAXP
   - name: ethereum
     value: 60
+    as_string: Ethereum
+    ticker: ETH
   - name: ethereumClassic
     value: 61
+    as_string: Ethereum Classic
+    ticker: ETC
   - name: fio
     value: 235
+    as_string: FIO
+    ticker: FIO
   - name: goChain
     value: 6060
+    as_string: GoChain
+    ticker: GO
   - name: groestlcoin
     value: 17
+    as_string: Groestlcoin
+    ticker: GRS
   - name: icon
     value: 74
+    as_string: ICON
+    ticker: ICX
   - name: ioTeX
     value: 304
+    as_string: IoTeX
+    ticker: IOTX
   - name: kava
     value: 459
+    as_string: Kava
+    ticker: KAVA
   - name: kin
     value: 2017
+    as_string: Kin
+    ticker: KIN
   - name: litecoin
     value: 2
+    as_string: Litecoin
+    ticker: LTC
   - name: monacoin
     value: 22
+    as_string: MonaCoin
+    ticker: MONA
   - name: nebulas
     value: 2718
+    as_string: Nebulas
+    ticker: NAS
   - name: nuls
     value: 8964
+    as_string: NULS
+    ticker: NULS
   - name: nano
     value: 165
+    as_string: Nano
+    ticker: XNO
   - name: near
     value: 397
+    as_string: NEAR Protocol
+    ticker: NEAR
   - name: nimiq
     value: 242
+    as_string: Nimiq
+    ticker: NIM
   - name: ontology
     value: 1024
-  - name: poanetwork
+    as_string: Ontology
+    ticker: ONT
+  - name: poaNetwork
     value: 178
+    as_string: POA Network
+    ticker: POA
   - name: qtum
     value: 2301
+    as_string: Qtum
+    ticker: QTUM
   - name: xrp
     value: 144
+    as_string: XRP
+    ticker: XRP
   - name: solana
     value: 501
+    as_string: Solana
+    ticker: SOL
   - name: stellar
     value: 148
+    as_string: Stellar
+    ticker: XLM
   - name: tezos
     value: 1729
+    as_string: Tezos
+    ticker: XTZ
   - name: theta
     value: 500
+    as_string: Theta Network
+    ticker: THETA
   - name: thunderCore
     value: 1001
+    as_string: ThunderCore
+    ticker: TT
   - name: neo
     value: 888
-  - name: tomoChain
+    as_string: Neo
+    ticker: NEO
+  - name: viction
     value: 889
+    as_string: Viction
+    ticker: VIC
   - name: tron
     value: 195
+    as_string: TRON
+    ticker: TRX
   - name: veChain
     value: 818
+    as_string: VeChain
+    ticker: VET
   - name: viacoin
     value: 14
+    as_string: Viacoin
+    ticker: VIA
   - name: wanchain
     value: 5718350
+    as_string: Wanchain
+    ticker: WAN
   - name: zcash
     value: 133
+    as_string: Zcash
+    ticker: ZEC
   - name: firo
     value: 136
+    as_string: Firo
+    ticker: FIRO
   - name: zilliqa
     value: 313
+    as_string: Zilliqa
+    ticker: ZIL
   - name: zelcash
     value: 19167
+    as_string: Zelcash
+    ticker: ZEL
   - name: ravencoin
     value: 175
+    as_string: Ravencoin
+    ticker: RVN
   - name: waves
     value: 5741564
+    as_string: Waves
+    ticker: WAVES
   - name: terra
     value: 330
+    as_string: Terra
+    ticker: LUNA
   - name: terraV2
     value: 10000330
+    as_string: Terra V2
+    ticker: LUNA2
   - name: harmony
     value: 1023
+    as_string: Harmony
+    ticker: ONE
   - name: algorand
     value: 283
+    as_string: Algorand
+    ticker: ALGO
   - name: kusama
     value: 434
+    as_string: Kusama
+    ticker: KSM
   - name: polkadot
     value: 354
+    as_string: Polkadot
+    ticker: DOT
   - name: filecoin
     value: 461
+    as_string: Filecoin
+    ticker: FIL
   - name: multiversX
     value: 508
+    as_string: MultiversX
+    ticker: EGLD
   - name: bandChain
     value: 494
+    as_string: Band Protocol
+    ticker: BAND
   - name: smartChainLegacy
     value: 10000714
+    as_string: SmartChain Legacy
+    ticker: BSC
   - name: smartChain
     value: 20000714
+    as_string: SmartChain
+    ticker: BNB
+  - name: tBinance
+    value: 30000714
+    as_string: Binance Testnet
+    ticker: BNB
   - name: oasis
     value: 474
+    as_string: Oasis Network
+    ticker: ROSE
   - name: polygon
     value: 966
-  - name: thorchain
+    as_string: Polygon
+    ticker: MATIC
+  - name: thorChain
     value: 931
+    as_string: THORChain
+    ticker: RUNE
   - name: bluzelle
     value: 483
+    as_string: Bluzelle
+    ticker: BLZ
   - name: optimism
     value: 10000070
-  - name: zksync
+    as_string: Optimism
+    ticker: OP
+  - name: zkSync
     value: 10000324
+    as_string: zkSync
+    ticker: ZKS
   - name: arbitrum
     value: 10042221
-  - name: ecochain
+    as_string: Arbitrum
+    ticker: ARB
+  - name: ecoChain
     value: 10000553
+    as_string: ECO Chain
+    ticker: ECOC
   - name: avalancheCChain
     value: 10009000
-  - name: xdai
+    as_string: Avalanche C-Chain
+    ticker: AVAX
+  - name: xDai
     value: 10000100
+    as_string: xDai
+    ticker: XDAI
   - name: fantom
     value: 10000250
+    as_string: Fantom
+    ticker: FTM
   - name: cryptoOrg
     value: 394
+    as_string: Crypto.org Coin
+    ticker: CRO
   - name: celo
     value: 52752
+    as_string: Celo
+    ticker: CELO
   - name: ronin
     value: 10002020
+    as_string: Ronin
+    ticker: RON
   - name: osmosis
     value: 10000118
-  - name: ecash
+    as_string: Osmosis
+    ticker: OSMO
+  - name: eCash
     value: 899
+    as_string: eCash
+    ticker: XEC
+  - name: iost
+    value: 291
+    as_string: IOST
+    ticker: IOST
   - name: cronosChain
     value: 10000025
+    as_string: Cronos
+    ticker: CRO
   - name: smartBitcoinCash
     value: 10000145
+    as_string: Smart Bitcoin Cash
+    ticker: BCH
   - name: kuCoinCommunityChain
     value: 10000321
+    as_string: KuCoin Community Chain
+    ticker: KCS
+  - name: bitcoinDiamond
+    value: 999
+    as_string: Bitcoin Diamond
+    ticker: BCD
   - name: boba
     value: 10000288
+    as_string: Boba Network
+    ticker: BOBA
+  - name: syscoin
+    value: 57
+    as_string: Syscoin
+    ticker: SYS
+  - name: verge
+    value: 77
+    as_string: Verge
+    ticker: XVG
+  - name: zen
+    value: 121
+    as_string: Horizen (Zen)
+    ticker: ZEN
   - name: metis
     value: 10001088
+    as_string: Metis
+    ticker: METIS
   - name: aurora
     value: 1323161554
+    as_string: Aurora
+    ticker: AURORA
   - name: evmos
     value: 10009001
+    as_string: Evmos
+    ticker: EVMOS
   - name: nativeEvmos
     value: 20009001
+    as_string: Native Evmos
+    ticker: EVMOS
   - name: moonriver
     value: 10001285
+    as_string: Moonriver
+    ticker: MOVR
   - name: moonbeam
     value: 10001284
+    as_string: Moonbeam
+    ticker: GLMR
   - name: kavaEvm
     value: 10002222
-  - name: kaia
+    as_string: Kava EVM
+    ticker: KAVA
+  - name: klaytn
     value: 10008217
+    as_string: Klaytn
+    ticker: KLAY
   - name: meter
     value: 18000
-  - name: okxchain
+    as_string: Meter
+    ticker: MTRG
+  - name: okxChain
     value: 996
+    as_string: OKX Chain
+    ticker: OKT
+  - name: stratis
+    value: 105105
+    as_string: Stratis
+    ticker: STRAX
+  - name: komodo
+    value: 141
+    as_string: Komodo
+    ticker: KMD
   - name: nervos
     value: 309
+    as_string: Nervos Network
+    ticker: CKB
   - name: everscale
     value: 396
+    as_string: Everscale
+    ticker: EVER
   - name: aptos
     value: 637
+    as_string: Aptos
+    ticker: APT
+  - name: nebl
+    value: 146
+    as_string: Neblio
+    ticker: NEBL
   - name: hedera
     value: 3030
+    as_string: Hedera
+    ticker: HBAR
   - name: secret
     value: 529
+    as_string: Secret Network
+    ticker: SCRT
   - name: nativeInjective
     value: 10000060
+    as_string: Native Injective
+    ticker: INJ
   - name: agoric
     value: 564
+    as_string: Agoric
+    ticker: BLD
   - name: ton
     value: 607
+    as_string: TON (The Open Network)
+    ticker: TON
   - name: sui
     value: 784
+    as_string: Sui
+    ticker: SUI
   - name: stargaze
     value: 20000118
+    as_string: Stargaze
+    ticker: STARS
   - name: polygonzkEVM
     value: 10001101
+    as_string: Polygon zkEVM
+    ticker: POL
   - name: juno
     value: 30000118
+    as_string: Juno
+    ticker: JUNO
   - name: stride
     value: 40000118
+    as_string: Stride
+    ticker: STRD
   - name: axelar
     value: 50000118
+    as_string: Axelar
+    ticker: AXL
   - name: crescent
     value: 60000118
+    as_string: Crescent
+    ticker: CRE
   - name: kujira
     value: 70000118
+    as_string: Kujira
+    ticker: KUJI
   - name: ioTeXEVM
     value: 10004689
+    as_string: IoTeX EVM
+    ticker: IOTX
   - name: nativeCanto
     value: 10007700
+    as_string: Native Canto
+    ticker: CANTO
   - name: comdex
     value: 80000118
+    as_string: Comdex
+    ticker: CMDX
   - name: neutron
     value: 90000118
+    as_string: Neutron
+    ticker: NTRN
   - name: sommelier
     value: 11000118
+    as_string: Sommelier
+    ticker: SOMM
   - name: fetchAI
     value: 12000118
+    as_string: Fetch.ai
+    ticker: FET
   - name: mars
     value: 13000118
+    as_string: Mars Protocol
+    ticker: MARS
   - name: umee
     value: 14000118
+    as_string: Umee
+    ticker: UMEE
   - name: coreum
     value: 10000990
+    as_string: Coreum
+    ticker: COREUM
   - name: quasar
     value: 15000118
+    as_string: Quasar
+    ticker: QSR
   - name: persistence
     value: 16000118
+    as_string: Persistence
+    ticker: XPRT
   - name: akash
     value: 17000118
+    as_string: Akash Network
+    ticker: AKT
   - name: noble
     value: 18000118
+    as_string: Noble
+    ticker: NOBL
+  - name: scroll
+    value: 534352
+    as_string: Scroll
+    ticker: SCRL
+  - name: rootstock
+    value: 137
+    as_string: Rootstock (RSK)
+    ticker: RSK
+  - name: thetaFuel
+    value: 361
+    as_string: Theta Fuel
+    ticker: TFUEL
+  - name: confluxeSpace
+    value: 1030
+    as_string: Conflux eSpace
+    ticker: CFX
+  - name: acala
+    value: 787
+    as_string: Acala
+    ticker: ACA
+  - name: acalaEVM
+    value: 10000787
+    as_string: Acala EVM
+    ticker: ACA
+  - name: opBNB
+    value: 204
+    as_string: opBNB
+    ticker: OPBNB
+  - name: neon
+    value: 245022934
+    as_string: Neon
+    ticker: NEON
+  - name: base
+    value: 8453
+    as_string: Base
+    ticker: BASE
+  - name: sei
+    value: 19000118
+    as_string: Sei Network
+    ticker: SEI
+  - name: arbitrumNova
+    value: 10042170
+    as_string: Arbitrum Nova
+    ticker: ANOV
+  - name: linea
+    value: 59144
+    as_string: Linea
+    ticker: TBA
+  - name: greenfield
+    value: 5600
+    as_string: Greenfield
+    ticker: GNFD
+  - name: mantle
+    value: 5000
+    as_string: Mantle
+    ticker: MNT
+  - name: zenEON
+    value: 7332
+    as_string: ZenEON
+    ticker: ZEON
+  - name: internetComputer
+    value: 223
+    as_string: Internet Computer
+    ticker: ICP
+  - name: tia
+    value: 21000118
+    as_string: TIA
+    ticker: TIA
+  - name: mantaPacific
+    value: 169
+    as_string: Manta Pacific
+    ticker: MANTA
+  - name: nativeZetaChain
+    value: 10007000
+    as_string: Native ZetaChain
+    ticker: ZETA
+  - name: zetaEVM
+    value: 20007000
+    as_string: Zeta EVM
+    ticker: ZETA
+  - name: dydx
+    value: 22000118
+    as_string: dYdX
+    ticker: DYDX
+  - name: merlin
+    value: 4200
+    as_string: Merlin
+    ticker: MERL
+  - name: lightlink
+    value: 1890
+    as_string: Lightlink
+    ticker: LL
+  - name: blast
+    value: 81457
+    as_string: Blast
+    ticker: BLAST
+  - name: bounceBit
+    value: 6001
+    as_string: Bounce Bit
+    ticker: BB
+  - name: zkLinkNova
+    value: 810180
+    as_string: zkLink Nova
+    ticker: ZKLN
 functions:
 - name: TWCoinTypeValidate
   is_public: true

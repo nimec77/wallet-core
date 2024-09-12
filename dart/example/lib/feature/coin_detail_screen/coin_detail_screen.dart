@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http_interceptor/http/intercepted_http.dart';
 import 'package:trust_wallet_core/trust_wallet_core.dart';
-import 'package:trust_wallet_core_example/common/utils.dart';
+import 'package:trust_wallet_core_example/data/abstractions/base_blockchain_wallet.dart';
 import 'package:trust_wallet_core_example/data/factory/wallet_service_factory.dart';
 import 'package:trust_wallet_core_example/data/services/wallet_service.dart';
+import 'package:trust_wallet_core_example/data/wallets/bitcoin_wallet.dart';
+import 'package:trust_wallet_core_example/data/wallets/ethereum_wallet.dart';
 import 'package:trust_wallet_core_example/di/dependency_scope.dart';
 import 'package:trust_wallet_core_example/feature/transaction_screen/transaction_screen.dart';
 
@@ -33,17 +35,26 @@ class _CoinDetailScreenState extends State<CoinDetailScreen> {
     super.initState();
 
     httpClient = DependencyScope.of(context).http;
-    walletService = WalletServiceFactory.getService(
-      httpClient,
-      hdWallet,
-    );
+
+    walletService = switch (widget.coinType) {
+      const (CoinType.bitcoin) => WalletServiceFactory.getService<BitcoinWallet>(
+          httpClient,
+          hdWallet,
+        ),
+      const (CoinType.ethereum) => WalletServiceFactory.getService<EthereumWallet>(
+          httpClient,
+          hdWallet,
+        ),
+      _ => throw Exception('Unknown coin'),
+    };
+
     address = hdWallet.getAddressForCoin(widget.coinType);
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text(Utils.getCoinName(widget.coinType)),
+          title: Text(widget.coinType.description),
         ),
         body: Center(
           child: Padding(

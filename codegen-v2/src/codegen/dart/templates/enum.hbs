@@ -31,6 +31,15 @@ enum {{#unless is_public}}_{{/unless}}{{name}} {
         _ => throw ArgumentError("Unknown value for {{name}}: $value"),
     };
 {{/if}}
+{{#if add_tickers}}
+
+    String get ticker => switch (value) {
+    {{#each variants}}
+        {{value}} => '{{ticker}}',
+    {{/each}}
+        _ => throw ArgumentError("Unknown value for {{name}}: $value"),
+    };
+{{/if}}
 {{! Methods }}
 {{#if methods}}
 

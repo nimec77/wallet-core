@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:trust_wallet_core/trust_wallet_core.dart';
-import 'package:trust_wallet_core_example/common/utils.dart';
 import 'package:trust_wallet_core_example/common/widgets/highlighted_text.dart';
 import 'package:trust_wallet_core_example/feature/coin_detail_screen/coin_detail_screen.dart';
 
@@ -61,11 +60,11 @@ class _CoinListScreenState extends State<CoinListScreen> {
                         final coinType = _coins[index];
                         return ListTile(
                           title: HighlightedText(
-                            Utils.getCoinName(coinType),
+                            coinType.description,
                             subText: _searchController.text,
                           ),
                           subtitle: HighlightedText(
-                            Utils.getCoinTicker(coinType),
+                            coinType.ticker,
                             subText: _searchController.text,
                           ),
                           onTap: () => Navigator.push(
@@ -94,8 +93,7 @@ class _CoinListScreenState extends State<CoinListScreen> {
       final query = _searchController.text.toLowerCase();
 
       for (final coin in CoinType.values) {
-        if (Utils.getCoinName(coin).toLowerCase().contains(query) ||
-            Utils.getCoinTicker(coin).toLowerCase().contains(query)) {
+        if (coin.description.toLowerCase().contains(query) || coin.ticker.toLowerCase().contains(query)) {
           _coins.add(coin);
         }
       }
