@@ -208,6 +208,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         let pretty_enum_name = pretty_name(&enm.name);
 
         let mut add_description = false;
+        let mut add_tickers = false;
         // Convert to Dart enum variants
         let variants: Vec<DartEnumVariant> = enm
             .variants
@@ -216,10 +217,14 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
                 if info.as_string.is_some() {
                     add_description = true;
                 }
+                if info.ticker.is_some() {
+                    add_tickers = true;
+                }
                 DartEnumVariant {
                     name: replace_forbidden_words(&info.name),
                     value: info.value,
                     as_string: info.as_string,
+                    ticker: info.ticker,
                 }
             })
             .collect();
@@ -229,6 +234,7 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
             name: pretty_enum_name,
             is_public: enm.is_public,
             add_description,
+            add_tickers,
             variants,
             value_type: ENUM_VALUE_TYPE.to_string(),
             methods,
