@@ -1,9 +1,9 @@
-// You have generated a new plugin project without specifying the `--platforms`
-// flag. An FFI plugin project that supports no platforms is generated.
-// To add platforms, run `flutter create -t plugin_ffi --platforms <platforms> .`
-// in this directory. You can also find a detailed instruction on how to
-// add platforms in the `pubspec.yaml` at
-// https://flutter.dev/to/pubspec-plugin-platforms.
+// SPDX-License-Identifier: Apache-2.0
+//
+// Copyright © 2017 Trust Wallet.
+//
+// This is a GENERATED FILE, changes made here WILL BE LOST.
+//
 
 import 'src/index.dart';
 
@@ -14,8 +14,6 @@ part 'package:trust_wallet_core/src/extensions/extensions.dart';
 part 'package:trust_wallet_core/src/generated/account.dart';
 part 'package:trust_wallet_core/src/generated/aes.dart';
 part 'package:trust_wallet_core/src/generated/any_address.dart';
-part 'package:trust_wallet_core/src/generated/private_key.dart';
-part 'package:trust_wallet_core/src/generated/public_key.dart';
 part 'package:trust_wallet_core/src/generated/barz.dart';
 part 'package:trust_wallet_core/src/generated/base_32.dart';
 part 'package:trust_wallet_core/src/generated/base_58.dart';
@@ -26,8 +24,8 @@ part 'package:trust_wallet_core/src/generated/bitcoin_script.dart';
 part 'package:trust_wallet_core/src/generated/cardano.dart';
 part 'package:trust_wallet_core/src/generated/coin_type_configuration.dart';
 part 'package:trust_wallet_core/src/generated/data_vector.dart';
-part 'package:trust_wallet_core/src/generated/derivation_path_index.dart';
 part 'package:trust_wallet_core/src/generated/derivation_path.dart';
+part 'package:trust_wallet_core/src/generated/derivation_path_index.dart';
 part 'package:trust_wallet_core/src/generated/enums/aes_padding_mode.dart';
 part 'package:trust_wallet_core/src/generated/enums/bitcoin_sig_hash_type.dart';
 part 'package:trust_wallet_core/src/generated/enums/blockchain.dart';
@@ -45,13 +43,13 @@ part 'package:trust_wallet_core/src/generated/enums/ss_58_address_type.dart';
 part 'package:trust_wallet_core/src/generated/enums/stellar_memo_type.dart';
 part 'package:trust_wallet_core/src/generated/enums/stellar_passphrase.dart';
 part 'package:trust_wallet_core/src/generated/enums/stellar_version_byte.dart';
-part 'package:trust_wallet_core/src/generated/enums/stored_key_encryption_level.dart';
 part 'package:trust_wallet_core/src/generated/enums/stored_key_encryption.dart';
+part 'package:trust_wallet_core/src/generated/enums/stored_key_encryption_level.dart';
+part 'package:trust_wallet_core/src/generated/ethereum.dart';
+part 'package:trust_wallet_core/src/generated/ethereum_abi.dart';
 part 'package:trust_wallet_core/src/generated/ethereum_abi_function.dart';
 part 'package:trust_wallet_core/src/generated/ethereum_abi_value.dart';
-part 'package:trust_wallet_core/src/generated/ethereum_abi.dart';
 part 'package:trust_wallet_core/src/generated/ethereum_message_signer.dart';
-part 'package:trust_wallet_core/src/generated/ethereum.dart';
 part 'package:trust_wallet_core/src/generated/filecoin_address_converter.dart';
 part 'package:trust_wallet_core/src/generated/fio_account.dart';
 part 'package:trust_wallet_core/src/generated/groestlcoin_address.dart';
@@ -62,6 +60,8 @@ part 'package:trust_wallet_core/src/generated/mnemonic.dart';
 part 'package:trust_wallet_core/src/generated/near_account.dart';
 part 'package:trust_wallet_core/src/generated/nervos_address.dart';
 part 'package:trust_wallet_core/src/generated/pbkdf_2.dart';
+part 'package:trust_wallet_core/src/generated/private_key.dart';
+part 'package:trust_wallet_core/src/generated/public_key.dart';
 part 'package:trust_wallet_core/src/generated/ripple_x_address.dart';
 part 'package:trust_wallet_core/src/generated/segwit_address.dart';
 part 'package:trust_wallet_core/src/generated/solana_address.dart';
@@ -78,23 +78,23 @@ const String _libName = 'WalletCore';
 late final DynamicLibrary _library;
 late final TrustWalletCoreBindings _bindings;
 
-abstract class TrustWalletCore {
-  const TrustWalletCore._();
+final class TrustWalletCore {
+    const TrustWalletCore._();
 
-  DynamicLibrary get library => _library;
-  TrustWalletCoreBindings get bindings => _bindings;
+    DynamicLibrary get library => _library;
+    TrustWalletCoreBindings get bindings => _bindings;
 
-  static void init() {
-    if (Platform.isMacOS || Platform.isIOS) {
-      _library = DynamicLibrary.open('$_libName.framework/$_libName');
-    } else if (Platform.isAndroid || Platform.isLinux) {
-      _library = DynamicLibrary.open('lib$_libName.so');
-    } else if (Platform.isWindows) {
-      _library = DynamicLibrary.open('$_libName.dll');
-    } else {
-      throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
+    static void init() {
+        if (Platform.isMacOS || Platform.isIOS) {
+            _library = DynamicLibrary.open('$_libName.framework/$_libName');
+        } else if (Platform.isAndroid || Platform.isLinux) {
+            _library = DynamicLibrary.open('lib$_libName.so');
+        } else if (Platform.isWindows) {
+        _library = DynamicLibrary.open('$_libName.dll');
+        } else {
+            throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
+        }
+
+        _bindings = TrustWalletCoreBindings(_library);
     }
-
-    _bindings = TrustWalletCoreBindings(_library);
-  }
 }

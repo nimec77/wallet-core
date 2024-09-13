@@ -182,24 +182,24 @@ fn generate_dart_bindings() -> Result<()> {
         let rendered = libparser::codegen::dart::render_to_strings(input)?;
 
         if !rendered.structs.is_empty() {
-            std::fs::create_dir_all(format!("{OUT_DIR}/src/generated"))?;
+            std::fs::create_dir_all(format!("{OUT_DIR}/generated"))?;
         }
 
         // Enum declarations go into their own subfolder.
         if !rendered.enums.is_empty() {
-            std::fs::create_dir_all(format!("{OUT_DIR}/src/generated/enums"))?;
+            std::fs::create_dir_all(format!("{OUT_DIR}/generated/enums"))?;
         }
 
         for (name, rendered) in rendered.structs {
             part_names.insert(name.clone());
-            let file_path = format!("{OUT_DIR}/src/generated/{name}.dart");
+            let file_path = format!("{OUT_DIR}/generated/{name}.dart");
             std::fs::write(&file_path, rendered.as_bytes())?;
         }
 
         for (name, rendered) in rendered.enums {
             let enum_path = format!("enums/{name}");
             part_names.insert(enum_path.clone());
-            let file_path = format!("{OUT_DIR}/src/generated/{enum_path}.dart");
+            let file_path = format!("{OUT_DIR}/generated/{enum_path}.dart");
             std::fs::write(&file_path, rendered.as_bytes())?;
         }
     }

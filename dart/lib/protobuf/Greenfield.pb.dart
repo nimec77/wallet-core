@@ -14,10 +14,10 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Common.pbenum.dart' as $0;
-import 'Greenfield.pbenum.dart';
+import 'common.pbenum.dart' as $0;
+import 'greenfield.pbenum.dart';
 
-export 'Greenfield.pbenum.dart';
+export 'greenfield.pbenum.dart';
 
 /// A denomination and an amount
 class Amount extends $pb.GeneratedMessage {

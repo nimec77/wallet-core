@@ -13,12 +13,12 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Aptos.pb.dart' as $5;
-import 'Cosmos.pb.dart' as $4;
-import 'Ethereum.pb.dart' as $3;
-import 'LiquidStaking.pbenum.dart';
+import 'aptos.pb.dart' as $5;
+import 'cosmos.pb.dart' as $4;
+import 'ethereum.pb.dart' as $3;
+import 'liquid_staking.pbenum.dart';
 
-export 'LiquidStaking.pbenum.dart';
+export 'liquid_staking.pbenum.dart';
 
 /// Message to represent the status of an operation
 class Status extends $pb.GeneratedMessage {
@@ -115,7 +115,7 @@ class Asset extends $pb.GeneratedMessage {
   factory Asset.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Asset', package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.LiquidStaking.Proto'), createEmptyInstance: create)
-    ..e<Coin>(1, _omitFieldNames ? '' : 'stakingToken', $pb.PbFieldType.OE, defaultOrMaker: Coin.MATIC, valueOf: Coin.valueOf, enumValues: Coin.values)
+    ..e<Coin>(1, _omitFieldNames ? '' : 'stakingToken', $pb.PbFieldType.OE, defaultOrMaker: Coin.POL, valueOf: Coin.valueOf, enumValues: Coin.values)
     ..aOS(2, _omitFieldNames ? '' : 'liquidToken')
     ..aOS(3, _omitFieldNames ? '' : 'denom')
     ..aOS(4, _omitFieldNames ? '' : 'fromAddress')

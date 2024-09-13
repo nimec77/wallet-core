@@ -14,10 +14,10 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Common.pbenum.dart' as $0;
-import 'Polkadot.pbenum.dart';
+import 'common.pbenum.dart' as $0;
+import 'polkadot.pbenum.dart';
 
-export 'Polkadot.pbenum.dart';
+export 'polkadot.pbenum.dart';
 
 /// An era, a period defined by a starting block and length
 class Era extends $pb.GeneratedMessage {

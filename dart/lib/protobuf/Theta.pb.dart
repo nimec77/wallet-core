@@ -14,7 +14,7 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Common.pbenum.dart' as $0;
+import 'common.pbenum.dart' as $0;
 
 /// / Input data necessary to create a signed transaction
 class SigningInput extends $pb.GeneratedMessage {

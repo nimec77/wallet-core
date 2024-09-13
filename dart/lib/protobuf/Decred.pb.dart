@@ -14,8 +14,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Bitcoin.pb.dart' as $2;
-import 'Common.pbenum.dart' as $0;
+import 'bitcoin.pb.dart' as $2;
+import 'common.pbenum.dart' as $0;
 
 /// A transfer transaction
 class Transaction extends $pb.GeneratedMessage {

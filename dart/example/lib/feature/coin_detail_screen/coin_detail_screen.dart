@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http_interceptor/http/intercepted_http.dart';
 import 'package:trust_wallet_core/trust_wallet_core.dart';
-import 'package:trust_wallet_core_example/data/abstractions/base_blockchain_wallet.dart';
 import 'package:trust_wallet_core_example/data/factory/wallet_service_factory.dart';
 import 'package:trust_wallet_core_example/data/services/wallet_service.dart';
 import 'package:trust_wallet_core_example/data/wallets/bitcoin_wallet.dart';

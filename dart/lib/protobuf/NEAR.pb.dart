@@ -14,7 +14,7 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Common.pbenum.dart' as $0;
+import 'common.pbenum.dart' as $0;
 
 /// Public key with type
 class PublicKey extends $pb.GeneratedMessage {

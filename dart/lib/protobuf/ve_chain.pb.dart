@@ -14,7 +14,7 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Common.pbenum.dart' as $0;
+import 'common.pbenum.dart' as $0;
 
 /// A clause, between a sender and destination
 class Clause extends $pb.GeneratedMessage {
