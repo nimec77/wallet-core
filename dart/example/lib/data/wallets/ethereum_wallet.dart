@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http_interceptor/http/intercepted_http.dart';
-import 'package:trust_wallet_core/protobuf/Ethereum.pb.dart' as ethereum;
+import 'package:trust_wallet_core/protobuf/ethereum.pb.dart' as ethereum;
 import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
 import 'package:trust_wallet_core_example/data/abstractions/base_blockchain_wallet.dart';
