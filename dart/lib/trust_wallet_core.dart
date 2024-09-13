@@ -80,7 +80,7 @@ abstract final class TrustWalletCore {
   const TrustWalletCore._();
 
   static void init() {
-    String dllPath;
+    late String? dllPath;
 
     if (Platform.isMacOS || Platform.isIOS) {
       dllPath = 'WalletCore.framework/WalletCore';
@@ -95,15 +95,13 @@ abstract final class TrustWalletCore {
       } else {
         dllPath = 'windows/libs/86/TrustWalletCore.dll';
       }
-    } else {
+    }
+
+    if (dllPath != null || (dllPath?.isEmpty ?? false)) {
       throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
     }
 
-    if (dllPath.isEmpty) {
-      throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
-    }
-
-    _library = DynamicLibrary.open(dllPath);
+    _library = DynamicLibrary.open(dllPath!);
     _bindings = TrustWalletCoreBindings(_library);
   }
 }
