@@ -46,6 +46,7 @@ flutter:
     # https://flutter.dev/to/pubspec-plugin-platforms
     # -------------------
       some_platform:
+        dartPluginClass: TrustWalletCore
         ffiPlugin: true
     # -------------------
 
