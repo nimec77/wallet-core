@@ -907,6 +907,67 @@ class UserOperation extends $pb.GeneratedMessage {
   void clearPaymasterAndData() => clearField(6);
 }
 
+/// An item of the [EIP-2930](https://eips.ethereum.org/EIPS/eip-2930) access list.
+class Access extends $pb.GeneratedMessage {
+  factory Access({
+    $core.String? address,
+    $core.Iterable<$core.List<$core.int>>? storedKeys,
+  }) {
+    final $result = create();
+    if (address != null) {
+      $result.address = address;
+    }
+    if (storedKeys != null) {
+      $result.storedKeys.addAll(storedKeys);
+    }
+    return $result;
+  }
+  Access._() : super();
+  factory Access.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Access.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Access', package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ethereum.Proto'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'address')
+    ..p<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'storedKeys', $pb.PbFieldType.PY)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Access clone() => Access()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Access copyWith(void Function(Access) updates) => super.copyWith((message) => updates(message as Access)) as Access;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Access create() => Access._();
+  Access createEmptyInstance() => create();
+  static $pb.PbList<Access> createRepeated() => $pb.PbList<Access>();
+  @$core.pragma('dart2js:noInline')
+  static Access getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Access>(create);
+  static Access? _defaultInstance;
+
+  /// Address to be accessed by the transaction.
+  @$pb.TagNumber(1)
+  $core.String get address => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set address($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasAddress() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAddress() => clearField(1);
+
+  /// Storage keys to be accessed by the transaction.
+  @$pb.TagNumber(2)
+  $core.List<$core.List<$core.int>> get storedKeys => $_getList(1);
+}
+
 /// Input data necessary to create a signed transaction.
 /// Legacy and EIP2718/EIP1559 transactions supported, see TransactionMode.
 class SigningInput extends $pb.GeneratedMessage {
@@ -922,6 +983,7 @@ class SigningInput extends $pb.GeneratedMessage {
     $core.List<$core.int>? privateKey,
     Transaction? transaction,
     UserOperation? userOperation,
+    $core.Iterable<Access>? accessList,
   }) {
     final $result = create();
     if (chainId != null) {
@@ -957,6 +1019,9 @@ class SigningInput extends $pb.GeneratedMessage {
     if (userOperation != null) {
       $result.userOperation = userOperation;
     }
+    if (accessList != null) {
+      $result.accessList.addAll(accessList);
+    }
     return $result;
   }
   SigningInput._() : super();
@@ -975,6 +1040,7 @@ class SigningInput extends $pb.GeneratedMessage {
     ..a<$core.List<$core.int>>(9, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
     ..aOM<Transaction>(10, _omitFieldNames ? '' : 'transaction', subBuilder: Transaction.create)
     ..aOM<UserOperation>(11, _omitFieldNames ? '' : 'userOperation', subBuilder: UserOperation.create)
+    ..pc<Access>(12, _omitFieldNames ? '' : 'accessList', $pb.PbFieldType.PM, subBuilder: Access.create)
     ..hasRequiredFields = false
   ;
 
@@ -1116,6 +1182,11 @@ class SigningInput extends $pb.GeneratedMessage {
   void clearUserOperation() => clearField(11);
   @$pb.TagNumber(11)
   UserOperation ensureUserOperation() => $_ensure(10);
+
+  /// Optional list of addresses and storage keys that the transaction plans to access.
+  /// Used in `TransactionMode::Enveloped` only.
+  @$pb.TagNumber(12)
+  $core.List<Access> get accessList => $_getList(11);
 }
 
 /// Result containing the signed and encoded transaction.

@@ -107,20 +107,17 @@ copy_protobuf() {
 generate_protobuf() {
     echo "Generating protobuf files..."
     local prefix="$1/build/local"
-    if  [ ! -d $prefix ] || \
-        [ ! -d $prefix/include ] || \
-        [ ! -f $prefix/bin/protoc ] || \
-        [ ! -f $prefix/bin/protoc-gen-c-typedef ]
+    if  [ -d $prefix ] && \
+        [ -d $prefix/include ] && \
+        [ -f $prefix/bin/protoc ] 
     then
-        echo $prefix does not exist or not complete, fallback to /usr/local
-        prefix=/usr/local
+        export PATH="$prefix/bin":$PATH
     fi
-    export PATH="$prefix/bin":~/.pub-cache/bin:$PATH
+    export PATH=~/.pub-cache/bin:$PATH
     local dart_folder=$2
     local src=$3
     local dst=$4
     pushd $dart_folder    
-    # dart pub global activate protoc_plugin
     protoc  -I=$src --dart_out=$dst $src/**.proto
     popd
 }
@@ -143,16 +140,17 @@ fix_protobuf_import() {
 }
 
 main() {
-    # clear_files ffigen $DART_FOLDER
-    # copy_files ffigen $ROOT $DART_FOLDER
+    clear_files ffigen $DART_FOLDER
+    copy_files ffigen $ROOT $DART_FOLDER
     ffigen $DART_FOLDER
-    # clear_files bindings $CODEGEN_FOLDER $DART_FOLDER
-    # generate_bindings $CODEGEN_FOLDER
-    # copy_files bindings $CODEGEN_FOLDER $DART_FOLDER
-    # clear_files protobuf $DART_FOLDER
-    # copy_protobuf $ROOT $DART_FOLDER
-    # generate_protobuf $ROOT $DART_FOLDER $DART_PROTOBUF_SRC $DART_PROTOBUF_DST
-    # gen_dart_file_name $DART_PROTOBUF_DST
-    # fix_protobuf_import $DART_FOLDER $DART_PROTOBUF_DST
+    clear_files bindings $CODEGEN_FOLDER $DART_FOLDER
+    generate_bindings $CODEGEN_FOLDER
+    copy_files bindings $CODEGEN_FOLDER $DART_FOLDER
+    clear_files protobuf $DART_FOLDER
+    copy_protobuf $ROOT $DART_FOLDER
+    generate_protobuf $ROOT $DART_FOLDER $DART_PROTOBUF_SRC $DART_PROTOBUF_DST
+    gen_dart_file_name $DART_PROTOBUF_DST
+    fix_protobuf_import $DART_FOLDER $DART_PROTOBUF_DST
 }
+
 main
