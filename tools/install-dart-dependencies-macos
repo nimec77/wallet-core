@@ -1,0 +1,57 @@
+#!/bin/bash
+#
+# This file install dependencies for generate Dart bindings.
+#
+
+set -e
+
+ROOT="$PWD"
+
+install_dart() {
+    if command -v dart &> /dev/null
+    then
+        echo "Dart is already installed."
+    else
+        echo "Dart is not installed. Installing it now."
+        brew install dart-sdk
+    fi
+}
+
+install_rust() {
+    if command -v rustup &> /dev/null
+    then
+        echo "Rustup is already installed."
+    else
+        echo "Rustup is not installed. Installing it now."
+        brew install rustup
+    fi
+
+    $1/tools/install-rust-dependencies
+}
+
+install_protobuf() {
+    local prefix="$1/build/local"
+    if  [ -d $prefix ] && \
+        [ -d $prefix/include ] && \
+        [ -f $prefix/bin/protoc ] 
+    then
+        export PATH="$prefix/bin":$PATH
+    fi
+    if command -v protoc &> /dev/null
+    then
+        echo "Protobuf is already installed."
+    else
+        echo "Protobuf is not installed. Installing it now."
+        brew install protobuf
+    fi
+    dart pub global activate protoc_plugin
+}
+
+
+main() {
+    install_dart
+    install_rust $ROOT
+    install_protobuf $ROOT
+}
+
+main
