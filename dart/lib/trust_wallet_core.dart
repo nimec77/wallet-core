@@ -73,37 +73,34 @@ part 'package:trust_wallet_core/src/generated/thor_chain_swap.dart';
 part 'package:trust_wallet_core/src/generated/transaction_compiler.dart';
 part 'package:trust_wallet_core/src/generated/tron_message_signer.dart';
 
-late final DynamicLibrary _library;
 late final TrustWalletCoreBindings _bindings;
 
 abstract final class TrustWalletCore {
-    const TrustWalletCore._();
+  const TrustWalletCore._();
 
-    static void init() {
-        String dllPath;
+  static void init() {
+    String dllPath = '';
 
-        if (Platform.isMacOS || Platform.isIOS) {
-            dllPath = 'WalletCore.framework/WalletCore';
-        } else if (Platform.isAndroid) {
-            dllPath = 'libTrustWalletCore.so';
-        } else if (Platform.isWindows) {
-            if (Platform.environment['PROCESSOR_ARCHITECTURE'] == 'AMD64' ||
-                Platform.environment['PROCESSOR_ARCHITEW6432'] == 'AMD64') {
-                dllPath = 'windows/libs/64/TrustWalletCore.dll';
-            } else if (Platform.environment['PROCESSOR_ARCHITECTURE'] == 'ARM64') {
-                dllPath = 'windows/libs/arm64/TrustWalletCore.dll';
-            } else {
-                dllPath = 'windows/libs/86/TrustWalletCore.dll';
-            }
-        } else {
-            throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
-        }
-
-        if (dllPath.isEmpty) {
-            throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
-        }
-
-        _library = DynamicLibrary.open(dllPath);
-        _bindings = TrustWalletCoreBindings(_library);
+    if (Platform.isMacOS || Platform.isIOS) {
+      dllPath = 'WalletCore.framework/WalletCore';
+    } else if (Platform.isAndroid) {
+      dllPath = 'libTrustWalletCore.so';
+    } else if (Platform.isWindows) {
+      if (Platform.environment['PROCESSOR_ARCHITECTURE'] == 'AMD64' ||
+          Platform.environment['PROCESSOR_ARCHITEW6432'] == 'AMD64') {
+        dllPath = 'windows/libs/64/TrustWalletCore.dll';
+      } else if (Platform.environment['PROCESSOR_ARCHITECTURE'] == 'ARM64') {
+        dllPath = 'windows/libs/arm64/TrustWalletCore.dll';
+      } else {
+        dllPath = 'windows/libs/86/TrustWalletCore.dll';
+      }
     }
+
+    if (dllPath.isEmpty) {
+      throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
+    }
+
+    final library = DynamicLibrary.open(dllPath);
+    _bindings = TrustWalletCoreBindings(library);
+  }
 }
