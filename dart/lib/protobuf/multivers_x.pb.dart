@@ -14,7 +14,7 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Common.pbenum.dart' as $0;
+import 'common.pbenum.dart' as $0;
 
 /// Generic action. Using one of the more specific actions (e.g. transfers, see below) is recommended.
 class GenericAction extends $pb.GeneratedMessage {

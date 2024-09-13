@@ -13,12 +13,12 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Binance.pb.dart' as $6;
-import 'Common.pbenum.dart' as $0;
-import 'Solana.pb.dart' as $7;
-import 'WalletConnect.pbenum.dart';
+import 'binance.pb.dart' as $6;
+import 'common.pbenum.dart' as $0;
+import 'solana.pb.dart' as $7;
+import 'wallet_connect.pbenum.dart';
 
-export 'WalletConnect.pbenum.dart';
+export 'wallet_connect.pbenum.dart';
 
 class ParseRequestInput extends $pb.GeneratedMessage {
   factory ParseRequestInput({

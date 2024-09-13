@@ -7,7 +7,6 @@
 #include "TWBase.h"
 #include "TWData.h"
 #include "TWString.h"
-#include "TWPublicKey.h"
 
 TW_EXTERN_C_BEGIN
 
@@ -44,7 +43,7 @@ TWString *_Nonnull TWCardanoGetStakingAddress(TWString *_Nonnull baseAddress) TW
 /// Return the legacy(byron) address.
 /// \param publicKey A valid public key with TWPublicKeyTypeED25519Cardano type.
 /// \return the legacy(byron) address, as string, or empty string on error.
-TW_EXPORT_STATIC_METHOD
-TWString *_Nonnull TWCardanoGetByronAddress(struct TWPublicKey *_Nonnull publicKey);
+// TW_EXPORT_STATIC_METHOD
+// TWString *_Nonnull TWCardanoGetByronAddress(struct TWPublicKey *_Nonnull publicKey);
 
-TW_EXTERN_C_END
+// TW_EXTERN_C_END

@@ -14,9 +14,9 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Everscale.pbenum.dart';
+import 'everscale.pbenum.dart';
 
-export 'Everscale.pbenum.dart';
+export 'everscale.pbenum.dart';
 
 enum Transfer_AccountStateOneof {
   encodedContractData, 

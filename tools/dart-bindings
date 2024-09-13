@@ -1,0 +1,148 @@
+#!/bin/bash
+#
+# This file generates bindings for a Dart project.
+#
+
+set -o pipefail
+set -e
+
+ROOT="$PWD"
+CODEGEN_FOLDER=$ROOT/codegen-v2
+DART_FOLDER=$ROOT/dart
+DART_PROTOBUF_SRC=$DART_FOLDER/include/proto
+DART_PROTOBUF_DST=$DART_FOLDER/lib/protobuf
+
+clear_files() {
+    case $1 in
+        bindings)
+            clear_bindings $2 $3
+            ;;
+        ffigen)
+            clear_ffigen $2
+            ;;
+        protobuf)
+            clear_protobuf $2
+            ;;
+    esac
+}
+
+copy_files() {
+    case $1 in
+        bindings)
+            copy_bindings $2 $3
+            ;;
+        ffigen)
+            copy_ffigen $2 $3
+            ;;
+    esac
+}
+
+clear_bindings() {
+    echo "Clearing bindings..."
+    local codegen_folder=$1
+    local dart_folder=$2
+    rm -rf $codegen_folder/bindings/dart
+    local trust_wallet=$dart_folder/lib/trust_wallet_core.dart
+    if [ -f "$trust_wallet" ]; then
+        rm $trust_wallet
+    fi
+    rm -rf $dart_folder/lib/src/generated
+}
+
+copy_bindings() {
+    echo "Copying bindings..."
+    local codegen_folder=$1
+    local dart_folder=$2
+    cp $codegen_folder/bindings/dart/trust_wallet_core.dart $dart_folder/lib/
+    cp -r $codegen_folder/bindings/dart/generated/ $dart_folder/lib/src/generated/
+}
+
+generate_bindings() {
+    echo "Generating Dart bindings..."
+    pushd $1
+    cargo run -- dart
+    popd
+}
+
+clear_ffigen() {
+    echo "Clearing FFI genration..."
+    local ffigen_bindings=$1/lib/src/bindings/generated_bindings.dart
+    if [ -f "$ffigen_bindings" ]; then
+        rm $ffigen_bindings
+    fi
+    rm -rf $1/include/headers
+}
+
+copy_ffigen() {
+    echo "Copying FFI genration..."
+    local src=$1/include/TrustWalletCore
+    local dst=$2/include/headers
+    mkdir -p $dst
+    cp -r $src/ $dst/
+}
+
+ffigen() {    
+    echo "FFI genration..."
+    pushd $1
+    dart run ffigen --config ffigen.yaml
+    popd
+}
+
+clear_protobuf() {
+    echo "Clearing protobuf files..."
+    local dart_folder=$1
+    rm -rf $dart_folder/include/proto
+    rm -rf $dart_folder/lib/protobuf
+}
+
+copy_protobuf() {
+    echo "Copying protobuf files..."
+    local src=$1/src/proto
+    local dst=$2/include/proto
+    mkdir -p $dst
+    cp $src/*.proto $dst/
+    mkdir -p $2/lib/protobuf
+}
+
+generate_protobuf() {
+    echo "Generating protobuf files..."
+    local dart_folder=$1
+    local src=$2
+    local dst=$3
+    pushd $dart_folder
+    # dart pub global activate protoc_plugin
+    protoc  -I=$src --dart_out=$dst $src/**.proto
+    popd
+}
+
+gen_dart_file_name() {
+    echo "Rename generated dart files to snake_case..."
+    for file in $1/*.dart; do
+        local filename=$(basename "$file" .dart)
+        local new_filename=$(echo "$filename" | sed 's/\([a-z]\)\([A-Z]\)/\1_\2/g' | tr '[:upper:]' '[:lower:]')
+
+        mv "$1/$filename.dart" "$1/$new_filename.dart"
+    done
+}
+
+fix_protobuf_import() {
+    echo "Fix protobuf import..."
+    local dart_folder=$1
+    local dst=$2
+    python3 $dart_folder/camel_case_to_snake_case.py $dst
+}
+
+main() {
+    clear_files ffigen $DART_FOLDER
+    copy_files ffigen $ROOT $DART_FOLDER
+    ffigen $DART_FOLDER
+    clear_files bindings $CODEGEN_FOLDER $DART_FOLDER
+    generate_bindings $CODEGEN_FOLDER
+    copy_files bindings $CODEGEN_FOLDER $DART_FOLDER
+    clear_files protobuf $DART_FOLDER
+    copy_protobuf $ROOT $DART_FOLDER
+    generate_protobuf $DART_FOLDER $DART_PROTOBUF_SRC $DART_PROTOBUF_DST
+    gen_dart_file_name $DART_PROTOBUF_DST
+    fix_protobuf_import $DART_FOLDER $DART_PROTOBUF_DST
+}
+main

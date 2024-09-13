@@ -14,13 +14,13 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Binance.pb.dart' as $6;
-import 'Bitcoin.pb.dart' as $2;
-import 'Cosmos.pb.dart' as $4;
-import 'Ethereum.pb.dart' as $3;
-import 'THORChainSwap.pbenum.dart';
+import 'binance.pb.dart' as $6;
+import 'bitcoin.pb.dart' as $2;
+import 'cosmos.pb.dart' as $4;
+import 'ethereum.pb.dart' as $3;
+import 'thorchain_swap.pbenum.dart';
 
-export 'THORChainSwap.pbenum.dart';
+export 'thorchain_swap.pbenum.dart';
 
 /// An error code + a free text
 class Error extends $pb.GeneratedMessage {

@@ -7,7 +7,7 @@ headers:
     include-directives:
       - 'include/headers/**.h'
 output:
-  bindings: 'lib/src/gen/ffi/generated_bindings.dart'  
+  bindings: 'lib/src/bindings/generated_bindings.dart'  
 preamble: |
   // ignore_for_file: always_specify_types
   // ignore_for_file: camel_case_types

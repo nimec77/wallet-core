@@ -14,10 +14,10 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Common.pbenum.dart' as $0;
-import 'Stellar.pbenum.dart';
+import 'common.pbenum.dart' as $0;
+import 'stellar.pbenum.dart';
 
-export 'Stellar.pbenum.dart';
+export 'stellar.pbenum.dart';
 
 /// Represents an asset
 /// Note: alphanum12 currently not supported

@@ -14,9 +14,9 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'EthereumAbi.pbenum.dart';
+import 'ethereum_abi.pbenum.dart';
 
-export 'EthereumAbi.pbenum.dart';
+export 'ethereum_abi.pbenum.dart';
 
 /// Indicates a boolean type.
 class BoolType extends $pb.GeneratedMessage {

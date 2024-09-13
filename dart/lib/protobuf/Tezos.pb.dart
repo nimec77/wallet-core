@@ -14,10 +14,10 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Common.pbenum.dart' as $0;
-import 'Tezos.pbenum.dart';
+import 'common.pbenum.dart' as $0;
+import 'tezos.pbenum.dart';
 
-export 'Tezos.pbenum.dart';
+export 'tezos.pbenum.dart';
 
 /// Input data necessary to create a signed Tezos transaction.
 /// Next field: 3

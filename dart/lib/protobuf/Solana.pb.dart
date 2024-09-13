@@ -14,10 +14,10 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Common.pbenum.dart' as $0;
-import 'Solana.pbenum.dart';
+import 'common.pbenum.dart' as $0;
+import 'solana.pbenum.dart';
 
-export 'Solana.pbenum.dart';
+export 'solana.pbenum.dart';
 
 /// Transfer transaction
 class Transfer extends $pb.GeneratedMessage {
@@ -477,6 +477,7 @@ class CreateTokenAccount extends $pb.GeneratedMessage {
     $core.String? mainAddress,
     $core.String? tokenMintAddress,
     $core.String? tokenAddress,
+    TokenProgramId? tokenProgramId,
   }) {
     final $result = create();
     if (mainAddress != null) {
@@ -488,6 +489,9 @@ class CreateTokenAccount extends $pb.GeneratedMessage {
     if (tokenAddress != null) {
       $result.tokenAddress = tokenAddress;
     }
+    if (tokenProgramId != null) {
+      $result.tokenProgramId = tokenProgramId;
+    }
     return $result;
   }
   CreateTokenAccount._() : super();
@@ -498,6 +502,7 @@ class CreateTokenAccount extends $pb.GeneratedMessage {
     ..aOS(1, _omitFieldNames ? '' : 'mainAddress')
     ..aOS(2, _omitFieldNames ? '' : 'tokenMintAddress')
     ..aOS(3, _omitFieldNames ? '' : 'tokenAddress')
+    ..e<TokenProgramId>(4, _omitFieldNames ? '' : 'tokenProgramId', $pb.PbFieldType.OE, defaultOrMaker: TokenProgramId.TokenProgram, valueOf: TokenProgramId.valueOf, enumValues: TokenProgramId.values)
     ..hasRequiredFields = false
   ;
 
@@ -551,6 +556,16 @@ class CreateTokenAccount extends $pb.GeneratedMessage {
   $core.bool hasTokenAddress() => $_has(2);
   @$pb.TagNumber(3)
   void clearTokenAddress() => clearField(3);
+
+  /// optional token program id
+  @$pb.TagNumber(4)
+  TokenProgramId get tokenProgramId => $_getN(3);
+  @$pb.TagNumber(4)
+  set tokenProgramId(TokenProgramId v) { setField(4, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasTokenProgramId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearTokenProgramId() => clearField(4);
 }
 
 /// Transfer tokens
@@ -563,6 +578,7 @@ class TokenTransfer extends $pb.GeneratedMessage {
     $core.int? decimals,
     $core.String? memo,
     $core.Iterable<$core.String>? references,
+    TokenProgramId? tokenProgramId,
   }) {
     final $result = create();
     if (tokenMintAddress != null) {
@@ -586,6 +602,9 @@ class TokenTransfer extends $pb.GeneratedMessage {
     if (references != null) {
       $result.references.addAll(references);
     }
+    if (tokenProgramId != null) {
+      $result.tokenProgramId = tokenProgramId;
+    }
     return $result;
   }
   TokenTransfer._() : super();
@@ -600,6 +619,7 @@ class TokenTransfer extends $pb.GeneratedMessage {
     ..a<$core.int>(5, _omitFieldNames ? '' : 'decimals', $pb.PbFieldType.OU3)
     ..aOS(6, _omitFieldNames ? '' : 'memo')
     ..pPS(7, _omitFieldNames ? '' : 'references')
+    ..e<TokenProgramId>(8, _omitFieldNames ? '' : 'tokenProgramId', $pb.PbFieldType.OE, defaultOrMaker: TokenProgramId.TokenProgram, valueOf: TokenProgramId.valueOf, enumValues: TokenProgramId.values)
     ..hasRequiredFields = false
   ;
 
@@ -687,6 +707,16 @@ class TokenTransfer extends $pb.GeneratedMessage {
   /// optional referenced public keys
   @$pb.TagNumber(7)
   $core.List<$core.String> get references => $_getList(6);
+
+  /// optional token program id
+  @$pb.TagNumber(8)
+  TokenProgramId get tokenProgramId => $_getN(7);
+  @$pb.TagNumber(8)
+  set tokenProgramId(TokenProgramId v) { setField(8, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasTokenProgramId() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearTokenProgramId() => clearField(8);
 }
 
 /// CreateTokenAccount and TokenTransfer combined
@@ -700,6 +730,7 @@ class CreateAndTransferToken extends $pb.GeneratedMessage {
     $core.int? decimals,
     $core.String? memo,
     $core.Iterable<$core.String>? references,
+    TokenProgramId? tokenProgramId,
   }) {
     final $result = create();
     if (recipientMainAddress != null) {
@@ -726,6 +757,9 @@ class CreateAndTransferToken extends $pb.GeneratedMessage {
     if (references != null) {
       $result.references.addAll(references);
     }
+    if (tokenProgramId != null) {
+      $result.tokenProgramId = tokenProgramId;
+    }
     return $result;
   }
   CreateAndTransferToken._() : super();
@@ -741,6 +775,7 @@ class CreateAndTransferToken extends $pb.GeneratedMessage {
     ..a<$core.int>(6, _omitFieldNames ? '' : 'decimals', $pb.PbFieldType.OU3)
     ..aOS(7, _omitFieldNames ? '' : 'memo')
     ..pPS(8, _omitFieldNames ? '' : 'references')
+    ..e<TokenProgramId>(9, _omitFieldNames ? '' : 'tokenProgramId', $pb.PbFieldType.OE, defaultOrMaker: TokenProgramId.TokenProgram, valueOf: TokenProgramId.valueOf, enumValues: TokenProgramId.values)
     ..hasRequiredFields = false
   ;
 
@@ -838,6 +873,16 @@ class CreateAndTransferToken extends $pb.GeneratedMessage {
   /// optional referenced public keys
   @$pb.TagNumber(8)
   $core.List<$core.String> get references => $_getList(7);
+
+  /// optional token program id
+  @$pb.TagNumber(9)
+  TokenProgramId get tokenProgramId => $_getN(8);
+  @$pb.TagNumber(9)
+  set tokenProgramId(TokenProgramId v) { setField(9, v); }
+  @$pb.TagNumber(9)
+  $core.bool hasTokenProgramId() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearTokenProgramId() => clearField(9);
 }
 
 class CreateNonceAccount extends $pb.GeneratedMessage {

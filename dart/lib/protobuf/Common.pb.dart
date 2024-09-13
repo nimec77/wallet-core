@@ -11,5 +11,5 @@
 
 import 'dart:core' as $core;
 
-export 'Common.pbenum.dart';
+export 'common.pbenum.dart';
 

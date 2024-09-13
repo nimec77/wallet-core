@@ -14,10 +14,10 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Common.pbenum.dart' as $0;
-import 'EOS.pbenum.dart';
+import 'common.pbenum.dart' as $0;
+import 'eos.pbenum.dart';
 
-export 'EOS.pbenum.dart';
+export 'eos.pbenum.dart';
 
 /// Values for an Asset object.
 class Asset extends $pb.GeneratedMessage {

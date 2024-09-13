@@ -8,10 +8,7 @@
 // ignore_for_file: type=lint
 import 'dart:ffi' as ffi;
 
-/// Bindings for `src/trust_wallet_core.h`.
-///
 /// Regenerate bindings with `dart run ffigen --config ffigen.yaml`.
-///
 class TrustWalletCoreBindings {
   /// Holds the symbol lookup function.
   final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
@@ -3042,6 +3039,29 @@ class TrustWalletCoreBindings {
           ffi.Pointer<TWPublicKey> Function(
               ffi.Pointer<TWString1>, int, ffi.Pointer<TWString1>)>();
 
+  /// Calculate the TX hash of a transaction.
+  ///
+  /// \param coin coin type.
+  /// \param encodedTx encoded transaction data.
+  /// \return The TX hash of a transaction, If the input is invalid or the chain is unsupported, null is returned.
+  ffi.Pointer<TWString1> TWTransactionUtilCalcTxHash(
+    TWCoinType coinType,
+    ffi.Pointer<TWString1> encodedTx,
+  ) {
+    return _TWTransactionUtilCalcTxHash(
+      coinType.value,
+      encodedTx,
+    );
+  }
+
+  late final _TWTransactionUtilCalcTxHashPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TWString1> Function(ffi.UnsignedInt,
+              ffi.Pointer<TWString1>)>>('TWTransactionUtilCalcTxHash');
+  late final _TWTransactionUtilCalcTxHash =
+      _TWTransactionUtilCalcTxHashPtr.asFunction<
+          ffi.Pointer<TWString1> Function(int, ffi.Pointer<TWString1>)>();
+
   /// Encode an item or a list of items as Eth RLP binary format.
   ///
   /// \param coin EVM-compatible coin type.
@@ -4069,6 +4089,32 @@ class TrustWalletCoreBindings {
       _TWSegwitAddressWitnessProgramPtr.asFunction<
           ffi.Pointer<TWData1> Function(ffi.Pointer<TWSegwitAddress>)>();
 
+  /// Constructs a TON Wallet V4R2 stateInit encoded as BoC (BagOfCells) for the given `public_key`.
+  ///
+  /// \param publicKey wallet's public key.
+  /// \param workchain TON workchain to which the wallet belongs. Usually, base chain is used (0).
+  /// \param walletId wallet's ID allows to create multiple wallets for the same private key.
+  /// \return Pointer to a base64 encoded Bag Of Cells (BoC) StateInit. Null if invalid public key provided.
+  ffi.Pointer<TWString> TWTONWalletBuildV4R2StateInit(
+    ffi.Pointer<TWPublicKey> publicKey,
+    int workchain,
+    int walletId,
+  ) {
+    return _TWTONWalletBuildV4R2StateInit(
+      publicKey,
+      workchain,
+      walletId,
+    );
+  }
+
+  late final _TWTONWalletBuildV4R2StateInitPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TWString> Function(ffi.Pointer<TWPublicKey>, ffi.Int32,
+              ffi.Int32)>>('TWTONWalletBuildV4R2StateInit');
+  late final _TWTONWalletBuildV4R2StateInit =
+      _TWTONWalletBuildV4R2StateInitPtr.asFunction<
+          ffi.Pointer<TWString> Function(ffi.Pointer<TWPublicKey>, int, int)>();
+
   /// Sign a typed message EIP-712 V4.
   ///
   /// \param privateKey: the private key used for signing
@@ -4960,6 +5006,31 @@ class TrustWalletCoreBindings {
   late final _TWBase58DecodeNoCheck = _TWBase58DecodeNoCheckPtr.asFunction<
       ffi.Pointer<TWData> Function(ffi.Pointer<TWString>)>();
 
+  /// Signs an arbitrary message to prove ownership of an address for off-chain services.
+  /// https://github.com/ton-foundation/specs/blob/main/specs/wtf-0002.md
+  ///
+  /// \param privateKey: the private key used for signing
+  /// \param message: A custom message which is input to the signing.
+  /// \returns the signature, Hex-encoded. On invalid input null is returned. Returned object needs to be deleted after use.
+  ffi.Pointer<TWString> TWTONMessageSignerSignMessage(
+    ffi.Pointer<TWPrivateKey> privateKey,
+    ffi.Pointer<TWString> message,
+  ) {
+    return _TWTONMessageSignerSignMessage(
+      privateKey,
+      message,
+    );
+  }
+
+  late final _TWTONMessageSignerSignMessagePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TWString> Function(ffi.Pointer<TWPrivateKey>,
+              ffi.Pointer<TWString>)>>('TWTONMessageSignerSignMessage');
+  late final _TWTONMessageSignerSignMessage =
+      _TWTONMessageSignerSignMessagePtr.asFunction<
+          ffi.Pointer<TWString> Function(
+              ffi.Pointer<TWPrivateKey>, ffi.Pointer<TWString>)>();
+
   /// Calculates the minimum ADA amount needed for a UTXO.
   ///
   /// \deprecated consider using `TWCardanoOutputMinAdaAmount` instead.
@@ -5028,24 +5099,6 @@ class TrustWalletCoreBindings {
               ffi.Pointer<TWString>)>>('TWCardanoGetStakingAddress');
   late final _TWCardanoGetStakingAddress = _TWCardanoGetStakingAddressPtr
       .asFunction<ffi.Pointer<TWString> Function(ffi.Pointer<TWString>)>();
-
-  /// Return the legacy(byron) address.
-  /// \param publicKey A valid public key with TWPublicKeyTypeED25519Cardano type.
-  /// \return the legacy(byron) address, as string, or empty string on error.
-  ffi.Pointer<TWString> TWCardanoGetByronAddress(
-    ffi.Pointer<TWPublicKey> publicKey,
-  ) {
-    return _TWCardanoGetByronAddress(
-      publicKey,
-    );
-  }
-
-  late final _TWCardanoGetByronAddressPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<TWString> Function(
-              ffi.Pointer<TWPublicKey>)>>('TWCardanoGetByronAddress');
-  late final _TWCardanoGetByronAddress = _TWCardanoGetByronAddressPtr
-      .asFunction<ffi.Pointer<TWString> Function(ffi.Pointer<TWPublicKey>)>();
 
   /// Creates a new Index with a value and hardened flag.
   /// Must be deleted with TWDerivationPathIndexDelete after use.
@@ -5688,6 +5741,24 @@ class TrustWalletCoreBindings {
       _TWCryptoBoxPublicKeyDataPtr.asFunction<
           ffi.Pointer<TWData> Function(ffi.Pointer<TWCryptoBoxPublicKey>)>();
 
+  /// Determines if the given secret key is valid or not.
+  ///
+  /// \param data *non-null* byte array.
+  /// \return true if the secret key is valid, false otherwise.
+  bool TWCryptoBoxSecretKeyIsValid(
+    ffi.Pointer<TWData> data,
+  ) {
+    return _TWCryptoBoxSecretKeyIsValid(
+      data,
+    );
+  }
+
+  late final _TWCryptoBoxSecretKeyIsValidPtr =
+      _lookup<ffi.NativeFunction<ffi.Bool Function(ffi.Pointer<TWData>)>>(
+          'TWCryptoBoxSecretKeyIsValid');
+  late final _TWCryptoBoxSecretKeyIsValid = _TWCryptoBoxSecretKeyIsValidPtr
+      .asFunction<bool Function(ffi.Pointer<TWData>)>();
+
   /// Create a random secret key.
   ///
   /// \note Should be deleted with \tw_crypto_box_secret_key_delete.
@@ -5701,6 +5772,27 @@ class TrustWalletCoreBindings {
           'TWCryptoBoxSecretKeyCreate');
   late final _TWCryptoBoxSecretKeyCreate = _TWCryptoBoxSecretKeyCreatePtr
       .asFunction<ffi.Pointer<TWCryptoBoxSecretKey> Function()>();
+
+  /// Create a `crypto_box` secret key with the given block of data.
+  ///
+  /// \param data *non-null* byte array. Expected to have 32 bytes.
+  /// \note Should be deleted with \tw_crypto_box_secret_key_delete.
+  /// \return Nullable pointer to Secret Key.
+  ffi.Pointer<TWCryptoBoxSecretKey> TWCryptoBoxSecretKeyCreateWithData(
+    ffi.Pointer<TWData> data,
+  ) {
+    return _TWCryptoBoxSecretKeyCreateWithData(
+      data,
+    );
+  }
+
+  late final _TWCryptoBoxSecretKeyCreateWithDataPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TWCryptoBoxSecretKey> Function(
+              ffi.Pointer<TWData>)>>('TWCryptoBoxSecretKeyCreateWithData');
+  late final _TWCryptoBoxSecretKeyCreateWithData =
+      _TWCryptoBoxSecretKeyCreateWithDataPtr.asFunction<
+          ffi.Pointer<TWCryptoBoxSecretKey> Function(ffi.Pointer<TWData>)>();
 
   /// Delete the given secret `key`.
   ///
@@ -5741,6 +5833,26 @@ class TrustWalletCoreBindings {
       _TWCryptoBoxSecretKeyGetPublicKeyPtr.asFunction<
           ffi.Pointer<TWCryptoBoxPublicKey> Function(
               ffi.Pointer<TWCryptoBoxSecretKey>)>();
+
+  /// Returns the raw data of the given secret-key.
+  ///
+  /// \param secretKey *non-null* pointer to a secret key.
+  /// \return C-compatible result with a C-compatible byte array.
+  ffi.Pointer<TWData> TWCryptoBoxSecretKeyData(
+    ffi.Pointer<TWCryptoBoxSecretKey> secretKey,
+  ) {
+    return _TWCryptoBoxSecretKeyData(
+      secretKey,
+    );
+  }
+
+  late final _TWCryptoBoxSecretKeyDataPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TWData> Function(
+              ffi.Pointer<TWCryptoBoxSecretKey>)>>('TWCryptoBoxSecretKeyData');
+  late final _TWCryptoBoxSecretKeyData =
+      _TWCryptoBoxSecretKeyDataPtr.asFunction<
+          ffi.Pointer<TWData> Function(ffi.Pointer<TWCryptoBoxSecretKey>)>();
 
   /// Decode a Base32 input with the given alphabet
   ///
@@ -9996,6 +10108,30 @@ class TrustWalletCoreBindings {
           ffi.Pointer<TWString1> Function(
               ffi.Pointer<TWSolanaAddress>, ffi.Pointer<TWString1>)>();
 
+  /// Derive token 2022 address for token
+  ///
+  /// \param address Non-null pointer to a Solana Address
+  /// \param tokenMintAddress Non-null pointer to a token mint address as a string
+  /// \return Null pointer if the token 2022 address for a token is not found, valid pointer otherwise
+  ffi.Pointer<TWString1> TWSolanaAddressToken2022Address(
+    ffi.Pointer<TWSolanaAddress> address,
+    ffi.Pointer<TWString1> tokenMintAddress,
+  ) {
+    return _TWSolanaAddressToken2022Address(
+      address,
+      tokenMintAddress,
+    );
+  }
+
+  late final _TWSolanaAddressToken2022AddressPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TWString1> Function(ffi.Pointer<TWSolanaAddress>,
+              ffi.Pointer<TWString1>)>>('TWSolanaAddressToken2022Address');
+  late final _TWSolanaAddressToken2022Address =
+      _TWSolanaAddressToken2022AddressPtr.asFunction<
+          ffi.Pointer<TWString1> Function(
+              ffi.Pointer<TWSolanaAddress>, ffi.Pointer<TWString1>)>();
+
   /// Returns the address string representation.
   ///
   /// \param address Non-null pointer to a Solana Address
@@ -10882,7 +11018,7 @@ enum TWCoinType {
   TWCoinTypeMoonriver(10001285),
   TWCoinTypeMoonbeam(10001284),
   TWCoinTypeKavaEvm(10002222),
-  TWCoinTypeKlaytn(10008217),
+  TWCoinTypeKaia(10008217),
   TWCoinTypeMeter(18000),
   TWCoinTypeOKXChain(996),
   TWCoinTypeStratis(105105),
@@ -11045,7 +11181,7 @@ enum TWCoinType {
         10001285 => TWCoinTypeMoonriver,
         10001284 => TWCoinTypeMoonbeam,
         10002222 => TWCoinTypeKavaEvm,
-        10008217 => TWCoinTypeKlaytn,
+        10008217 => TWCoinTypeKaia,
         18000 => TWCoinTypeMeter,
         996 => TWCoinTypeOKXChain,
         105105 => TWCoinTypeStratis,
@@ -11125,6 +11261,8 @@ final class TWDerivationPathIndex extends ffi.Opaque {}
 /// Hierarchical Deterministic (HD) Wallet
 final class TWHDWallet extends ffi.Opaque {}
 
+final class TWTransactionUtil extends ffi.Opaque {}
+
 final class TWEthereumRlp extends ffi.Opaque {}
 
 /// A vector of TWData byte arrays
@@ -11194,6 +11332,9 @@ final class TWBase64 extends ffi.Opaque {}
 /// Represents a BIP 0173 address.
 final class TWSegwitAddress extends ffi.Opaque {}
 
+/// TON wallet operations.
+final class TWTONWallet extends ffi.Opaque {}
+
 /// Ethereum message signing and verification.
 ///
 /// Ethereum and some other wallets support a message signing & verification format, to create a proof (a signature)
@@ -11253,6 +11394,9 @@ final class TWTHORChainSwap extends ffi.Opaque {}
 
 /// Base58 encode / decode functions
 final class TWBase58 extends ffi.Opaque {}
+
+/// TON message signing.
+final class TWTONMessageSigner extends ffi.Opaque {}
 
 /// Cardano helper functions
 final class TWCardano extends ffi.Opaque {}

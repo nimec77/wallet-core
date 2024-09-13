@@ -14,10 +14,10 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Common.pbenum.dart' as $0;
-import 'IOST.pbenum.dart';
+import 'common.pbenum.dart' as $0;
+import 'iost.pbenum.dart';
 
-export 'IOST.pbenum.dart';
+export 'iost.pbenum.dart';
 
 /// The message defines transaction action struct.
 class Action extends $pb.GeneratedMessage {

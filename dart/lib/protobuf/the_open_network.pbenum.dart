@@ -17,11 +17,13 @@ class WalletVersion extends $pb.ProtobufEnum {
   static const WalletVersion WALLET_V3_R1 = WalletVersion._(0, _omitEnumNames ? '' : 'WALLET_V3_R1');
   static const WalletVersion WALLET_V3_R2 = WalletVersion._(1, _omitEnumNames ? '' : 'WALLET_V3_R2');
   static const WalletVersion WALLET_V4_R2 = WalletVersion._(2, _omitEnumNames ? '' : 'WALLET_V4_R2');
+  static const WalletVersion WALLET_V5_R1 = WalletVersion._(3, _omitEnumNames ? '' : 'WALLET_V5_R1');
 
   static const $core.List<WalletVersion> values = <WalletVersion> [
     WALLET_V3_R1,
     WALLET_V3_R2,
     WALLET_V4_R2,
+    WALLET_V5_R1,
   ];
 
   static final $core.Map<$core.int, WalletVersion> _byValue = $pb.ProtobufEnum.initByValue(values);

@@ -13,9 +13,9 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'Barz.pbenum.dart';
+import 'barz.pbenum.dart';
 
-export 'Barz.pbenum.dart';
+export 'barz.pbenum.dart';
 
 /// Input parameters for calculating a counterfactual address for ERC-4337 based smart contract wallet
 class ContractAddressInput extends $pb.GeneratedMessage {

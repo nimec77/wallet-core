@@ -14,10 +14,10 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'BitcoinV2.pbenum.dart';
-import 'Common.pbenum.dart' as $0;
+import 'bitcoin_v2.pbenum.dart';
+import 'common.pbenum.dart' as $0;
 
-export 'BitcoinV2.pbenum.dart';
+export 'bitcoin_v2.pbenum.dart';
 
 enum PublicKeyOrHash_Variant {
   pubkey, 
