@@ -73,7 +73,6 @@ part 'package:trust_wallet_core/src/generated/thor_chain_swap.dart';
 part 'package:trust_wallet_core/src/generated/transaction_compiler.dart';
 part 'package:trust_wallet_core/src/generated/tron_message_signer.dart';
 
-late final DynamicLibrary _library;
 late final TrustWalletCoreBindings _bindings;
 
 abstract final class TrustWalletCore {
@@ -101,7 +100,7 @@ abstract final class TrustWalletCore {
       throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
     }
 
-    _library = DynamicLibrary.open(dllPath);
-    _bindings = TrustWalletCoreBindings(_library);
+    final library = DynamicLibrary.open(dllPath);
+    _bindings = TrustWalletCoreBindings(library);
   }
 }
