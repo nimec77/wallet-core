@@ -63,11 +63,12 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
     );
   }
 
-  void _createNewWallet() {
-    //TODO: implement assert
-    // assert(strength >= 128 && strength <= 256 && strength % 32 == 0);
-    final hdWallet = HDWallet.create(128, '');
-
+  void _createNewWallet({
+    int strength = 128,
+    String passphrase = '',
+  }) {
+    assert(strength >= 128 && strength <= 256 && strength % 32 == 0);
+    final hdWallet = HDWallet.create(strength, passphrase);
     setState(() {
       mnemonic = hdWallet.mnemonic;
     });
