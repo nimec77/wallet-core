@@ -49,11 +49,12 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
         ),
       );
 
-  void _importWallet() {
+  void _importWallet({
+    String passphrase = '',
+  }) {
     if (!Mnemonic.isValid(mnemonic)) throw Exception(["mnemonic is invalid"]);
 
-    final hdWallet = HDWallet.createWithMnemonic(mnemonic, '');
-
+    final hdWallet = HDWallet.createWithMnemonic(mnemonic, passphrase);
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (_) => MainScreen(
