@@ -5100,6 +5100,24 @@ class TrustWalletCoreBindings {
   late final _TWCardanoGetStakingAddress = _TWCardanoGetStakingAddressPtr
       .asFunction<ffi.Pointer<TWString> Function(ffi.Pointer<TWString>)>();
 
+  /// Return the legacy(byron) address.
+  /// \param publicKey A valid public key with TWPublicKeyTypeED25519Cardano type.
+  /// \return the legacy(byron) address, as string, or empty string on error.
+  ffi.Pointer<TWString> TWCardanoGetByronAddress(
+    ffi.Pointer<TWPublicKey> publicKey,
+  ) {
+    return _TWCardanoGetByronAddress(
+      publicKey,
+    );
+  }
+
+  late final _TWCardanoGetByronAddressPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TWString> Function(
+              ffi.Pointer<TWPublicKey>)>>('TWCardanoGetByronAddress');
+  late final _TWCardanoGetByronAddress = _TWCardanoGetByronAddressPtr
+      .asFunction<ffi.Pointer<TWString> Function(ffi.Pointer<TWPublicKey>)>();
+
   /// Creates a new Index with a value and hardened flag.
   /// Must be deleted with TWDerivationPathIndexDelete after use.
   ///
