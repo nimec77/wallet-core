@@ -30,8 +30,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
   LoadingStatus status = LoadingStatus.idle;
   String amount = '';
   late final WalletService _walletService;
-  late final Map<String, String> _wallets;
-  final _addressController = TextEditingController();
+  final _recipientAddressController = TextEditingController();
 
   HDWallet get _hdWallet => widget.hdWallet;
   CoinType get _coinType => widget.coinType;
@@ -39,21 +38,6 @@ class _TransactionScreenState extends State<TransactionScreen> {
   @override
   void initState() {
     super.initState();
-
-    //TODO: уалить адреса кошешьков и сделать возможность ввода адреса через TextField
-    _wallets = switch (_coinType) {
-      CoinType.bitcoin => {
-          'Макс': 'bc1q92e0ujhxml6wtd9gsn3aa7276f5qpxr6gtk9qh',
-          'Толя': 'bc1q8st5wrn60v25lr9jpa7t7h058y5x4w44ffqjhp',
-          'Олег': 'bc1qff4tp6dn3sgq0kfedyg509qedlc8j9d33prmtv',
-        },
-      CoinType.ethereum => {
-          'Макс': '0xF35080873f54519C0aC40D11435e0205a998fFaf',
-          'Толя': '0xB76b77AeA6f5bBe1685E0F13020Dc6cE8c7C4C6F',
-          'Олег': '0xE0b77680f7423f60023259e9A42a180BDEb49BC6',
-        },
-      _ => throw UnimplementedError(),
-    };
 
     final httpClient = DependencyScope.of(context).http;
 
@@ -82,25 +66,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Wrap(
-                  spacing: 16,
-                  children: _wallets.entries
-                      .map(
-                        (e) => ActionChip(
-                          label: Text(e.key),
-                          onPressed: () {
-                            _addressController.text = e.value;
-                          },
-                        ),
-                      )
-                      .toList(),
-                ),
-                const SizedBox(height: 16),
                 TextField(
-                  controller: _addressController,
+                  controller: _recipientAddressController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Enter address',
+                    labelText: 'Enter the recipient address',
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -128,7 +98,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
       );
 
   void _sendBitcoinTransaction() async {
-    final toAddress = _addressController.text;
+    final toAddress = _recipientAddressController.text;
     if (toAddress.isEmpty || amount.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -196,7 +166,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
 
   @override
   void dispose() {
-    _addressController.dispose();
+    _recipientAddressController.dispose();
 
     super.dispose();
   }
