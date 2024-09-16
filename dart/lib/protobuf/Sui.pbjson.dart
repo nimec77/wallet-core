@@ -37,8 +37,8 @@ const Amount$json = {
 };
 
 /// Descriptor for `Amount`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List amountDescriptor = $convert.base64Decode(
-    'CgZBbW91bnQSFgoGYW1vdW50GAEgASgEUgZhbW91bnQ=');
+final $typed_data.Uint8List amountDescriptor =
+    $convert.base64Decode('CgZBbW91bnQSFgoGYW1vdW50GAEgASgEUgZhbW91bnQ=');
 
 @$core.Deprecated('Use signDirectDescriptor instead')
 const SignDirect$json = {
@@ -56,10 +56,24 @@ final $typed_data.Uint8List signDirectDescriptor = $convert.base64Decode(
 const Pay$json = {
   '1': 'Pay',
   '2': [
-    {'1': 'input_coins', '3': 1, '4': 3, '5': 11, '6': '.TW.Sui.Proto.ObjectRef', '10': 'inputCoins'},
+    {
+      '1': 'input_coins',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Sui.Proto.ObjectRef',
+      '10': 'inputCoins'
+    },
     {'1': 'recipients', '3': 2, '4': 3, '5': 9, '10': 'recipients'},
     {'1': 'amounts', '3': 3, '4': 3, '5': 4, '10': 'amounts'},
-    {'1': 'gas', '3': 4, '4': 1, '5': 11, '6': '.TW.Sui.Proto.ObjectRef', '10': 'gas'},
+    {
+      '1': 'gas',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.ObjectRef',
+      '10': 'gas'
+    },
   ],
 };
 
@@ -73,7 +87,14 @@ final $typed_data.Uint8List payDescriptor = $convert.base64Decode(
 const PaySui$json = {
   '1': 'PaySui',
   '2': [
-    {'1': 'input_coins', '3': 1, '4': 3, '5': 11, '6': '.TW.Sui.Proto.ObjectRef', '10': 'inputCoins'},
+    {
+      '1': 'input_coins',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Sui.Proto.ObjectRef',
+      '10': 'inputCoins'
+    },
     {'1': 'recipients', '3': 2, '4': 3, '5': 9, '10': 'recipients'},
     {'1': 'amounts', '3': 3, '4': 3, '5': 4, '10': 'amounts'},
   ],
@@ -89,7 +110,14 @@ final $typed_data.Uint8List paySuiDescriptor = $convert.base64Decode(
 const PayAllSui$json = {
   '1': 'PayAllSui',
   '2': [
-    {'1': 'input_coins', '3': 1, '4': 3, '5': 11, '6': '.TW.Sui.Proto.ObjectRef', '10': 'inputCoins'},
+    {
+      '1': 'input_coins',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Sui.Proto.ObjectRef',
+      '10': 'inputCoins'
+    },
     {'1': 'recipient', '3': 2, '4': 1, '5': 9, '10': 'recipient'},
   ],
 };
@@ -103,10 +131,31 @@ final $typed_data.Uint8List payAllSuiDescriptor = $convert.base64Decode(
 const RequestAddStake$json = {
   '1': 'RequestAddStake',
   '2': [
-    {'1': 'coins', '3': 1, '4': 3, '5': 11, '6': '.TW.Sui.Proto.ObjectRef', '10': 'coins'},
-    {'1': 'amount', '3': 2, '4': 1, '5': 11, '6': '.TW.Sui.Proto.Amount', '10': 'amount'},
+    {
+      '1': 'coins',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Sui.Proto.ObjectRef',
+      '10': 'coins'
+    },
+    {
+      '1': 'amount',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.Amount',
+      '10': 'amount'
+    },
     {'1': 'validator', '3': 3, '4': 1, '5': 9, '10': 'validator'},
-    {'1': 'gas', '3': 4, '4': 1, '5': 11, '6': '.TW.Sui.Proto.ObjectRef', '10': 'gas'},
+    {
+      '1': 'gas',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.ObjectRef',
+      '10': 'gas'
+    },
   ],
 };
 
@@ -121,8 +170,22 @@ final $typed_data.Uint8List requestAddStakeDescriptor = $convert.base64Decode(
 const RequestWithdrawStake$json = {
   '1': 'RequestWithdrawStake',
   '2': [
-    {'1': 'staked_sui', '3': 1, '4': 1, '5': 11, '6': '.TW.Sui.Proto.ObjectRef', '10': 'stakedSui'},
-    {'1': 'gas', '3': 2, '4': 1, '5': 11, '6': '.TW.Sui.Proto.ObjectRef', '10': 'gas'},
+    {
+      '1': 'staked_sui',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.ObjectRef',
+      '10': 'stakedSui'
+    },
+    {
+      '1': 'gas',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.ObjectRef',
+      '10': 'gas'
+    },
   ],
 };
 
@@ -136,9 +199,23 @@ final $typed_data.Uint8List requestWithdrawStakeDescriptor = $convert.base64Deco
 const TransferObject$json = {
   '1': 'TransferObject',
   '2': [
-    {'1': 'object', '3': 1, '4': 1, '5': 11, '6': '.TW.Sui.Proto.ObjectRef', '10': 'object'},
+    {
+      '1': 'object',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.ObjectRef',
+      '10': 'object'
+    },
     {'1': 'recipient', '3': 2, '4': 1, '5': 9, '10': 'recipient'},
-    {'1': 'gas', '3': 3, '4': 1, '5': 11, '6': '.TW.Sui.Proto.ObjectRef', '10': 'gas'},
+    {
+      '1': 'gas',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.ObjectRef',
+      '10': 'gas'
+    },
   ],
 };
 
@@ -154,15 +231,77 @@ const SigningInput$json = {
   '2': [
     {'1': 'private_key', '3': 1, '4': 1, '5': 12, '10': 'privateKey'},
     {'1': 'signer', '3': 2, '4': 1, '5': 9, '10': 'signer'},
-    {'1': 'sign_direct_message', '3': 3, '4': 1, '5': 11, '6': '.TW.Sui.Proto.SignDirect', '9': 0, '10': 'signDirectMessage'},
-    {'1': 'pay', '3': 4, '4': 1, '5': 11, '6': '.TW.Sui.Proto.Pay', '9': 0, '10': 'pay'},
-    {'1': 'pay_sui', '3': 5, '4': 1, '5': 11, '6': '.TW.Sui.Proto.PaySui', '9': 0, '10': 'paySui'},
-    {'1': 'pay_all_sui', '3': 6, '4': 1, '5': 11, '6': '.TW.Sui.Proto.PayAllSui', '9': 0, '10': 'payAllSui'},
-    {'1': 'request_add_stake', '3': 7, '4': 1, '5': 11, '6': '.TW.Sui.Proto.RequestAddStake', '9': 0, '10': 'requestAddStake'},
-    {'1': 'request_withdraw_stake', '3': 8, '4': 1, '5': 11, '6': '.TW.Sui.Proto.RequestWithdrawStake', '9': 0, '10': 'requestWithdrawStake'},
-    {'1': 'transfer_object', '3': 9, '4': 1, '5': 11, '6': '.TW.Sui.Proto.TransferObject', '9': 0, '10': 'transferObject'},
+    {
+      '1': 'sign_direct_message',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.SignDirect',
+      '9': 0,
+      '10': 'signDirectMessage'
+    },
+    {
+      '1': 'pay',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.Pay',
+      '9': 0,
+      '10': 'pay'
+    },
+    {
+      '1': 'pay_sui',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.PaySui',
+      '9': 0,
+      '10': 'paySui'
+    },
+    {
+      '1': 'pay_all_sui',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.PayAllSui',
+      '9': 0,
+      '10': 'payAllSui'
+    },
+    {
+      '1': 'request_add_stake',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.RequestAddStake',
+      '9': 0,
+      '10': 'requestAddStake'
+    },
+    {
+      '1': 'request_withdraw_stake',
+      '3': 8,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.RequestWithdrawStake',
+      '9': 0,
+      '10': 'requestWithdrawStake'
+    },
+    {
+      '1': 'transfer_object',
+      '3': 9,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Sui.Proto.TransferObject',
+      '9': 0,
+      '10': 'transferObject'
+    },
     {'1': 'gas_budget', '3': 12, '4': 1, '5': 4, '10': 'gasBudget'},
-    {'1': 'reference_gas_price', '3': 13, '4': 1, '5': 4, '10': 'referenceGasPrice'},
+    {
+      '1': 'reference_gas_price',
+      '3': 13,
+      '4': 1,
+      '5': 4,
+      '10': 'referenceGasPrice'
+    },
   ],
   '8': [
     {'1': 'transaction_payload'},
@@ -190,7 +329,14 @@ const SigningOutput$json = {
   '2': [
     {'1': 'unsigned_tx', '3': 1, '4': 1, '5': 9, '10': 'unsignedTx'},
     {'1': 'signature', '3': 2, '4': 1, '5': 9, '10': 'signature'},
-    {'1': 'error', '3': 3, '4': 1, '5': 14, '6': '.TW.Common.Proto.SigningError', '10': 'error'},
+    {
+      '1': 'error',
+      '3': 3,
+      '4': 1,
+      '5': 14,
+      '6': '.TW.Common.Proto.SigningError',
+      '10': 'error'
+    },
     {'1': 'error_message', '3': 4, '4': 1, '5': 9, '10': 'errorMessage'},
   ],
 };
@@ -201,4 +347,3 @@ final $typed_data.Uint8List signingOutputDescriptor = $convert.base64Decode(
     '5hdHVyZRgCIAEoCVIJc2lnbmF0dXJlEjMKBWVycm9yGAMgASgOMh0uVFcuQ29tbW9uLlByb3Rv'
     'LlNpZ25pbmdFcnJvclIFZXJyb3ISIwoNZXJyb3JfbWVzc2FnZRgEIAEoCVIMZXJyb3JNZXNzYW'
     'dl');
-

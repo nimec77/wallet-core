@@ -47,7 +47,7 @@ class _CoinDetailScreenState extends State<CoinDetailScreen> {
       _ => throw Exception('Unknown coin'),
     };
 
-    address = hdWallet.getAddressForCoin(widget.coinType);
+    address = hdWallet.getAddressForCoin(coin: widget.coinType);
   }
 
   @override

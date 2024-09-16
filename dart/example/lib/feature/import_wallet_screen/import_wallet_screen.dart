@@ -52,9 +52,9 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
   void _importWallet({
     String passphrase = '',
   }) {
-    if (!Mnemonic.isValid(mnemonic)) throw Exception(["mnemonic is invalid"]);
+    if (!Mnemonic.isValid(mnemonic: mnemonic)) throw Exception(["mnemonic is invalid"]);
 
-    final hdWallet = HDWallet.createWithMnemonic(mnemonic, passphrase);
+    final hdWallet = HDWallet.createWithMnemonic(mnemonic: mnemonic, passphrase: passphrase);
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (_) => MainScreen(
@@ -69,7 +69,7 @@ class _ImportWalletScreenState extends State<ImportWalletScreen> {
     String passphrase = '',
   }) {
     assert(strength >= 128 && strength <= 256 && strength % 32 == 0);
-    final hdWallet = HDWallet.create(strength, passphrase);
+    final hdWallet = HDWallet.create(strength: strength, passphrase: passphrase);
     setState(() {
       mnemonic = hdWallet.mnemonic;
     });

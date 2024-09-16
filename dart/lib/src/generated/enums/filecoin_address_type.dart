@@ -8,16 +8,17 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 enum FilecoinAddressType {
-    defaultValue(0),
-    delegated(1);
+  defaultValue(0),
+  delegated(1);
 
-    final int value;
+  final int value;
 
-    const FilecoinAddressType(this.value);
+  const FilecoinAddressType(this.value);
 
-    static FilecoinAddressType fromValue(int value) => switch (value) {
+  static FilecoinAddressType fromValue(int value) => switch (value) {
         0 => defaultValue,
         1 => delegated,
-        _ => throw ArgumentError("Unknown value for FilecoinAddressType: $value"),
-    };
+        _ =>
+          throw ArgumentError("Unknown value for FilecoinAddressType: $value"),
+      };
 }

@@ -8,71 +8,82 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class RippleXAddress implements Disposable, Address {
-    final Pointer<TWRippleXAddress> _pointer;
+  final Pointer<TWRippleXAddress> _pointer;
 
-    Pointer<TWRippleXAddress> get pointer => _pointer;
+  Pointer<TWRippleXAddress> get pointer => _pointer;
 
-    const RippleXAddress._(Pointer<TWRippleXAddress> pointer) : _pointer = pointer;
+  const RippleXAddress._(Pointer<TWRippleXAddress> pointer)
+      : _pointer = pointer;
 
-    @override
-    bool operator == (Object other) => switch(other) {
-        RippleXAddress obj => _bindings.TWRippleXAddressEqual(_pointer, obj.pointer),
+  @override
+  bool operator ==(Object other) => switch (other) {
+        RippleXAddress obj =>
+          _bindings.TWRippleXAddressEqual(_pointer, obj.pointer),
         _ => false,
-    };
+      };
 
-    @override
-    int get hashCode => _pointer.hashCode;
+  @override
+  int get hashCode => _pointer.hashCode;
 
-    factory RippleXAddress.createWithString(String string) {
-        final stringString = StringImpl.createWithString(string);
-        try {
-            final result = _bindings.TWRippleXAddressCreateWithString(stringString.pointer);
-            if (result == nullptr) {
-                throw ArgumentError('RippleXAddress.createWithString: string=$string');
-            }
+  factory RippleXAddress.createWithString({
+    required String string,
+  }) {
+    final stringString = StringImpl.createWithString(string);
+    try {
+      final result =
+          _bindings.TWRippleXAddressCreateWithString(stringString.pointer);
+      if (result == nullptr) {
+        throw ArgumentError('RippleXAddress.createWithString: string=$string');
+      }
 
-            return RippleXAddress._(result);
-        } finally {
-            stringString.dispose();
-        }
+      return RippleXAddress._(result);
+    } finally {
+      stringString.dispose();
     }
+  }
 
-    factory RippleXAddress.createWithPublicKey(PublicKey publicKey, int tag) {
-        final publicKeyPublicKey = publicKey.pointer;
-        final result = _bindings.TWRippleXAddressCreateWithPublicKey(publicKeyPublicKey, tag);
+  factory RippleXAddress.createWithPublicKey({
+    required PublicKey publicKey,
+    required int tag,
+  }) {
+    final publicKeyPublicKey = publicKey.pointer;
+    final result =
+        _bindings.TWRippleXAddressCreateWithPublicKey(publicKeyPublicKey, tag);
 
-        return RippleXAddress._(result);
-    }
+    return RippleXAddress._(result);
+  }
 
-    @override
-    dispose() {
-        _bindings.TWRippleXAddressDelete(pointer);
-    }
+  @override
+  void dispose() {
+    _bindings.TWRippleXAddressDelete(pointer);
+  }
 
-    static bool isValidString(String string) {
-        final stringString = StringImpl.createWithString(string);
-        final result = _bindings.TWRippleXAddressIsValidString(stringString.pointer);
-        stringString.dispose();
+  static bool isValidString({
+    required String string,
+  }) {
+    final stringString = StringImpl.createWithString(string);
+    final result =
+        _bindings.TWRippleXAddressIsValidString(stringString.pointer);
+    stringString.dispose();
 
-        return result;
-    }
+    return result;
+  }
 
-    @override
-    String get description {
-        final obj = pointer;
-        final result = _bindings.TWRippleXAddressDescription(obj);
-        final wrapper = StringImpl.createWithPointer(result);
-        final val = wrapper.dartString;
-        wrapper.dispose();
+  @override
+  String get description {
+    final obj = pointer;
+    final result = _bindings.TWRippleXAddressDescription(obj);
+    final wrapper = StringImpl.createWithPointer(result);
+    final val = wrapper.dartString;
+    wrapper.dispose();
 
-        return val;
-    }
+    return val;
+  }
 
-    
-    int get tag {
-        final obj = pointer;
-        final result = _bindings.TWRippleXAddressTag(obj);
+  int get tag {
+    final obj = pointer;
+    final result = _bindings.TWRippleXAddressTag(obj);
 
-        return result;
-    }
+    return result;
+  }
 }

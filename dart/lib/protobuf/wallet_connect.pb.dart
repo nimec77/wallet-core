@@ -39,42 +39,60 @@ class ParseRequestInput extends $pb.GeneratedMessage {
     return $result;
   }
   ParseRequestInput._() : super();
-  factory ParseRequestInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ParseRequestInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory ParseRequestInput.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ParseRequestInput.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ParseRequestInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.WalletConnect.Proto'), createEmptyInstance: create)
-    ..e<Protocol>(1, _omitFieldNames ? '' : 'protocol', $pb.PbFieldType.OE, defaultOrMaker: Protocol.V2, valueOf: Protocol.valueOf, enumValues: Protocol.values)
-    ..e<Method>(2, _omitFieldNames ? '' : 'method', $pb.PbFieldType.OE, defaultOrMaker: Method.Unknown, valueOf: Method.valueOf, enumValues: Method.values)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ParseRequestInput',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'TW.WalletConnect.Proto'),
+      createEmptyInstance: create)
+    ..e<Protocol>(1, _omitFieldNames ? '' : 'protocol', $pb.PbFieldType.OE,
+        defaultOrMaker: Protocol.V2,
+        valueOf: Protocol.valueOf,
+        enumValues: Protocol.values)
+    ..e<Method>(2, _omitFieldNames ? '' : 'method', $pb.PbFieldType.OE,
+        defaultOrMaker: Method.Unknown,
+        valueOf: Method.valueOf,
+        enumValues: Method.values)
     ..aOS(3, _omitFieldNames ? '' : 'payload')
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ParseRequestInput clone() => ParseRequestInput()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ParseRequestInput copyWith(void Function(ParseRequestInput) updates) => super.copyWith((message) => updates(message as ParseRequestInput)) as ParseRequestInput;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ParseRequestInput copyWith(void Function(ParseRequestInput) updates) =>
+      super.copyWith((message) => updates(message as ParseRequestInput))
+          as ParseRequestInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ParseRequestInput create() => ParseRequestInput._();
   ParseRequestInput createEmptyInstance() => create();
-  static $pb.PbList<ParseRequestInput> createRepeated() => $pb.PbList<ParseRequestInput>();
+  static $pb.PbList<ParseRequestInput> createRepeated() =>
+      $pb.PbList<ParseRequestInput>();
   @$core.pragma('dart2js:noInline')
-  static ParseRequestInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ParseRequestInput>(create);
+  static ParseRequestInput getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ParseRequestInput>(create);
   static ParseRequestInput? _defaultInstance;
 
   /// A protocol version.
   @$pb.TagNumber(1)
   Protocol get protocol => $_getN(0);
   @$pb.TagNumber(1)
-  set protocol(Protocol v) { setField(1, v); }
+  set protocol(Protocol v) {
+    setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasProtocol() => $_has(0);
   @$pb.TagNumber(1)
@@ -84,7 +102,10 @@ class ParseRequestInput extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   Method get method => $_getN(1);
   @$pb.TagNumber(2)
-  set method(Method v) { setField(2, v); }
+  set method(Method v) {
+    setField(2, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasMethod() => $_has(1);
   @$pb.TagNumber(2)
@@ -95,18 +116,17 @@ class ParseRequestInput extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.String get payload => $_getSZ(2);
   @$pb.TagNumber(3)
-  set payload($core.String v) { $_setString(2, v); }
+  set payload($core.String v) {
+    $_setString(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasPayload() => $_has(2);
   @$pb.TagNumber(3)
   void clearPayload() => clearField(3);
 }
 
-enum ParseRequestOutput_SigningInputOneof {
-  binance, 
-  solana, 
-  notSet
-}
+enum ParseRequestOutput_SigningInputOneof { binance, solana, notSet }
 
 class ParseRequestOutput extends $pb.GeneratedMessage {
   factory ParseRequestOutput({
@@ -131,52 +151,71 @@ class ParseRequestOutput extends $pb.GeneratedMessage {
     return $result;
   }
   ParseRequestOutput._() : super();
-  factory ParseRequestOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ParseRequestOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory ParseRequestOutput.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ParseRequestOutput.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, ParseRequestOutput_SigningInputOneof> _ParseRequestOutput_SigningInputOneofByTag = {
-    3 : ParseRequestOutput_SigningInputOneof.binance,
-    4 : ParseRequestOutput_SigningInputOneof.solana,
-    0 : ParseRequestOutput_SigningInputOneof.notSet
+  static const $core.Map<$core.int, ParseRequestOutput_SigningInputOneof>
+      _ParseRequestOutput_SigningInputOneofByTag = {
+    3: ParseRequestOutput_SigningInputOneof.binance,
+    4: ParseRequestOutput_SigningInputOneof.solana,
+    0: ParseRequestOutput_SigningInputOneof.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ParseRequestOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.WalletConnect.Proto'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ParseRequestOutput',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'TW.WalletConnect.Proto'),
+      createEmptyInstance: create)
     ..oo(0, [3, 4])
-    ..e<$0.SigningError>(1, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE, defaultOrMaker: $0.SigningError.OK, valueOf: $0.SigningError.valueOf, enumValues: $0.SigningError.values)
+    ..e<$0.SigningError>(1, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
+        defaultOrMaker: $0.SigningError.OK,
+        valueOf: $0.SigningError.valueOf,
+        enumValues: $0.SigningError.values)
     ..aOS(2, _omitFieldNames ? '' : 'errorMessage')
-    ..aOM<$6.SigningInput>(3, _omitFieldNames ? '' : 'binance', subBuilder: $6.SigningInput.create)
-    ..aOM<$7.SigningInput>(4, _omitFieldNames ? '' : 'solana', subBuilder: $7.SigningInput.create)
-    ..hasRequiredFields = false
-  ;
+    ..aOM<$6.SigningInput>(3, _omitFieldNames ? '' : 'binance',
+        subBuilder: $6.SigningInput.create)
+    ..aOM<$7.SigningInput>(4, _omitFieldNames ? '' : 'solana',
+        subBuilder: $7.SigningInput.create)
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ParseRequestOutput clone() => ParseRequestOutput()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ParseRequestOutput copyWith(void Function(ParseRequestOutput) updates) => super.copyWith((message) => updates(message as ParseRequestOutput)) as ParseRequestOutput;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ParseRequestOutput copyWith(void Function(ParseRequestOutput) updates) =>
+      super.copyWith((message) => updates(message as ParseRequestOutput))
+          as ParseRequestOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ParseRequestOutput create() => ParseRequestOutput._();
   ParseRequestOutput createEmptyInstance() => create();
-  static $pb.PbList<ParseRequestOutput> createRepeated() => $pb.PbList<ParseRequestOutput>();
+  static $pb.PbList<ParseRequestOutput> createRepeated() =>
+      $pb.PbList<ParseRequestOutput>();
   @$core.pragma('dart2js:noInline')
-  static ParseRequestOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ParseRequestOutput>(create);
+  static ParseRequestOutput getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ParseRequestOutput>(create);
   static ParseRequestOutput? _defaultInstance;
 
-  ParseRequestOutput_SigningInputOneof whichSigningInputOneof() => _ParseRequestOutput_SigningInputOneofByTag[$_whichOneof(0)]!;
+  ParseRequestOutput_SigningInputOneof whichSigningInputOneof() =>
+      _ParseRequestOutput_SigningInputOneofByTag[$_whichOneof(0)]!;
   void clearSigningInputOneof() => clearField($_whichOneof(0));
 
   /// OK (=0) or other codes in case of error
   @$pb.TagNumber(1)
   $0.SigningError get error => $_getN(0);
   @$pb.TagNumber(1)
-  set error($0.SigningError v) { setField(1, v); }
+  set error($0.SigningError v) {
+    setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasError() => $_has(0);
   @$pb.TagNumber(1)
@@ -186,7 +225,10 @@ class ParseRequestOutput extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get errorMessage => $_getSZ(1);
   @$pb.TagNumber(2)
-  set errorMessage($core.String v) { $_setString(1, v); }
+  set errorMessage($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasErrorMessage() => $_has(1);
   @$pb.TagNumber(2)
@@ -195,7 +237,10 @@ class ParseRequestOutput extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $6.SigningInput get binance => $_getN(2);
   @$pb.TagNumber(3)
-  set binance($6.SigningInput v) { setField(3, v); }
+  set binance($6.SigningInput v) {
+    setField(3, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasBinance() => $_has(2);
   @$pb.TagNumber(3)
@@ -206,7 +251,10 @@ class ParseRequestOutput extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $7.SigningInput get solana => $_getN(3);
   @$pb.TagNumber(4)
-  set solana($7.SigningInput v) { setField(4, v); }
+  set solana($7.SigningInput v) {
+    setField(4, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasSolana() => $_has(3);
   @$pb.TagNumber(4)
@@ -215,6 +263,6 @@ class ParseRequestOutput extends $pb.GeneratedMessage {
   $7.SigningInput ensureSolana() => $_ensure(3);
 }
 
-
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames =
+    $core.bool.fromEnvironment('protobuf.omit_message_names');

@@ -58,8 +58,24 @@ const Transfer$json = {
     {'1': 'mode', '3': 3, '4': 1, '5': 13, '10': 'mode'},
     {'1': 'comment', '3': 4, '4': 1, '5': 9, '10': 'comment'},
     {'1': 'bounceable', '3': 5, '4': 1, '5': 8, '10': 'bounceable'},
-    {'1': 'jetton_transfer', '3': 6, '4': 1, '5': 11, '6': '.TW.TheOpenNetwork.Proto.JettonTransfer', '9': 0, '10': 'jettonTransfer'},
-    {'1': 'custom_payload', '3': 7, '4': 1, '5': 11, '6': '.TW.TheOpenNetwork.Proto.CustomPayload', '9': 0, '10': 'customPayload'},
+    {
+      '1': 'jetton_transfer',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.TheOpenNetwork.Proto.JettonTransfer',
+      '9': 0,
+      '10': 'jettonTransfer'
+    },
+    {
+      '1': 'custom_payload',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.TheOpenNetwork.Proto.CustomPayload',
+      '9': 0,
+      '10': 'customPayload'
+    },
   ],
   '8': [
     {'1': 'payload'},
@@ -114,10 +130,24 @@ const SigningInput$json = {
   '2': [
     {'1': 'private_key', '3': 1, '4': 1, '5': 12, '10': 'privateKey'},
     {'1': 'public_key', '3': 2, '4': 1, '5': 12, '10': 'publicKey'},
-    {'1': 'messages', '3': 3, '4': 3, '5': 11, '6': '.TW.TheOpenNetwork.Proto.Transfer', '10': 'messages'},
+    {
+      '1': 'messages',
+      '3': 3,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.TheOpenNetwork.Proto.Transfer',
+      '10': 'messages'
+    },
     {'1': 'sequence_number', '3': 4, '4': 1, '5': 13, '10': 'sequenceNumber'},
     {'1': 'expire_at', '3': 5, '4': 1, '5': 13, '10': 'expireAt'},
-    {'1': 'wallet_version', '3': 6, '4': 1, '5': 14, '6': '.TW.TheOpenNetwork.Proto.WalletVersion', '10': 'walletVersion'},
+    {
+      '1': 'wallet_version',
+      '3': 6,
+      '4': 1,
+      '5': 14,
+      '6': '.TW.TheOpenNetwork.Proto.WalletVersion',
+      '10': 'walletVersion'
+    },
   ],
 };
 
@@ -136,7 +166,14 @@ const SigningOutput$json = {
   '2': [
     {'1': 'encoded', '3': 1, '4': 1, '5': 9, '10': 'encoded'},
     {'1': 'hash', '3': 2, '4': 1, '5': 12, '10': 'hash'},
-    {'1': 'error', '3': 3, '4': 1, '5': 14, '6': '.TW.Common.Proto.SigningError', '10': 'error'},
+    {
+      '1': 'error',
+      '3': 3,
+      '4': 1,
+      '5': 14,
+      '6': '.TW.Common.Proto.SigningError',
+      '10': 'error'
+    },
     {'1': 'error_message', '3': 4, '4': 1, '5': 9, '10': 'errorMessage'},
   ],
 };
@@ -146,4 +183,3 @@ final $typed_data.Uint8List signingOutputDescriptor = $convert.base64Decode(
     'Cg1TaWduaW5nT3V0cHV0EhgKB2VuY29kZWQYASABKAlSB2VuY29kZWQSEgoEaGFzaBgCIAEoDF'
     'IEaGFzaBIzCgVlcnJvchgDIAEoDjIdLlRXLkNvbW1vbi5Qcm90by5TaWduaW5nRXJyb3JSBWVy'
     'cm9yEiMKDWVycm9yX21lc3NhZ2UYBCABKAlSDGVycm9yTWVzc2FnZQ==');
-

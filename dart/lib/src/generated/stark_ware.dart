@@ -8,13 +8,16 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class StarkWare {
+  static PrivateKey getStarkKeyFromSignature({
+    required DerivationPath derivationPath,
+    required String signature,
+  }) {
+    final derivationPathDerivationPath = derivationPath.pointer;
+    final signatureString = StringImpl.createWithString(signature);
+    final result = _bindings.TWStarkWareGetStarkKeyFromSignature(
+        derivationPathDerivationPath, signatureString.pointer);
+    signatureString.dispose();
 
-    static PrivateKey getStarkKeyFromSignature(DerivationPath derivationPath, String signature) {
-        final derivationPathDerivationPath = derivationPath.pointer;
-        final signatureString = StringImpl.createWithString(signature);
-        final result = _bindings.TWStarkWareGetStarkKeyFromSignature(derivationPathDerivationPath, signatureString.pointer);
-        signatureString.dispose();
-
-        return PrivateKey._(result);
-    }
+    return PrivateKey._(result);
+  }
 }

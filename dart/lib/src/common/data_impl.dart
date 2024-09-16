@@ -12,7 +12,8 @@ final class DataImpl implements Disposable {
           bytes.length,
         );
 
-  DataImpl.createWithData(Pointer<TWData> data) : _pointer = _bindings.TWDataCreateWithData(data);
+  DataImpl.createWithData(Pointer<TWData> data)
+      : _pointer = _bindings.TWDataCreateWithData(data);
 
   int get size => _bindings.TWDataSize(_pointer);
 

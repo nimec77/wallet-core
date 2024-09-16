@@ -34,7 +34,13 @@ const ContractAddressInput$json = {
     {'1': 'entry_point', '3': 1, '4': 1, '5': 9, '10': 'entryPoint'},
     {'1': 'factory', '3': 2, '4': 1, '5': 9, '10': 'factory'},
     {'1': 'account_facet', '3': 3, '4': 1, '5': 9, '10': 'accountFacet'},
-    {'1': 'verification_facet', '3': 4, '4': 1, '5': 9, '10': 'verificationFacet'},
+    {
+      '1': 'verification_facet',
+      '3': 4,
+      '4': 1,
+      '5': 9,
+      '10': 'verificationFacet'
+    },
     {'1': 'facet_registry', '3': 5, '4': 1, '5': 9, '10': 'facetRegistry'},
     {'1': 'default_fallback', '3': 6, '4': 1, '5': 9, '10': 'defaultFallback'},
     {'1': 'bytecode', '3': 7, '4': 1, '5': 9, '10': 'bytecode'},
@@ -57,8 +63,21 @@ const FacetCut$json = {
   '1': 'FacetCut',
   '2': [
     {'1': 'facet_address', '3': 1, '4': 1, '5': 9, '10': 'facetAddress'},
-    {'1': 'action', '3': 2, '4': 1, '5': 14, '6': '.TW.Barz.Proto.FacetCutAction', '10': 'action'},
-    {'1': 'function_selectors', '3': 3, '4': 3, '5': 12, '10': 'functionSelectors'},
+    {
+      '1': 'action',
+      '3': 2,
+      '4': 1,
+      '5': 14,
+      '6': '.TW.Barz.Proto.FacetCutAction',
+      '10': 'action'
+    },
+    {
+      '1': 'function_selectors',
+      '3': 3,
+      '4': 3,
+      '5': 12,
+      '10': 'functionSelectors'
+    },
   ],
 };
 
@@ -72,7 +91,14 @@ final $typed_data.Uint8List facetCutDescriptor = $convert.base64Decode(
 const DiamondCutInput$json = {
   '1': 'DiamondCutInput',
   '2': [
-    {'1': 'facet_cuts', '3': 1, '4': 3, '5': 11, '6': '.TW.Barz.Proto.FacetCut', '10': 'facetCuts'},
+    {
+      '1': 'facet_cuts',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Barz.Proto.FacetCut',
+      '10': 'facetCuts'
+    },
     {'1': 'init_address', '3': 2, '4': 1, '5': 9, '10': 'initAddress'},
     {'1': 'init_data', '3': 3, '4': 1, '5': 12, '10': 'initData'},
   ],
@@ -83,4 +109,3 @@ final $typed_data.Uint8List diamondCutInputDescriptor = $convert.base64Decode(
     'Cg9EaWFtb25kQ3V0SW5wdXQSNgoKZmFjZXRfY3V0cxgBIAMoCzIXLlRXLkJhcnouUHJvdG8uRm'
     'FjZXRDdXRSCWZhY2V0Q3V0cxIhCgxpbml0X2FkZHJlc3MYAiABKAlSC2luaXRBZGRyZXNzEhsK'
     'CWluaXRfZGF0YRgDIAEoDFIIaW5pdERhdGE=');
-

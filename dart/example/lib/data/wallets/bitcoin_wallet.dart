@@ -60,7 +60,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
 
     List<Utxo> selectedUtxos = await _loadUtxos(addressBtc, amountBtc);
 
-    final bitcoinScript = BitcoinScript.lockScriptForAddress(addressBtc, coin);
+    final bitcoinScript = BitcoinScript.lockScriptForAddress(address: addressBtc, coin: coin);
 
     final Iterable<bitcoin.UnspentTransaction> unspentTransactions = selectedUtxos.map((utxo) {
       return bitcoin.UnspentTransaction(
@@ -76,7 +76,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
 
     final signingInput = bitcoin.SigningInput(
       amount: $fixnum.Int64.parseInt(amountBtc),
-      hashType: BitcoinScript.hashTypeForCoin(coin),
+      hashType: BitcoinScript.hashTypeForCoin(coinType: coin),
       toAddress: toAddress,
       changeAddress: changeAddress,
       byteFee: $fixnum.Int64(10),

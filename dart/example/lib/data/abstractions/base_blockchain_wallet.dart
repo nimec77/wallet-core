@@ -25,12 +25,12 @@ abstract base class BaseBlockchainWallet implements BlockchainWallet {
 
   @override
   @nonVirtual
-  String getAddressForCoin(CoinType coinType) => _hdWallet.getAddressForCoin(coinType);
+  String getAddressForCoin(CoinType coinType) => _hdWallet.getAddressForCoin(coin: coinType);
 
   @override
   @nonVirtual
   Uint8List getKeyForCoin(CoinType coinType) {
-    final privateKey = _hdWallet.getKeyForCoin(coinType);
+    final privateKey = _hdWallet.getKeyForCoin(coin: coinType);
     final privateKeyBytes = privateKey.data;
     privateKey.dispose();
     return privateKeyBytes;

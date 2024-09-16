@@ -8,47 +8,48 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class DerivationPathIndex implements Disposable {
-    final Pointer<TWDerivationPathIndex> _pointer;
+  final Pointer<TWDerivationPathIndex> _pointer;
 
-    Pointer<TWDerivationPathIndex> get pointer => _pointer;
+  Pointer<TWDerivationPathIndex> get pointer => _pointer;
 
-    const DerivationPathIndex._(Pointer<TWDerivationPathIndex> pointer) : _pointer = pointer;
+  const DerivationPathIndex._(Pointer<TWDerivationPathIndex> pointer)
+      : _pointer = pointer;
 
-    factory DerivationPathIndex.create(int value, bool hardened) {
-        final result = _bindings.TWDerivationPathIndexCreate(value, hardened);
+  factory DerivationPathIndex.create({
+    required int value,
+    required bool hardened,
+  }) {
+    final result = _bindings.TWDerivationPathIndexCreate(value, hardened);
 
-        return DerivationPathIndex._(result);
-    }
+    return DerivationPathIndex._(result);
+  }
 
-    @override
-    dispose() {
-        _bindings.TWDerivationPathIndexDelete(pointer);
-    }
+  @override
+  void dispose() {
+    _bindings.TWDerivationPathIndexDelete(pointer);
+  }
 
-    
-    int get value {
-        final obj = pointer;
-        final result = _bindings.TWDerivationPathIndexValue(obj);
+  int get value {
+    final obj = pointer;
+    final result = _bindings.TWDerivationPathIndexValue(obj);
 
-        return result;
-    }
+    return result;
+  }
 
-    
-    bool get hardened {
-        final obj = pointer;
-        final result = _bindings.TWDerivationPathIndexHardened(obj);
+  bool get hardened {
+    final obj = pointer;
+    final result = _bindings.TWDerivationPathIndexHardened(obj);
 
-        return result;
-    }
+    return result;
+  }
 
-    
-    String get description {
-        final obj = pointer;
-        final result = _bindings.TWDerivationPathIndexDescription(obj);
-        final wrapper = StringImpl.createWithPointer(result);
-        final val = wrapper.dartString;
-        wrapper.dispose();
+  String get description {
+    final obj = pointer;
+    final result = _bindings.TWDerivationPathIndexDescription(obj);
+    final wrapper = StringImpl.createWithPointer(result);
+    final val = wrapper.dartString;
+    wrapper.dispose();
 
-        return val;
-    }
+    return val;
+  }
 }

@@ -36,8 +36,22 @@ const Transaction$json = {
   '2': [
     {'1': 'version', '3': 1, '4': 1, '5': 17, '10': 'version'},
     {'1': 'lockTime', '3': 2, '4': 1, '5': 13, '10': 'lockTime'},
-    {'1': 'inputs', '3': 3, '4': 3, '5': 11, '6': '.TW.Bitcoin.Proto.TransactionInput', '10': 'inputs'},
-    {'1': 'outputs', '3': 4, '4': 3, '5': 11, '6': '.TW.Bitcoin.Proto.TransactionOutput', '10': 'outputs'},
+    {
+      '1': 'inputs',
+      '3': 3,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.TransactionInput',
+      '10': 'inputs'
+    },
+    {
+      '1': 'outputs',
+      '3': 4,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.TransactionOutput',
+      '10': 'outputs'
+    },
   ],
 };
 
@@ -52,7 +66,14 @@ final $typed_data.Uint8List transactionDescriptor = $convert.base64Decode(
 const TransactionInput$json = {
   '1': 'TransactionInput',
   '2': [
-    {'1': 'previousOutput', '3': 1, '4': 1, '5': 11, '6': '.TW.Bitcoin.Proto.OutPoint', '10': 'previousOutput'},
+    {
+      '1': 'previousOutput',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.OutPoint',
+      '10': 'previousOutput'
+    },
     {'1': 'sequence', '3': 2, '4': 1, '5': 13, '10': 'sequence'},
     {'1': 'script', '3': 3, '4': 1, '5': 12, '10': 'script'},
   ],
@@ -99,10 +120,24 @@ final $typed_data.Uint8List transactionOutputDescriptor = $convert.base64Decode(
 const UnspentTransaction$json = {
   '1': 'UnspentTransaction',
   '2': [
-    {'1': 'out_point', '3': 1, '4': 1, '5': 11, '6': '.TW.Bitcoin.Proto.OutPoint', '10': 'outPoint'},
+    {
+      '1': 'out_point',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.OutPoint',
+      '10': 'outPoint'
+    },
     {'1': 'script', '3': 2, '4': 1, '5': 12, '10': 'script'},
     {'1': 'amount', '3': 3, '4': 1, '5': 3, '10': 'amount'},
-    {'1': 'variant', '3': 4, '4': 1, '5': 14, '6': '.TW.Bitcoin.Proto.TransactionVariant', '10': 'variant'},
+    {
+      '1': 'variant',
+      '3': 4,
+      '4': 1,
+      '5': 14,
+      '6': '.TW.Bitcoin.Proto.TransactionVariant',
+      '10': 'variant'
+    },
     {'1': 'spendingScript', '3': 5, '4': 1, '5': 12, '10': 'spendingScript'},
   ],
 };
@@ -138,8 +173,8 @@ const OutputIndex$json = {
 };
 
 /// Descriptor for `OutputIndex`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List outputIndexDescriptor = $convert.base64Decode(
-    'CgtPdXRwdXRJbmRleBIUCgVpbmRleBgBIAEoDVIFaW5kZXg=');
+final $typed_data.Uint8List outputIndexDescriptor =
+    $convert.base64Decode('CgtPdXRwdXRJbmRleBIUCgVpbmRleBgBIAEoDVIFaW5kZXg=');
 
 @$core.Deprecated('Use signingInputDescriptor instead')
 const SigningInput$json = {
@@ -151,20 +186,75 @@ const SigningInput$json = {
     {'1': 'to_address', '3': 4, '4': 1, '5': 9, '10': 'toAddress'},
     {'1': 'change_address', '3': 5, '4': 1, '5': 9, '10': 'changeAddress'},
     {'1': 'private_key', '3': 6, '4': 3, '5': 12, '10': 'privateKey'},
-    {'1': 'scripts', '3': 7, '4': 3, '5': 11, '6': '.TW.Bitcoin.Proto.SigningInput.ScriptsEntry', '10': 'scripts'},
-    {'1': 'utxo', '3': 8, '4': 3, '5': 11, '6': '.TW.Bitcoin.Proto.UnspentTransaction', '10': 'utxo'},
+    {
+      '1': 'scripts',
+      '3': 7,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.SigningInput.ScriptsEntry',
+      '10': 'scripts'
+    },
+    {
+      '1': 'utxo',
+      '3': 8,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.UnspentTransaction',
+      '10': 'utxo'
+    },
     {'1': 'use_max_amount', '3': 9, '4': 1, '5': 8, '10': 'useMaxAmount'},
     {'1': 'coin_type', '3': 10, '4': 1, '5': 13, '10': 'coinType'},
-    {'1': 'plan', '3': 11, '4': 1, '5': 11, '6': '.TW.Bitcoin.Proto.TransactionPlan', '10': 'plan'},
+    {
+      '1': 'plan',
+      '3': 11,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.TransactionPlan',
+      '10': 'plan'
+    },
     {'1': 'lock_time', '3': 12, '4': 1, '5': 13, '10': 'lockTime'},
     {'1': 'output_op_return', '3': 13, '4': 1, '5': 12, '10': 'outputOpReturn'},
-    {'1': 'output_op_return_index', '3': 26, '4': 1, '5': 11, '6': '.TW.Bitcoin.Proto.OutputIndex', '10': 'outputOpReturnIndex'},
-    {'1': 'extra_outputs', '3': 14, '4': 3, '5': 11, '6': '.TW.Bitcoin.Proto.OutputAddress', '10': 'extraOutputs'},
+    {
+      '1': 'output_op_return_index',
+      '3': 26,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.OutputIndex',
+      '10': 'outputOpReturnIndex'
+    },
+    {
+      '1': 'extra_outputs',
+      '3': 14,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.OutputAddress',
+      '10': 'extraOutputs'
+    },
     {'1': 'use_max_utxo', '3': 15, '4': 1, '5': 8, '10': 'useMaxUtxo'},
-    {'1': 'disable_dust_filter', '3': 16, '4': 1, '5': 8, '10': 'disableDustFilter'},
+    {
+      '1': 'disable_dust_filter',
+      '3': 16,
+      '4': 1,
+      '5': 8,
+      '10': 'disableDustFilter'
+    },
     {'1': 'time', '3': 17, '4': 1, '5': 13, '10': 'time'},
-    {'1': 'signing_v2', '3': 21, '4': 1, '5': 11, '6': '.TW.BitcoinV2.Proto.SigningInput', '10': 'signingV2'},
-    {'1': 'fixed_dust_threshold', '3': 24, '4': 1, '5': 3, '9': 0, '10': 'fixedDustThreshold'},
+    {
+      '1': 'signing_v2',
+      '3': 21,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.BitcoinV2.Proto.SigningInput',
+      '10': 'signingV2'
+    },
+    {
+      '1': 'fixed_dust_threshold',
+      '3': 24,
+      '4': 1,
+      '5': 3,
+      '9': 0,
+      '10': 'fixedDustThreshold'
+    },
   ],
   '3': [SigningInput_ScriptsEntry$json],
   '8': [
@@ -211,14 +301,42 @@ const TransactionPlan$json = {
     {'1': 'available_amount', '3': 2, '4': 1, '5': 3, '10': 'availableAmount'},
     {'1': 'fee', '3': 3, '4': 1, '5': 3, '10': 'fee'},
     {'1': 'change', '3': 4, '4': 1, '5': 3, '10': 'change'},
-    {'1': 'utxos', '3': 5, '4': 3, '5': 11, '6': '.TW.Bitcoin.Proto.UnspentTransaction', '10': 'utxos'},
+    {
+      '1': 'utxos',
+      '3': 5,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.UnspentTransaction',
+      '10': 'utxos'
+    },
     {'1': 'branch_id', '3': 6, '4': 1, '5': 12, '10': 'branchId'},
-    {'1': 'error', '3': 7, '4': 1, '5': 14, '6': '.TW.Common.Proto.SigningError', '10': 'error'},
+    {
+      '1': 'error',
+      '3': 7,
+      '4': 1,
+      '5': 14,
+      '6': '.TW.Common.Proto.SigningError',
+      '10': 'error'
+    },
     {'1': 'output_op_return', '3': 8, '4': 1, '5': 12, '10': 'outputOpReturn'},
-    {'1': 'output_op_return_index', '3': 14, '4': 1, '5': 11, '6': '.TW.Bitcoin.Proto.OutputIndex', '10': 'outputOpReturnIndex'},
+    {
+      '1': 'output_op_return_index',
+      '3': 14,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.OutputIndex',
+      '10': 'outputOpReturnIndex'
+    },
     {'1': 'preblockhash', '3': 9, '4': 1, '5': 12, '10': 'preblockhash'},
     {'1': 'preblockheight', '3': 10, '4': 1, '5': 3, '10': 'preblockheight'},
-    {'1': 'planning_result_v2', '3': 12, '4': 1, '5': 11, '6': '.TW.BitcoinV2.Proto.TransactionPlan', '10': 'planningResultV2'},
+    {
+      '1': 'planning_result_v2',
+      '3': 12,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.BitcoinV2.Proto.TransactionPlan',
+      '10': 'planningResultV2'
+    },
   ],
 };
 
@@ -239,12 +357,33 @@ final $typed_data.Uint8List transactionPlanDescriptor = $convert.base64Decode(
 const SigningOutput$json = {
   '1': 'SigningOutput',
   '2': [
-    {'1': 'transaction', '3': 1, '4': 1, '5': 11, '6': '.TW.Bitcoin.Proto.Transaction', '10': 'transaction'},
+    {
+      '1': 'transaction',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.Transaction',
+      '10': 'transaction'
+    },
     {'1': 'encoded', '3': 2, '4': 1, '5': 12, '10': 'encoded'},
     {'1': 'transaction_id', '3': 3, '4': 1, '5': 9, '10': 'transactionId'},
-    {'1': 'error', '3': 4, '4': 1, '5': 14, '6': '.TW.Common.Proto.SigningError', '10': 'error'},
+    {
+      '1': 'error',
+      '3': 4,
+      '4': 1,
+      '5': 14,
+      '6': '.TW.Common.Proto.SigningError',
+      '10': 'error'
+    },
     {'1': 'error_message', '3': 5, '4': 1, '5': 9, '10': 'errorMessage'},
-    {'1': 'signing_result_v2', '3': 7, '4': 1, '5': 11, '6': '.TW.BitcoinV2.Proto.SigningOutput', '10': 'signingResultV2'},
+    {
+      '1': 'signing_result_v2',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.BitcoinV2.Proto.SigningOutput',
+      '10': 'signingResultV2'
+    },
   ],
 };
 
@@ -275,10 +414,31 @@ final $typed_data.Uint8List hashPublicKeyDescriptor = $convert.base64Decode(
 const PreSigningOutput$json = {
   '1': 'PreSigningOutput',
   '2': [
-    {'1': 'hash_public_keys', '3': 1, '4': 3, '5': 11, '6': '.TW.Bitcoin.Proto.HashPublicKey', '10': 'hashPublicKeys'},
-    {'1': 'error', '3': 2, '4': 1, '5': 14, '6': '.TW.Common.Proto.SigningError', '10': 'error'},
+    {
+      '1': 'hash_public_keys',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.Bitcoin.Proto.HashPublicKey',
+      '10': 'hashPublicKeys'
+    },
+    {
+      '1': 'error',
+      '3': 2,
+      '4': 1,
+      '5': 14,
+      '6': '.TW.Common.Proto.SigningError',
+      '10': 'error'
+    },
     {'1': 'error_message', '3': 3, '4': 1, '5': 9, '10': 'errorMessage'},
-    {'1': 'pre_signing_result_v2', '3': 7, '4': 1, '5': 11, '6': '.TW.BitcoinV2.Proto.PreSigningOutput', '10': 'preSigningResultV2'},
+    {
+      '1': 'pre_signing_result_v2',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.BitcoinV2.Proto.PreSigningOutput',
+      '10': 'preSigningResultV2'
+    },
   ],
 };
 
@@ -289,4 +449,3 @@ final $typed_data.Uint8List preSigningOutputDescriptor = $convert.base64Decode(
     'VFcuQ29tbW9uLlByb3RvLlNpZ25pbmdFcnJvclIFZXJyb3ISIwoNZXJyb3JfbWVzc2FnZRgDIA'
     'EoCVIMZXJyb3JNZXNzYWdlElcKFXByZV9zaWduaW5nX3Jlc3VsdF92MhgHIAEoCzIkLlRXLkJp'
     'dGNvaW5WMi5Qcm90by5QcmVTaWduaW5nT3V0cHV0UhJwcmVTaWduaW5nUmVzdWx0VjI=');
-

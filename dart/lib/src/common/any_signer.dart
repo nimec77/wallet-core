@@ -24,14 +24,16 @@ abstract class AnySigner {
   ) {
     final string = StringImpl.createWithString(json);
     final data = DataImpl.createWithBytes(bytes);
-    final signer = _bindings.TWAnySignerSignJSON(string.pointer, data.pointer, coin);
+    final signer =
+        _bindings.TWAnySignerSignJSON(string.pointer, data.pointer, coin);
     data.dispose();
     string.dispose();
 
     return StringImpl.toDartString(signer);
   }
 
-  static bool supportsJSON(TWCoinType coin) => _bindings.TWAnySignerSupportsJSON(coin);
+  static bool supportsJSON(TWCoinType coin) =>
+      _bindings.TWAnySignerSupportsJSON(coin);
 
   static Uint8List signerPlan(
     Uint8List bytes,

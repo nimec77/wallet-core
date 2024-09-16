@@ -31,7 +31,13 @@ final $typed_data.Uint8List publicAddressDescriptor = $convert.base64Decode(
 const NewFundsContent$json = {
   '1': 'NewFundsContent',
   '2': [
-    {'1': 'payee_public_address', '3': 1, '4': 1, '5': 9, '10': 'payeePublicAddress'},
+    {
+      '1': 'payee_public_address',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '10': 'payeePublicAddress'
+    },
     {'1': 'amount', '3': 2, '4': 1, '5': 9, '10': 'amount'},
     {'1': 'coin_symbol', '3': 3, '4': 1, '5': 9, '10': 'coinSymbol'},
     {'1': 'memo', '3': 4, '4': 1, '5': 9, '10': 'memo'},
@@ -51,16 +57,89 @@ final $typed_data.Uint8List newFundsContentDescriptor = $convert.base64Decode(
 const Action$json = {
   '1': 'Action',
   '2': [
-    {'1': 'register_fio_address_message', '3': 1, '4': 1, '5': 11, '6': '.TW.FIO.Proto.Action.RegisterFioAddress', '9': 0, '10': 'registerFioAddressMessage'},
-    {'1': 'add_pub_address_message', '3': 2, '4': 1, '5': 11, '6': '.TW.FIO.Proto.Action.AddPubAddress', '9': 0, '10': 'addPubAddressMessage'},
-    {'1': 'transfer_message', '3': 3, '4': 1, '5': 11, '6': '.TW.FIO.Proto.Action.Transfer', '9': 0, '10': 'transferMessage'},
-    {'1': 'renew_fio_address_message', '3': 4, '4': 1, '5': 11, '6': '.TW.FIO.Proto.Action.RenewFioAddress', '9': 0, '10': 'renewFioAddressMessage'},
-    {'1': 'new_funds_request_message', '3': 5, '4': 1, '5': 11, '6': '.TW.FIO.Proto.Action.NewFundsRequest', '9': 0, '10': 'newFundsRequestMessage'},
-    {'1': 'remove_pub_address_message', '3': 6, '4': 1, '5': 11, '6': '.TW.FIO.Proto.Action.RemovePubAddress', '9': 0, '10': 'removePubAddressMessage'},
-    {'1': 'remove_all_pub_addresses_message', '3': 7, '4': 1, '5': 11, '6': '.TW.FIO.Proto.Action.RemoveAllPubAddress', '9': 0, '10': 'removeAllPubAddressesMessage'},
-    {'1': 'add_bundled_transactions_message', '3': 8, '4': 1, '5': 11, '6': '.TW.FIO.Proto.Action.AddBundledTransactions', '9': 0, '10': 'addBundledTransactionsMessage'},
+    {
+      '1': 'register_fio_address_message',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.FIO.Proto.Action.RegisterFioAddress',
+      '9': 0,
+      '10': 'registerFioAddressMessage'
+    },
+    {
+      '1': 'add_pub_address_message',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.FIO.Proto.Action.AddPubAddress',
+      '9': 0,
+      '10': 'addPubAddressMessage'
+    },
+    {
+      '1': 'transfer_message',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.FIO.Proto.Action.Transfer',
+      '9': 0,
+      '10': 'transferMessage'
+    },
+    {
+      '1': 'renew_fio_address_message',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.FIO.Proto.Action.RenewFioAddress',
+      '9': 0,
+      '10': 'renewFioAddressMessage'
+    },
+    {
+      '1': 'new_funds_request_message',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.FIO.Proto.Action.NewFundsRequest',
+      '9': 0,
+      '10': 'newFundsRequestMessage'
+    },
+    {
+      '1': 'remove_pub_address_message',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.FIO.Proto.Action.RemovePubAddress',
+      '9': 0,
+      '10': 'removePubAddressMessage'
+    },
+    {
+      '1': 'remove_all_pub_addresses_message',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.FIO.Proto.Action.RemoveAllPubAddress',
+      '9': 0,
+      '10': 'removeAllPubAddressesMessage'
+    },
+    {
+      '1': 'add_bundled_transactions_message',
+      '3': 8,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.FIO.Proto.Action.AddBundledTransactions',
+      '9': 0,
+      '10': 'addBundledTransactionsMessage'
+    },
   ],
-  '3': [Action_RegisterFioAddress$json, Action_AddPubAddress$json, Action_RemovePubAddress$json, Action_RemoveAllPubAddress$json, Action_Transfer$json, Action_RenewFioAddress$json, Action_NewFundsRequest$json, Action_AddBundledTransactions$json],
+  '3': [
+    Action_RegisterFioAddress$json,
+    Action_AddPubAddress$json,
+    Action_RemovePubAddress$json,
+    Action_RemoveAllPubAddress$json,
+    Action_Transfer$json,
+    Action_RenewFioAddress$json,
+    Action_NewFundsRequest$json,
+    Action_AddBundledTransactions$json
+  ],
   '8': [
     {'1': 'message_oneof'},
   ],
@@ -71,7 +150,13 @@ const Action_RegisterFioAddress$json = {
   '1': 'RegisterFioAddress',
   '2': [
     {'1': 'fio_address', '3': 1, '4': 1, '5': 9, '10': 'fioAddress'},
-    {'1': 'owner_fio_public_key', '3': 2, '4': 1, '5': 9, '10': 'ownerFioPublicKey'},
+    {
+      '1': 'owner_fio_public_key',
+      '3': 2,
+      '4': 1,
+      '5': 9,
+      '10': 'ownerFioPublicKey'
+    },
     {'1': 'fee', '3': 3, '4': 1, '5': 4, '10': 'fee'},
   ],
 };
@@ -81,7 +166,14 @@ const Action_AddPubAddress$json = {
   '1': 'AddPubAddress',
   '2': [
     {'1': 'fio_address', '3': 1, '4': 1, '5': 9, '10': 'fioAddress'},
-    {'1': 'public_addresses', '3': 2, '4': 3, '5': 11, '6': '.TW.FIO.Proto.PublicAddress', '10': 'publicAddresses'},
+    {
+      '1': 'public_addresses',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.FIO.Proto.PublicAddress',
+      '10': 'publicAddresses'
+    },
     {'1': 'fee', '3': 3, '4': 1, '5': 4, '10': 'fee'},
   ],
 };
@@ -91,7 +183,14 @@ const Action_RemovePubAddress$json = {
   '1': 'RemovePubAddress',
   '2': [
     {'1': 'fio_address', '3': 1, '4': 1, '5': 9, '10': 'fioAddress'},
-    {'1': 'public_addresses', '3': 2, '4': 3, '5': 11, '6': '.TW.FIO.Proto.PublicAddress', '10': 'publicAddresses'},
+    {
+      '1': 'public_addresses',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.TW.FIO.Proto.PublicAddress',
+      '10': 'publicAddresses'
+    },
     {'1': 'fee', '3': 3, '4': 1, '5': 4, '10': 'fee'},
   ],
 };
@@ -120,7 +219,13 @@ const Action_RenewFioAddress$json = {
   '1': 'RenewFioAddress',
   '2': [
     {'1': 'fio_address', '3': 1, '4': 1, '5': 9, '10': 'fioAddress'},
-    {'1': 'owner_fio_public_key', '3': 2, '4': 1, '5': 9, '10': 'ownerFioPublicKey'},
+    {
+      '1': 'owner_fio_public_key',
+      '3': 2,
+      '4': 1,
+      '5': 9,
+      '10': 'ownerFioPublicKey'
+    },
     {'1': 'fee', '3': 3, '4': 1, '5': 4, '10': 'fee'},
   ],
 };
@@ -132,7 +237,14 @@ const Action_NewFundsRequest$json = {
     {'1': 'payer_fio_name', '3': 1, '4': 1, '5': 9, '10': 'payerFioName'},
     {'1': 'payer_fio_address', '3': 2, '4': 1, '5': 9, '10': 'payerFioAddress'},
     {'1': 'payee_fio_name', '3': 3, '4': 1, '5': 9, '10': 'payeeFioName'},
-    {'1': 'content', '3': 4, '4': 1, '5': 11, '6': '.TW.FIO.Proto.NewFundsContent', '10': 'content'},
+    {
+      '1': 'content',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.FIO.Proto.NewFundsContent',
+      '10': 'content'
+    },
     {'1': 'fee', '3': 5, '4': 1, '5': 4, '10': 'fee'},
   ],
 };
@@ -205,10 +317,24 @@ const SigningInput$json = {
   '1': 'SigningInput',
   '2': [
     {'1': 'expiry', '3': 1, '4': 1, '5': 13, '10': 'expiry'},
-    {'1': 'chain_params', '3': 2, '4': 1, '5': 11, '6': '.TW.FIO.Proto.ChainParams', '10': 'chainParams'},
+    {
+      '1': 'chain_params',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.FIO.Proto.ChainParams',
+      '10': 'chainParams'
+    },
     {'1': 'private_key', '3': 3, '4': 1, '5': 12, '10': 'privateKey'},
     {'1': 'tpid', '3': 4, '4': 1, '5': 9, '10': 'tpid'},
-    {'1': 'action', '3': 5, '4': 1, '5': 11, '6': '.TW.FIO.Proto.Action', '10': 'action'},
+    {
+      '1': 'action',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.TW.FIO.Proto.Action',
+      '10': 'action'
+    },
     {'1': 'owner_public_key', '3': 6, '4': 1, '5': 9, '10': 'ownerPublicKey'},
   ],
 };
@@ -226,7 +352,14 @@ const SigningOutput$json = {
   '1': 'SigningOutput',
   '2': [
     {'1': 'json', '3': 1, '4': 1, '5': 9, '10': 'json'},
-    {'1': 'error', '3': 2, '4': 1, '5': 14, '6': '.TW.Common.Proto.SigningError', '10': 'error'},
+    {
+      '1': 'error',
+      '3': 2,
+      '4': 1,
+      '5': 14,
+      '6': '.TW.Common.Proto.SigningError',
+      '10': 'error'
+    },
     {'1': 'error_message', '3': 3, '4': 1, '5': 9, '10': 'errorMessage'},
     {'1': 'action_name', '3': 4, '4': 1, '5': 9, '10': 'actionName'},
   ],
@@ -237,4 +370,3 @@ final $typed_data.Uint8List signingOutputDescriptor = $convert.base64Decode(
     'Cg1TaWduaW5nT3V0cHV0EhIKBGpzb24YASABKAlSBGpzb24SMwoFZXJyb3IYAiABKA4yHS5UVy'
     '5Db21tb24uUHJvdG8uU2lnbmluZ0Vycm9yUgVlcnJvchIjCg1lcnJvcl9tZXNzYWdlGAMgASgJ'
     'UgxlcnJvck1lc3NhZ2USHwoLYWN0aW9uX25hbWUYBCABKAlSCmFjdGlvbk5hbWU=');
-

@@ -14,15 +14,18 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class TokenProgramId extends $pb.ProtobufEnum {
-  static const TokenProgramId TokenProgram = TokenProgramId._(0, _omitEnumNames ? '' : 'TokenProgram');
-  static const TokenProgramId Token2022Program = TokenProgramId._(1, _omitEnumNames ? '' : 'Token2022Program');
+  static const TokenProgramId TokenProgram =
+      TokenProgramId._(0, _omitEnumNames ? '' : 'TokenProgram');
+  static const TokenProgramId Token2022Program =
+      TokenProgramId._(1, _omitEnumNames ? '' : 'Token2022Program');
 
-  static const $core.List<TokenProgramId> values = <TokenProgramId> [
+  static const $core.List<TokenProgramId> values = <TokenProgramId>[
     TokenProgram,
     Token2022Program,
   ];
 
-  static final $core.Map<$core.int, TokenProgramId> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, TokenProgramId> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
   static TokenProgramId? valueOf($core.int value) => _byValue[value];
 
   const TokenProgramId._($core.int v, $core.String n) : super(v, n);
@@ -32,16 +35,16 @@ class Encoding extends $pb.ProtobufEnum {
   static const Encoding Base58 = Encoding._(0, _omitEnumNames ? '' : 'Base58');
   static const Encoding Base64 = Encoding._(1, _omitEnumNames ? '' : 'Base64');
 
-  static const $core.List<Encoding> values = <Encoding> [
+  static const $core.List<Encoding> values = <Encoding>[
     Base58,
     Base64,
   ];
 
-  static final $core.Map<$core.int, Encoding> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, Encoding> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
   static Encoding? valueOf($core.int value) => _byValue[value];
 
   const Encoding._($core.int v, $core.String n) : super(v, n);
 }
-
 
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

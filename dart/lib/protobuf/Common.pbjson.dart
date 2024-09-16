@@ -61,4 +61,3 @@ final $typed_data.Uint8List signingErrorDescriptor = $convert.base64Decode(
     'dXJlc19jb3VudBAVEhgKFEVycm9yX2ludmFsaWRfcGFyYW1zEBYSKAokRXJyb3JfaW52YWxpZF'
     '9yZXF1ZXN0ZWRfdG9rZW5fYW1vdW50EBcSFwoTRXJyb3Jfbm90X3N1cHBvcnRlZBAYEh8KG0Vy'
     'cm9yX2R1c3RfYW1vdW50X3JlcXVlc3RlZBAZ');
-
