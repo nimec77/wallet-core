@@ -9,70 +9,67 @@ part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class {{#unless is_public}}_{{/unless}}{{name}} {{~#if superclasses}} implements {{#each superclasses}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}} {
 {{#if init_instance}}
-    final {{{raw_type}}} _pointer;
+  final {{{raw_type}}} _pointer;
 
-    {{{raw_type}}} get pointer => _pointer;
+  {{{raw_type}}} get pointer => _pointer;
 
-    const {{name}}._({{{raw_type}}} pointer) : _pointer = pointer;
+  const {{name}}._({{{raw_type}}} pointer) : _pointer = pointer;
 {{/if}}
 {{! Equality operator, if available }}
 {{#if eq_operator}}
 
-    @override
-    bool operator == (Object other) => switch(other) {
-        {{name}} obj => _bindings.{{eq_operator.c_ffi_name}}(_pointer, obj.pointer),
-        _ => false,
-    };
+  @override
+  bool operator == (Object other) => switch(other) {
+    {{name}} obj => _bindings.{{eq_operator.c_ffi_name}}(_pointer, obj.pointer),
+    _ => false,
+  };
 
-    @override
-    int get hashCode => _pointer.hashCode;
+  @override
+  int get hashCode => _pointer.hashCode;
 {{/if}}
 {{! Inits }}
 {{#if inits}}
 
 {{#each inits}}
-    {{#if has_finally}}
-    {{~> partial_init_finally}}
-    {{else}}
-    {{~> partial_init}}
-    {{/if}}
-    {{#unless @last}}
+  {{#if has_finally}}
+  {{~> partial_init_finally}}
+  {{else}}
+  {{~> partial_init}}
+  {{/if}}
+  {{#unless @last}}
 
-    {{/unless}}
+  {{/unless}}
 {{/each}}
 {{/if}}
 {{! Deinits }}
 {{#if deinits}}
 
-    @override
-    dispose() {
-    {{#each deinits}}
-        _bindings.{{name}}(pointer);
-    {{/each}}
-    }
+  @override
+  void dispose() {
+  {{#each deinits}}
+    _bindings.{{name}}(pointer);
+  {{/each}}
+  }
 {{/if}}
 {{! Methods }}
 {{#if methods}}
 
 {{#each methods}}
-    {{#if has_finally}}
-    {{~> partial_func_finally}}
-    {{else}}
-    {{~> partial_func}}
-    {{/if}}
-    {{#unless @last}}
+  {{#if has_finally}}
+  {{~> partial_func_finally}}
+  {{else}}
+  {{~> partial_func}}
+  {{/if}}
+  {{#unless @last}}
 
-    {{/unless}}
+  {{/unless}}
 {{/each}}
 {{/if}}
 {{! Properties }}
 {{#if properties}}
-
 {{#each properties}}
-    {{~> partial_prop}}
-    {{#unless @last}}
-
-    {{/unless}}
+  {{~> partial_prop}}
 {{/each}}
 {{/if}}
+
 }

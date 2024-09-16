@@ -1,48 +1,56 @@
-    {{#if is_static}}static {{/if}}{{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}}_{{/unless}}{{name}}({{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
-    {{#if defined_vars}}
-    {{#each defined_vars}}
-        {{this.type}}? {{this.local_name}};
+  {{#if params}}
+  {{#if is_static}}static {{/if}}{{return.type}}{{#if return.is_nullable}}?{{/if}} {{#unless is_public}} _{{/unless}}{{name}}({
+    {{#each params}}
+    required {{type}}{{#if is_nullable}}?{{/if}} {{name}},
     {{/each}}
-    {{/if}}
+  }) {
+  {{else}}
+  {{#if is_static}}static {{/if}}{{return.type}}{{#if return.is_nullable}}?{{/if}}{{#unless is_public}} _{{/unless}}{{name}}() {
+  {{/if}}
+  {{#if defined_vars}}
+  {{#each defined_vars}}
+    {{this.type}}? {{this.local_name}};
+  {{/each}}
+  {{/if}}
+  {{#each operations}}
+  {{#if call}}
+    final {{call.var_name}} = {{#if call.core_var_name}}{{call.core_var_name}}.{{/if}}{{call.call}};
+  {{/if}}
+  {{/each}}
+    try {
     {{#each operations}}
-    {{#if call}}
-        final {{call.var_name}} = {{#if call.core_var_name}}{{call.core_var_name}}.{{/if}}{{call.call}};
+    {{#if call_optional}}
+      if ({{call_optional.param_name}} != null) {
+        {{call_optional.var_name}} = {{call_optional.call}};
+      }
+      final {{call_optional.call_var_name}} = {{call_optional.var_name}}?.pointer ?? nullptr;
+    {{/if}}
+    {{#if guarded_call}}
+      final {{guarded_call.var_name}} = {{#if guarded_call.core_var_name}}{{guarded_call.core_var_name}}.{{/if}}{{guarded_call.call}};
+      if ({{guarded_call.var_name}} == nullptr) {
+        return null;
+      }
+    {{/if}}
+    {{#if return}}
+
+      return {{return.call}};
+      {{/if}}
+      {{#if return_with_dispose}}
+      final wrapper = {{return_with_dispose.call}};
+      final val = wrapper.{{return_with_dispose.get_method}};
+      wrapper.dispose();
+
+      return val;
     {{/if}}
     {{/each}}
-        try {
-        {{#each operations}}
-        {{#if call_optional}}
-            if ({{call_optional.param_name}} != null) {
-                {{call_optional.var_name}} = {{call_optional.call}};
-            }
-            final {{call_optional.call_var_name}} = {{call_optional.var_name}}?.pointer ?? nullptr;
-        {{/if}}
-        {{#if guarded_call}}
-            final {{guarded_call.var_name}} = {{#if guarded_call.core_var_name}}{{guarded_call.core_var_name}}.{{/if}}{{guarded_call.call}};
-            if ({{guarded_call.var_name}} == nullptr) {
-                return null;
-            }
-        {{/if}}
-        {{#if return}}
-
-            return {{return.call}};
-            {{/if}}
-            {{#if return_with_dispose}}
-            final wrapper = {{return_with_dispose.call}};
-            final val = wrapper.{{return_with_dispose.get_method}};
-            wrapper.dispose();
-
-            return val;
-        {{/if}}
-        {{/each}}
-        } finally {
-        {{#each operations}}
-            {{#if defer_optional_call.call}}
-            {{defer_optional_call.call}};
-            {{/if}}
-            {{#if defer_call}}
-            {{defer_call.call}};
-            {{/if}}
-        {{/each}}
-        }
+    } finally {
+    {{#each operations}}
+      {{#if defer_optional_call.call}}
+      {{defer_optional_call.call}};
+      {{/if}}
+      {{#if defer_call}}
+      {{defer_call.call}};
+      {{/if}}
+    {{/each}}
     }
+  }

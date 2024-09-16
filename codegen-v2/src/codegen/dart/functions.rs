@@ -90,7 +90,7 @@ pub(super) fn process_methods(
                 local_name = param_name();
             }
             // Convert parameter to Dart parameter for the function interface.
-            let var  =  DartVariable {
+            let var = DartVariable {
                 name: param_name(),
                 local_name,
                 call_name,

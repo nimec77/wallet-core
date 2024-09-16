@@ -1,36 +1,44 @@
-    factory {{class_name}}.{{#unless is_public}}_{{/unless}}{{name}}({{#each params}}{{type}}{{#if is_nullable}}?{{/if}} {{name}}{{#unless @last}}, {{/unless}}{{/each}}) {
-    {{#if defined_vars}}
-    {{#each defined_vars}}
-            {{this.type}}? {{this.local_name}};
+  {{#if params}}
+  factory {{class_name}}.{{#unless is_public}}_{{/unless}}{{name}}({
+    {{#each params}}
+    required {{type}}{{#if is_nullable}}?{{/if}} {{name}},
     {{/each}}
-    {{/if}}
-    {{#each operations}}
-    {{#if call}}
-        final {{call.var_name}} = {{#if call.core_var_name}}{{call.core_var_name}}.{{/if}}{{call.call}};
-    {{/if}}
-    {{#if call_optional}}
-        if ({{call_optional.param_name}} != null) {
-            {{call_optional.var_name}} = {{call_optional.call}};
-        }
-        final {{call_optional.call_var_name}} = {{call_optional.var_name}}?.pointer ?? nullptr;
-    {{/if}}
-    {{#if guarded_call}}
-        final {{guarded_call.var_name}} = {{#if guarded_call.core_var_name}}{{guarded_call.core_var_name}}.{{/if}}{{guarded_call.call}};
-        if ({{guarded_call.var_name}} == nullptr) {
-            throw ArgumentError('{{../class_name}}.{{../name}}{{#if ../params}}:{{#each ../params}} {{name}}=${{name}}{{#unless @last}},{{/unless}}{{/each}}{{/if}}');
-        }
-    {{/if}}
-    {{#if defer_optional_call.call}}
-        {{defer_optional_call.call}};
-    {{/if}}
-    {{#if defer_call}}
-        {{defer_call.call}};
-    {{/if}}
-    {{#if return}}
-
-        return {{return.call}}
-    {{/if}}
-    {{/each}}
-
-        return {{class_name}}._(result);
+  }) {
+  {{else}}
+  factory {{class_name}}.{{#unless is_public}}_{{/unless}}{{name}}() {
+  {{/if}}  
+  {{#if defined_vars}}
+  {{#each defined_vars}}
+    {{this.type}}? {{this.local_name}};
+  {{/each}}
+  {{/if}}
+  {{#each operations}}
+  {{#if call}}
+    final {{call.var_name}} = {{#if call.core_var_name}}{{call.core_var_name}}.{{/if}}{{call.call}};
+  {{/if}}
+  {{#if call_optional}}
+    if ({{call_optional.param_name}} != null) {
+      {{call_optional.var_name}} = {{call_optional.call}};
     }
+    final {{call_optional.call_var_name}} = {{call_optional.var_name}}?.pointer ?? nullptr;
+  {{/if}}
+  {{#if guarded_call}}
+    final {{guarded_call.var_name}} = {{#if guarded_call.core_var_name}}{{guarded_call.core_var_name}}.{{/if}}{{guarded_call.call}};
+    if ({{guarded_call.var_name}} == nullptr) {
+      throw ArgumentError('{{../class_name}}.{{../name}}{{#if ../params}}:{{#each ../params}} {{name}}=${{name}}{{#unless @last}},{{/unless}}{{/each}}{{/if}}');
+    }
+  {{/if}}
+  {{#if defer_optional_call.call}}
+    {{defer_optional_call.call}};
+  {{/if}}
+  {{#if defer_call}}
+    {{defer_call.call}};
+  {{/if}}
+  {{#if return}}
+
+    return {{return.call}}
+  {{/if}}
+  {{/each}}
+
+    return {{class_name}}._(result);
+  }
