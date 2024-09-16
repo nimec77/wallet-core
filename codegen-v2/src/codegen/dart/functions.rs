@@ -2,7 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
-use crate::codegen::dart::res::CORE_VAR_NAME;
+use crate::codegen::dart::res::{CORE_VAR_NAME, MAX_LINE_LENGTH};
 use super::*;
 use crate::manifest::{FunctionInfo, TypeVariant};
 use crate::codegen::dart::utils::*;
@@ -108,12 +108,15 @@ pub(super) fn process_methods(
 
         // Prepepare parameter list to be passed on to the underlying C FFI function.
         let param_name_vec = if func.is_static { vec![] } else { vec!["obj".to_string()] };
-        let param_names = param_name_vec
+        let mut param_names = param_name_vec
             .into_iter()
             .chain(params.iter().map(|p| p.call_name.to_string()))
             .collect::<Vec<String>>()
             .join(", ");
-
+        const PADDING: usize = 24;
+        if param_names.len() + CORE_VAR_NAME.len() + func.name.len() + PADDING >= MAX_LINE_LENGTH {
+            param_names.push_str(",");
+        }
         // Call the underlying C FFI function, passing on the parameter list.
         let (var_name, call) = (
             "result".to_string(),

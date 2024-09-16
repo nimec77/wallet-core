@@ -2,7 +2,7 @@
 //
 // Copyright © 2017 Trust Wallet.
 
-use crate::codegen::dart::res::CORE_VAR_NAME;
+use crate::codegen::dart::res::{CORE_VAR_NAME, MAX_LINE_LENGTH};
 use super::*;
 use crate::codegen::dart::utils::*;
 use crate::manifest::InitInfo;
@@ -82,11 +82,15 @@ pub(super) fn process_inits(
         }
 
         // Prepare parameter list to be passed on to the underlying C FFI function.
-        let param_names = params
+        let mut param_names = params
             .iter()
             .map(|p| p.call_name.clone())
             .collect::<Vec<String>>()
             .join(", ");
+        const PADDING: usize = 20;
+        if param_names.len() + CORE_VAR_NAME.len() + init.name.len() + PADDING >= MAX_LINE_LENGTH {
+            param_names.push_str(",");
+        }
 
         // Call the underlying C FFI function, passing on the parameter list.
         if init.is_nullable {

@@ -7,7 +7,7 @@ pub const DATA_WRAPPER_CLASS: &str = "DataImpl";
 
 pub const ENUM_VALUE_TYPE: &str = "int";
 pub const CORE_VAR_NAME: &str = "_bindings";
-
+pub const MAX_LINE_LENGTH: usize = 120;
 pub static REPLACED_MAP: LazyLock<HashMap<&str, &str>> = LazyLock::new(|| {
     HashMap::from([
         ("default", "defaultValue"),
