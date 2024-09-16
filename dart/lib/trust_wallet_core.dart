@@ -5,7 +5,7 @@
 // This is a GENERATED FILE, changes made here WILL BE LOST.
 //
 
-import 'src/index.dart';
+import 'src/export.dart';
 
 part 'package:trust_wallet_core/src/common/any_signer.dart';
 part 'package:trust_wallet_core/src/common/data_impl.dart';
