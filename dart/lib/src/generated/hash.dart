@@ -8,6 +8,7 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class Hash {
+
   static Uint8List sha1({
     required Uint8List data,
   }) {
@@ -242,4 +243,5 @@ final class Hash {
 
     return val;
   }
+
 }

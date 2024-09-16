@@ -190,7 +190,7 @@ final class PrivateKey implements Disposable {
       messageUint8List.dispose();
     }
   }
-
+  
   Uint8List get data {
     final obj = pointer;
     final result = _bindings.TWPrivateKeyData(obj);
@@ -200,4 +200,5 @@ final class PrivateKey implements Disposable {
 
     return val;
   }
+  
 }

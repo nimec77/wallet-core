@@ -34,7 +34,7 @@ final class FIOAccount implements Disposable {
   void dispose() {
     _bindings.TWFIOAccountDelete(pointer);
   }
-
+  
   String get description {
     final obj = pointer;
     final result = _bindings.TWFIOAccountDescription(obj);
@@ -44,4 +44,5 @@ final class FIOAccount implements Disposable {
 
     return val;
   }
+  
 }

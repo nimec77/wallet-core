@@ -8,6 +8,7 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class Base64 {
+
   static Uint8List? decode({
     required String string,
   }) {
@@ -71,4 +72,5 @@ final class Base64 {
 
     return val;
   }
+
 }
