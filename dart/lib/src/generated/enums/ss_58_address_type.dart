@@ -16,8 +16,8 @@ enum SS58AddressType {
   const SS58AddressType(this.value);
 
   static SS58AddressType fromValue(int value) => switch (value) {
-    0 => polkadot,
-    2 => kusama,
-    _ => throw ArgumentError("Unknown value for SS58AddressType: $value"),
-  };
+        0 => polkadot,
+        2 => kusama,
+        _ => throw ArgumentError("Unknown value for SS58AddressType: $value"),
+      };
 }

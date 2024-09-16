@@ -19,11 +19,11 @@ enum StellarMemoType {
   const StellarMemoType(this.value);
 
   static StellarMemoType fromValue(int value) => switch (value) {
-    0 => none,
-    1 => text,
-    2 => id,
-    3 => hash,
-    4 => returnValue,
-    _ => throw ArgumentError("Unknown value for StellarMemoType: $value"),
-  };
+        0 => none,
+        1 => text,
+        2 => id,
+        3 => hash,
+        4 => returnValue,
+        _ => throw ArgumentError("Unknown value for StellarMemoType: $value"),
+      };
 }

@@ -8,7 +8,6 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class Base58 {
-
   static String encode({
     required Uint8List data,
   }) {
@@ -72,5 +71,4 @@ final class Base58 {
       stringString.dispose();
     }
   }
-
 }

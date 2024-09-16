@@ -16,8 +16,8 @@ enum PrivateKeyType {
   const PrivateKeyType(this.value);
 
   static PrivateKeyType fromValue(int value) => switch (value) {
-    0 => defaultValue,
-    1 => cardano,
-    _ => throw ArgumentError("Unknown value for PrivateKeyType: $value"),
-  };
+        0 => defaultValue,
+        1 => cardano,
+        _ => throw ArgumentError("Unknown value for PrivateKeyType: $value"),
+      };
 }

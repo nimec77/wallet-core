@@ -18,10 +18,10 @@ enum Purpose {
   const Purpose(this.value);
 
   static Purpose fromValue(int value) => switch (value) {
-    44 => bip44,
-    49 => bip49,
-    84 => bip84,
-    1852 => bip1852,
-    _ => throw ArgumentError("Unknown value for Purpose: $value"),
-  };
+        44 => bip44,
+        49 => bip49,
+        84 => bip84,
+        1852 => bip1852,
+        _ => throw ArgumentError("Unknown value for Purpose: $value"),
+      };
 }

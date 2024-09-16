@@ -29,37 +29,35 @@ enum HDVersion {
   const HDVersion(this.value);
 
   static HDVersion fromValue(int value) => switch (value) {
-    0 => none,
-    0x0488b21e => xpub,
-    0x0488ade4 => xprv,
-    0x049d7cb2 => ypub,
-    0x049d7878 => yprv,
-    0x04b24746 => zpub,
-    0x04b2430c => zprv,
-    0x019da462 => ltub,
-    0x019d9cfe => ltpv,
-    0x01b26ef6 => mtub,
-    0x01b26792 => mtpv,
-    0x2fda926 => dpub,
-    0x2fda4e8 => dprv,
-    0x02facafd => dgub,
-    0x02fac398 => dgpv,
-    _ => throw ArgumentError("Unknown value for HDVersion: $value"),
-  };
+        0 => none,
+        0x0488b21e => xpub,
+        0x0488ade4 => xprv,
+        0x049d7cb2 => ypub,
+        0x049d7878 => yprv,
+        0x04b24746 => zpub,
+        0x04b2430c => zprv,
+        0x019da462 => ltub,
+        0x019d9cfe => ltpv,
+        0x01b26ef6 => mtub,
+        0x01b26792 => mtpv,
+        0x2fda926 => dpub,
+        0x2fda4e8 => dprv,
+        0x02facafd => dgub,
+        0x02fac398 => dgpv,
+        _ => throw ArgumentError("Unknown value for HDVersion: $value"),
+      };
 
-  
   bool get isPublic {
     final obj = TWHDVersion.fromValue(value);
     final result = _bindings.TWHDVersionIsPublic(obj);
 
     return result;
   }
-  
-  
+
   bool get isPrivate {
     final obj = TWHDVersion.fromValue(value);
     final result = _bindings.TWHDVersionIsPrivate(obj);
 
     return result;
   }
-  }
+}
