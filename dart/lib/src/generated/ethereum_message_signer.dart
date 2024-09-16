@@ -14,8 +14,7 @@ final class EthereumMessageSigner {
   }) {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageJsonString = StringImpl.createWithString(messageJson);
-    final result = _bindings.TWEthereumMessageSignerSignTypedMessage(
-        privateKeyPrivateKey, messageJsonString.pointer);
+    final result = _bindings.TWEthereumMessageSignerSignTypedMessage(privateKeyPrivateKey, messageJsonString.pointer);
     messageJsonString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -32,7 +31,10 @@ final class EthereumMessageSigner {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageJsonString = StringImpl.createWithString(messageJson);
     final result = _bindings.TWEthereumMessageSignerSignTypedMessageEip155(
-        privateKeyPrivateKey, messageJsonString.pointer, chainId);
+      privateKeyPrivateKey,
+      messageJsonString.pointer,
+      chainId,
+    );
     messageJsonString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -47,8 +49,7 @@ final class EthereumMessageSigner {
   }) {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageString = StringImpl.createWithString(message);
-    final result = _bindings.TWEthereumMessageSignerSignMessage(
-        privateKeyPrivateKey, messageString.pointer);
+    final result = _bindings.TWEthereumMessageSignerSignMessage(privateKeyPrivateKey, messageString.pointer);
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -64,7 +65,9 @@ final class EthereumMessageSigner {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageString = StringImpl.createWithString(message);
     final result = _bindings.TWEthereumMessageSignerSignMessageImmutableX(
-        privateKeyPrivateKey, messageString.pointer);
+      privateKeyPrivateKey,
+      messageString.pointer,
+    );
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -81,7 +84,10 @@ final class EthereumMessageSigner {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageString = StringImpl.createWithString(message);
     final result = _bindings.TWEthereumMessageSignerSignMessageEip155(
-        privateKeyPrivateKey, messageString.pointer, chainId);
+      privateKeyPrivateKey,
+      messageString.pointer,
+      chainId,
+    );
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -99,7 +105,10 @@ final class EthereumMessageSigner {
     final messageString = StringImpl.createWithString(message);
     final signatureString = StringImpl.createWithString(signature);
     final result = _bindings.TWEthereumMessageSignerVerifyMessage(
-        pubKeyPublicKey, messageString.pointer, signatureString.pointer);
+      pubKeyPublicKey,
+      messageString.pointer,
+      signatureString.pointer,
+    );
     messageString.dispose();
     signatureString.dispose();
 

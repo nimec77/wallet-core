@@ -18,8 +18,12 @@ final class Ethereum {
     final layerString = StringImpl.createWithString(layer);
     final applicationString = StringImpl.createWithString(application);
     final indexString = StringImpl.createWithString(index);
-    final result = _bindings.TWEthereumEip2645GetPath(ethAddressString.pointer,
-        layerString.pointer, applicationString.pointer, indexString.pointer);
+    final result = _bindings.TWEthereumEip2645GetPath(
+      ethAddressString.pointer,
+      layerString.pointer,
+      applicationString.pointer,
+      indexString.pointer,
+    );
     ethAddressString.dispose();
     layerString.dispose();
     applicationString.dispose();

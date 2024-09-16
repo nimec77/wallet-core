@@ -12,13 +12,11 @@ final class BitcoinAddress implements Disposable, Address {
 
   Pointer<TWBitcoinAddress> get pointer => _pointer;
 
-  const BitcoinAddress._(Pointer<TWBitcoinAddress> pointer)
-      : _pointer = pointer;
+  const BitcoinAddress._(Pointer<TWBitcoinAddress> pointer) : _pointer = pointer;
 
   @override
   bool operator ==(Object other) => switch (other) {
-        BitcoinAddress obj =>
-          _bindings.TWBitcoinAddressEqual(_pointer, obj.pointer),
+        BitcoinAddress obj => _bindings.TWBitcoinAddressEqual(_pointer, obj.pointer),
         _ => false,
       };
 
@@ -30,8 +28,7 @@ final class BitcoinAddress implements Disposable, Address {
   }) {
     final stringString = StringImpl.createWithString(string);
     try {
-      final result =
-          _bindings.TWBitcoinAddressCreateWithString(stringString.pointer);
+      final result = _bindings.TWBitcoinAddressCreateWithString(stringString.pointer);
       if (result == nullptr) {
         throw ArgumentError('BitcoinAddress.createWithString: string=$string');
       }
@@ -47,8 +44,7 @@ final class BitcoinAddress implements Disposable, Address {
   }) {
     final dataUint8List = DataImpl.createWithBytes(data);
     try {
-      final result =
-          _bindings.TWBitcoinAddressCreateWithData(dataUint8List.pointer);
+      final result = _bindings.TWBitcoinAddressCreateWithData(dataUint8List.pointer);
       if (result == nullptr) {
         throw ArgumentError('BitcoinAddress.createWithData: data=$data');
       }
@@ -64,11 +60,9 @@ final class BitcoinAddress implements Disposable, Address {
     required int prefix,
   }) {
     final publicKeyPublicKey = publicKey.pointer;
-    final result = _bindings.TWBitcoinAddressCreateWithPublicKey(
-        publicKeyPublicKey, prefix);
+    final result = _bindings.TWBitcoinAddressCreateWithPublicKey(publicKeyPublicKey, prefix);
     if (result == nullptr) {
-      throw ArgumentError(
-          'BitcoinAddress.createWithPublicKey: publicKey=$publicKey, prefix=$prefix');
+      throw ArgumentError('BitcoinAddress.createWithPublicKey: publicKey=$publicKey, prefix=$prefix');
     }
 
     return BitcoinAddress._(result);
@@ -93,8 +87,7 @@ final class BitcoinAddress implements Disposable, Address {
     required String string,
   }) {
     final stringString = StringImpl.createWithString(string);
-    final result =
-        _bindings.TWBitcoinAddressIsValidString(stringString.pointer);
+    final result = _bindings.TWBitcoinAddressIsValidString(stringString.pointer);
     stringString.dispose();
 
     return result;

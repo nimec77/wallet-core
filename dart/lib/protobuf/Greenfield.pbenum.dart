@@ -15,18 +15,15 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 /// Transaction broadcast mode
 class BroadcastMode extends $pb.ProtobufEnum {
-  static const BroadcastMode SYNC =
-      BroadcastMode._(0, _omitEnumNames ? '' : 'SYNC');
-  static const BroadcastMode ASYNC =
-      BroadcastMode._(1, _omitEnumNames ? '' : 'ASYNC');
+  static const BroadcastMode SYNC = BroadcastMode._(0, _omitEnumNames ? '' : 'SYNC');
+  static const BroadcastMode ASYNC = BroadcastMode._(1, _omitEnumNames ? '' : 'ASYNC');
 
   static const $core.List<BroadcastMode> values = <BroadcastMode>[
     SYNC,
     ASYNC,
   ];
 
-  static final $core.Map<$core.int, BroadcastMode> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, BroadcastMode> _byValue = $pb.ProtobufEnum.initByValue(values);
   static BroadcastMode? valueOf($core.int value) => _byValue[value];
 
   const BroadcastMode._($core.int v, $core.String n) : super(v, n);
@@ -35,15 +32,13 @@ class BroadcastMode extends $pb.ProtobufEnum {
 /// Options for transaction encoding.
 /// Consider adding Json mode.
 class EncodingMode extends $pb.ProtobufEnum {
-  static const EncodingMode Protobuf =
-      EncodingMode._(0, _omitEnumNames ? '' : 'Protobuf');
+  static const EncodingMode Protobuf = EncodingMode._(0, _omitEnumNames ? '' : 'Protobuf');
 
   static const $core.List<EncodingMode> values = <EncodingMode>[
     Protobuf,
   ];
 
-  static final $core.Map<$core.int, EncodingMode> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, EncodingMode> _byValue = $pb.ProtobufEnum.initByValue(values);
   static EncodingMode? valueOf($core.int value) => _byValue[value];
 
   const EncodingMode._($core.int v, $core.String n) : super(v, n);
@@ -52,15 +47,13 @@ class EncodingMode extends $pb.ProtobufEnum {
 /// Options for transaction signing.
 /// Consider adding Direct mode when it is supported.
 class SigningMode extends $pb.ProtobufEnum {
-  static const SigningMode Eip712 =
-      SigningMode._(0, _omitEnumNames ? '' : 'Eip712');
+  static const SigningMode Eip712 = SigningMode._(0, _omitEnumNames ? '' : 'Eip712');
 
   static const $core.List<SigningMode> values = <SigningMode>[
     Eip712,
   ];
 
-  static final $core.Map<$core.int, SigningMode> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, SigningMode> _byValue = $pb.ProtobufEnum.initByValue(values);
   static SigningMode? valueOf($core.int value) => _byValue[value];
 
   const SigningMode._($core.int v, $core.String n) : super(v, n);

@@ -683,8 +683,7 @@ enum CoinType {
   }) {
     final obj = TWCoinType.fromValue(value);
     final derivationEnum = TWDerivation.fromValue(derivation.value);
-    final result =
-        _bindings.TWCoinTypeDerivationPathWithDerivation(obj, derivationEnum);
+    final result = _bindings.TWCoinTypeDerivationPathWithDerivation(obj, derivationEnum);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
     wrapper.dispose();
@@ -710,8 +709,7 @@ enum CoinType {
   }) {
     final obj = TWCoinType.fromValue(value);
     final publicKeyPublicKey = publicKey.pointer;
-    final result =
-        _bindings.TWCoinTypeDeriveAddressFromPublicKey(obj, publicKeyPublicKey);
+    final result = _bindings.TWCoinTypeDeriveAddressFromPublicKey(obj, publicKeyPublicKey);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
     wrapper.dispose();

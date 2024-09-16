@@ -16,8 +16,7 @@ final class NervosAddress implements Disposable, Address {
 
   @override
   bool operator ==(Object other) => switch (other) {
-        NervosAddress obj =>
-          _bindings.TWNervosAddressEqual(_pointer, obj.pointer),
+        NervosAddress obj => _bindings.TWNervosAddressEqual(_pointer, obj.pointer),
         _ => false,
       };
 
@@ -29,8 +28,7 @@ final class NervosAddress implements Disposable, Address {
   }) {
     final stringString = StringImpl.createWithString(string);
     try {
-      final result =
-          _bindings.TWNervosAddressCreateWithString(stringString.pointer);
+      final result = _bindings.TWNervosAddressCreateWithString(stringString.pointer);
       if (result == nullptr) {
         throw ArgumentError('NervosAddress.createWithString: string=$string');
       }

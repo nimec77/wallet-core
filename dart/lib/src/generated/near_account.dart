@@ -19,8 +19,7 @@ final class NEARAccount implements Disposable {
   }) {
     final stringString = StringImpl.createWithString(string);
     try {
-      final result =
-          _bindings.TWNEARAccountCreateWithString(stringString.pointer);
+      final result = _bindings.TWNEARAccountCreateWithString(stringString.pointer);
       if (result == nullptr) {
         throw ArgumentError('NEARAccount.createWithString: string=$string');
       }

@@ -16,8 +16,7 @@ final class SegwitAddress implements Disposable, Address {
 
   @override
   bool operator ==(Object other) => switch (other) {
-        SegwitAddress obj =>
-          _bindings.TWSegwitAddressEqual(_pointer, obj.pointer),
+        SegwitAddress obj => _bindings.TWSegwitAddressEqual(_pointer, obj.pointer),
         _ => false,
       };
 
@@ -29,8 +28,7 @@ final class SegwitAddress implements Disposable, Address {
   }) {
     final stringString = StringImpl.createWithString(string);
     try {
-      final result =
-          _bindings.TWSegwitAddressCreateWithString(stringString.pointer);
+      final result = _bindings.TWSegwitAddressCreateWithString(stringString.pointer);
       if (result == nullptr) {
         throw ArgumentError('SegwitAddress.createWithString: string=$string');
       }
@@ -47,8 +45,7 @@ final class SegwitAddress implements Disposable, Address {
   }) {
     final hrpEnum = TWHRP.fromValue(hrp.value);
     final publicKeyPublicKey = publicKey.pointer;
-    final result = _bindings.TWSegwitAddressCreateWithPublicKey(
-        hrpEnum, publicKeyPublicKey);
+    final result = _bindings.TWSegwitAddressCreateWithPublicKey(hrpEnum, publicKeyPublicKey);
 
     return SegwitAddress._(result);
   }

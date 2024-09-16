@@ -19,8 +19,7 @@ final class Base32 {
         alphabetString = StringImpl.createWithString(alphabet);
       }
       final alphabetStringPtr = alphabetString?.pointer ?? nullptr;
-      final result = _bindings.TWBase32DecodeWithAlphabet(
-          stringString.pointer, alphabetStringPtr);
+      final result = _bindings.TWBase32DecodeWithAlphabet(stringString.pointer, alphabetStringPtr);
       if (result == nullptr) {
         return null;
       }
@@ -64,8 +63,7 @@ final class Base32 {
       alphabetString = StringImpl.createWithString(alphabet);
     }
     final alphabetStringPtr = alphabetString?.pointer ?? nullptr;
-    final result = _bindings.TWBase32EncodeWithAlphabet(
-        dataUint8List.pointer, alphabetStringPtr);
+    final result = _bindings.TWBase32EncodeWithAlphabet(dataUint8List.pointer, alphabetStringPtr);
     dataUint8List.dispose();
     alphabetString?.dispose();
     final wrapper = StringImpl.createWithPointer(result);

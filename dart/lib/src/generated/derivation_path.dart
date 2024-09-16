@@ -12,8 +12,7 @@ final class DerivationPath implements Disposable {
 
   Pointer<TWDerivationPath> get pointer => _pointer;
 
-  const DerivationPath._(Pointer<TWDerivationPath> pointer)
-      : _pointer = pointer;
+  const DerivationPath._(Pointer<TWDerivationPath> pointer) : _pointer = pointer;
 
   factory DerivationPath.create({
     required Purpose purpose,
@@ -23,8 +22,7 @@ final class DerivationPath implements Disposable {
     required int address,
   }) {
     final purposeEnum = TWPurpose.fromValue(purpose.value);
-    final result = _bindings.TWDerivationPathCreate(
-        purposeEnum, coin, account, change, address);
+    final result = _bindings.TWDerivationPathCreate(purposeEnum, coin, account, change, address);
 
     return DerivationPath._(result);
   }
@@ -34,8 +32,7 @@ final class DerivationPath implements Disposable {
   }) {
     final stringString = StringImpl.createWithString(string);
     try {
-      final result =
-          _bindings.TWDerivationPathCreateWithString(stringString.pointer);
+      final result = _bindings.TWDerivationPathCreateWithString(stringString.pointer);
       if (result == nullptr) {
         throw ArgumentError('DerivationPath.createWithString: string=$string');
       }

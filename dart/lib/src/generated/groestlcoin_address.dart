@@ -12,13 +12,11 @@ final class GroestlcoinAddress implements Disposable, Address {
 
   Pointer<TWGroestlcoinAddress> get pointer => _pointer;
 
-  const GroestlcoinAddress._(Pointer<TWGroestlcoinAddress> pointer)
-      : _pointer = pointer;
+  const GroestlcoinAddress._(Pointer<TWGroestlcoinAddress> pointer) : _pointer = pointer;
 
   @override
   bool operator ==(Object other) => switch (other) {
-        GroestlcoinAddress obj =>
-          _bindings.TWGroestlcoinAddressEqual(_pointer, obj.pointer),
+        GroestlcoinAddress obj => _bindings.TWGroestlcoinAddressEqual(_pointer, obj.pointer),
         _ => false,
       };
 
@@ -30,11 +28,9 @@ final class GroestlcoinAddress implements Disposable, Address {
   }) {
     final stringString = StringImpl.createWithString(string);
     try {
-      final result =
-          _bindings.TWGroestlcoinAddressCreateWithString(stringString.pointer);
+      final result = _bindings.TWGroestlcoinAddressCreateWithString(stringString.pointer);
       if (result == nullptr) {
-        throw ArgumentError(
-            'GroestlcoinAddress.createWithString: string=$string');
+        throw ArgumentError('GroestlcoinAddress.createWithString: string=$string');
       }
 
       return GroestlcoinAddress._(result);
@@ -48,8 +44,7 @@ final class GroestlcoinAddress implements Disposable, Address {
     required int prefix,
   }) {
     final publicKeyPublicKey = publicKey.pointer;
-    final result = _bindings.TWGroestlcoinAddressCreateWithPublicKey(
-        publicKeyPublicKey, prefix);
+    final result = _bindings.TWGroestlcoinAddressCreateWithPublicKey(publicKeyPublicKey, prefix);
 
     return GroestlcoinAddress._(result);
   }
@@ -63,8 +58,7 @@ final class GroestlcoinAddress implements Disposable, Address {
     required String string,
   }) {
     final stringString = StringImpl.createWithString(string);
-    final result =
-        _bindings.TWGroestlcoinAddressIsValidString(stringString.pointer);
+    final result = _bindings.TWGroestlcoinAddressIsValidString(stringString.pointer);
     stringString.dispose();
 
     return result;

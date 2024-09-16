@@ -44,20 +44,14 @@ class GenericAction extends $pb.GeneratedMessage {
     return $result;
   }
   GenericAction._() : super();
-  factory GenericAction.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory GenericAction.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory GenericAction.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory GenericAction.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'GenericAction',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'),
-      createEmptyInstance: create)
-    ..aOM<Accounts>(1, _omitFieldNames ? '' : 'accounts',
-        subBuilder: Accounts.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GenericAction',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'), createEmptyInstance: create)
+    ..aOM<Accounts>(1, _omitFieldNames ? '' : 'accounts', subBuilder: Accounts.create)
     ..aOS(2, _omitFieldNames ? '' : 'value')
     ..aOS(3, _omitFieldNames ? '' : 'data')
     ..a<$core.int>(4, _omitFieldNames ? '' : 'version', $pb.PbFieldType.OU3)
@@ -72,19 +66,16 @@ class GenericAction extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   GenericAction copyWith(void Function(GenericAction) updates) =>
-      super.copyWith((message) => updates(message as GenericAction))
-          as GenericAction;
+      super.copyWith((message) => updates(message as GenericAction)) as GenericAction;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static GenericAction create() => GenericAction._();
   GenericAction createEmptyInstance() => create();
-  static $pb.PbList<GenericAction> createRepeated() =>
-      $pb.PbList<GenericAction>();
+  static $pb.PbList<GenericAction> createRepeated() => $pb.PbList<GenericAction>();
   @$core.pragma('dart2js:noInline')
-  static GenericAction getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<GenericAction>(create);
+  static GenericAction getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GenericAction>(create);
   static GenericAction? _defaultInstance;
 
   /// Accounts involved
@@ -179,20 +170,14 @@ class EGLDTransfer extends $pb.GeneratedMessage {
     return $result;
   }
   EGLDTransfer._() : super();
-  factory EGLDTransfer.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory EGLDTransfer.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory EGLDTransfer.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory EGLDTransfer.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'EGLDTransfer',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'),
-      createEmptyInstance: create)
-    ..aOM<Accounts>(1, _omitFieldNames ? '' : 'accounts',
-        subBuilder: Accounts.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'EGLDTransfer',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'), createEmptyInstance: create)
+    ..aOM<Accounts>(1, _omitFieldNames ? '' : 'accounts', subBuilder: Accounts.create)
     ..aOS(2, _omitFieldNames ? '' : 'amount')
     ..aOS(3, _omitFieldNames ? '' : 'data')
     ..a<$core.int>(4, _omitFieldNames ? '' : 'version', $pb.PbFieldType.OU3)
@@ -206,19 +191,16 @@ class EGLDTransfer extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   EGLDTransfer copyWith(void Function(EGLDTransfer) updates) =>
-      super.copyWith((message) => updates(message as EGLDTransfer))
-          as EGLDTransfer;
+      super.copyWith((message) => updates(message as EGLDTransfer)) as EGLDTransfer;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static EGLDTransfer create() => EGLDTransfer._();
   EGLDTransfer createEmptyInstance() => create();
-  static $pb.PbList<EGLDTransfer> createRepeated() =>
-      $pb.PbList<EGLDTransfer>();
+  static $pb.PbList<EGLDTransfer> createRepeated() => $pb.PbList<EGLDTransfer>();
   @$core.pragma('dart2js:noInline')
-  static EGLDTransfer getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<EGLDTransfer>(create);
+  static EGLDTransfer getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<EGLDTransfer>(create);
   static EGLDTransfer? _defaultInstance;
 
   /// Accounts involved
@@ -299,20 +281,14 @@ class ESDTTransfer extends $pb.GeneratedMessage {
     return $result;
   }
   ESDTTransfer._() : super();
-  factory ESDTTransfer.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ESDTTransfer.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ESDTTransfer.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ESDTTransfer.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ESDTTransfer',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'),
-      createEmptyInstance: create)
-    ..aOM<Accounts>(1, _omitFieldNames ? '' : 'accounts',
-        subBuilder: Accounts.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ESDTTransfer',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'), createEmptyInstance: create)
+    ..aOM<Accounts>(1, _omitFieldNames ? '' : 'accounts', subBuilder: Accounts.create)
     ..aOS(2, _omitFieldNames ? '' : 'tokenIdentifier')
     ..aOS(3, _omitFieldNames ? '' : 'amount')
     ..a<$core.int>(4, _omitFieldNames ? '' : 'version', $pb.PbFieldType.OU3)
@@ -326,19 +302,16 @@ class ESDTTransfer extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ESDTTransfer copyWith(void Function(ESDTTransfer) updates) =>
-      super.copyWith((message) => updates(message as ESDTTransfer))
-          as ESDTTransfer;
+      super.copyWith((message) => updates(message as ESDTTransfer)) as ESDTTransfer;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ESDTTransfer create() => ESDTTransfer._();
   ESDTTransfer createEmptyInstance() => create();
-  static $pb.PbList<ESDTTransfer> createRepeated() =>
-      $pb.PbList<ESDTTransfer>();
+  static $pb.PbList<ESDTTransfer> createRepeated() => $pb.PbList<ESDTTransfer>();
   @$core.pragma('dart2js:noInline')
-  static ESDTTransfer getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ESDTTransfer>(create);
+  static ESDTTransfer getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ESDTTransfer>(create);
   static ESDTTransfer? _defaultInstance;
 
   /// Accounts involved
@@ -427,21 +400,14 @@ class ESDTNFTTransfer extends $pb.GeneratedMessage {
   factory ESDTNFTTransfer.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ESDTNFTTransfer.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ESDTNFTTransfer.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ESDTNFTTransfer',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'),
-      createEmptyInstance: create)
-    ..aOM<Accounts>(1, _omitFieldNames ? '' : 'accounts',
-        subBuilder: Accounts.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ESDTNFTTransfer',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'), createEmptyInstance: create)
+    ..aOM<Accounts>(1, _omitFieldNames ? '' : 'accounts', subBuilder: Accounts.create)
     ..aOS(2, _omitFieldNames ? '' : 'tokenCollection')
-    ..a<$fixnum.Int64>(
-        3, _omitFieldNames ? '' : 'tokenNonce', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'tokenNonce', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(4, _omitFieldNames ? '' : 'amount')
     ..a<$core.int>(5, _omitFieldNames ? '' : 'version', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false;
@@ -454,19 +420,17 @@ class ESDTNFTTransfer extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ESDTNFTTransfer copyWith(void Function(ESDTNFTTransfer) updates) =>
-      super.copyWith((message) => updates(message as ESDTNFTTransfer))
-          as ESDTNFTTransfer;
+      super.copyWith((message) => updates(message as ESDTNFTTransfer)) as ESDTNFTTransfer;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ESDTNFTTransfer create() => ESDTNFTTransfer._();
   ESDTNFTTransfer createEmptyInstance() => create();
-  static $pb.PbList<ESDTNFTTransfer> createRepeated() =>
-      $pb.PbList<ESDTNFTTransfer>();
+  static $pb.PbList<ESDTNFTTransfer> createRepeated() => $pb.PbList<ESDTNFTTransfer>();
   @$core.pragma('dart2js:noInline')
-  static ESDTNFTTransfer getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ESDTNFTTransfer>(create);
+  static ESDTNFTTransfer getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ESDTNFTTransfer>(create);
   static ESDTNFTTransfer? _defaultInstance;
 
   /// Accounts involved
@@ -569,21 +533,14 @@ class Accounts extends $pb.GeneratedMessage {
     return $result;
   }
   Accounts._() : super();
-  factory Accounts.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Accounts.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Accounts.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Accounts.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Accounts',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'),
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(
-        1, _omitFieldNames ? '' : 'senderNonce', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Accounts',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'senderNonce', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(2, _omitFieldNames ? '' : 'sender')
     ..aOS(3, _omitFieldNames ? '' : 'senderUsername')
     ..aOS(4, _omitFieldNames ? '' : 'receiver')
@@ -608,8 +565,7 @@ class Accounts extends $pb.GeneratedMessage {
   Accounts createEmptyInstance() => create();
   static $pb.PbList<Accounts> createRepeated() => $pb.PbList<Accounts>();
   @$core.pragma('dart2js:noInline')
-  static Accounts getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Accounts>(create);
+  static Accounts getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Accounts>(create);
   static Accounts? _defaultInstance;
 
   /// Nonce of the sender
@@ -691,13 +647,7 @@ class Accounts extends $pb.GeneratedMessage {
   void clearGuardian() => clearField(6);
 }
 
-enum SigningInput_MessageOneof {
-  genericAction,
-  egldTransfer,
-  esdtTransfer,
-  esdtnftTransfer,
-  notSet
-}
+enum SigningInput_MessageOneof { genericAction, egldTransfer, esdtTransfer, esdtnftTransfer, notSet }
 
 /// Input data necessary to create a signed transaction.
 class SigningInput extends $pb.GeneratedMessage {
@@ -739,44 +689,29 @@ class SigningInput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningInput._() : super();
-  factory SigningInput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, SigningInput_MessageOneof>
-      _SigningInput_MessageOneofByTag = {
+  static const $core.Map<$core.int, SigningInput_MessageOneof> _SigningInput_MessageOneofByTag = {
     5: SigningInput_MessageOneof.genericAction,
     6: SigningInput_MessageOneof.egldTransfer,
     7: SigningInput_MessageOneof.esdtTransfer,
     8: SigningInput_MessageOneof.esdtnftTransfer,
     0: SigningInput_MessageOneof.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningInput',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'), createEmptyInstance: create)
     ..oo(0, [5, 6, 7, 8])
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
     ..aOS(2, _omitFieldNames ? '' : 'chainId')
-    ..a<$fixnum.Int64>(
-        3, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(
-        4, _omitFieldNames ? '' : 'gasLimit', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<GenericAction>(5, _omitFieldNames ? '' : 'genericAction',
-        subBuilder: GenericAction.create)
-    ..aOM<EGLDTransfer>(6, _omitFieldNames ? '' : 'egldTransfer',
-        subBuilder: EGLDTransfer.create)
-    ..aOM<ESDTTransfer>(7, _omitFieldNames ? '' : 'esdtTransfer',
-        subBuilder: ESDTTransfer.create)
-    ..aOM<ESDTNFTTransfer>(8, _omitFieldNames ? '' : 'esdtnftTransfer',
-        subBuilder: ESDTNFTTransfer.create)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(4, _omitFieldNames ? '' : 'gasLimit', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOM<GenericAction>(5, _omitFieldNames ? '' : 'genericAction', subBuilder: GenericAction.create)
+    ..aOM<EGLDTransfer>(6, _omitFieldNames ? '' : 'egldTransfer', subBuilder: EGLDTransfer.create)
+    ..aOM<ESDTTransfer>(7, _omitFieldNames ? '' : 'esdtTransfer', subBuilder: ESDTTransfer.create)
+    ..aOM<ESDTNFTTransfer>(8, _omitFieldNames ? '' : 'esdtnftTransfer', subBuilder: ESDTNFTTransfer.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -787,23 +722,19 @@ class SigningInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningInput copyWith(void Function(SigningInput) updates) =>
-      super.copyWith((message) => updates(message as SigningInput))
-          as SigningInput;
+      super.copyWith((message) => updates(message as SigningInput)) as SigningInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningInput create() => SigningInput._();
   SigningInput createEmptyInstance() => create();
-  static $pb.PbList<SigningInput> createRepeated() =>
-      $pb.PbList<SigningInput>();
+  static $pb.PbList<SigningInput> createRepeated() => $pb.PbList<SigningInput>();
   @$core.pragma('dart2js:noInline')
-  static SigningInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
+  static SigningInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
   static SigningInput? _defaultInstance;
 
-  SigningInput_MessageOneof whichMessageOneof() =>
-      _SigningInput_MessageOneofByTag[$_whichOneof(0)]!;
+  SigningInput_MessageOneof whichMessageOneof() => _SigningInput_MessageOneofByTag[$_whichOneof(0)]!;
   void clearMessageOneof() => clearField($_whichOneof(0));
 
   /// The secret private key used for signing (32 bytes).
@@ -939,24 +870,17 @@ class SigningOutput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningOutput._() : super();
-  factory SigningOutput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningOutput',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.MultiversX.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'encoded')
     ..aOS(2, _omitFieldNames ? '' : 'signature')
     ..e<$0.SigningError>(3, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: $0.SigningError.OK,
-        valueOf: $0.SigningError.valueOf,
-        enumValues: $0.SigningError.values)
+        defaultOrMaker: $0.SigningError.OK, valueOf: $0.SigningError.valueOf, enumValues: $0.SigningError.values)
     ..aOS(4, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
@@ -968,19 +892,16 @@ class SigningOutput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningOutput copyWith(void Function(SigningOutput) updates) =>
-      super.copyWith((message) => updates(message as SigningOutput))
-          as SigningOutput;
+      super.copyWith((message) => updates(message as SigningOutput)) as SigningOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningOutput create() => SigningOutput._();
   SigningOutput createEmptyInstance() => create();
-  static $pb.PbList<SigningOutput> createRepeated() =>
-      $pb.PbList<SigningOutput>();
+  static $pb.PbList<SigningOutput> createRepeated() => $pb.PbList<SigningOutput>();
   @$core.pragma('dart2js:noInline')
-  static SigningOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
+  static SigningOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
   static SigningOutput? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1035,5 +956,4 @@ class SigningOutput extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

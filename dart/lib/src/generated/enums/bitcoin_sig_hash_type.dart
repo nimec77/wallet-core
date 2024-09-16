@@ -26,8 +26,7 @@ enum BitcoinSigHashType {
         0x40 => fork,
         0x4f40 => forkBtg,
         0x80 => anyoneCanPay,
-        _ =>
-          throw ArgumentError("Unknown value for BitcoinSigHashType: $value"),
+        _ => throw ArgumentError("Unknown value for BitcoinSigHashType: $value"),
       };
 
   bool isSingle() {

@@ -22,18 +22,13 @@ export 'ethereum_abi.pbenum.dart';
 class BoolType extends $pb.GeneratedMessage {
   factory BoolType() => create();
   BoolType._() : super();
-  factory BoolType.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory BoolType.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory BoolType.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory BoolType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'BoolType',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BoolType',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -53,8 +48,7 @@ class BoolType extends $pb.GeneratedMessage {
   BoolType createEmptyInstance() => create();
   static $pb.PbList<BoolType> createRepeated() => $pb.PbList<BoolType>();
   @$core.pragma('dart2js:noInline')
-  static BoolType getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BoolType>(create);
+  static BoolType getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BoolType>(create);
   static BoolType? _defaultInstance;
 }
 
@@ -70,18 +64,13 @@ class NumberNType extends $pb.GeneratedMessage {
     return $result;
   }
   NumberNType._() : super();
-  factory NumberNType.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory NumberNType.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory NumberNType.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory NumberNType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'NumberNType',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'NumberNType',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'bits', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false;
 
@@ -93,8 +82,7 @@ class NumberNType extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   NumberNType copyWith(void Function(NumberNType) updates) =>
-      super.copyWith((message) => updates(message as NumberNType))
-          as NumberNType;
+      super.copyWith((message) => updates(message as NumberNType)) as NumberNType;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -103,8 +91,7 @@ class NumberNType extends $pb.GeneratedMessage {
   NumberNType createEmptyInstance() => create();
   static $pb.PbList<NumberNType> createRepeated() => $pb.PbList<NumberNType>();
   @$core.pragma('dart2js:noInline')
-  static NumberNType getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<NumberNType>(create);
+  static NumberNType getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<NumberNType>(create);
   static NumberNType? _defaultInstance;
 
   /// The number of bits of an integer.
@@ -125,18 +112,13 @@ class NumberNType extends $pb.GeneratedMessage {
 class StringType extends $pb.GeneratedMessage {
   factory StringType() => create();
   StringType._() : super();
-  factory StringType.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory StringType.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory StringType.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory StringType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'StringType',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'StringType',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -156,8 +138,7 @@ class StringType extends $pb.GeneratedMessage {
   StringType createEmptyInstance() => create();
   static $pb.PbList<StringType> createRepeated() => $pb.PbList<StringType>();
   @$core.pragma('dart2js:noInline')
-  static StringType getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<StringType>(create);
+  static StringType getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StringType>(create);
   static StringType? _defaultInstance;
 }
 
@@ -165,18 +146,13 @@ class StringType extends $pb.GeneratedMessage {
 class AddressType extends $pb.GeneratedMessage {
   factory AddressType() => create();
   AddressType._() : super();
-  factory AddressType.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory AddressType.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory AddressType.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory AddressType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'AddressType',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AddressType',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -187,8 +163,7 @@ class AddressType extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   AddressType copyWith(void Function(AddressType) updates) =>
-      super.copyWith((message) => updates(message as AddressType))
-          as AddressType;
+      super.copyWith((message) => updates(message as AddressType)) as AddressType;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -197,8 +172,7 @@ class AddressType extends $pb.GeneratedMessage {
   AddressType createEmptyInstance() => create();
   static $pb.PbList<AddressType> createRepeated() => $pb.PbList<AddressType>();
   @$core.pragma('dart2js:noInline')
-  static AddressType getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<AddressType>(create);
+  static AddressType getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AddressType>(create);
   static AddressType? _defaultInstance;
 }
 
@@ -214,20 +188,14 @@ class ArrayType extends $pb.GeneratedMessage {
     return $result;
   }
   ArrayType._() : super();
-  factory ArrayType.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ArrayType.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ArrayType.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ArrayType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ArrayType',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
-    ..aOM<ParamType>(1, _omitFieldNames ? '' : 'elementType',
-        subBuilder: ParamType.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ArrayType',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
+    ..aOM<ParamType>(1, _omitFieldNames ? '' : 'elementType', subBuilder: ParamType.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -247,8 +215,7 @@ class ArrayType extends $pb.GeneratedMessage {
   ArrayType createEmptyInstance() => create();
   static $pb.PbList<ArrayType> createRepeated() => $pb.PbList<ArrayType>();
   @$core.pragma('dart2js:noInline')
-  static ArrayType getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ArrayType>(create);
+  static ArrayType getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ArrayType>(create);
   static ArrayType? _defaultInstance;
 
   /// The type of array elements.
@@ -283,22 +250,15 @@ class FixedArrayType extends $pb.GeneratedMessage {
     return $result;
   }
   FixedArrayType._() : super();
-  factory FixedArrayType.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory FixedArrayType.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory FixedArrayType.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory FixedArrayType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'FixedArrayType',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'size', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<ParamType>(2, _omitFieldNames ? '' : 'elementType',
-        subBuilder: ParamType.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FixedArrayType',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'size', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOM<ParamType>(2, _omitFieldNames ? '' : 'elementType', subBuilder: ParamType.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -309,19 +269,16 @@ class FixedArrayType extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   FixedArrayType copyWith(void Function(FixedArrayType) updates) =>
-      super.copyWith((message) => updates(message as FixedArrayType))
-          as FixedArrayType;
+      super.copyWith((message) => updates(message as FixedArrayType)) as FixedArrayType;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static FixedArrayType create() => FixedArrayType._();
   FixedArrayType createEmptyInstance() => create();
-  static $pb.PbList<FixedArrayType> createRepeated() =>
-      $pb.PbList<FixedArrayType>();
+  static $pb.PbList<FixedArrayType> createRepeated() => $pb.PbList<FixedArrayType>();
   @$core.pragma('dart2js:noInline')
-  static FixedArrayType getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<FixedArrayType>(create);
+  static FixedArrayType getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FixedArrayType>(create);
   static FixedArrayType? _defaultInstance;
 
   /// The fixed-size of the array.
@@ -357,18 +314,13 @@ class FixedArrayType extends $pb.GeneratedMessage {
 class ByteArrayType extends $pb.GeneratedMessage {
   factory ByteArrayType() => create();
   ByteArrayType._() : super();
-  factory ByteArrayType.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ByteArrayType.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ByteArrayType.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ByteArrayType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ByteArrayType',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ByteArrayType',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -379,19 +331,16 @@ class ByteArrayType extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ByteArrayType copyWith(void Function(ByteArrayType) updates) =>
-      super.copyWith((message) => updates(message as ByteArrayType))
-          as ByteArrayType;
+      super.copyWith((message) => updates(message as ByteArrayType)) as ByteArrayType;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ByteArrayType create() => ByteArrayType._();
   ByteArrayType createEmptyInstance() => create();
-  static $pb.PbList<ByteArrayType> createRepeated() =>
-      $pb.PbList<ByteArrayType>();
+  static $pb.PbList<ByteArrayType> createRepeated() => $pb.PbList<ByteArrayType>();
   @$core.pragma('dart2js:noInline')
-  static ByteArrayType getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ByteArrayType>(create);
+  static ByteArrayType getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ByteArrayType>(create);
   static ByteArrayType? _defaultInstance;
 }
 
@@ -410,17 +359,12 @@ class ByteArrayFixType extends $pb.GeneratedMessage {
   factory ByteArrayFixType.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ByteArrayFixType.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ByteArrayFixType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ByteArrayFixType',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'size', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ByteArrayFixType',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'size', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -431,19 +375,17 @@ class ByteArrayFixType extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ByteArrayFixType copyWith(void Function(ByteArrayFixType) updates) =>
-      super.copyWith((message) => updates(message as ByteArrayFixType))
-          as ByteArrayFixType;
+      super.copyWith((message) => updates(message as ByteArrayFixType)) as ByteArrayFixType;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ByteArrayFixType create() => ByteArrayFixType._();
   ByteArrayFixType createEmptyInstance() => create();
-  static $pb.PbList<ByteArrayFixType> createRepeated() =>
-      $pb.PbList<ByteArrayFixType>();
+  static $pb.PbList<ByteArrayFixType> createRepeated() => $pb.PbList<ByteArrayFixType>();
   @$core.pragma('dart2js:noInline')
-  static ByteArrayFixType getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ByteArrayFixType>(create);
+  static ByteArrayFixType getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ByteArrayFixType>(create);
   static ByteArrayFixType? _defaultInstance;
 
   /// The fixed-size of the array.
@@ -472,20 +414,14 @@ class TupleType extends $pb.GeneratedMessage {
     return $result;
   }
   TupleType._() : super();
-  factory TupleType.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TupleType.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory TupleType.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TupleType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'TupleType',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
-    ..pc<Param>(1, _omitFieldNames ? '' : 'params', $pb.PbFieldType.PM,
-        subBuilder: Param.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TupleType',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
+    ..pc<Param>(1, _omitFieldNames ? '' : 'params', $pb.PbFieldType.PM, subBuilder: Param.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -505,8 +441,7 @@ class TupleType extends $pb.GeneratedMessage {
   TupleType createEmptyInstance() => create();
   static $pb.PbList<TupleType> createRepeated() => $pb.PbList<TupleType>();
   @$core.pragma('dart2js:noInline')
-  static TupleType getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TupleType>(create);
+  static TupleType getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TupleType>(create);
   static TupleType? _defaultInstance;
 
   /// Tuple named parameters.
@@ -530,21 +465,15 @@ class Param extends $pb.GeneratedMessage {
     return $result;
   }
   Param._() : super();
-  factory Param.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Param.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Param.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Param.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Param',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Param',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
-    ..aOM<ParamType>(2, _omitFieldNames ? '' : 'param',
-        subBuilder: ParamType.create)
+    ..aOM<ParamType>(2, _omitFieldNames ? '' : 'param', subBuilder: ParamType.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -554,8 +483,7 @@ class Param extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Param copyWith(void Function(Param) updates) =>
-      super.copyWith((message) => updates(message as Param)) as Param;
+  Param copyWith(void Function(Param) updates) => super.copyWith((message) => updates(message as Param)) as Param;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -564,8 +492,7 @@ class Param extends $pb.GeneratedMessage {
   Param createEmptyInstance() => create();
   static $pb.PbList<Param> createRepeated() => $pb.PbList<Param>();
   @$core.pragma('dart2js:noInline')
-  static Param getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Param>(create);
+  static Param getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Param>(create);
   static Param? _defaultInstance;
 
   /// Name of the parameter.
@@ -658,11 +585,9 @@ class ParamType extends $pb.GeneratedMessage {
     return $result;
   }
   ParamType._() : super();
-  factory ParamType.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ParamType.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ParamType.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ParamType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
   static const $core.Map<$core.int, ParamType_Param> _ParamType_ParamByTag = {
@@ -678,32 +603,19 @@ class ParamType extends $pb.GeneratedMessage {
     19: ParamType_Param.tuple,
     0: ParamType_Param.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ParamType',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ParamType',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..oo(0, [1, 2, 3, 7, 8, 9, 10, 14, 15, 19])
-    ..aOM<BoolType>(1, _omitFieldNames ? '' : 'boolean',
-        subBuilder: BoolType.create)
-    ..aOM<NumberNType>(2, _omitFieldNames ? '' : 'numberInt',
-        subBuilder: NumberNType.create)
-    ..aOM<NumberNType>(3, _omitFieldNames ? '' : 'numberUint',
-        subBuilder: NumberNType.create)
-    ..aOM<StringType>(7, _omitFieldNames ? '' : 'stringParam',
-        subBuilder: StringType.create)
-    ..aOM<AddressType>(8, _omitFieldNames ? '' : 'address',
-        subBuilder: AddressType.create)
-    ..aOM<ByteArrayType>(9, _omitFieldNames ? '' : 'byteArray',
-        subBuilder: ByteArrayType.create)
-    ..aOM<ByteArrayFixType>(10, _omitFieldNames ? '' : 'byteArrayFix',
-        subBuilder: ByteArrayFixType.create)
-    ..aOM<ArrayType>(14, _omitFieldNames ? '' : 'array',
-        subBuilder: ArrayType.create)
-    ..aOM<FixedArrayType>(15, _omitFieldNames ? '' : 'fixedArray',
-        subBuilder: FixedArrayType.create)
-    ..aOM<TupleType>(19, _omitFieldNames ? '' : 'tuple',
-        subBuilder: TupleType.create)
+    ..aOM<BoolType>(1, _omitFieldNames ? '' : 'boolean', subBuilder: BoolType.create)
+    ..aOM<NumberNType>(2, _omitFieldNames ? '' : 'numberInt', subBuilder: NumberNType.create)
+    ..aOM<NumberNType>(3, _omitFieldNames ? '' : 'numberUint', subBuilder: NumberNType.create)
+    ..aOM<StringType>(7, _omitFieldNames ? '' : 'stringParam', subBuilder: StringType.create)
+    ..aOM<AddressType>(8, _omitFieldNames ? '' : 'address', subBuilder: AddressType.create)
+    ..aOM<ByteArrayType>(9, _omitFieldNames ? '' : 'byteArray', subBuilder: ByteArrayType.create)
+    ..aOM<ByteArrayFixType>(10, _omitFieldNames ? '' : 'byteArrayFix', subBuilder: ByteArrayFixType.create)
+    ..aOM<ArrayType>(14, _omitFieldNames ? '' : 'array', subBuilder: ArrayType.create)
+    ..aOM<FixedArrayType>(15, _omitFieldNames ? '' : 'fixedArray', subBuilder: FixedArrayType.create)
+    ..aOM<TupleType>(19, _omitFieldNames ? '' : 'tuple', subBuilder: TupleType.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -723,8 +635,7 @@ class ParamType extends $pb.GeneratedMessage {
   ParamType createEmptyInstance() => create();
   static $pb.PbList<ParamType> createRepeated() => $pb.PbList<ParamType>();
   @$core.pragma('dart2js:noInline')
-  static ParamType getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ParamType>(create);
+  static ParamType getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ParamType>(create);
   static ParamType? _defaultInstance;
 
   ParamType_Param whichParam() => _ParamType_ParamByTag[$_whichOneof(0)]!;
@@ -890,21 +801,15 @@ class NumberNParam extends $pb.GeneratedMessage {
     return $result;
   }
   NumberNParam._() : super();
-  factory NumberNParam.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory NumberNParam.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory NumberNParam.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory NumberNParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'NumberNParam',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'NumberNParam',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'bits', $pb.PbFieldType.OU3)
-    ..a<$core.List<$core.int>>(
-        2, _omitFieldNames ? '' : 'value', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'value', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -915,19 +820,16 @@ class NumberNParam extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   NumberNParam copyWith(void Function(NumberNParam) updates) =>
-      super.copyWith((message) => updates(message as NumberNParam))
-          as NumberNParam;
+      super.copyWith((message) => updates(message as NumberNParam)) as NumberNParam;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static NumberNParam create() => NumberNParam._();
   NumberNParam createEmptyInstance() => create();
-  static $pb.PbList<NumberNParam> createRepeated() =>
-      $pb.PbList<NumberNParam>();
+  static $pb.PbList<NumberNParam> createRepeated() => $pb.PbList<NumberNParam>();
   @$core.pragma('dart2js:noInline')
-  static NumberNParam getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<NumberNParam>(create);
+  static NumberNParam getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<NumberNParam>(create);
   static NumberNParam? _defaultInstance;
 
   /// Count of bits of the number.
@@ -974,22 +876,15 @@ class ArrayParam extends $pb.GeneratedMessage {
     return $result;
   }
   ArrayParam._() : super();
-  factory ArrayParam.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ArrayParam.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ArrayParam.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ArrayParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ArrayParam',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
-    ..aOM<ParamType>(1, _omitFieldNames ? '' : 'elementType',
-        subBuilder: ParamType.create)
-    ..pc<Token>(2, _omitFieldNames ? '' : 'elements', $pb.PbFieldType.PM,
-        subBuilder: Token.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ArrayParam',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
+    ..aOM<ParamType>(1, _omitFieldNames ? '' : 'elementType', subBuilder: ParamType.create)
+    ..pc<Token>(2, _omitFieldNames ? '' : 'elements', $pb.PbFieldType.PM, subBuilder: Token.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1009,8 +904,7 @@ class ArrayParam extends $pb.GeneratedMessage {
   ArrayParam createEmptyInstance() => create();
   static $pb.PbList<ArrayParam> createRepeated() => $pb.PbList<ArrayParam>();
   @$core.pragma('dart2js:noInline')
-  static ArrayParam getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ArrayParam>(create);
+  static ArrayParam getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ArrayParam>(create);
   static ArrayParam? _defaultInstance;
 
   /// The type of array elements.
@@ -1045,20 +939,14 @@ class TupleParam extends $pb.GeneratedMessage {
     return $result;
   }
   TupleParam._() : super();
-  factory TupleParam.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TupleParam.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory TupleParam.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TupleParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'TupleParam',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
-    ..pc<Token>(1, _omitFieldNames ? '' : 'params', $pb.PbFieldType.PM,
-        subBuilder: Token.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TupleParam',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
+    ..pc<Token>(1, _omitFieldNames ? '' : 'params', $pb.PbFieldType.PM, subBuilder: Token.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1078,8 +966,7 @@ class TupleParam extends $pb.GeneratedMessage {
   TupleParam createEmptyInstance() => create();
   static $pb.PbList<TupleParam> createRepeated() => $pb.PbList<TupleParam>();
   @$core.pragma('dart2js:noInline')
-  static TupleParam getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TupleParam>(create);
+  static TupleParam getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TupleParam>(create);
   static TupleParam? _defaultInstance;
 
   /// Tokens (values) of the tuple parameters.
@@ -1153,11 +1040,9 @@ class Token extends $pb.GeneratedMessage {
     return $result;
   }
   Token._() : super();
-  factory Token.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Token.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Token.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Token.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
   static const $core.Map<$core.int, Token_Token> _Token_TokenByTag = {
@@ -1173,30 +1058,20 @@ class Token extends $pb.GeneratedMessage {
     19: Token_Token.tuple,
     0: Token_Token.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Token',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Token',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..oo(0, [2, 3, 4, 7, 8, 9, 10, 14, 15, 19])
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aOB(2, _omitFieldNames ? '' : 'boolean')
-    ..aOM<NumberNParam>(3, _omitFieldNames ? '' : 'numberInt',
-        subBuilder: NumberNParam.create)
-    ..aOM<NumberNParam>(4, _omitFieldNames ? '' : 'numberUint',
-        subBuilder: NumberNParam.create)
+    ..aOM<NumberNParam>(3, _omitFieldNames ? '' : 'numberInt', subBuilder: NumberNParam.create)
+    ..aOM<NumberNParam>(4, _omitFieldNames ? '' : 'numberUint', subBuilder: NumberNParam.create)
     ..aOS(7, _omitFieldNames ? '' : 'stringValue')
     ..aOS(8, _omitFieldNames ? '' : 'address')
-    ..a<$core.List<$core.int>>(
-        9, _omitFieldNames ? '' : 'byteArray', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        10, _omitFieldNames ? '' : 'byteArrayFix', $pb.PbFieldType.OY)
-    ..aOM<ArrayParam>(14, _omitFieldNames ? '' : 'array',
-        subBuilder: ArrayParam.create)
-    ..aOM<ArrayParam>(15, _omitFieldNames ? '' : 'fixedArray',
-        subBuilder: ArrayParam.create)
-    ..aOM<TupleParam>(19, _omitFieldNames ? '' : 'tuple',
-        subBuilder: TupleParam.create)
+    ..a<$core.List<$core.int>>(9, _omitFieldNames ? '' : 'byteArray', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(10, _omitFieldNames ? '' : 'byteArrayFix', $pb.PbFieldType.OY)
+    ..aOM<ArrayParam>(14, _omitFieldNames ? '' : 'array', subBuilder: ArrayParam.create)
+    ..aOM<ArrayParam>(15, _omitFieldNames ? '' : 'fixedArray', subBuilder: ArrayParam.create)
+    ..aOM<TupleParam>(19, _omitFieldNames ? '' : 'tuple', subBuilder: TupleParam.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1206,8 +1081,7 @@ class Token extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Token copyWith(void Function(Token) updates) =>
-      super.copyWith((message) => updates(message as Token)) as Token;
+  Token copyWith(void Function(Token) updates) => super.copyWith((message) => updates(message as Token)) as Token;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -1216,8 +1090,7 @@ class Token extends $pb.GeneratedMessage {
   Token createEmptyInstance() => create();
   static $pb.PbList<Token> createRepeated() => $pb.PbList<Token>();
   @$core.pragma('dart2js:noInline')
-  static Token getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Token>(create);
+  static Token getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Token>(create);
   static Token? _defaultInstance;
 
   Token_Token whichToken() => _Token_TokenByTag[$_whichOneof(0)]!;
@@ -1390,43 +1263,34 @@ class ContractCallDecodingInput extends $pb.GeneratedMessage {
   factory ContractCallDecodingInput.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ContractCallDecodingInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ContractCallDecodingInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ContractCallDecodingInput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ContractCallDecodingInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
     ..aOS(2, _omitFieldNames ? '' : 'smartContractAbiJson')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  ContractCallDecodingInput clone() =>
-      ContractCallDecodingInput()..mergeFromMessage(this);
+  ContractCallDecodingInput clone() => ContractCallDecodingInput()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  ContractCallDecodingInput copyWith(
-          void Function(ContractCallDecodingInput) updates) =>
-      super.copyWith((message) => updates(message as ContractCallDecodingInput))
-          as ContractCallDecodingInput;
+  ContractCallDecodingInput copyWith(void Function(ContractCallDecodingInput) updates) =>
+      super.copyWith((message) => updates(message as ContractCallDecodingInput)) as ContractCallDecodingInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ContractCallDecodingInput create() => ContractCallDecodingInput._();
   ContractCallDecodingInput createEmptyInstance() => create();
-  static $pb.PbList<ContractCallDecodingInput> createRepeated() =>
-      $pb.PbList<ContractCallDecodingInput>();
+  static $pb.PbList<ContractCallDecodingInput> createRepeated() => $pb.PbList<ContractCallDecodingInput>();
   @$core.pragma('dart2js:noInline')
-  static ContractCallDecodingInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ContractCallDecodingInput>(create);
+  static ContractCallDecodingInput getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ContractCallDecodingInput>(create);
   static ContractCallDecodingInput? _defaultInstance;
 
   /// An encoded smart contract call with a prefixed function signature (4 bytes).
@@ -1503,45 +1367,34 @@ class ContractCallDecodingOutput extends $pb.GeneratedMessage {
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ContractCallDecodingOutput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ContractCallDecodingOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'decodedJson')
-    ..pc<Token>(2, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.PM,
-        subBuilder: Token.create)
+    ..pc<Token>(2, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.PM, subBuilder: Token.create)
     ..e<AbiError>(3, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: AbiError.OK,
-        valueOf: AbiError.valueOf,
-        enumValues: AbiError.values)
+        defaultOrMaker: AbiError.OK, valueOf: AbiError.valueOf, enumValues: AbiError.values)
     ..aOS(4, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  ContractCallDecodingOutput clone() =>
-      ContractCallDecodingOutput()..mergeFromMessage(this);
+  ContractCallDecodingOutput clone() => ContractCallDecodingOutput()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  ContractCallDecodingOutput copyWith(
-          void Function(ContractCallDecodingOutput) updates) =>
-      super.copyWith(
-              (message) => updates(message as ContractCallDecodingOutput))
-          as ContractCallDecodingOutput;
+  ContractCallDecodingOutput copyWith(void Function(ContractCallDecodingOutput) updates) =>
+      super.copyWith((message) => updates(message as ContractCallDecodingOutput)) as ContractCallDecodingOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ContractCallDecodingOutput create() => ContractCallDecodingOutput._();
   ContractCallDecodingOutput createEmptyInstance() => create();
-  static $pb.PbList<ContractCallDecodingOutput> createRepeated() =>
-      $pb.PbList<ContractCallDecodingOutput>();
+  static $pb.PbList<ContractCallDecodingOutput> createRepeated() => $pb.PbList<ContractCallDecodingOutput>();
   @$core.pragma('dart2js:noInline')
-  static ContractCallDecodingOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ContractCallDecodingOutput>(create);
+  static ContractCallDecodingOutput getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ContractCallDecodingOutput>(create);
   static ContractCallDecodingOutput? _defaultInstance;
 
   /// Human readable json format, according to the input `ContractCallDecodingInput::smart_contract_abi_json`.
@@ -1600,20 +1453,14 @@ class AbiParams extends $pb.GeneratedMessage {
     return $result;
   }
   AbiParams._() : super();
-  factory AbiParams.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory AbiParams.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory AbiParams.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory AbiParams.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'AbiParams',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
-    ..pc<Param>(1, _omitFieldNames ? '' : 'params', $pb.PbFieldType.PM,
-        subBuilder: Param.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AbiParams',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
+    ..pc<Param>(1, _omitFieldNames ? '' : 'params', $pb.PbFieldType.PM, subBuilder: Param.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1633,8 +1480,7 @@ class AbiParams extends $pb.GeneratedMessage {
   AbiParams createEmptyInstance() => create();
   static $pb.PbList<AbiParams> createRepeated() => $pb.PbList<AbiParams>();
   @$core.pragma('dart2js:noInline')
-  static AbiParams getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AbiParams>(create);
+  static AbiParams getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AbiParams>(create);
   static AbiParams? _defaultInstance;
 
   /// ABI type parameters.
@@ -1667,27 +1513,20 @@ class ParamsDecodingInput extends $pb.GeneratedMessage {
   factory ParamsDecodingInput.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ParamsDecodingInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ParamsDecodingInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, ParamsDecodingInput_Abi>
-      _ParamsDecodingInput_AbiByTag = {
+  static const $core.Map<$core.int, ParamsDecodingInput_Abi> _ParamsDecodingInput_AbiByTag = {
     2: ParamsDecodingInput_Abi.abiJson,
     3: ParamsDecodingInput_Abi.abiParams,
     0: ParamsDecodingInput_Abi.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ParamsDecodingInput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ParamsDecodingInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..oo(0, [2, 3])
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
     ..aOS(2, _omitFieldNames ? '' : 'abiJson')
-    ..aOM<AbiParams>(3, _omitFieldNames ? '' : 'abiParams',
-        subBuilder: AbiParams.create)
+    ..aOM<AbiParams>(3, _omitFieldNames ? '' : 'abiParams', subBuilder: AbiParams.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1698,23 +1537,20 @@ class ParamsDecodingInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ParamsDecodingInput copyWith(void Function(ParamsDecodingInput) updates) =>
-      super.copyWith((message) => updates(message as ParamsDecodingInput))
-          as ParamsDecodingInput;
+      super.copyWith((message) => updates(message as ParamsDecodingInput)) as ParamsDecodingInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ParamsDecodingInput create() => ParamsDecodingInput._();
   ParamsDecodingInput createEmptyInstance() => create();
-  static $pb.PbList<ParamsDecodingInput> createRepeated() =>
-      $pb.PbList<ParamsDecodingInput>();
+  static $pb.PbList<ParamsDecodingInput> createRepeated() => $pb.PbList<ParamsDecodingInput>();
   @$core.pragma('dart2js:noInline')
-  static ParamsDecodingInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ParamsDecodingInput>(create);
+  static ParamsDecodingInput getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ParamsDecodingInput>(create);
   static ParamsDecodingInput? _defaultInstance;
 
-  ParamsDecodingInput_Abi whichAbi() =>
-      _ParamsDecodingInput_AbiByTag[$_whichOneof(0)]!;
+  ParamsDecodingInput_Abi whichAbi() => _ParamsDecodingInput_AbiByTag[$_whichOneof(0)]!;
   void clearAbi() => clearField($_whichOneof(0));
 
   /// An encoded ABI.
@@ -1795,46 +1631,36 @@ class ParamsDecodingOutput extends $pb.GeneratedMessage {
   factory ParamsDecodingOutput.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ParamsDecodingOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ParamsDecodingOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ParamsDecodingOutput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
-    ..pc<Token>(1, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.PM,
-        subBuilder: Token.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ParamsDecodingOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
+    ..pc<Token>(1, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.PM, subBuilder: Token.create)
     ..e<AbiError>(2, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: AbiError.OK,
-        valueOf: AbiError.valueOf,
-        enumValues: AbiError.values)
+        defaultOrMaker: AbiError.OK, valueOf: AbiError.valueOf, enumValues: AbiError.values)
     ..aOS(3, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  ParamsDecodingOutput clone() =>
-      ParamsDecodingOutput()..mergeFromMessage(this);
+  ParamsDecodingOutput clone() => ParamsDecodingOutput()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ParamsDecodingOutput copyWith(void Function(ParamsDecodingOutput) updates) =>
-      super.copyWith((message) => updates(message as ParamsDecodingOutput))
-          as ParamsDecodingOutput;
+      super.copyWith((message) => updates(message as ParamsDecodingOutput)) as ParamsDecodingOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ParamsDecodingOutput create() => ParamsDecodingOutput._();
   ParamsDecodingOutput createEmptyInstance() => create();
-  static $pb.PbList<ParamsDecodingOutput> createRepeated() =>
-      $pb.PbList<ParamsDecodingOutput>();
+  static $pb.PbList<ParamsDecodingOutput> createRepeated() => $pb.PbList<ParamsDecodingOutput>();
   @$core.pragma('dart2js:noInline')
-  static ParamsDecodingOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ParamsDecodingOutput>(create);
+  static ParamsDecodingOutput getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ParamsDecodingOutput>(create);
   static ParamsDecodingOutput? _defaultInstance;
 
   /// Decoded parameters.
@@ -1887,17 +1713,12 @@ class ValueDecodingInput extends $pb.GeneratedMessage {
   factory ValueDecodingInput.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ValueDecodingInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ValueDecodingInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ValueDecodingInput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ValueDecodingInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
     ..aOS(2, _omitFieldNames ? '' : 'paramType')
     ..hasRequiredFields = false;
 
@@ -1909,19 +1730,17 @@ class ValueDecodingInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ValueDecodingInput copyWith(void Function(ValueDecodingInput) updates) =>
-      super.copyWith((message) => updates(message as ValueDecodingInput))
-          as ValueDecodingInput;
+      super.copyWith((message) => updates(message as ValueDecodingInput)) as ValueDecodingInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ValueDecodingInput create() => ValueDecodingInput._();
   ValueDecodingInput createEmptyInstance() => create();
-  static $pb.PbList<ValueDecodingInput> createRepeated() =>
-      $pb.PbList<ValueDecodingInput>();
+  static $pb.PbList<ValueDecodingInput> createRepeated() => $pb.PbList<ValueDecodingInput>();
   @$core.pragma('dart2js:noInline')
-  static ValueDecodingInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ValueDecodingInput>(create);
+  static ValueDecodingInput getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ValueDecodingInput>(create);
   static ValueDecodingInput? _defaultInstance;
 
   /// An encoded value to be decoded.
@@ -1979,21 +1798,15 @@ class ValueDecodingOutput extends $pb.GeneratedMessage {
   factory ValueDecodingOutput.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ValueDecodingOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ValueDecodingOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ValueDecodingOutput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ValueDecodingOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..aOM<Token>(1, _omitFieldNames ? '' : 'token', subBuilder: Token.create)
     ..aOS(2, _omitFieldNames ? '' : 'paramStr')
     ..e<AbiError>(3, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: AbiError.OK,
-        valueOf: AbiError.valueOf,
-        enumValues: AbiError.values)
+        defaultOrMaker: AbiError.OK, valueOf: AbiError.valueOf, enumValues: AbiError.values)
     ..aOS(4, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
@@ -2005,19 +1818,17 @@ class ValueDecodingOutput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ValueDecodingOutput copyWith(void Function(ValueDecodingOutput) updates) =>
-      super.copyWith((message) => updates(message as ValueDecodingOutput))
-          as ValueDecodingOutput;
+      super.copyWith((message) => updates(message as ValueDecodingOutput)) as ValueDecodingOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ValueDecodingOutput create() => ValueDecodingOutput._();
   ValueDecodingOutput createEmptyInstance() => create();
-  static $pb.PbList<ValueDecodingOutput> createRepeated() =>
-      $pb.PbList<ValueDecodingOutput>();
+  static $pb.PbList<ValueDecodingOutput> createRepeated() => $pb.PbList<ValueDecodingOutput>();
   @$core.pragma('dart2js:noInline')
-  static ValueDecodingOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ValueDecodingOutput>(create);
+  static ValueDecodingOutput getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ValueDecodingOutput>(create);
   static ValueDecodingOutput? _defaultInstance;
 
   /// Decoded parameter.
@@ -2094,43 +1905,34 @@ class FunctionEncodingInput extends $pb.GeneratedMessage {
   factory FunctionEncodingInput.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory FunctionEncodingInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory FunctionEncodingInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'FunctionEncodingInput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FunctionEncodingInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'functionName')
-    ..pc<Token>(2, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.PM,
-        subBuilder: Token.create)
+    ..pc<Token>(2, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.PM, subBuilder: Token.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  FunctionEncodingInput clone() =>
-      FunctionEncodingInput()..mergeFromMessage(this);
+  FunctionEncodingInput clone() => FunctionEncodingInput()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  FunctionEncodingInput copyWith(
-          void Function(FunctionEncodingInput) updates) =>
-      super.copyWith((message) => updates(message as FunctionEncodingInput))
-          as FunctionEncodingInput;
+  FunctionEncodingInput copyWith(void Function(FunctionEncodingInput) updates) =>
+      super.copyWith((message) => updates(message as FunctionEncodingInput)) as FunctionEncodingInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static FunctionEncodingInput create() => FunctionEncodingInput._();
   FunctionEncodingInput createEmptyInstance() => create();
-  static $pb.PbList<FunctionEncodingInput> createRepeated() =>
-      $pb.PbList<FunctionEncodingInput>();
+  static $pb.PbList<FunctionEncodingInput> createRepeated() => $pb.PbList<FunctionEncodingInput>();
   @$core.pragma('dart2js:noInline')
-  static FunctionEncodingInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<FunctionEncodingInput>(create);
+  static FunctionEncodingInput getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FunctionEncodingInput>(create);
   static FunctionEncodingInput? _defaultInstance;
 
   /// Function name.
@@ -2177,48 +1979,37 @@ class FunctionEncodingOutput extends $pb.GeneratedMessage {
   factory FunctionEncodingOutput.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory FunctionEncodingOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory FunctionEncodingOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'FunctionEncodingOutput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FunctionEncodingOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'functionType')
-    ..a<$core.List<$core.int>>(
-        2, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
     ..e<AbiError>(3, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: AbiError.OK,
-        valueOf: AbiError.valueOf,
-        enumValues: AbiError.values)
+        defaultOrMaker: AbiError.OK, valueOf: AbiError.valueOf, enumValues: AbiError.values)
     ..aOS(4, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  FunctionEncodingOutput clone() =>
-      FunctionEncodingOutput()..mergeFromMessage(this);
+  FunctionEncodingOutput clone() => FunctionEncodingOutput()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  FunctionEncodingOutput copyWith(
-          void Function(FunctionEncodingOutput) updates) =>
-      super.copyWith((message) => updates(message as FunctionEncodingOutput))
-          as FunctionEncodingOutput;
+  FunctionEncodingOutput copyWith(void Function(FunctionEncodingOutput) updates) =>
+      super.copyWith((message) => updates(message as FunctionEncodingOutput)) as FunctionEncodingOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static FunctionEncodingOutput create() => FunctionEncodingOutput._();
   FunctionEncodingOutput createEmptyInstance() => create();
-  static $pb.PbList<FunctionEncodingOutput> createRepeated() =>
-      $pb.PbList<FunctionEncodingOutput>();
+  static $pb.PbList<FunctionEncodingOutput> createRepeated() => $pb.PbList<FunctionEncodingOutput>();
   @$core.pragma('dart2js:noInline')
-  static FunctionEncodingOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<FunctionEncodingOutput>(create);
+  static FunctionEncodingOutput getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FunctionEncodingOutput>(create);
   static FunctionEncodingOutput? _defaultInstance;
 
   /// The function type signature.
@@ -2294,42 +2085,34 @@ class FunctionGetTypeInput extends $pb.GeneratedMessage {
   factory FunctionGetTypeInput.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory FunctionGetTypeInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory FunctionGetTypeInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'FunctionGetTypeInput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumAbi.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FunctionGetTypeInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumAbi.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'functionName')
-    ..pc<Param>(2, _omitFieldNames ? '' : 'inputs', $pb.PbFieldType.PM,
-        subBuilder: Param.create)
+    ..pc<Param>(2, _omitFieldNames ? '' : 'inputs', $pb.PbFieldType.PM, subBuilder: Param.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  FunctionGetTypeInput clone() =>
-      FunctionGetTypeInput()..mergeFromMessage(this);
+  FunctionGetTypeInput clone() => FunctionGetTypeInput()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   FunctionGetTypeInput copyWith(void Function(FunctionGetTypeInput) updates) =>
-      super.copyWith((message) => updates(message as FunctionGetTypeInput))
-          as FunctionGetTypeInput;
+      super.copyWith((message) => updates(message as FunctionGetTypeInput)) as FunctionGetTypeInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static FunctionGetTypeInput create() => FunctionGetTypeInput._();
   FunctionGetTypeInput createEmptyInstance() => create();
-  static $pb.PbList<FunctionGetTypeInput> createRepeated() =>
-      $pb.PbList<FunctionGetTypeInput>();
+  static $pb.PbList<FunctionGetTypeInput> createRepeated() => $pb.PbList<FunctionGetTypeInput>();
   @$core.pragma('dart2js:noInline')
-  static FunctionGetTypeInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<FunctionGetTypeInput>(create);
+  static FunctionGetTypeInput getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FunctionGetTypeInput>(create);
   static FunctionGetTypeInput? _defaultInstance;
 
   /// Function signature. Includes function inputs if they are.
@@ -2356,5 +2139,4 @@ class FunctionGetTypeInput extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

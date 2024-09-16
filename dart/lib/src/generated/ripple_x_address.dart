@@ -12,13 +12,11 @@ final class RippleXAddress implements Disposable, Address {
 
   Pointer<TWRippleXAddress> get pointer => _pointer;
 
-  const RippleXAddress._(Pointer<TWRippleXAddress> pointer)
-      : _pointer = pointer;
+  const RippleXAddress._(Pointer<TWRippleXAddress> pointer) : _pointer = pointer;
 
   @override
   bool operator ==(Object other) => switch (other) {
-        RippleXAddress obj =>
-          _bindings.TWRippleXAddressEqual(_pointer, obj.pointer),
+        RippleXAddress obj => _bindings.TWRippleXAddressEqual(_pointer, obj.pointer),
         _ => false,
       };
 
@@ -30,8 +28,7 @@ final class RippleXAddress implements Disposable, Address {
   }) {
     final stringString = StringImpl.createWithString(string);
     try {
-      final result =
-          _bindings.TWRippleXAddressCreateWithString(stringString.pointer);
+      final result = _bindings.TWRippleXAddressCreateWithString(stringString.pointer);
       if (result == nullptr) {
         throw ArgumentError('RippleXAddress.createWithString: string=$string');
       }
@@ -47,8 +44,7 @@ final class RippleXAddress implements Disposable, Address {
     required int tag,
   }) {
     final publicKeyPublicKey = publicKey.pointer;
-    final result =
-        _bindings.TWRippleXAddressCreateWithPublicKey(publicKeyPublicKey, tag);
+    final result = _bindings.TWRippleXAddressCreateWithPublicKey(publicKeyPublicKey, tag);
 
     return RippleXAddress._(result);
   }
@@ -62,8 +58,7 @@ final class RippleXAddress implements Disposable, Address {
     required String string,
   }) {
     final stringString = StringImpl.createWithString(string);
-    final result =
-        _bindings.TWRippleXAddressIsValidString(stringString.pointer);
+    final result = _bindings.TWRippleXAddressIsValidString(stringString.pointer);
     stringString.dispose();
 
     return result;

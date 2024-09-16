@@ -12,8 +12,7 @@ final class Barz {
     required Uint8List input,
   }) {
     final inputUint8List = DataImpl.createWithBytes(input);
-    final result =
-        _bindings.TWBarzGetCounterfactualAddress(inputUint8List.pointer);
+    final result = _bindings.TWBarzGetCounterfactualAddress(inputUint8List.pointer);
     inputUint8List.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;

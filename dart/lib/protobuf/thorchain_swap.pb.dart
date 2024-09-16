@@ -38,22 +38,15 @@ class Error extends $pb.GeneratedMessage {
     return $result;
   }
   Error._() : super();
-  factory Error.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Error.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Error.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Error.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Error',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.THORChainSwap.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Error',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.THORChainSwap.Proto'), createEmptyInstance: create)
     ..e<ErrorCode>(1, _omitFieldNames ? '' : 'code', $pb.PbFieldType.OE,
-        defaultOrMaker: ErrorCode.OK,
-        valueOf: ErrorCode.valueOf,
-        enumValues: ErrorCode.values)
+        defaultOrMaker: ErrorCode.OK, valueOf: ErrorCode.valueOf, enumValues: ErrorCode.values)
     ..aOS(2, _omitFieldNames ? '' : 'message')
     ..hasRequiredFields = false;
 
@@ -64,8 +57,7 @@ class Error extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Error copyWith(void Function(Error) updates) =>
-      super.copyWith((message) => updates(message as Error)) as Error;
+  Error copyWith(void Function(Error) updates) => super.copyWith((message) => updates(message as Error)) as Error;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -74,8 +66,7 @@ class Error extends $pb.GeneratedMessage {
   Error createEmptyInstance() => create();
   static $pb.PbList<Error> createRepeated() => $pb.PbList<Error>();
   @$core.pragma('dart2js:noInline')
-  static Error getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Error>(create);
+  static Error getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Error>(create);
   static Error? _defaultInstance;
 
   /// code of the error
@@ -125,22 +116,15 @@ class Asset extends $pb.GeneratedMessage {
     return $result;
   }
   Asset._() : super();
-  factory Asset.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Asset.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Asset.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Asset.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Asset',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.THORChainSwap.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Asset',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.THORChainSwap.Proto'), createEmptyInstance: create)
     ..e<Chain>(1, _omitFieldNames ? '' : 'chain', $pb.PbFieldType.OE,
-        defaultOrMaker: Chain.THOR,
-        valueOf: Chain.valueOf,
-        enumValues: Chain.values)
+        defaultOrMaker: Chain.THOR, valueOf: Chain.valueOf, enumValues: Chain.values)
     ..aOS(2, _omitFieldNames ? '' : 'symbol')
     ..aOS(3, _omitFieldNames ? '' : 'tokenId')
     ..hasRequiredFields = false;
@@ -152,8 +136,7 @@ class Asset extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Asset copyWith(void Function(Asset) updates) =>
-      super.copyWith((message) => updates(message as Asset)) as Asset;
+  Asset copyWith(void Function(Asset) updates) => super.copyWith((message) => updates(message as Asset)) as Asset;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -162,8 +145,7 @@ class Asset extends $pb.GeneratedMessage {
   Asset createEmptyInstance() => create();
   static $pb.PbList<Asset> createRepeated() => $pb.PbList<Asset>();
   @$core.pragma('dart2js:noInline')
-  static Asset getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Asset>(create);
+  static Asset getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Asset>(create);
   static Asset? _defaultInstance;
 
   /// Chain ID
@@ -221,18 +203,13 @@ class StreamParams extends $pb.GeneratedMessage {
     return $result;
   }
   StreamParams._() : super();
-  factory StreamParams.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory StreamParams.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory StreamParams.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory StreamParams.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'StreamParams',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.THORChainSwap.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'StreamParams',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.THORChainSwap.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'interval')
     ..aOS(2, _omitFieldNames ? '' : 'quantity')
     ..hasRequiredFields = false;
@@ -245,19 +222,16 @@ class StreamParams extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   StreamParams copyWith(void Function(StreamParams) updates) =>
-      super.copyWith((message) => updates(message as StreamParams))
-          as StreamParams;
+      super.copyWith((message) => updates(message as StreamParams)) as StreamParams;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static StreamParams create() => StreamParams._();
   StreamParams createEmptyInstance() => create();
-  static $pb.PbList<StreamParams> createRepeated() =>
-      $pb.PbList<StreamParams>();
+  static $pb.PbList<StreamParams> createRepeated() => $pb.PbList<StreamParams>();
   @$core.pragma('dart2js:noInline')
-  static StreamParams getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<StreamParams>(create);
+  static StreamParams getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StreamParams>(create);
   static StreamParams? _defaultInstance;
 
   /// Optional Swap Interval ncy in blocks.
@@ -349,20 +323,14 @@ class SwapInput extends $pb.GeneratedMessage {
     return $result;
   }
   SwapInput._() : super();
-  factory SwapInput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SwapInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SwapInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SwapInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SwapInput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.THORChainSwap.Proto'),
-      createEmptyInstance: create)
-    ..aOM<Asset>(1, _omitFieldNames ? '' : 'fromAsset',
-        subBuilder: Asset.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SwapInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.THORChainSwap.Proto'), createEmptyInstance: create)
+    ..aOM<Asset>(1, _omitFieldNames ? '' : 'fromAsset', subBuilder: Asset.create)
     ..aOS(2, _omitFieldNames ? '' : 'fromAddress')
     ..aOM<Asset>(3, _omitFieldNames ? '' : 'toAsset', subBuilder: Asset.create)
     ..aOS(4, _omitFieldNames ? '' : 'toAddress')
@@ -373,11 +341,9 @@ class SwapInput extends $pb.GeneratedMessage {
     ..aOS(9, _omitFieldNames ? '' : 'affiliateFeeAddress')
     ..aOS(10, _omitFieldNames ? '' : 'affiliateFeeRateBp')
     ..aOS(11, _omitFieldNames ? '' : 'extraMemo')
-    ..a<$fixnum.Int64>(
-        12, _omitFieldNames ? '' : 'expirationTime', $pb.PbFieldType.OU6,
+    ..a<$fixnum.Int64>(12, _omitFieldNames ? '' : 'expirationTime', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<StreamParams>(13, _omitFieldNames ? '' : 'streamParams',
-        subBuilder: StreamParams.create)
+    ..aOM<StreamParams>(13, _omitFieldNames ? '' : 'streamParams', subBuilder: StreamParams.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -397,8 +363,7 @@ class SwapInput extends $pb.GeneratedMessage {
   SwapInput createEmptyInstance() => create();
   static $pb.PbList<SwapInput> createRepeated() => $pb.PbList<SwapInput>();
   @$core.pragma('dart2js:noInline')
-  static SwapInput getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SwapInput>(create);
+  static SwapInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SwapInput>(create);
   static SwapInput? _defaultInstance;
 
   /// Source chain
@@ -617,44 +582,30 @@ class SwapOutput extends $pb.GeneratedMessage {
     return $result;
   }
   SwapOutput._() : super();
-  factory SwapOutput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SwapOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SwapOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SwapOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, SwapOutput_SigningInputOneof>
-      _SwapOutput_SigningInputOneofByTag = {
+  static const $core.Map<$core.int, SwapOutput_SigningInputOneof> _SwapOutput_SigningInputOneofByTag = {
     4: SwapOutput_SigningInputOneof.bitcoin,
     5: SwapOutput_SigningInputOneof.ethereum,
     6: SwapOutput_SigningInputOneof.binance,
     7: SwapOutput_SigningInputOneof.cosmos,
     0: SwapOutput_SigningInputOneof.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SwapOutput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.THORChainSwap.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SwapOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.THORChainSwap.Proto'), createEmptyInstance: create)
     ..oo(0, [4, 5, 6, 7])
     ..e<Chain>(1, _omitFieldNames ? '' : 'fromChain', $pb.PbFieldType.OE,
-        defaultOrMaker: Chain.THOR,
-        valueOf: Chain.valueOf,
-        enumValues: Chain.values)
+        defaultOrMaker: Chain.THOR, valueOf: Chain.valueOf, enumValues: Chain.values)
     ..e<Chain>(2, _omitFieldNames ? '' : 'toChain', $pb.PbFieldType.OE,
-        defaultOrMaker: Chain.THOR,
-        valueOf: Chain.valueOf,
-        enumValues: Chain.values)
+        defaultOrMaker: Chain.THOR, valueOf: Chain.valueOf, enumValues: Chain.values)
     ..aOM<Error>(3, _omitFieldNames ? '' : 'error', subBuilder: Error.create)
-    ..aOM<$2.SigningInput>(4, _omitFieldNames ? '' : 'bitcoin',
-        subBuilder: $2.SigningInput.create)
-    ..aOM<$3.SigningInput>(5, _omitFieldNames ? '' : 'ethereum',
-        subBuilder: $3.SigningInput.create)
-    ..aOM<$6.SigningInput>(6, _omitFieldNames ? '' : 'binance',
-        subBuilder: $6.SigningInput.create)
-    ..aOM<$4.SigningInput>(7, _omitFieldNames ? '' : 'cosmos',
-        subBuilder: $4.SigningInput.create)
+    ..aOM<$2.SigningInput>(4, _omitFieldNames ? '' : 'bitcoin', subBuilder: $2.SigningInput.create)
+    ..aOM<$3.SigningInput>(5, _omitFieldNames ? '' : 'ethereum', subBuilder: $3.SigningInput.create)
+    ..aOM<$6.SigningInput>(6, _omitFieldNames ? '' : 'binance', subBuilder: $6.SigningInput.create)
+    ..aOM<$4.SigningInput>(7, _omitFieldNames ? '' : 'cosmos', subBuilder: $4.SigningInput.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -674,12 +625,10 @@ class SwapOutput extends $pb.GeneratedMessage {
   SwapOutput createEmptyInstance() => create();
   static $pb.PbList<SwapOutput> createRepeated() => $pb.PbList<SwapOutput>();
   @$core.pragma('dart2js:noInline')
-  static SwapOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SwapOutput>(create);
+  static SwapOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SwapOutput>(create);
   static SwapOutput? _defaultInstance;
 
-  SwapOutput_SigningInputOneof whichSigningInputOneof() =>
-      _SwapOutput_SigningInputOneofByTag[$_whichOneof(0)]!;
+  SwapOutput_SigningInputOneof whichSigningInputOneof() => _SwapOutput_SigningInputOneofByTag[$_whichOneof(0)]!;
   void clearSigningInputOneof() => clearField($_whichOneof(0));
 
   /// Source chain
@@ -781,5 +730,4 @@ class SwapOutput extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

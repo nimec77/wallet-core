@@ -22,7 +22,6 @@ enum StoredKeyEncryptionLevel {
         1 => minimal,
         2 => weak,
         3 => standard,
-        _ => throw ArgumentError(
-            "Unknown value for StoredKeyEncryptionLevel: $value"),
+        _ => throw ArgumentError("Unknown value for StoredKeyEncryptionLevel: $value"),
       };
 }

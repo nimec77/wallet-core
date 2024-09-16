@@ -12,8 +12,7 @@ final class FilecoinAddressConverter {
     required String filecoinAddress,
   }) {
     final filecoinAddressString = StringImpl.createWithString(filecoinAddress);
-    final result = _bindings.TWFilecoinAddressConverterConvertToEthereum(
-        filecoinAddressString.pointer);
+    final result = _bindings.TWFilecoinAddressConverterConvertToEthereum(filecoinAddressString.pointer);
     filecoinAddressString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -26,8 +25,7 @@ final class FilecoinAddressConverter {
     required String ethAddress,
   }) {
     final ethAddressString = StringImpl.createWithString(ethAddress);
-    final result = _bindings.TWFilecoinAddressConverterConvertFromEthereum(
-        ethAddressString.pointer);
+    final result = _bindings.TWFilecoinAddressConverterConvertFromEthereum(ethAddressString.pointer);
     ethAddressString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;

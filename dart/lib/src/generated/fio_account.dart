@@ -19,8 +19,7 @@ final class FIOAccount implements Disposable {
   }) {
     final stringString = StringImpl.createWithString(string);
     try {
-      final result =
-          _bindings.TWFIOAccountCreateWithString(stringString.pointer);
+      final result = _bindings.TWFIOAccountCreateWithString(stringString.pointer);
       if (result == nullptr) {
         throw ArgumentError('FIOAccount.createWithString: string=$string');
       }

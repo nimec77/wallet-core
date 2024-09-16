@@ -15,7 +15,9 @@ final class StarkWare {
     final derivationPathDerivationPath = derivationPath.pointer;
     final signatureString = StringImpl.createWithString(signature);
     final result = _bindings.TWStarkWareGetStarkKeyFromSignature(
-        derivationPathDerivationPath, signatureString.pointer);
+      derivationPathDerivationPath,
+      signatureString.pointer,
+    );
     signatureString.dispose();
 
     return PrivateKey._(result);

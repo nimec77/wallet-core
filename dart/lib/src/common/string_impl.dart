@@ -6,8 +6,7 @@ class StringImpl implements Disposable {
 
   Pointer<TWString> get pointer => _pointer;
 
-  const StringImpl.createWithPointer(Pointer<TWString> pointer)
-      : _pointer = pointer;
+  const StringImpl.createWithPointer(Pointer<TWString> pointer) : _pointer = pointer;
 
   StringImpl.createWithString(String value)
       : _pointer = _bindings.TWStringCreateWithUTF8Bytes(
@@ -19,8 +18,7 @@ class StringImpl implements Disposable {
 
   int get size => _bindings.TWStringSize(_pointer);
 
-  String get dartString =>
-      _bindings.TWStringUTF8Bytes(_pointer).cast<Utf8>().toDartString();
+  String get dartString => _bindings.TWStringUTF8Bytes(_pointer).cast<Utf8>().toDartString();
 
   @override
   bool operator ==(Object other) => switch (other) {

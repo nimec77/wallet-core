@@ -14,8 +14,7 @@ final class TronMessageSigner {
   }) {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageString = StringImpl.createWithString(message);
-    final result = _bindings.TWTronMessageSignerSignMessage(
-        privateKeyPrivateKey, messageString.pointer);
+    final result = _bindings.TWTronMessageSignerSignMessage(privateKeyPrivateKey, messageString.pointer);
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -33,7 +32,10 @@ final class TronMessageSigner {
     final messageString = StringImpl.createWithString(message);
     final signatureString = StringImpl.createWithString(signature);
     final result = _bindings.TWTronMessageSignerVerifyMessage(
-        pubKeyPublicKey, messageString.pointer, signatureString.pointer);
+      pubKeyPublicKey,
+      messageString.pointer,
+      signatureString.pointer,
+    );
     messageString.dispose();
     signatureString.dispose();
 

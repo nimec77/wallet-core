@@ -27,10 +27,10 @@ const TransferMessage$json = {
 };
 
 /// Descriptor for `TransferMessage`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List transferMessageDescriptor = $convert.base64Decode(
-    'Cg9UcmFuc2Zlck1lc3NhZ2USFgoGYW1vdW50GAEgASgDUgZhbW91bnQSFAoFYXNzZXQYAiABKA'
-    'lSBWFzc2V0EhAKA2ZlZRgDIAEoA1IDZmVlEhsKCWZlZV9hc3NldBgEIAEoCVIIZmVlQXNzZXQS'
-    'DgoCdG8YBSABKAlSAnRvEh4KCmF0dGFjaG1lbnQYBiABKAxSCmF0dGFjaG1lbnQ=');
+final $typed_data.Uint8List transferMessageDescriptor =
+    $convert.base64Decode('Cg9UcmFuc2Zlck1lc3NhZ2USFgoGYW1vdW50GAEgASgDUgZhbW91bnQSFAoFYXNzZXQYAiABKA'
+        'lSBWFzc2V0EhAKA2ZlZRgDIAEoA1IDZmVlEhsKCWZlZV9hc3NldBgEIAEoCVIIZmVlQXNzZXQS'
+        'DgoCdG8YBSABKAlSAnRvEh4KCmF0dGFjaG1lbnQYBiABKAxSCmF0dGFjaG1lbnQ=');
 
 @$core.Deprecated('Use leaseMessageDescriptor instead')
 const LeaseMessage$json = {
@@ -43,9 +43,9 @@ const LeaseMessage$json = {
 };
 
 /// Descriptor for `LeaseMessage`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List leaseMessageDescriptor = $convert.base64Decode(
-    'CgxMZWFzZU1lc3NhZ2USFgoGYW1vdW50GAEgASgDUgZhbW91bnQSDgoCdG8YAiABKAlSAnRvEh'
-    'AKA2ZlZRgDIAEoA1IDZmVl');
+final $typed_data.Uint8List leaseMessageDescriptor =
+    $convert.base64Decode('CgxMZWFzZU1lc3NhZ2USFgoGYW1vdW50GAEgASgDUgZhbW91bnQSDgoCdG8YAiABKAlSAnRvEh'
+        'AKA2ZlZRgDIAEoA1IDZmVl');
 
 @$core.Deprecated('Use cancelLeaseMessageDescriptor instead')
 const CancelLeaseMessage$json = {
@@ -57,9 +57,9 @@ const CancelLeaseMessage$json = {
 };
 
 /// Descriptor for `CancelLeaseMessage`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List cancelLeaseMessageDescriptor = $convert.base64Decode(
-    'ChJDYW5jZWxMZWFzZU1lc3NhZ2USGQoIbGVhc2VfaWQYASABKAlSB2xlYXNlSWQSEAoDZmVlGA'
-    'IgASgDUgNmZWU=');
+final $typed_data.Uint8List cancelLeaseMessageDescriptor =
+    $convert.base64Decode('ChJDYW5jZWxMZWFzZU1lc3NhZ2USGQoIbGVhc2VfaWQYASABKAlSB2xlYXNlSWQSEAoDZmVlGA'
+        'IgASgDUgNmZWU=');
 
 @$core.Deprecated('Use signingInputDescriptor instead')
 const SigningInput$json = {
@@ -76,15 +76,7 @@ const SigningInput$json = {
       '9': 0,
       '10': 'transferMessage'
     },
-    {
-      '1': 'lease_message',
-      '3': 4,
-      '4': 1,
-      '5': 11,
-      '6': '.TW.Waves.Proto.LeaseMessage',
-      '9': 0,
-      '10': 'leaseMessage'
-    },
+    {'1': 'lease_message', '3': 4, '4': 1, '5': 11, '6': '.TW.Waves.Proto.LeaseMessage', '9': 0, '10': 'leaseMessage'},
     {
       '1': 'cancel_lease_message',
       '3': 5,
@@ -101,13 +93,13 @@ const SigningInput$json = {
 };
 
 /// Descriptor for `SigningInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingInputDescriptor = $convert.base64Decode(
-    'CgxTaWduaW5nSW5wdXQSHAoJdGltZXN0YW1wGAEgASgDUgl0aW1lc3RhbXASHwoLcHJpdmF0ZV'
-    '9rZXkYAiABKAxSCnByaXZhdGVLZXkSTAoQdHJhbnNmZXJfbWVzc2FnZRgDIAEoCzIfLlRXLldh'
-    'dmVzLlByb3RvLlRyYW5zZmVyTWVzc2FnZUgAUg90cmFuc2Zlck1lc3NhZ2USQwoNbGVhc2VfbW'
-    'Vzc2FnZRgEIAEoCzIcLlRXLldhdmVzLlByb3RvLkxlYXNlTWVzc2FnZUgAUgxsZWFzZU1lc3Nh'
-    'Z2USVgoUY2FuY2VsX2xlYXNlX21lc3NhZ2UYBSABKAsyIi5UVy5XYXZlcy5Qcm90by5DYW5jZW'
-    'xMZWFzZU1lc3NhZ2VIAFISY2FuY2VsTGVhc2VNZXNzYWdlQg8KDW1lc3NhZ2Vfb25lb2Y=');
+final $typed_data.Uint8List signingInputDescriptor =
+    $convert.base64Decode('CgxTaWduaW5nSW5wdXQSHAoJdGltZXN0YW1wGAEgASgDUgl0aW1lc3RhbXASHwoLcHJpdmF0ZV'
+        '9rZXkYAiABKAxSCnByaXZhdGVLZXkSTAoQdHJhbnNmZXJfbWVzc2FnZRgDIAEoCzIfLlRXLldh'
+        'dmVzLlByb3RvLlRyYW5zZmVyTWVzc2FnZUgAUg90cmFuc2Zlck1lc3NhZ2USQwoNbGVhc2VfbW'
+        'Vzc2FnZRgEIAEoCzIcLlRXLldhdmVzLlByb3RvLkxlYXNlTWVzc2FnZUgAUgxsZWFzZU1lc3Nh'
+        'Z2USVgoUY2FuY2VsX2xlYXNlX21lc3NhZ2UYBSABKAsyIi5UVy5XYXZlcy5Qcm90by5DYW5jZW'
+        'xMZWFzZU1lc3NhZ2VIAFISY2FuY2VsTGVhc2VNZXNzYWdlQg8KDW1lc3NhZ2Vfb25lb2Y=');
 
 @$core.Deprecated('Use signingOutputDescriptor instead')
 const SigningOutput$json = {
@@ -119,6 +111,6 @@ const SigningOutput$json = {
 };
 
 /// Descriptor for `SigningOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingOutputDescriptor = $convert.base64Decode(
-    'Cg1TaWduaW5nT3V0cHV0EhwKCXNpZ25hdHVyZRgBIAEoDFIJc2lnbmF0dXJlEhIKBGpzb24YAi'
-    'ABKAlSBGpzb24=');
+final $typed_data.Uint8List signingOutputDescriptor =
+    $convert.base64Decode('Cg1TaWduaW5nT3V0cHV0EhwKCXNpZ25hdHVyZRgBIAEoDFIJc2lnbmF0dXJlEhIKBGpzb24YAi'
+        'ABKAlSBGpzb24=');

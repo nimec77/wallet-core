@@ -45,8 +45,7 @@ final class EthereumAbiValue {
     required Uint8List value,
   }) {
     final valueUint8List = DataImpl.createWithBytes(value);
-    final result =
-        _bindings.TWEthereumAbiValueEncodeInt256(valueUint8List.pointer);
+    final result = _bindings.TWEthereumAbiValueEncodeInt256(valueUint8List.pointer);
     valueUint8List.dispose();
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
@@ -59,8 +58,7 @@ final class EthereumAbiValue {
     required Uint8List value,
   }) {
     final valueUint8List = DataImpl.createWithBytes(value);
-    final result =
-        _bindings.TWEthereumAbiValueEncodeUInt256(valueUint8List.pointer);
+    final result = _bindings.TWEthereumAbiValueEncodeUInt256(valueUint8List.pointer);
     valueUint8List.dispose();
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
@@ -73,8 +71,7 @@ final class EthereumAbiValue {
     required Uint8List value,
   }) {
     final valueUint8List = DataImpl.createWithBytes(value);
-    final result =
-        _bindings.TWEthereumAbiValueEncodeAddress(valueUint8List.pointer);
+    final result = _bindings.TWEthereumAbiValueEncodeAddress(valueUint8List.pointer);
     valueUint8List.dispose();
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
@@ -87,8 +84,7 @@ final class EthereumAbiValue {
     required String value,
   }) {
     final valueString = StringImpl.createWithString(value);
-    final result =
-        _bindings.TWEthereumAbiValueEncodeString(valueString.pointer);
+    final result = _bindings.TWEthereumAbiValueEncodeString(valueString.pointer);
     valueString.dispose();
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
@@ -101,8 +97,7 @@ final class EthereumAbiValue {
     required Uint8List value,
   }) {
     final valueUint8List = DataImpl.createWithBytes(value);
-    final result =
-        _bindings.TWEthereumAbiValueEncodeBytes(valueUint8List.pointer);
+    final result = _bindings.TWEthereumAbiValueEncodeBytes(valueUint8List.pointer);
     valueUint8List.dispose();
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
@@ -115,8 +110,7 @@ final class EthereumAbiValue {
     required Uint8List value,
   }) {
     final valueUint8List = DataImpl.createWithBytes(value);
-    final result =
-        _bindings.TWEthereumAbiValueEncodeBytesDyn(valueUint8List.pointer);
+    final result = _bindings.TWEthereumAbiValueEncodeBytesDyn(valueUint8List.pointer);
     valueUint8List.dispose();
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
@@ -129,8 +123,7 @@ final class EthereumAbiValue {
     required Uint8List input,
   }) {
     final inputUint8List = DataImpl.createWithBytes(input);
-    final result =
-        _bindings.TWEthereumAbiValueDecodeUInt256(inputUint8List.pointer);
+    final result = _bindings.TWEthereumAbiValueDecodeUInt256(inputUint8List.pointer);
     inputUint8List.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -145,8 +138,7 @@ final class EthereumAbiValue {
   }) {
     final inputUint8List = DataImpl.createWithBytes(input);
     final typeString = StringImpl.createWithString(type);
-    final result = _bindings.TWEthereumAbiValueDecodeValue(
-        inputUint8List.pointer, typeString.pointer);
+    final result = _bindings.TWEthereumAbiValueDecodeValue(inputUint8List.pointer, typeString.pointer);
     inputUint8List.dispose();
     typeString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
@@ -162,8 +154,7 @@ final class EthereumAbiValue {
   }) {
     final inputUint8List = DataImpl.createWithBytes(input);
     final typeString = StringImpl.createWithString(type);
-    final result = _bindings.TWEthereumAbiValueDecodeArray(
-        inputUint8List.pointer, typeString.pointer);
+    final result = _bindings.TWEthereumAbiValueDecodeArray(inputUint8List.pointer, typeString.pointer);
     inputUint8List.dispose();
     typeString.dispose();
     final wrapper = StringImpl.createWithPointer(result);

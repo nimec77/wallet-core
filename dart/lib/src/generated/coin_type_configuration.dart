@@ -35,8 +35,7 @@ final class CoinTypeConfiguration {
   }) {
     final typeEnum = TWCoinType.fromValue(type.value);
     final transactionIdString = StringImpl.createWithString(transactionID);
-    final result = _bindings.TWCoinTypeConfigurationGetTransactionURL(
-        typeEnum, transactionIdString.pointer);
+    final result = _bindings.TWCoinTypeConfigurationGetTransactionURL(typeEnum, transactionIdString.pointer);
     transactionIdString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -51,8 +50,7 @@ final class CoinTypeConfiguration {
   }) {
     final typeEnum = TWCoinType.fromValue(type.value);
     final accountIdString = StringImpl.createWithString(accountID);
-    final result = _bindings.TWCoinTypeConfigurationGetAccountURL(
-        typeEnum, accountIdString.pointer);
+    final result = _bindings.TWCoinTypeConfigurationGetAccountURL(typeEnum, accountIdString.pointer);
     accountIdString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;

@@ -15,12 +15,9 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 /// Destination options for reward
 class RewardDestination extends $pb.ProtobufEnum {
-  static const RewardDestination STAKED =
-      RewardDestination._(0, _omitEnumNames ? '' : 'STAKED');
-  static const RewardDestination STASH =
-      RewardDestination._(1, _omitEnumNames ? '' : 'STASH');
-  static const RewardDestination CONTROLLER =
-      RewardDestination._(2, _omitEnumNames ? '' : 'CONTROLLER');
+  static const RewardDestination STAKED = RewardDestination._(0, _omitEnumNames ? '' : 'STAKED');
+  static const RewardDestination STASH = RewardDestination._(1, _omitEnumNames ? '' : 'STASH');
+  static const RewardDestination CONTROLLER = RewardDestination._(2, _omitEnumNames ? '' : 'CONTROLLER');
 
   static const $core.List<RewardDestination> values = <RewardDestination>[
     STAKED,
@@ -28,8 +25,7 @@ class RewardDestination extends $pb.ProtobufEnum {
     CONTROLLER,
   ];
 
-  static final $core.Map<$core.int, RewardDestination> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, RewardDestination> _byValue = $pb.ProtobufEnum.initByValue(values);
   static RewardDestination? valueOf($core.int value) => _byValue[value];
 
   const RewardDestination._($core.int v, $core.String n) : super(v, n);

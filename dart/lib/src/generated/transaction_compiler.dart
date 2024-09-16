@@ -14,8 +14,7 @@ final class TransactionCompiler {
   }) {
     final coinTypeEnum = TWCoinType.fromValue(coinType.value);
     final txInputDataUint8List = DataImpl.createWithBytes(txInputData);
-    final result = _bindings.TWTransactionCompilerPreImageHashes(
-        coinTypeEnum, txInputDataUint8List.pointer);
+    final result = _bindings.TWTransactionCompilerPreImageHashes(coinTypeEnum, txInputDataUint8List.pointer);
     txInputDataUint8List.dispose();
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
@@ -35,10 +34,11 @@ final class TransactionCompiler {
     final signaturesDataVector = signatures.pointer;
     final publicKeysDataVector = publicKeys.pointer;
     final result = _bindings.TWTransactionCompilerCompileWithSignatures(
-        coinTypeEnum,
-        txInputDataUint8List.pointer,
-        signaturesDataVector,
-        publicKeysDataVector);
+      coinTypeEnum,
+      txInputDataUint8List.pointer,
+      signaturesDataVector,
+      publicKeysDataVector,
+    );
     txInputDataUint8List.dispose();
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;

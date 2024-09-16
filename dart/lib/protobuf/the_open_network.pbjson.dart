@@ -25,9 +25,9 @@ const WalletVersion$json = {
 };
 
 /// Descriptor for `WalletVersion`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List walletVersionDescriptor = $convert.base64Decode(
-    'Cg1XYWxsZXRWZXJzaW9uEhAKDFdBTExFVF9WM19SMRAAEhAKDFdBTExFVF9WM19SMhABEhAKDF'
-    'dBTExFVF9WNF9SMhACEhAKDFdBTExFVF9WNV9SMRAD');
+final $typed_data.Uint8List walletVersionDescriptor =
+    $convert.base64Decode('Cg1XYWxsZXRWZXJzaW9uEhAKDFdBTExFVF9WM19SMRAAEhAKDFdBTExFVF9WM19SMhABEhAKDF'
+        'dBTExFVF9WNF9SMhACEhAKDFdBTExFVF9WNV9SMRAD');
 
 @$core.Deprecated('Use sendModeDescriptor instead')
 const SendMode$json = {
@@ -43,11 +43,11 @@ const SendMode$json = {
 };
 
 /// Descriptor for `SendMode`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List sendModeDescriptor = $convert.base64Decode(
-    'CghTZW5kTW9kZRILCgdERUZBVUxUEAASFwoTUEFZX0ZFRVNfU0VQQVJBVEVMWRABEh4KGklHTk'
-    '9SRV9BQ1RJT05fUEhBU0VfRVJST1JTEAISGwoXREVTVFJPWV9PTl9aRVJPX0JBTEFOQ0UQIBIk'
-    'CiBBVFRBQ0hfQUxMX0lOQk9VTkRfTUVTU0FHRV9WQUxVRRBAEiAKG0FUVEFDSF9BTExfQ09OVF'
-    'JBQ1RfQkFMQU5DRRCAAQ==');
+final $typed_data.Uint8List sendModeDescriptor =
+    $convert.base64Decode('CghTZW5kTW9kZRILCgdERUZBVUxUEAASFwoTUEFZX0ZFRVNfU0VQQVJBVEVMWRABEh4KGklHTk'
+        '9SRV9BQ1RJT05fUEhBU0VfRVJST1JTEAISGwoXREVTVFJPWV9PTl9aRVJPX0JBTEFOQ0UQIBIk'
+        'CiBBVFRBQ0hfQUxMX0lOQk9VTkRfTUVTU0FHRV9WQUxVRRBAEiAKG0FUVEFDSF9BTExfQ09OVF'
+        'JBQ1RfQkFMQU5DRRCAAQ==');
 
 @$core.Deprecated('Use transferDescriptor instead')
 const Transfer$json = {
@@ -83,13 +83,13 @@ const Transfer$json = {
 };
 
 /// Descriptor for `Transfer`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List transferDescriptor = $convert.base64Decode(
-    'CghUcmFuc2ZlchISCgRkZXN0GAEgASgJUgRkZXN0EhYKBmFtb3VudBgCIAEoBFIGYW1vdW50Eh'
-    'IKBG1vZGUYAyABKA1SBG1vZGUSGAoHY29tbWVudBgEIAEoCVIHY29tbWVudBIeCgpib3VuY2Vh'
-    'YmxlGAUgASgIUgpib3VuY2VhYmxlElIKD2pldHRvbl90cmFuc2ZlchgGIAEoCzInLlRXLlRoZU'
-    '9wZW5OZXR3b3JrLlByb3RvLkpldHRvblRyYW5zZmVySABSDmpldHRvblRyYW5zZmVyEk8KDmN1'
-    'c3RvbV9wYXlsb2FkGAcgASgLMiYuVFcuVGhlT3Blbk5ldHdvcmsuUHJvdG8uQ3VzdG9tUGF5bG'
-    '9hZEgAUg1jdXN0b21QYXlsb2FkQgkKB3BheWxvYWQ=');
+final $typed_data.Uint8List transferDescriptor =
+    $convert.base64Decode('CghUcmFuc2ZlchISCgRkZXN0GAEgASgJUgRkZXN0EhYKBmFtb3VudBgCIAEoBFIGYW1vdW50Eh'
+        'IKBG1vZGUYAyABKA1SBG1vZGUSGAoHY29tbWVudBgEIAEoCVIHY29tbWVudBIeCgpib3VuY2Vh'
+        'YmxlGAUgASgIUgpib3VuY2VhYmxlElIKD2pldHRvbl90cmFuc2ZlchgGIAEoCzInLlRXLlRoZU'
+        '9wZW5OZXR3b3JrLlByb3RvLkpldHRvblRyYW5zZmVySABSDmpldHRvblRyYW5zZmVyEk8KDmN1'
+        'c3RvbV9wYXlsb2FkGAcgASgLMiYuVFcuVGhlT3Blbk5ldHdvcmsuUHJvdG8uQ3VzdG9tUGF5bG'
+        '9hZEgAUg1jdXN0b21QYXlsb2FkQgkKB3BheWxvYWQ=');
 
 @$core.Deprecated('Use jettonTransferDescriptor instead')
 const JettonTransfer$json = {
@@ -104,11 +104,11 @@ const JettonTransfer$json = {
 };
 
 /// Descriptor for `JettonTransfer`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List jettonTransferDescriptor = $convert.base64Decode(
-    'Cg5KZXR0b25UcmFuc2ZlchIZCghxdWVyeV9pZBgBIAEoBFIHcXVlcnlJZBIjCg1qZXR0b25fYW'
-    '1vdW50GAIgASgEUgxqZXR0b25BbW91bnQSGQoIdG9fb3duZXIYAyABKAlSB3RvT3duZXISKQoQ'
-    'cmVzcG9uc2VfYWRkcmVzcxgEIAEoCVIPcmVzcG9uc2VBZGRyZXNzEiUKDmZvcndhcmRfYW1vdW'
-    '50GAUgASgEUg1mb3J3YXJkQW1vdW50');
+final $typed_data.Uint8List jettonTransferDescriptor =
+    $convert.base64Decode('Cg5KZXR0b25UcmFuc2ZlchIZCghxdWVyeV9pZBgBIAEoBFIHcXVlcnlJZBIjCg1qZXR0b25fYW'
+        '1vdW50GAIgASgEUgxqZXR0b25BbW91bnQSGQoIdG9fb3duZXIYAyABKAlSB3RvT3duZXISKQoQ'
+        'cmVzcG9uc2VfYWRkcmVzcxgEIAEoCVIPcmVzcG9uc2VBZGRyZXNzEiUKDmZvcndhcmRfYW1vdW'
+        '50GAUgASgEUg1mb3J3YXJkQW1vdW50');
 
 @$core.Deprecated('Use customPayloadDescriptor instead')
 const CustomPayload$json = {
@@ -120,9 +120,9 @@ const CustomPayload$json = {
 };
 
 /// Descriptor for `CustomPayload`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List customPayloadDescriptor = $convert.base64Decode(
-    'Cg1DdXN0b21QYXlsb2FkEh0KCnN0YXRlX2luaXQYASABKAlSCXN0YXRlSW5pdBIYCgdwYXlsb2'
-    'FkGAIgASgJUgdwYXlsb2Fk');
+final $typed_data.Uint8List customPayloadDescriptor =
+    $convert.base64Decode('Cg1DdXN0b21QYXlsb2FkEh0KCnN0YXRlX2luaXQYASABKAlSCXN0YXRlSW5pdBIYCgdwYXlsb2'
+        'FkGAIgASgJUgdwYXlsb2Fk');
 
 @$core.Deprecated('Use signingInputDescriptor instead')
 const SigningInput$json = {
@@ -130,14 +130,7 @@ const SigningInput$json = {
   '2': [
     {'1': 'private_key', '3': 1, '4': 1, '5': 12, '10': 'privateKey'},
     {'1': 'public_key', '3': 2, '4': 1, '5': 12, '10': 'publicKey'},
-    {
-      '1': 'messages',
-      '3': 3,
-      '4': 3,
-      '5': 11,
-      '6': '.TW.TheOpenNetwork.Proto.Transfer',
-      '10': 'messages'
-    },
+    {'1': 'messages', '3': 3, '4': 3, '5': 11, '6': '.TW.TheOpenNetwork.Proto.Transfer', '10': 'messages'},
     {'1': 'sequence_number', '3': 4, '4': 1, '5': 13, '10': 'sequenceNumber'},
     {'1': 'expire_at', '3': 5, '4': 1, '5': 13, '10': 'expireAt'},
     {
@@ -152,13 +145,13 @@ const SigningInput$json = {
 };
 
 /// Descriptor for `SigningInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingInputDescriptor = $convert.base64Decode(
-    'CgxTaWduaW5nSW5wdXQSHwoLcHJpdmF0ZV9rZXkYASABKAxSCnByaXZhdGVLZXkSHQoKcHVibG'
-    'ljX2tleRgCIAEoDFIJcHVibGljS2V5Ej0KCG1lc3NhZ2VzGAMgAygLMiEuVFcuVGhlT3Blbk5l'
-    'dHdvcmsuUHJvdG8uVHJhbnNmZXJSCG1lc3NhZ2VzEicKD3NlcXVlbmNlX251bWJlchgEIAEoDV'
-    'IOc2VxdWVuY2VOdW1iZXISGwoJZXhwaXJlX2F0GAUgASgNUghleHBpcmVBdBJNCg53YWxsZXRf'
-    'dmVyc2lvbhgGIAEoDjImLlRXLlRoZU9wZW5OZXR3b3JrLlByb3RvLldhbGxldFZlcnNpb25SDX'
-    'dhbGxldFZlcnNpb24=');
+final $typed_data.Uint8List signingInputDescriptor =
+    $convert.base64Decode('CgxTaWduaW5nSW5wdXQSHwoLcHJpdmF0ZV9rZXkYASABKAxSCnByaXZhdGVLZXkSHQoKcHVibG'
+        'ljX2tleRgCIAEoDFIJcHVibGljS2V5Ej0KCG1lc3NhZ2VzGAMgAygLMiEuVFcuVGhlT3Blbk5l'
+        'dHdvcmsuUHJvdG8uVHJhbnNmZXJSCG1lc3NhZ2VzEicKD3NlcXVlbmNlX251bWJlchgEIAEoDV'
+        'IOc2VxdWVuY2VOdW1iZXISGwoJZXhwaXJlX2F0GAUgASgNUghleHBpcmVBdBJNCg53YWxsZXRf'
+        'dmVyc2lvbhgGIAEoDjImLlRXLlRoZU9wZW5OZXR3b3JrLlByb3RvLldhbGxldFZlcnNpb25SDX'
+        'dhbGxldFZlcnNpb24=');
 
 @$core.Deprecated('Use signingOutputDescriptor instead')
 const SigningOutput$json = {
@@ -166,20 +159,13 @@ const SigningOutput$json = {
   '2': [
     {'1': 'encoded', '3': 1, '4': 1, '5': 9, '10': 'encoded'},
     {'1': 'hash', '3': 2, '4': 1, '5': 12, '10': 'hash'},
-    {
-      '1': 'error',
-      '3': 3,
-      '4': 1,
-      '5': 14,
-      '6': '.TW.Common.Proto.SigningError',
-      '10': 'error'
-    },
+    {'1': 'error', '3': 3, '4': 1, '5': 14, '6': '.TW.Common.Proto.SigningError', '10': 'error'},
     {'1': 'error_message', '3': 4, '4': 1, '5': 9, '10': 'errorMessage'},
   ],
 };
 
 /// Descriptor for `SigningOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingOutputDescriptor = $convert.base64Decode(
-    'Cg1TaWduaW5nT3V0cHV0EhgKB2VuY29kZWQYASABKAlSB2VuY29kZWQSEgoEaGFzaBgCIAEoDF'
-    'IEaGFzaBIzCgVlcnJvchgDIAEoDjIdLlRXLkNvbW1vbi5Qcm90by5TaWduaW5nRXJyb3JSBWVy'
-    'cm9yEiMKDWVycm9yX21lc3NhZ2UYBCABKAlSDGVycm9yTWVzc2FnZQ==');
+final $typed_data.Uint8List signingOutputDescriptor =
+    $convert.base64Decode('Cg1TaWduaW5nT3V0cHV0EhgKB2VuY29kZWQYASABKAlSB2VuY29kZWQSEgoEaGFzaBgCIAEoDF'
+        'IEaGFzaBIzCgVlcnJvchgDIAEoDjIdLlRXLkNvbW1vbi5Qcm90by5TaWduaW5nRXJyb3JSBWVy'
+        'cm9yEiMKDWVycm9yX21lc3NhZ2UYBCABKAlSDGVycm9yTWVzc2FnZQ==');

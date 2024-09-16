@@ -17,7 +17,10 @@ final class BitcoinMessageSigner {
     final addressString = StringImpl.createWithString(address);
     final messageString = StringImpl.createWithString(message);
     final result = _bindings.TWBitcoinMessageSignerSignMessage(
-        privateKeyPrivateKey, addressString.pointer, messageString.pointer);
+      privateKeyPrivateKey,
+      addressString.pointer,
+      messageString.pointer,
+    );
     addressString.dispose();
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
@@ -36,7 +39,10 @@ final class BitcoinMessageSigner {
     final messageString = StringImpl.createWithString(message);
     final signatureString = StringImpl.createWithString(signature);
     final result = _bindings.TWBitcoinMessageSignerVerifyMessage(
-        addressString.pointer, messageString.pointer, signatureString.pointer);
+      addressString.pointer,
+      messageString.pointer,
+      signatureString.pointer,
+    );
     addressString.dispose();
     messageString.dispose();
     signatureString.dispose();

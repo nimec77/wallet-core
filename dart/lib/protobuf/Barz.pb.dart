@@ -64,14 +64,11 @@ class ContractAddressInput extends $pb.GeneratedMessage {
   factory ContractAddressInput.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ContractAddressInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ContractAddressInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ContractAddressInput',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Barz.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ContractAddressInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Barz.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'entryPoint')
     ..aOS(2, _omitFieldNames ? '' : 'factory')
     ..aOS(3, _omitFieldNames ? '' : 'accountFacet')
@@ -86,25 +83,22 @@ class ContractAddressInput extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  ContractAddressInput clone() =>
-      ContractAddressInput()..mergeFromMessage(this);
+  ContractAddressInput clone() => ContractAddressInput()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ContractAddressInput copyWith(void Function(ContractAddressInput) updates) =>
-      super.copyWith((message) => updates(message as ContractAddressInput))
-          as ContractAddressInput;
+      super.copyWith((message) => updates(message as ContractAddressInput)) as ContractAddressInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ContractAddressInput create() => ContractAddressInput._();
   ContractAddressInput createEmptyInstance() => create();
-  static $pb.PbList<ContractAddressInput> createRepeated() =>
-      $pb.PbList<ContractAddressInput>();
+  static $pb.PbList<ContractAddressInput> createRepeated() => $pb.PbList<ContractAddressInput>();
   @$core.pragma('dart2js:noInline')
-  static ContractAddressInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ContractAddressInput>(create);
+  static ContractAddressInput getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ContractAddressInput>(create);
   static ContractAddressInput? _defaultInstance;
 
   /// ERC-4337 entry point
@@ -242,24 +236,17 @@ class FacetCut extends $pb.GeneratedMessage {
     return $result;
   }
   FacetCut._() : super();
-  factory FacetCut.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory FacetCut.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory FacetCut.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory FacetCut.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'FacetCut',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Barz.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FacetCut',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Barz.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'facetAddress')
     ..e<FacetCutAction>(2, _omitFieldNames ? '' : 'action', $pb.PbFieldType.OE,
-        defaultOrMaker: FacetCutAction.ADD,
-        valueOf: FacetCutAction.valueOf,
-        enumValues: FacetCutAction.values)
-    ..p<$core.List<$core.int>>(
-        3, _omitFieldNames ? '' : 'functionSelectors', $pb.PbFieldType.PY)
+        defaultOrMaker: FacetCutAction.ADD, valueOf: FacetCutAction.valueOf, enumValues: FacetCutAction.values)
+    ..p<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'functionSelectors', $pb.PbFieldType.PY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -279,8 +266,7 @@ class FacetCut extends $pb.GeneratedMessage {
   FacetCut createEmptyInstance() => create();
   static $pb.PbList<FacetCut> createRepeated() => $pb.PbList<FacetCut>();
   @$core.pragma('dart2js:noInline')
-  static FacetCut getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FacetCut>(create);
+  static FacetCut getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FacetCut>(create);
   static FacetCut? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -334,19 +320,14 @@ class DiamondCutInput extends $pb.GeneratedMessage {
   factory DiamondCutInput.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory DiamondCutInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory DiamondCutInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'DiamondCutInput',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Barz.Proto'),
-      createEmptyInstance: create)
-    ..pc<FacetCut>(1, _omitFieldNames ? '' : 'facetCuts', $pb.PbFieldType.PM,
-        subBuilder: FacetCut.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DiamondCutInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Barz.Proto'), createEmptyInstance: create)
+    ..pc<FacetCut>(1, _omitFieldNames ? '' : 'facetCuts', $pb.PbFieldType.PM, subBuilder: FacetCut.create)
     ..aOS(2, _omitFieldNames ? '' : 'initAddress')
-    ..a<$core.List<$core.int>>(
-        3, _omitFieldNames ? '' : 'initData', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'initData', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -357,19 +338,17 @@ class DiamondCutInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   DiamondCutInput copyWith(void Function(DiamondCutInput) updates) =>
-      super.copyWith((message) => updates(message as DiamondCutInput))
-          as DiamondCutInput;
+      super.copyWith((message) => updates(message as DiamondCutInput)) as DiamondCutInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static DiamondCutInput create() => DiamondCutInput._();
   DiamondCutInput createEmptyInstance() => create();
-  static $pb.PbList<DiamondCutInput> createRepeated() =>
-      $pb.PbList<DiamondCutInput>();
+  static $pb.PbList<DiamondCutInput> createRepeated() => $pb.PbList<DiamondCutInput>();
   @$core.pragma('dart2js:noInline')
-  static DiamondCutInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DiamondCutInput>(create);
+  static DiamondCutInput getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DiamondCutInput>(create);
   static DiamondCutInput? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -401,5 +380,4 @@ class DiamondCutInput extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

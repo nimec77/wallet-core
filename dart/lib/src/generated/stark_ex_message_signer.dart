@@ -14,8 +14,7 @@ final class StarkExMessageSigner {
   }) {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageString = StringImpl.createWithString(message);
-    final result = _bindings.TWStarkExMessageSignerSignMessage(
-        privateKeyPrivateKey, messageString.pointer);
+    final result = _bindings.TWStarkExMessageSignerSignMessage(privateKeyPrivateKey, messageString.pointer);
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -33,7 +32,10 @@ final class StarkExMessageSigner {
     final messageString = StringImpl.createWithString(message);
     final signatureString = StringImpl.createWithString(signature);
     final result = _bindings.TWStarkExMessageSignerVerifyMessage(
-        pubKeyPublicKey, messageString.pointer, signatureString.pointer);
+      pubKeyPublicKey,
+      messageString.pointer,
+      signatureString.pointer,
+    );
     messageString.dispose();
     signatureString.dispose();
 

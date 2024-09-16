@@ -22,7 +22,6 @@ enum StellarVersionByte {
         0xc0 => seed,
         0xc8 => preAuthTx,
         0x118 => sha256Hash,
-        _ =>
-          throw ArgumentError("Unknown value for StellarVersionByte: $value"),
+        _ => throw ArgumentError("Unknown value for StellarVersionByte: $value"),
       };
 }

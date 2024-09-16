@@ -12,8 +12,7 @@ final class DerivationPathIndex implements Disposable {
 
   Pointer<TWDerivationPathIndex> get pointer => _pointer;
 
-  const DerivationPathIndex._(Pointer<TWDerivationPathIndex> pointer)
-      : _pointer = pointer;
+  const DerivationPathIndex._(Pointer<TWDerivationPathIndex> pointer) : _pointer = pointer;
 
   factory DerivationPathIndex.create({
     required int value,

@@ -35,8 +35,7 @@ const EncodingMode$json = {
 };
 
 /// Descriptor for `EncodingMode`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List encodingModeDescriptor =
-    $convert.base64Decode('CgxFbmNvZGluZ01vZGUSDAoIUHJvdG9idWYQAA==');
+final $typed_data.Uint8List encodingModeDescriptor = $convert.base64Decode('CgxFbmNvZGluZ01vZGUSDAoIUHJvdG9idWYQAA==');
 
 @$core.Deprecated('Use signingModeDescriptor instead')
 const SigningMode$json = {
@@ -47,8 +46,7 @@ const SigningMode$json = {
 };
 
 /// Descriptor for `SigningMode`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List signingModeDescriptor =
-    $convert.base64Decode('CgtTaWduaW5nTW9kZRIKCgZFaXA3MTIQAA==');
+final $typed_data.Uint8List signingModeDescriptor = $convert.base64Decode('CgtTaWduaW5nTW9kZRIKCgZFaXA3MTIQAA==');
 
 @$core.Deprecated('Use amountDescriptor instead')
 const Amount$json = {
@@ -60,29 +58,22 @@ const Amount$json = {
 };
 
 /// Descriptor for `Amount`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List amountDescriptor = $convert.base64Decode(
-    'CgZBbW91bnQSFAoFZGVub20YASABKAlSBWRlbm9tEhYKBmFtb3VudBgCIAEoCVIGYW1vdW50');
+final $typed_data.Uint8List amountDescriptor =
+    $convert.base64Decode('CgZBbW91bnQSFAoFZGVub20YASABKAlSBWRlbm9tEhYKBmFtb3VudBgCIAEoCVIGYW1vdW50');
 
 @$core.Deprecated('Use feeDescriptor instead')
 const Fee$json = {
   '1': 'Fee',
   '2': [
-    {
-      '1': 'amounts',
-      '3': 1,
-      '4': 3,
-      '5': 11,
-      '6': '.TW.Greenfield.Proto.Amount',
-      '10': 'amounts'
-    },
+    {'1': 'amounts', '3': 1, '4': 3, '5': 11, '6': '.TW.Greenfield.Proto.Amount', '10': 'amounts'},
     {'1': 'gas', '3': 2, '4': 1, '5': 4, '10': 'gas'},
   ],
 };
 
 /// Descriptor for `Fee`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List feeDescriptor = $convert.base64Decode(
-    'CgNGZWUSNQoHYW1vdW50cxgBIAMoCzIbLlRXLkdyZWVuZmllbGQuUHJvdG8uQW1vdW50UgdhbW'
-    '91bnRzEhAKA2dhcxgCIAEoBFIDZ2Fz');
+final $typed_data.Uint8List feeDescriptor =
+    $convert.base64Decode('CgNGZWUSNQoHYW1vdW50cxgBIAMoCzIbLlRXLkdyZWVuZmllbGQuUHJvdG8uQW1vdW50UgdhbW'
+        '91bnRzEhAKA2dhcxgCIAEoBFIDZ2Fz');
 
 @$core.Deprecated('Use messageDescriptor instead')
 const Message$json = {
@@ -119,14 +110,7 @@ const Message_Send$json = {
   '2': [
     {'1': 'from_address', '3': 1, '4': 1, '5': 9, '10': 'fromAddress'},
     {'1': 'to_address', '3': 2, '4': 1, '5': 9, '10': 'toAddress'},
-    {
-      '1': 'amounts',
-      '3': 3,
-      '4': 3,
-      '5': 11,
-      '6': '.TW.Greenfield.Proto.Amount',
-      '10': 'amounts'
-    },
+    {'1': 'amounts', '3': 3, '4': 3, '5': 11, '6': '.TW.Greenfield.Proto.Amount', '10': 'amounts'},
     {'1': 'type_prefix', '3': 4, '4': 1, '5': 9, '10': 'typePrefix'},
   ],
 };
@@ -137,97 +121,55 @@ const Message_BridgeTransferOut$json = {
   '2': [
     {'1': 'from_address', '3': 1, '4': 1, '5': 9, '10': 'fromAddress'},
     {'1': 'to_address', '3': 2, '4': 1, '5': 9, '10': 'toAddress'},
-    {
-      '1': 'amount',
-      '3': 3,
-      '4': 1,
-      '5': 11,
-      '6': '.TW.Greenfield.Proto.Amount',
-      '10': 'amount'
-    },
+    {'1': 'amount', '3': 3, '4': 1, '5': 11, '6': '.TW.Greenfield.Proto.Amount', '10': 'amount'},
     {'1': 'type_prefix', '3': 4, '4': 1, '5': 9, '10': 'typePrefix'},
   ],
 };
 
 /// Descriptor for `Message`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List messageDescriptor = $convert.base64Decode(
-    'CgdNZXNzYWdlElEKEnNlbmRfY29pbnNfbWVzc2FnZRgBIAEoCzIhLlRXLkdyZWVuZmllbGQuUH'
-    'JvdG8uTWVzc2FnZS5TZW5kSABSEHNlbmRDb2luc01lc3NhZ2USYAoTYnJpZGdlX3RyYW5zZmVy'
-    'X291dBgCIAEoCzIuLlRXLkdyZWVuZmllbGQuUHJvdG8uTWVzc2FnZS5CcmlkZ2VUcmFuc2Zlck'
-    '91dEgAUhFicmlkZ2VUcmFuc2Zlck91dBqgAQoEU2VuZBIhCgxmcm9tX2FkZHJlc3MYASABKAlS'
-    'C2Zyb21BZGRyZXNzEh0KCnRvX2FkZHJlc3MYAiABKAlSCXRvQWRkcmVzcxI1CgdhbW91bnRzGA'
-    'MgAygLMhsuVFcuR3JlZW5maWVsZC5Qcm90by5BbW91bnRSB2Ftb3VudHMSHwoLdHlwZV9wcmVm'
-    'aXgYBCABKAlSCnR5cGVQcmVmaXgaqwEKEUJyaWRnZVRyYW5zZmVyT3V0EiEKDGZyb21fYWRkcm'
-    'VzcxgBIAEoCVILZnJvbUFkZHJlc3MSHQoKdG9fYWRkcmVzcxgCIAEoCVIJdG9BZGRyZXNzEjMK'
-    'BmFtb3VudBgDIAEoCzIbLlRXLkdyZWVuZmllbGQuUHJvdG8uQW1vdW50UgZhbW91bnQSHwoLdH'
-    'lwZV9wcmVmaXgYBCABKAlSCnR5cGVQcmVmaXhCDwoNbWVzc2FnZV9vbmVvZg==');
+final $typed_data.Uint8List messageDescriptor =
+    $convert.base64Decode('CgdNZXNzYWdlElEKEnNlbmRfY29pbnNfbWVzc2FnZRgBIAEoCzIhLlRXLkdyZWVuZmllbGQuUH'
+        'JvdG8uTWVzc2FnZS5TZW5kSABSEHNlbmRDb2luc01lc3NhZ2USYAoTYnJpZGdlX3RyYW5zZmVy'
+        'X291dBgCIAEoCzIuLlRXLkdyZWVuZmllbGQuUHJvdG8uTWVzc2FnZS5CcmlkZ2VUcmFuc2Zlck'
+        '91dEgAUhFicmlkZ2VUcmFuc2Zlck91dBqgAQoEU2VuZBIhCgxmcm9tX2FkZHJlc3MYASABKAlS'
+        'C2Zyb21BZGRyZXNzEh0KCnRvX2FkZHJlc3MYAiABKAlSCXRvQWRkcmVzcxI1CgdhbW91bnRzGA'
+        'MgAygLMhsuVFcuR3JlZW5maWVsZC5Qcm90by5BbW91bnRSB2Ftb3VudHMSHwoLdHlwZV9wcmVm'
+        'aXgYBCABKAlSCnR5cGVQcmVmaXgaqwEKEUJyaWRnZVRyYW5zZmVyT3V0EiEKDGZyb21fYWRkcm'
+        'VzcxgBIAEoCVILZnJvbUFkZHJlc3MSHQoKdG9fYWRkcmVzcxgCIAEoCVIJdG9BZGRyZXNzEjMK'
+        'BmFtb3VudBgDIAEoCzIbLlRXLkdyZWVuZmllbGQuUHJvdG8uQW1vdW50UgZhbW91bnQSHwoLdH'
+        'lwZV9wcmVmaXgYBCABKAlSCnR5cGVQcmVmaXhCDwoNbWVzc2FnZV9vbmVvZg==');
 
 @$core.Deprecated('Use signingInputDescriptor instead')
 const SigningInput$json = {
   '1': 'SigningInput',
   '2': [
-    {
-      '1': 'encoding_mode',
-      '3': 1,
-      '4': 1,
-      '5': 14,
-      '6': '.TW.Greenfield.Proto.EncodingMode',
-      '10': 'encodingMode'
-    },
-    {
-      '1': 'signing_mode',
-      '3': 2,
-      '4': 1,
-      '5': 14,
-      '6': '.TW.Greenfield.Proto.SigningMode',
-      '10': 'signingMode'
-    },
+    {'1': 'encoding_mode', '3': 1, '4': 1, '5': 14, '6': '.TW.Greenfield.Proto.EncodingMode', '10': 'encodingMode'},
+    {'1': 'signing_mode', '3': 2, '4': 1, '5': 14, '6': '.TW.Greenfield.Proto.SigningMode', '10': 'signingMode'},
     {'1': 'account_number', '3': 3, '4': 1, '5': 4, '10': 'accountNumber'},
     {'1': 'eth_chain_id', '3': 4, '4': 1, '5': 9, '10': 'ethChainId'},
     {'1': 'cosmos_chain_id', '3': 5, '4': 1, '5': 9, '10': 'cosmosChainId'},
-    {
-      '1': 'fee',
-      '3': 6,
-      '4': 1,
-      '5': 11,
-      '6': '.TW.Greenfield.Proto.Fee',
-      '10': 'fee'
-    },
+    {'1': 'fee', '3': 6, '4': 1, '5': 11, '6': '.TW.Greenfield.Proto.Fee', '10': 'fee'},
     {'1': 'memo', '3': 7, '4': 1, '5': 9, '10': 'memo'},
     {'1': 'sequence', '3': 8, '4': 1, '5': 4, '10': 'sequence'},
     {'1': 'private_key', '3': 9, '4': 1, '5': 12, '10': 'privateKey'},
-    {
-      '1': 'messages',
-      '3': 10,
-      '4': 3,
-      '5': 11,
-      '6': '.TW.Greenfield.Proto.Message',
-      '10': 'messages'
-    },
-    {
-      '1': 'mode',
-      '3': 11,
-      '4': 1,
-      '5': 14,
-      '6': '.TW.Greenfield.Proto.BroadcastMode',
-      '10': 'mode'
-    },
+    {'1': 'messages', '3': 10, '4': 3, '5': 11, '6': '.TW.Greenfield.Proto.Message', '10': 'messages'},
+    {'1': 'mode', '3': 11, '4': 1, '5': 14, '6': '.TW.Greenfield.Proto.BroadcastMode', '10': 'mode'},
     {'1': 'public_key', '3': 12, '4': 1, '5': 12, '10': 'publicKey'},
   ],
 };
 
 /// Descriptor for `SigningInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingInputDescriptor = $convert.base64Decode(
-    'CgxTaWduaW5nSW5wdXQSRgoNZW5jb2RpbmdfbW9kZRgBIAEoDjIhLlRXLkdyZWVuZmllbGQuUH'
-    'JvdG8uRW5jb2RpbmdNb2RlUgxlbmNvZGluZ01vZGUSQwoMc2lnbmluZ19tb2RlGAIgASgOMiAu'
-    'VFcuR3JlZW5maWVsZC5Qcm90by5TaWduaW5nTW9kZVILc2lnbmluZ01vZGUSJQoOYWNjb3VudF'
-    '9udW1iZXIYAyABKARSDWFjY291bnROdW1iZXISIAoMZXRoX2NoYWluX2lkGAQgASgJUgpldGhD'
-    'aGFpbklkEiYKD2Nvc21vc19jaGFpbl9pZBgFIAEoCVINY29zbW9zQ2hhaW5JZBIqCgNmZWUYBi'
-    'ABKAsyGC5UVy5HcmVlbmZpZWxkLlByb3RvLkZlZVIDZmVlEhIKBG1lbW8YByABKAlSBG1lbW8S'
-    'GgoIc2VxdWVuY2UYCCABKARSCHNlcXVlbmNlEh8KC3ByaXZhdGVfa2V5GAkgASgMUgpwcml2YX'
-    'RlS2V5EjgKCG1lc3NhZ2VzGAogAygLMhwuVFcuR3JlZW5maWVsZC5Qcm90by5NZXNzYWdlUght'
-    'ZXNzYWdlcxI2CgRtb2RlGAsgASgOMiIuVFcuR3JlZW5maWVsZC5Qcm90by5Ccm9hZGNhc3RNb2'
-    'RlUgRtb2RlEh0KCnB1YmxpY19rZXkYDCABKAxSCXB1YmxpY0tleQ==');
+final $typed_data.Uint8List signingInputDescriptor =
+    $convert.base64Decode('CgxTaWduaW5nSW5wdXQSRgoNZW5jb2RpbmdfbW9kZRgBIAEoDjIhLlRXLkdyZWVuZmllbGQuUH'
+        'JvdG8uRW5jb2RpbmdNb2RlUgxlbmNvZGluZ01vZGUSQwoMc2lnbmluZ19tb2RlGAIgASgOMiAu'
+        'VFcuR3JlZW5maWVsZC5Qcm90by5TaWduaW5nTW9kZVILc2lnbmluZ01vZGUSJQoOYWNjb3VudF'
+        '9udW1iZXIYAyABKARSDWFjY291bnROdW1iZXISIAoMZXRoX2NoYWluX2lkGAQgASgJUgpldGhD'
+        'aGFpbklkEiYKD2Nvc21vc19jaGFpbl9pZBgFIAEoCVINY29zbW9zQ2hhaW5JZBIqCgNmZWUYBi'
+        'ABKAsyGC5UVy5HcmVlbmZpZWxkLlByb3RvLkZlZVIDZmVlEhIKBG1lbW8YByABKAlSBG1lbW8S'
+        'GgoIc2VxdWVuY2UYCCABKARSCHNlcXVlbmNlEh8KC3ByaXZhdGVfa2V5GAkgASgMUgpwcml2YX'
+        'RlS2V5EjgKCG1lc3NhZ2VzGAogAygLMhwuVFcuR3JlZW5maWVsZC5Qcm90by5NZXNzYWdlUght'
+        'ZXNzYWdlcxI2CgRtb2RlGAsgASgOMiIuVFcuR3JlZW5maWVsZC5Qcm90by5Ccm9hZGNhc3RNb2'
+        'RlUgRtb2RlEh0KCnB1YmxpY19rZXkYDCABKAxSCXB1YmxpY0tleQ==');
 
 @$core.Deprecated('Use signingOutputDescriptor instead')
 const SigningOutput$json = {
@@ -237,20 +179,13 @@ const SigningOutput$json = {
     {'1': 'serialized', '3': 2, '4': 1, '5': 9, '10': 'serialized'},
     {'1': 'signature_json', '3': 3, '4': 1, '5': 9, '10': 'signatureJson'},
     {'1': 'error_message', '3': 4, '4': 1, '5': 9, '10': 'errorMessage'},
-    {
-      '1': 'error',
-      '3': 5,
-      '4': 1,
-      '5': 14,
-      '6': '.TW.Common.Proto.SigningError',
-      '10': 'error'
-    },
+    {'1': 'error', '3': 5, '4': 1, '5': 14, '6': '.TW.Common.Proto.SigningError', '10': 'error'},
   ],
 };
 
 /// Descriptor for `SigningOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingOutputDescriptor = $convert.base64Decode(
-    'Cg1TaWduaW5nT3V0cHV0EhwKCXNpZ25hdHVyZRgBIAEoDFIJc2lnbmF0dXJlEh4KCnNlcmlhbG'
-    'l6ZWQYAiABKAlSCnNlcmlhbGl6ZWQSJQoOc2lnbmF0dXJlX2pzb24YAyABKAlSDXNpZ25hdHVy'
-    'ZUpzb24SIwoNZXJyb3JfbWVzc2FnZRgEIAEoCVIMZXJyb3JNZXNzYWdlEjMKBWVycm9yGAUgAS'
-    'gOMh0uVFcuQ29tbW9uLlByb3RvLlNpZ25pbmdFcnJvclIFZXJyb3I=');
+final $typed_data.Uint8List signingOutputDescriptor =
+    $convert.base64Decode('Cg1TaWduaW5nT3V0cHV0EhwKCXNpZ25hdHVyZRgBIAEoDFIJc2lnbmF0dXJlEh4KCnNlcmlhbG'
+        'l6ZWQYAiABKAlSCnNlcmlhbGl6ZWQSJQoOc2lnbmF0dXJlX2pzb24YAyABKAlSDXNpZ25hdHVy'
+        'ZUpzb24SIwoNZXJyb3JfbWVzc2FnZRgEIAEoCVIMZXJyb3JNZXNzYWdlEjMKBWVycm9yGAUgAS'
+        'gOMh0uVFcuQ29tbW9uLlByb3RvLlNpZ25pbmdFcnJvclIFZXJyb3I=');

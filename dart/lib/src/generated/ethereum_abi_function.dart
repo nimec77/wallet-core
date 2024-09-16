@@ -12,15 +12,13 @@ final class EthereumAbiFunction implements Disposable {
 
   Pointer<TWEthereumAbiFunction> get pointer => _pointer;
 
-  const EthereumAbiFunction._(Pointer<TWEthereumAbiFunction> pointer)
-      : _pointer = pointer;
+  const EthereumAbiFunction._(Pointer<TWEthereumAbiFunction> pointer) : _pointer = pointer;
 
   factory EthereumAbiFunction.createWithString({
     required String name,
   }) {
     final nameString = StringImpl.createWithString(name);
-    final result =
-        _bindings.TWEthereumAbiFunctionCreateWithString(nameString.pointer);
+    final result = _bindings.TWEthereumAbiFunctionCreateWithString(nameString.pointer);
     nameString.dispose();
 
     return EthereumAbiFunction._(result);
@@ -46,8 +44,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddParamUInt8(obj, val, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamUInt8(obj, val, isOutput);
 
     return result;
   }
@@ -57,8 +54,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddParamUInt16(obj, val, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamUInt16(obj, val, isOutput);
 
     return result;
   }
@@ -68,8 +64,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddParamUInt32(obj, val, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamUInt32(obj, val, isOutput);
 
     return result;
   }
@@ -79,8 +74,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddParamUInt64(obj, val, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamUInt64(obj, val, isOutput);
 
     return result;
   }
@@ -91,8 +85,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddParamUInt256(
-        obj, valUint8List.pointer, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamUInt256(obj, valUint8List.pointer, isOutput);
     valUint8List.dispose();
 
     return result;
@@ -105,8 +98,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddParamUIntN(
-        obj, bits, valUint8List.pointer, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamUIntN(obj, bits, valUint8List.pointer, isOutput);
     valUint8List.dispose();
 
     return result;
@@ -117,8 +109,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddParamInt8(obj, val, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamInt8(obj, val, isOutput);
 
     return result;
   }
@@ -128,8 +119,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddParamInt16(obj, val, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamInt16(obj, val, isOutput);
 
     return result;
   }
@@ -139,8 +129,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddParamInt32(obj, val, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamInt32(obj, val, isOutput);
 
     return result;
   }
@@ -150,8 +139,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddParamInt64(obj, val, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamInt64(obj, val, isOutput);
 
     return result;
   }
@@ -162,8 +150,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddParamInt256(
-        obj, valUint8List.pointer, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamInt256(obj, valUint8List.pointer, isOutput);
     valUint8List.dispose();
 
     return result;
@@ -176,8 +163,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddParamIntN(
-        obj, bits, valUint8List.pointer, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamIntN(obj, bits, valUint8List.pointer, isOutput);
     valUint8List.dispose();
 
     return result;
@@ -188,8 +174,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddParamBool(obj, val, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamBool(obj, val, isOutput);
 
     return result;
   }
@@ -200,8 +185,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valString = StringImpl.createWithString(val);
-    final result = _bindings.TWEthereumAbiFunctionAddParamString(
-        obj, valString.pointer, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamString(obj, valString.pointer, isOutput);
     valString.dispose();
 
     return result;
@@ -213,8 +197,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddParamAddress(
-        obj, valUint8List.pointer, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamAddress(obj, valUint8List.pointer, isOutput);
     valUint8List.dispose();
 
     return result;
@@ -226,8 +209,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddParamBytes(
-        obj, valUint8List.pointer, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamBytes(obj, valUint8List.pointer, isOutput);
     valUint8List.dispose();
 
     return result;
@@ -240,8 +222,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddParamBytesFix(
-        obj, size, valUint8List.pointer, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionAddParamBytesFix(obj, size, valUint8List.pointer, isOutput);
     valUint8List.dispose();
 
     return result;
@@ -261,8 +242,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionGetParamUInt8(obj, idx, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionGetParamUInt8(obj, idx, isOutput);
 
     return result;
   }
@@ -272,8 +252,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionGetParamUInt64(obj, idx, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionGetParamUInt64(obj, idx, isOutput);
 
     return result;
   }
@@ -283,8 +262,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionGetParamUInt256(obj, idx, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionGetParamUInt256(obj, idx, isOutput);
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
     wrapper.dispose();
@@ -297,8 +275,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionGetParamBool(obj, idx, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionGetParamBool(obj, idx, isOutput);
 
     return result;
   }
@@ -308,8 +285,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionGetParamString(obj, idx, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionGetParamString(obj, idx, isOutput);
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
     wrapper.dispose();
@@ -322,8 +298,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool isOutput,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionGetParamAddress(obj, idx, isOutput);
+    final result = _bindings.TWEthereumAbiFunctionGetParamAddress(obj, idx, isOutput);
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
     wrapper.dispose();
@@ -336,8 +311,7 @@ final class EthereumAbiFunction implements Disposable {
     required int val,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddInArrayParamUInt8(obj, arrayIdx, val);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamUInt8(obj, arrayIdx, val);
 
     return result;
   }
@@ -347,8 +321,7 @@ final class EthereumAbiFunction implements Disposable {
     required int val,
   }) {
     final obj = pointer;
-    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamUInt16(
-        obj, arrayIdx, val);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamUInt16(obj, arrayIdx, val);
 
     return result;
   }
@@ -358,8 +331,7 @@ final class EthereumAbiFunction implements Disposable {
     required int val,
   }) {
     final obj = pointer;
-    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamUInt32(
-        obj, arrayIdx, val);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamUInt32(obj, arrayIdx, val);
 
     return result;
   }
@@ -369,8 +341,7 @@ final class EthereumAbiFunction implements Disposable {
     required int val,
   }) {
     final obj = pointer;
-    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamUInt64(
-        obj, arrayIdx, val);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamUInt64(obj, arrayIdx, val);
 
     return result;
   }
@@ -381,8 +352,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamUInt256(
-        obj, arrayIdx, valUint8List.pointer);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamUInt256(obj, arrayIdx, valUint8List.pointer);
     valUint8List.dispose();
 
     return result;
@@ -395,8 +365,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamUIntN(
-        obj, arrayIdx, bits, valUint8List.pointer);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamUIntN(obj, arrayIdx, bits, valUint8List.pointer);
     valUint8List.dispose();
 
     return result;
@@ -407,8 +376,7 @@ final class EthereumAbiFunction implements Disposable {
     required int val,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddInArrayParamInt8(obj, arrayIdx, val);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamInt8(obj, arrayIdx, val);
 
     return result;
   }
@@ -418,8 +386,7 @@ final class EthereumAbiFunction implements Disposable {
     required int val,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddInArrayParamInt16(obj, arrayIdx, val);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamInt16(obj, arrayIdx, val);
 
     return result;
   }
@@ -429,8 +396,7 @@ final class EthereumAbiFunction implements Disposable {
     required int val,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddInArrayParamInt32(obj, arrayIdx, val);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamInt32(obj, arrayIdx, val);
 
     return result;
   }
@@ -440,8 +406,7 @@ final class EthereumAbiFunction implements Disposable {
     required int val,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddInArrayParamInt64(obj, arrayIdx, val);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamInt64(obj, arrayIdx, val);
 
     return result;
   }
@@ -452,8 +417,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamInt256(
-        obj, arrayIdx, valUint8List.pointer);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamInt256(obj, arrayIdx, valUint8List.pointer);
     valUint8List.dispose();
 
     return result;
@@ -466,8 +430,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamIntN(
-        obj, arrayIdx, bits, valUint8List.pointer);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamIntN(obj, arrayIdx, bits, valUint8List.pointer);
     valUint8List.dispose();
 
     return result;
@@ -478,8 +441,7 @@ final class EthereumAbiFunction implements Disposable {
     required bool val,
   }) {
     final obj = pointer;
-    final result =
-        _bindings.TWEthereumAbiFunctionAddInArrayParamBool(obj, arrayIdx, val);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamBool(obj, arrayIdx, val);
 
     return result;
   }
@@ -490,8 +452,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valString = StringImpl.createWithString(val);
-    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamString(
-        obj, arrayIdx, valString.pointer);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamString(obj, arrayIdx, valString.pointer);
     valString.dispose();
 
     return result;
@@ -503,8 +464,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamAddress(
-        obj, arrayIdx, valUint8List.pointer);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamAddress(obj, arrayIdx, valUint8List.pointer);
     valUint8List.dispose();
 
     return result;
@@ -516,8 +476,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamBytes(
-        obj, arrayIdx, valUint8List.pointer);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamBytes(obj, arrayIdx, valUint8List.pointer);
     valUint8List.dispose();
 
     return result;
@@ -530,8 +489,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final valUint8List = DataImpl.createWithBytes(val);
-    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamBytesFix(
-        obj, arrayIdx, size, valUint8List.pointer);
+    final result = _bindings.TWEthereumAbiFunctionAddInArrayParamBytesFix(obj, arrayIdx, size, valUint8List.pointer);
     valUint8List.dispose();
 
     return result;

@@ -21,22 +21,16 @@ const SigningInput$json = {
     {'1': 'destination', '3': 2, '4': 1, '5': 9, '10': 'destination'},
     {'1': 'value', '3': 3, '4': 1, '5': 4, '10': 'value'},
     {'1': 'fee', '3': 4, '4': 1, '5': 4, '10': 'fee'},
-    {
-      '1': 'validity_start_height',
-      '3': 5,
-      '4': 1,
-      '5': 13,
-      '10': 'validityStartHeight'
-    },
+    {'1': 'validity_start_height', '3': 5, '4': 1, '5': 13, '10': 'validityStartHeight'},
   ],
 };
 
 /// Descriptor for `SigningInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingInputDescriptor = $convert.base64Decode(
-    'CgxTaWduaW5nSW5wdXQSHwoLcHJpdmF0ZV9rZXkYASABKAxSCnByaXZhdGVLZXkSIAoLZGVzdG'
-    'luYXRpb24YAiABKAlSC2Rlc3RpbmF0aW9uEhQKBXZhbHVlGAMgASgEUgV2YWx1ZRIQCgNmZWUY'
-    'BCABKARSA2ZlZRIyChV2YWxpZGl0eV9zdGFydF9oZWlnaHQYBSABKA1SE3ZhbGlkaXR5U3Rhcn'
-    'RIZWlnaHQ=');
+final $typed_data.Uint8List signingInputDescriptor =
+    $convert.base64Decode('CgxTaWduaW5nSW5wdXQSHwoLcHJpdmF0ZV9rZXkYASABKAxSCnByaXZhdGVLZXkSIAoLZGVzdG'
+        'luYXRpb24YAiABKAlSC2Rlc3RpbmF0aW9uEhQKBXZhbHVlGAMgASgEUgV2YWx1ZRIQCgNmZWUY'
+        'BCABKARSA2ZlZRIyChV2YWxpZGl0eV9zdGFydF9oZWlnaHQYBSABKA1SE3ZhbGlkaXR5U3Rhcn'
+        'RIZWlnaHQ=');
 
 @$core.Deprecated('Use signingOutputDescriptor instead')
 const SigningOutput$json = {
@@ -47,5 +41,5 @@ const SigningOutput$json = {
 };
 
 /// Descriptor for `SigningOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingOutputDescriptor = $convert
-    .base64Decode('Cg1TaWduaW5nT3V0cHV0EhgKB2VuY29kZWQYASABKAxSB2VuY29kZWQ=');
+final $typed_data.Uint8List signingOutputDescriptor =
+    $convert.base64Decode('Cg1TaWduaW5nT3V0cHV0EhgKB2VuY29kZWQYASABKAxSB2VuY29kZWQ=');

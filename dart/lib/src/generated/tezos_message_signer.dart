@@ -14,8 +14,7 @@ final class TezosMessageSigner {
   }) {
     final messageString = StringImpl.createWithString(message);
     final urlString = StringImpl.createWithString(url);
-    final result = _bindings.TWTezosMessageSignerFormatMessage(
-        messageString.pointer, urlString.pointer);
+    final result = _bindings.TWTezosMessageSignerFormatMessage(messageString.pointer, urlString.pointer);
     messageString.dispose();
     urlString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
@@ -29,8 +28,7 @@ final class TezosMessageSigner {
     required String message,
   }) {
     final messageString = StringImpl.createWithString(message);
-    final result =
-        _bindings.TWTezosMessageSignerInputToPayload(messageString.pointer);
+    final result = _bindings.TWTezosMessageSignerInputToPayload(messageString.pointer);
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -45,8 +43,7 @@ final class TezosMessageSigner {
   }) {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageString = StringImpl.createWithString(message);
-    final result = _bindings.TWTezosMessageSignerSignMessage(
-        privateKeyPrivateKey, messageString.pointer);
+    final result = _bindings.TWTezosMessageSignerSignMessage(privateKeyPrivateKey, messageString.pointer);
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -64,7 +61,10 @@ final class TezosMessageSigner {
     final messageString = StringImpl.createWithString(message);
     final signatureString = StringImpl.createWithString(signature);
     final result = _bindings.TWTezosMessageSignerVerifyMessage(
-        pubKeyPublicKey, messageString.pointer, signatureString.pointer);
+      pubKeyPublicKey,
+      messageString.pointer,
+      signatureString.pointer,
+    );
     messageString.dispose();
     signatureString.dispose();
 

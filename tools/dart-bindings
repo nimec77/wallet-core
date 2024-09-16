@@ -67,10 +67,11 @@ generate_bindings() {
 dart_format() {
     echo "Formatting Dart files..."
     local dart_folder=$1
-    dart format $dart_folder/lib
-    dart format $dart_folder/lib/src/generated/
+    local max_line_length=$2
+    dart format --line-length $max_line_length $dart_folder/lib
+    dart format --line-length $max_line_length $dart_folder/lib/src/generated/
     if [ -d $dart_folder/lib/src/generated/enums/ ]; then
-        dart format $dart_folder/lib/src/generated/enums/
+        dart format --line-length $max_line_length $dart_folder/lib/src/generated/enums/
     fi
 }
 
@@ -150,18 +151,18 @@ fix_protobuf_import() {
 }
 
 main() {
-    # clear_files ffigen $DART_FOLDER
-    # copy_files ffigen $ROOT $DART_FOLDER
-    # ffigen $DART_FOLDER
+    clear_files ffigen $DART_FOLDER
+    copy_files ffigen $ROOT $DART_FOLDER
+    ffigen $DART_FOLDER
     clear_files bindings $CODEGEN_FOLDER $DART_FOLDER
     generate_bindings $CODEGEN_FOLDER
     copy_files bindings $CODEGEN_FOLDER $DART_FOLDER
-    # clear_files protobuf $DART_FOLDER
-    # copy_protobuf $ROOT $DART_FOLDER
-    # generate_protobuf $ROOT $DART_FOLDER $DART_PROTOBUF_SRC $DART_PROTOBUF_DST
-    # gen_dart_file_name $DART_PROTOBUF_DST
-    # fix_protobuf_import $DART_FOLDER $DART_PROTOBUF_DST
-    dart_format $DART_FOLDER
+    clear_files protobuf $DART_FOLDER
+    copy_protobuf $ROOT $DART_FOLDER
+    generate_protobuf $ROOT $DART_FOLDER $DART_PROTOBUF_SRC $DART_PROTOBUF_DST
+    gen_dart_file_name $DART_PROTOBUF_DST
+    fix_protobuf_import $DART_FOLDER $DART_PROTOBUF_DST
+    dart_format $DART_FOLDER 120
 }
 
 main

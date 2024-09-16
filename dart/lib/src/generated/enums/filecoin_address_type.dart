@@ -18,7 +18,6 @@ enum FilecoinAddressType {
   static FilecoinAddressType fromValue(int value) => switch (value) {
         0 => defaultValue,
         1 => delegated,
-        _ =>
-          throw ArgumentError("Unknown value for FilecoinAddressType: $value"),
+        _ => throw ArgumentError("Unknown value for FilecoinAddressType: $value"),
       };
 }

@@ -26,8 +26,7 @@ final class EthereumAbi {
   }) {
     final fnEthereumAbiFunction = fn.pointer;
     final encodedUint8List = DataImpl.createWithBytes(encoded);
-    final result = _bindings.TWEthereumAbiDecodeOutput(
-        fnEthereumAbiFunction, encodedUint8List.pointer);
+    final result = _bindings.TWEthereumAbiDecodeOutput(fnEthereumAbiFunction, encodedUint8List.pointer);
     encodedUint8List.dispose();
 
     return result;
@@ -40,8 +39,7 @@ final class EthereumAbi {
     final dataUint8List = DataImpl.createWithBytes(data);
     final abiString = StringImpl.createWithString(abi);
     try {
-      final result = _bindings.TWEthereumAbiDecodeCall(
-          dataUint8List.pointer, abiString.pointer);
+      final result = _bindings.TWEthereumAbiDecodeCall(dataUint8List.pointer, abiString.pointer);
       if (result == nullptr) {
         return null;
       }
@@ -60,8 +58,7 @@ final class EthereumAbi {
     required String messageJson,
   }) {
     final messageJsonString = StringImpl.createWithString(messageJson);
-    final result =
-        _bindings.TWEthereumAbiEncodeTyped(messageJsonString.pointer);
+    final result = _bindings.TWEthereumAbiEncodeTyped(messageJsonString.pointer);
     messageJsonString.dispose();
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;

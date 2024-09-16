@@ -47,17 +47,17 @@ const SigningError$json = {
 };
 
 /// Descriptor for `SigningError`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List signingErrorDescriptor = $convert.base64Decode(
-    'CgxTaWduaW5nRXJyb3ISBgoCT0sQABIRCg1FcnJvcl9nZW5lcmFsEAESEgoORXJyb3JfaW50ZX'
-    'JuYWwQAhIVChFFcnJvcl9sb3dfYmFsYW5jZRADEh8KG0Vycm9yX3plcm9fYW1vdW50X3JlcXVl'
-    'c3RlZBAEEh0KGUVycm9yX21pc3NpbmdfcHJpdmF0ZV9rZXkQBRIdChlFcnJvcl9pbnZhbGlkX3'
-    'ByaXZhdGVfa2V5EA8SGQoVRXJyb3JfaW52YWxpZF9hZGRyZXNzEBASFgoSRXJyb3JfaW52YWxp'
-    'ZF91dHhvEBESHQoZRXJyb3JfaW52YWxpZF91dHhvX2Ftb3VudBASEhMKD0Vycm9yX3dyb25nX2'
-    'ZlZRAGEhEKDUVycm9yX3NpZ25pbmcQBxIUChBFcnJvcl90eF90b29fYmlnEAgSHQoZRXJyb3Jf'
-    'bWlzc2luZ19pbnB1dF91dHhvcxAJEhoKFkVycm9yX25vdF9lbm91Z2hfdXR4b3MQChIXChNFcn'
-    'Jvcl9zY3JpcHRfcmVkZWVtEAsSFwoTRXJyb3Jfc2NyaXB0X291dHB1dBAMEiAKHEVycm9yX3Nj'
-    'cmlwdF93aXRuZXNzX3Byb2dyYW0QDRIWChJFcnJvcl9pbnZhbGlkX21lbW8QDhIVChFFcnJvcl'
-    '9pbnB1dF9wYXJzZRATEhgKFEVycm9yX25vX3N1cHBvcnRfbjJuEBQSGgoWRXJyb3Jfc2lnbmF0'
-    'dXJlc19jb3VudBAVEhgKFEVycm9yX2ludmFsaWRfcGFyYW1zEBYSKAokRXJyb3JfaW52YWxpZF'
-    '9yZXF1ZXN0ZWRfdG9rZW5fYW1vdW50EBcSFwoTRXJyb3Jfbm90X3N1cHBvcnRlZBAYEh8KG0Vy'
-    'cm9yX2R1c3RfYW1vdW50X3JlcXVlc3RlZBAZ');
+final $typed_data.Uint8List signingErrorDescriptor =
+    $convert.base64Decode('CgxTaWduaW5nRXJyb3ISBgoCT0sQABIRCg1FcnJvcl9nZW5lcmFsEAESEgoORXJyb3JfaW50ZX'
+        'JuYWwQAhIVChFFcnJvcl9sb3dfYmFsYW5jZRADEh8KG0Vycm9yX3plcm9fYW1vdW50X3JlcXVl'
+        'c3RlZBAEEh0KGUVycm9yX21pc3NpbmdfcHJpdmF0ZV9rZXkQBRIdChlFcnJvcl9pbnZhbGlkX3'
+        'ByaXZhdGVfa2V5EA8SGQoVRXJyb3JfaW52YWxpZF9hZGRyZXNzEBASFgoSRXJyb3JfaW52YWxp'
+        'ZF91dHhvEBESHQoZRXJyb3JfaW52YWxpZF91dHhvX2Ftb3VudBASEhMKD0Vycm9yX3dyb25nX2'
+        'ZlZRAGEhEKDUVycm9yX3NpZ25pbmcQBxIUChBFcnJvcl90eF90b29fYmlnEAgSHQoZRXJyb3Jf'
+        'bWlzc2luZ19pbnB1dF91dHhvcxAJEhoKFkVycm9yX25vdF9lbm91Z2hfdXR4b3MQChIXChNFcn'
+        'Jvcl9zY3JpcHRfcmVkZWVtEAsSFwoTRXJyb3Jfc2NyaXB0X291dHB1dBAMEiAKHEVycm9yX3Nj'
+        'cmlwdF93aXRuZXNzX3Byb2dyYW0QDRIWChJFcnJvcl9pbnZhbGlkX21lbW8QDhIVChFFcnJvcl'
+        '9pbnB1dF9wYXJzZRATEhgKFEVycm9yX25vX3N1cHBvcnRfbjJuEBQSGgoWRXJyb3Jfc2lnbmF0'
+        'dXJlc19jb3VudBAVEhgKFEVycm9yX2ludmFsaWRfcGFyYW1zEBYSKAokRXJyb3JfaW52YWxpZF'
+        '9yZXF1ZXN0ZWRfdG9rZW5fYW1vdW50EBcSFwoTRXJyb3Jfbm90X3N1cHBvcnRlZBAYEh8KG0Vy'
+        'cm9yX2R1c3RfYW1vdW50X3JlcXVlc3RlZBAZ');
