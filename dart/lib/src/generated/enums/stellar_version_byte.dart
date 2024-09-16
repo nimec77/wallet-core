@@ -18,11 +18,10 @@ enum StellarVersionByte {
   const StellarVersionByte(this.value);
 
   static StellarVersionByte fromValue(int value) => switch (value) {
-        0x30 => accountId,
-        0xc0 => seed,
-        0xc8 => preAuthTx,
-        0x118 => sha256Hash,
-        _ =>
-          throw ArgumentError("Unknown value for StellarVersionByte: $value"),
-      };
+    0x30 => accountId,
+    0xc0 => seed,
+    0xc8 => preAuthTx,
+    0x118 => sha256Hash,
+    _ => throw ArgumentError("Unknown value for StellarVersionByte: $value"),
+  };
 }

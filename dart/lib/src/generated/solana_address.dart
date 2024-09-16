@@ -19,8 +19,7 @@ final class SolanaAddress implements Disposable, Address {
   }) {
     final stringString = StringImpl.createWithString(string);
     try {
-      final result =
-          _bindings.TWSolanaAddressCreateWithString(stringString.pointer);
+      final result = _bindings.TWSolanaAddressCreateWithString(stringString.pointer);
       if (result == nullptr) {
         throw ArgumentError('SolanaAddress.createWithString: string=$string');
       }
@@ -40,11 +39,9 @@ final class SolanaAddress implements Disposable, Address {
     required String tokenMintAddress,
   }) {
     final obj = pointer;
-    final tokenMintAddressString =
-        StringImpl.createWithString(tokenMintAddress);
+    final tokenMintAddressString = StringImpl.createWithString(tokenMintAddress);
     try {
-      final result = _bindings.TWSolanaAddressDefaultTokenAddress(
-          obj, tokenMintAddressString.pointer);
+      final result = _bindings.TWSolanaAddressDefaultTokenAddress(obj, tokenMintAddressString.pointer);
       if (result == nullptr) {
         return null;
       }
@@ -57,7 +54,6 @@ final class SolanaAddress implements Disposable, Address {
       tokenMintAddressString.dispose();
     }
   }
-
   @override
   String get description {
     final obj = pointer;
@@ -68,4 +64,5 @@ final class SolanaAddress implements Disposable, Address {
 
     return val;
   }
+  
 }

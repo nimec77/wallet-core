@@ -21,10 +21,8 @@ final class StoredKey implements Disposable {
   }) {
     final nameString = StringImpl.createWithString(name);
     final passwordUint8List = DataImpl.createWithBytes(password);
-    final encryptionLevelEnum =
-        TWStoredKeyEncryptionLevel.fromValue(encryptionLevel.value);
-    final result = _bindings.TWStoredKeyCreateLevel(
-        nameString.pointer, passwordUint8List.pointer, encryptionLevelEnum);
+    final encryptionLevelEnum = TWStoredKeyEncryptionLevel.fromValue(encryptionLevel.value);
+    final result = _bindings.TWStoredKeyCreateLevel(nameString.pointer, passwordUint8List.pointer, encryptionLevelEnum);
     nameString.dispose();
     passwordUint8List.dispose();
 
@@ -39,14 +37,9 @@ final class StoredKey implements Disposable {
   }) {
     final nameString = StringImpl.createWithString(name);
     final passwordUint8List = DataImpl.createWithBytes(password);
-    final encryptionLevelEnum =
-        TWStoredKeyEncryptionLevel.fromValue(encryptionLevel.value);
+    final encryptionLevelEnum = TWStoredKeyEncryptionLevel.fromValue(encryptionLevel.value);
     final encryptionEnum = TWStoredKeyEncryption.fromValue(encryption.value);
-    final result = _bindings.TWStoredKeyCreateLevelAndEncryption(
-        nameString.pointer,
-        passwordUint8List.pointer,
-        encryptionLevelEnum,
-        encryptionEnum);
+    final result = _bindings.TWStoredKeyCreateLevelAndEncryption(nameString.pointer, passwordUint8List.pointer, encryptionLevelEnum, encryptionEnum,);
     nameString.dispose();
     passwordUint8List.dispose();
 
@@ -59,8 +52,7 @@ final class StoredKey implements Disposable {
   }) {
     final nameString = StringImpl.createWithString(name);
     final passwordUint8List = DataImpl.createWithBytes(password);
-    final result = _bindings.TWStoredKeyCreate(
-        nameString.pointer, passwordUint8List.pointer);
+    final result = _bindings.TWStoredKeyCreate(nameString.pointer, passwordUint8List.pointer);
     nameString.dispose();
     passwordUint8List.dispose();
 
@@ -75,8 +67,7 @@ final class StoredKey implements Disposable {
     final nameString = StringImpl.createWithString(name);
     final passwordUint8List = DataImpl.createWithBytes(password);
     final encryptionEnum = TWStoredKeyEncryption.fromValue(encryption.value);
-    final result = _bindings.TWStoredKeyCreateEncryption(
-        nameString.pointer, passwordUint8List.pointer, encryptionEnum);
+    final result = _bindings.TWStoredKeyCreateEncryption(nameString.pointer, passwordUint8List.pointer, encryptionEnum);
     nameString.dispose();
     passwordUint8List.dispose();
 
@@ -115,11 +106,7 @@ final class StoredKey implements Disposable {
     final passwordUint8List = DataImpl.createWithBytes(password);
     final coinEnum = TWCoinType.fromValue(coin.value);
     try {
-      final result = _bindings.TWStoredKeyImportPrivateKey(
-          privateKeyUint8List.pointer,
-          nameString.pointer,
-          passwordUint8List.pointer,
-          coinEnum);
+      final result = _bindings.TWStoredKeyImportPrivateKey(privateKeyUint8List.pointer, nameString.pointer, passwordUint8List.pointer, coinEnum,);
       if (result == nullptr) {
         return null;
       }
@@ -145,12 +132,7 @@ final class StoredKey implements Disposable {
     final coinEnum = TWCoinType.fromValue(coin.value);
     final encryptionEnum = TWStoredKeyEncryption.fromValue(encryption.value);
     try {
-      final result = _bindings.TWStoredKeyImportPrivateKeyWithEncryption(
-          privateKeyUint8List.pointer,
-          nameString.pointer,
-          passwordUint8List.pointer,
-          coinEnum,
-          encryptionEnum);
+      final result = _bindings.TWStoredKeyImportPrivateKeyWithEncryption(privateKeyUint8List.pointer, nameString.pointer, passwordUint8List.pointer, coinEnum, encryptionEnum,);
       if (result == nullptr) {
         return null;
       }
@@ -174,8 +156,7 @@ final class StoredKey implements Disposable {
     final passwordUint8List = DataImpl.createWithBytes(password);
     final coinEnum = TWCoinType.fromValue(coin.value);
     try {
-      final result = _bindings.TWStoredKeyImportHDWallet(mnemonicString.pointer,
-          nameString.pointer, passwordUint8List.pointer, coinEnum);
+      final result = _bindings.TWStoredKeyImportHDWallet(mnemonicString.pointer, nameString.pointer, passwordUint8List.pointer, coinEnum,);
       if (result == nullptr) {
         return null;
       }
@@ -201,12 +182,7 @@ final class StoredKey implements Disposable {
     final coinEnum = TWCoinType.fromValue(coin.value);
     final encryptionEnum = TWStoredKeyEncryption.fromValue(encryption.value);
     try {
-      final result = _bindings.TWStoredKeyImportHDWalletWithEncryption(
-          mnemonicString.pointer,
-          nameString.pointer,
-          passwordUint8List.pointer,
-          coinEnum,
-          encryptionEnum);
+      final result = _bindings.TWStoredKeyImportHDWalletWithEncryption(mnemonicString.pointer, nameString.pointer, passwordUint8List.pointer, coinEnum, encryptionEnum,);
       if (result == nullptr) {
         return null;
       }
@@ -254,8 +230,7 @@ final class StoredKey implements Disposable {
     final obj = pointer;
     final coinEnum = TWCoinType.fromValue(coin.value);
     final walletHdWallet = wallet?.pointer ?? nullptr;
-    final result =
-        _bindings.TWStoredKeyAccountForCoin(obj, coinEnum, walletHdWallet);
+    final result = _bindings.TWStoredKeyAccountForCoin(obj, coinEnum, walletHdWallet);
     if (result == nullptr) {
       return null;
     }
@@ -272,8 +247,7 @@ final class StoredKey implements Disposable {
     final coinEnum = TWCoinType.fromValue(coin.value);
     final derivationEnum = TWDerivation.fromValue(derivation.value);
     final walletHdWallet = wallet?.pointer ?? nullptr;
-    final result = _bindings.TWStoredKeyAccountForCoinDerivation(
-        obj, coinEnum, derivationEnum, walletHdWallet);
+    final result = _bindings.TWStoredKeyAccountForCoinDerivation(obj, coinEnum, derivationEnum, walletHdWallet);
     if (result == nullptr) {
       return null;
     }
@@ -295,16 +269,8 @@ final class StoredKey implements Disposable {
     final derivationEnum = TWDerivation.fromValue(derivation.value);
     final derivationPathString = StringImpl.createWithString(derivationPath);
     final publicKeyString = StringImpl.createWithString(publicKey);
-    final extendedPublicKeyString =
-        StringImpl.createWithString(extendedPublicKey);
-    final result = _bindings.TWStoredKeyAddAccountDerivation(
-        obj,
-        addressString.pointer,
-        coinEnum,
-        derivationEnum,
-        derivationPathString.pointer,
-        publicKeyString.pointer,
-        extendedPublicKeyString.pointer);
+    final extendedPublicKeyString = StringImpl.createWithString(extendedPublicKey);
+    final result = _bindings.TWStoredKeyAddAccountDerivation(obj, addressString.pointer, coinEnum, derivationEnum, derivationPathString.pointer, publicKeyString.pointer, extendedPublicKeyString.pointer,);
     addressString.dispose();
     derivationPathString.dispose();
     publicKeyString.dispose();
@@ -325,15 +291,8 @@ final class StoredKey implements Disposable {
     final coinEnum = TWCoinType.fromValue(coin.value);
     final derivationPathString = StringImpl.createWithString(derivationPath);
     final publicKeyString = StringImpl.createWithString(publicKey);
-    final extendedPublicKeyString =
-        StringImpl.createWithString(extendedPublicKey);
-    final result = _bindings.TWStoredKeyAddAccount(
-        obj,
-        addressString.pointer,
-        coinEnum,
-        derivationPathString.pointer,
-        publicKeyString.pointer,
-        extendedPublicKeyString.pointer);
+    final extendedPublicKeyString = StringImpl.createWithString(extendedPublicKey);
+    final result = _bindings.TWStoredKeyAddAccount(obj, addressString.pointer, coinEnum, derivationPathString.pointer, publicKeyString.pointer, extendedPublicKeyString.pointer,);
     addressString.dispose();
     derivationPathString.dispose();
     publicKeyString.dispose();
@@ -359,8 +318,7 @@ final class StoredKey implements Disposable {
     final obj = pointer;
     final coinEnum = TWCoinType.fromValue(coin.value);
     final derivationEnum = TWDerivation.fromValue(derivation.value);
-    final result = _bindings.TWStoredKeyRemoveAccountForCoinDerivation(
-        obj, coinEnum, derivationEnum);
+    final result = _bindings.TWStoredKeyRemoveAccountForCoinDerivation(obj, coinEnum, derivationEnum);
 
     return result;
   }
@@ -372,8 +330,7 @@ final class StoredKey implements Disposable {
     final obj = pointer;
     final coinEnum = TWCoinType.fromValue(coin.value);
     final derivationPathString = StringImpl.createWithString(derivationPath);
-    final result = _bindings.TWStoredKeyRemoveAccountForCoinDerivationPath(
-        obj, coinEnum, derivationPathString.pointer);
+    final result = _bindings.TWStoredKeyRemoveAccountForCoinDerivationPath(obj, coinEnum, derivationPathString.pointer,);
     derivationPathString.dispose();
 
     return result;
@@ -396,8 +353,7 @@ final class StoredKey implements Disposable {
     final obj = pointer;
     final passwordUint8List = DataImpl.createWithBytes(password);
     try {
-      final result = _bindings.TWStoredKeyDecryptPrivateKey(
-          obj, passwordUint8List.pointer);
+      final result = _bindings.TWStoredKeyDecryptPrivateKey(obj, passwordUint8List.pointer);
       if (result == nullptr) {
         return null;
       }
@@ -417,8 +373,7 @@ final class StoredKey implements Disposable {
     final obj = pointer;
     final passwordUint8List = DataImpl.createWithBytes(password);
     try {
-      final result =
-          _bindings.TWStoredKeyDecryptMnemonic(obj, passwordUint8List.pointer);
+      final result = _bindings.TWStoredKeyDecryptMnemonic(obj, passwordUint8List.pointer);
       if (result == nullptr) {
         return null;
       }
@@ -440,8 +395,7 @@ final class StoredKey implements Disposable {
     final coinEnum = TWCoinType.fromValue(coin.value);
     final passwordUint8List = DataImpl.createWithBytes(password);
     try {
-      final result = _bindings.TWStoredKeyPrivateKey(
-          obj, coinEnum, passwordUint8List.pointer);
+      final result = _bindings.TWStoredKeyPrivateKey(obj, coinEnum, passwordUint8List.pointer);
       if (result == nullptr) {
         return null;
       }
@@ -458,8 +412,7 @@ final class StoredKey implements Disposable {
     final obj = pointer;
     final passwordUint8List = DataImpl.createWithBytes(password);
     try {
-      final result =
-          _bindings.TWStoredKeyWallet(obj, passwordUint8List.pointer);
+      final result = _bindings.TWStoredKeyWallet(obj, passwordUint8List.pointer);
       if (result == nullptr) {
         return null;
       }
@@ -488,13 +441,12 @@ final class StoredKey implements Disposable {
   }) {
     final obj = pointer;
     final passwordUint8List = DataImpl.createWithBytes(password);
-    final result =
-        _bindings.TWStoredKeyFixAddresses(obj, passwordUint8List.pointer);
+    final result = _bindings.TWStoredKeyFixAddresses(obj, passwordUint8List.pointer);
     passwordUint8List.dispose();
 
     return result;
   }
-
+  
   String? get identifier {
     final obj = pointer;
     final result = _bindings.TWStoredKeyIdentifier(obj);
@@ -507,7 +459,7 @@ final class StoredKey implements Disposable {
 
     return val;
   }
-
+    
   String get name {
     final obj = pointer;
     final result = _bindings.TWStoredKeyName(obj);
@@ -517,21 +469,21 @@ final class StoredKey implements Disposable {
 
     return val;
   }
-
+    
   bool get isMnemonic {
     final obj = pointer;
     final result = _bindings.TWStoredKeyIsMnemonic(obj);
 
     return result;
   }
-
+    
   int get accountCount {
     final obj = pointer;
     final result = _bindings.TWStoredKeyAccountCount(obj);
 
     return result;
   }
-
+    
   String? get encryptionParameters {
     final obj = pointer;
     final result = _bindings.TWStoredKeyEncryptionParameters(obj);
@@ -544,4 +496,5 @@ final class StoredKey implements Disposable {
 
     return val;
   }
+  
 }

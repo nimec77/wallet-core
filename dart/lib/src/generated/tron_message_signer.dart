@@ -8,14 +8,14 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class TronMessageSigner {
+
   static String signMessage({
     required PrivateKey privateKey,
     required String message,
   }) {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageString = StringImpl.createWithString(message);
-    final result = _bindings.TWTronMessageSignerSignMessage(
-        privateKeyPrivateKey, messageString.pointer);
+    final result = _bindings.TWTronMessageSignerSignMessage(privateKeyPrivateKey, messageString.pointer);
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -32,11 +32,11 @@ final class TronMessageSigner {
     final pubKeyPublicKey = pubKey.pointer;
     final messageString = StringImpl.createWithString(message);
     final signatureString = StringImpl.createWithString(signature);
-    final result = _bindings.TWTronMessageSignerVerifyMessage(
-        pubKeyPublicKey, messageString.pointer, signatureString.pointer);
+    final result = _bindings.TWTronMessageSignerVerifyMessage(pubKeyPublicKey, messageString.pointer, signatureString.pointer,);
     messageString.dispose();
     signatureString.dispose();
 
     return result;
   }
+
 }

@@ -8,6 +8,7 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class PBKDF2 {
+
   static Uint8List? hmacSha256({
     required Uint8List password,
     required Uint8List salt,
@@ -17,8 +18,7 @@ final class PBKDF2 {
     final passwordUint8List = DataImpl.createWithBytes(password);
     final saltUint8List = DataImpl.createWithBytes(salt);
     try {
-      final result = _bindings.TWPBKDF2HmacSha256(
-          passwordUint8List.pointer, saltUint8List.pointer, iterations, dkLen);
+      final result = _bindings.TWPBKDF2HmacSha256(passwordUint8List.pointer, saltUint8List.pointer, iterations, dkLen);
       if (result == nullptr) {
         return null;
       }
@@ -42,8 +42,7 @@ final class PBKDF2 {
     final passwordUint8List = DataImpl.createWithBytes(password);
     final saltUint8List = DataImpl.createWithBytes(salt);
     try {
-      final result = _bindings.TWPBKDF2HmacSha512(
-          passwordUint8List.pointer, saltUint8List.pointer, iterations, dkLen);
+      final result = _bindings.TWPBKDF2HmacSha512(passwordUint8List.pointer, saltUint8List.pointer, iterations, dkLen);
       if (result == nullptr) {
         return null;
       }
@@ -57,4 +56,5 @@ final class PBKDF2 {
       saltUint8List.dispose();
     }
   }
+
 }

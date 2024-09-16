@@ -8,14 +8,14 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class EthereumMessageSigner {
+
   static String signTypedMessage({
     required PrivateKey privateKey,
     required String messageJson,
   }) {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageJsonString = StringImpl.createWithString(messageJson);
-    final result = _bindings.TWEthereumMessageSignerSignTypedMessage(
-        privateKeyPrivateKey, messageJsonString.pointer);
+    final result = _bindings.TWEthereumMessageSignerSignTypedMessage(privateKeyPrivateKey, messageJsonString.pointer);
     messageJsonString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -31,8 +31,7 @@ final class EthereumMessageSigner {
   }) {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageJsonString = StringImpl.createWithString(messageJson);
-    final result = _bindings.TWEthereumMessageSignerSignTypedMessageEip155(
-        privateKeyPrivateKey, messageJsonString.pointer, chainId);
+    final result = _bindings.TWEthereumMessageSignerSignTypedMessageEip155(privateKeyPrivateKey, messageJsonString.pointer, chainId,);
     messageJsonString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -47,8 +46,7 @@ final class EthereumMessageSigner {
   }) {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageString = StringImpl.createWithString(message);
-    final result = _bindings.TWEthereumMessageSignerSignMessage(
-        privateKeyPrivateKey, messageString.pointer);
+    final result = _bindings.TWEthereumMessageSignerSignMessage(privateKeyPrivateKey, messageString.pointer);
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -63,8 +61,7 @@ final class EthereumMessageSigner {
   }) {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageString = StringImpl.createWithString(message);
-    final result = _bindings.TWEthereumMessageSignerSignMessageImmutableX(
-        privateKeyPrivateKey, messageString.pointer);
+    final result = _bindings.TWEthereumMessageSignerSignMessageImmutableX(privateKeyPrivateKey, messageString.pointer,);
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -80,8 +77,7 @@ final class EthereumMessageSigner {
   }) {
     final privateKeyPrivateKey = privateKey.pointer;
     final messageString = StringImpl.createWithString(message);
-    final result = _bindings.TWEthereumMessageSignerSignMessageEip155(
-        privateKeyPrivateKey, messageString.pointer, chainId);
+    final result = _bindings.TWEthereumMessageSignerSignMessageEip155(privateKeyPrivateKey, messageString.pointer, chainId,);
     messageString.dispose();
     final wrapper = StringImpl.createWithPointer(result);
     final val = wrapper.dartString;
@@ -98,11 +94,11 @@ final class EthereumMessageSigner {
     final pubKeyPublicKey = pubKey.pointer;
     final messageString = StringImpl.createWithString(message);
     final signatureString = StringImpl.createWithString(signature);
-    final result = _bindings.TWEthereumMessageSignerVerifyMessage(
-        pubKeyPublicKey, messageString.pointer, signatureString.pointer);
+    final result = _bindings.TWEthereumMessageSignerVerifyMessage(pubKeyPublicKey, messageString.pointer, signatureString.pointer,);
     messageString.dispose();
     signatureString.dispose();
 
     return result;
   }
+
 }

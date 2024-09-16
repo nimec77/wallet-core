@@ -15,10 +15,10 @@ final class AnyAddress implements Disposable, Address {
   const AnyAddress._(Pointer<TWAnyAddress> pointer) : _pointer = pointer;
 
   @override
-  bool operator ==(Object other) => switch (other) {
-        AnyAddress obj => _bindings.TWAnyAddressEqual(_pointer, obj.pointer),
-        _ => false,
-      };
+  bool operator == (Object other) => switch(other) {
+    AnyAddress obj => _bindings.TWAnyAddressEqual(_pointer, obj.pointer),
+    _ => false,
+  };
 
   @override
   int get hashCode => _pointer.hashCode;
@@ -30,11 +30,9 @@ final class AnyAddress implements Disposable, Address {
     final stringString = StringImpl.createWithString(string);
     final coinEnum = TWCoinType.fromValue(coin.value);
     try {
-      final result = _bindings.TWAnyAddressCreateWithString(
-          stringString.pointer, coinEnum);
+      final result = _bindings.TWAnyAddressCreateWithString(stringString.pointer, coinEnum);
       if (result == nullptr) {
-        throw ArgumentError(
-            'AnyAddress.createWithString: string=$string, coin=$coin');
+        throw ArgumentError('AnyAddress.createWithString: string=$string, coin=$coin');
       }
 
       return AnyAddress._(result);
@@ -52,11 +50,9 @@ final class AnyAddress implements Disposable, Address {
     final coinEnum = TWCoinType.fromValue(coin.value);
     final hrpString = StringImpl.createWithString(hrp);
     try {
-      final result = _bindings.TWAnyAddressCreateBech32(
-          stringString.pointer, coinEnum, hrpString.pointer);
+      final result = _bindings.TWAnyAddressCreateBech32(stringString.pointer, coinEnum, hrpString.pointer);
       if (result == nullptr) {
-        throw ArgumentError(
-            'AnyAddress.createBech32: string=$string, coin=$coin, hrp=$hrp');
+        throw ArgumentError('AnyAddress.createBech32: string=$string, coin=$coin, hrp=$hrp');
       }
 
       return AnyAddress._(result);
@@ -74,11 +70,9 @@ final class AnyAddress implements Disposable, Address {
     final stringString = StringImpl.createWithString(string);
     final coinEnum = TWCoinType.fromValue(coin.value);
     try {
-      final result = _bindings.TWAnyAddressCreateSS58(
-          stringString.pointer, coinEnum, ss58Prefix);
+      final result = _bindings.TWAnyAddressCreateSS58(stringString.pointer, coinEnum, ss58Prefix);
       if (result == nullptr) {
-        throw ArgumentError(
-            'AnyAddress.createSs58: string=$string, coin=$coin, ss58Prefix=$ss58Prefix');
+        throw ArgumentError('AnyAddress.createSs58: string=$string, coin=$coin, ss58Prefix=$ss58Prefix');
       }
 
       return AnyAddress._(result);
@@ -93,8 +87,7 @@ final class AnyAddress implements Disposable, Address {
   }) {
     final publicKeyPublicKey = publicKey.pointer;
     final coinEnum = TWCoinType.fromValue(coin.value);
-    final result =
-        _bindings.TWAnyAddressCreateWithPublicKey(publicKeyPublicKey, coinEnum);
+    final result = _bindings.TWAnyAddressCreateWithPublicKey(publicKeyPublicKey, coinEnum);
 
     return AnyAddress._(result);
   }
@@ -107,8 +100,7 @@ final class AnyAddress implements Disposable, Address {
     final publicKeyPublicKey = publicKey.pointer;
     final coinEnum = TWCoinType.fromValue(coin.value);
     final derivationEnum = TWDerivation.fromValue(derivation.value);
-    final result = _bindings.TWAnyAddressCreateWithPublicKeyDerivation(
-        publicKeyPublicKey, coinEnum, derivationEnum);
+    final result = _bindings.TWAnyAddressCreateWithPublicKeyDerivation(publicKeyPublicKey, coinEnum, derivationEnum);
 
     return AnyAddress._(result);
   }
@@ -121,8 +113,7 @@ final class AnyAddress implements Disposable, Address {
     final publicKeyPublicKey = publicKey.pointer;
     final coinEnum = TWCoinType.fromValue(coin.value);
     final hrpString = StringImpl.createWithString(hrp);
-    final result = _bindings.TWAnyAddressCreateBech32WithPublicKey(
-        publicKeyPublicKey, coinEnum, hrpString.pointer);
+    final result = _bindings.TWAnyAddressCreateBech32WithPublicKey(publicKeyPublicKey, coinEnum, hrpString.pointer);
     hrpString.dispose();
 
     return AnyAddress._(result);
@@ -135,8 +126,7 @@ final class AnyAddress implements Disposable, Address {
   }) {
     final publicKeyPublicKey = publicKey.pointer;
     final coinEnum = TWCoinType.fromValue(coin.value);
-    final result = _bindings.TWAnyAddressCreateSS58WithPublicKey(
-        publicKeyPublicKey, coinEnum, ss58Prefix);
+    final result = _bindings.TWAnyAddressCreateSS58WithPublicKey(publicKeyPublicKey, coinEnum, ss58Prefix);
 
     return AnyAddress._(result);
   }
@@ -146,10 +136,8 @@ final class AnyAddress implements Disposable, Address {
     required FilecoinAddressType filecoinAddressType,
   }) {
     final publicKeyPublicKey = publicKey.pointer;
-    final filecoinAddressTypeEnum =
-        TWFilecoinAddressType.fromValue(filecoinAddressType.value);
-    final result = _bindings.TWAnyAddressCreateWithPublicKeyFilecoinAddressType(
-        publicKeyPublicKey, filecoinAddressTypeEnum);
+    final filecoinAddressTypeEnum = TWFilecoinAddressType.fromValue(filecoinAddressType.value);
+    final result = _bindings.TWAnyAddressCreateWithPublicKeyFilecoinAddressType(publicKeyPublicKey, filecoinAddressTypeEnum,);
 
     return AnyAddress._(result);
   }
@@ -165,8 +153,7 @@ final class AnyAddress implements Disposable, Address {
   }) {
     final stringString = StringImpl.createWithString(string);
     final coinEnum = TWCoinType.fromValue(coin.value);
-    final result =
-        _bindings.TWAnyAddressIsValid(stringString.pointer, coinEnum);
+    final result = _bindings.TWAnyAddressIsValid(stringString.pointer, coinEnum);
     stringString.dispose();
 
     return result;
@@ -180,8 +167,7 @@ final class AnyAddress implements Disposable, Address {
     final stringString = StringImpl.createWithString(string);
     final coinEnum = TWCoinType.fromValue(coin.value);
     final hrpString = StringImpl.createWithString(hrp);
-    final result = _bindings.TWAnyAddressIsValidBech32(
-        stringString.pointer, coinEnum, hrpString.pointer);
+    final result = _bindings.TWAnyAddressIsValidBech32(stringString.pointer, coinEnum, hrpString.pointer);
     stringString.dispose();
     hrpString.dispose();
 
@@ -195,13 +181,11 @@ final class AnyAddress implements Disposable, Address {
   }) {
     final stringString = StringImpl.createWithString(string);
     final coinEnum = TWCoinType.fromValue(coin.value);
-    final result = _bindings.TWAnyAddressIsValidSS58(
-        stringString.pointer, coinEnum, ss58Prefix);
+    final result = _bindings.TWAnyAddressIsValidSS58(stringString.pointer, coinEnum, ss58Prefix);
     stringString.dispose();
 
     return result;
   }
-
   @override
   String get description {
     final obj = pointer;
@@ -212,14 +196,14 @@ final class AnyAddress implements Disposable, Address {
 
     return val;
   }
-
+    
   CoinType get coin {
     final obj = pointer;
     final result = _bindings.TWAnyAddressCoin(obj);
 
     return CoinType.fromValue(result.value);
   }
-
+    
   Uint8List get data {
     final obj = pointer;
     final result = _bindings.TWAnyAddressData(obj);
@@ -229,4 +213,5 @@ final class AnyAddress implements Disposable, Address {
 
     return val;
   }
+  
 }

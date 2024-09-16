@@ -15,11 +15,10 @@ final class BitcoinScript implements Disposable {
   const BitcoinScript._(Pointer<TWBitcoinScript> pointer) : _pointer = pointer;
 
   @override
-  bool operator ==(Object other) => switch (other) {
-        BitcoinScript obj =>
-          _bindings.TWBitcoinScriptEqual(_pointer, obj.pointer),
-        _ => false,
-      };
+  bool operator == (Object other) => switch(other) {
+    BitcoinScript obj => _bindings.TWBitcoinScriptEqual(_pointer, obj.pointer),
+    _ => false,
+  };
 
   @override
   int get hashCode => _pointer.hashCode;
@@ -34,8 +33,7 @@ final class BitcoinScript implements Disposable {
     required Uint8List data,
   }) {
     final dataUint8List = DataImpl.createWithBytes(data);
-    final result =
-        _bindings.TWBitcoinScriptCreateWithData(dataUint8List.pointer);
+    final result = _bindings.TWBitcoinScriptCreateWithData(dataUint8List.pointer);
     dataUint8List.dispose();
 
     return BitcoinScript._(result);
@@ -134,8 +132,7 @@ final class BitcoinScript implements Disposable {
     required Uint8List pubkey,
   }) {
     final pubkeyUint8List = DataImpl.createWithBytes(pubkey);
-    final result =
-        _bindings.TWBitcoinScriptBuildPayToPublicKey(pubkeyUint8List.pointer);
+    final result = _bindings.TWBitcoinScriptBuildPayToPublicKey(pubkeyUint8List.pointer);
     pubkeyUint8List.dispose();
 
     return BitcoinScript._(result);
@@ -145,8 +142,7 @@ final class BitcoinScript implements Disposable {
     required Uint8List hash,
   }) {
     final hashUint8List = DataImpl.createWithBytes(hash);
-    final result =
-        _bindings.TWBitcoinScriptBuildPayToPublicKeyHash(hashUint8List.pointer);
+    final result = _bindings.TWBitcoinScriptBuildPayToPublicKeyHash(hashUint8List.pointer);
     hashUint8List.dispose();
 
     return BitcoinScript._(result);
@@ -156,8 +152,7 @@ final class BitcoinScript implements Disposable {
     required Uint8List scriptHash,
   }) {
     final scriptHashUint8List = DataImpl.createWithBytes(scriptHash);
-    final result = _bindings.TWBitcoinScriptBuildPayToScriptHash(
-        scriptHashUint8List.pointer);
+    final result = _bindings.TWBitcoinScriptBuildPayToScriptHash(scriptHashUint8List.pointer);
     scriptHashUint8List.dispose();
 
     return BitcoinScript._(result);
@@ -167,8 +162,7 @@ final class BitcoinScript implements Disposable {
     required Uint8List hash,
   }) {
     final hashUint8List = DataImpl.createWithBytes(hash);
-    final result = _bindings.TWBitcoinScriptBuildPayToWitnessPubkeyHash(
-        hashUint8List.pointer);
+    final result = _bindings.TWBitcoinScriptBuildPayToWitnessPubkeyHash(hashUint8List.pointer);
     hashUint8List.dispose();
 
     return BitcoinScript._(result);
@@ -178,8 +172,7 @@ final class BitcoinScript implements Disposable {
     required Uint8List scriptHash,
   }) {
     final scriptHashUint8List = DataImpl.createWithBytes(scriptHash);
-    final result = _bindings.TWBitcoinScriptBuildPayToWitnessScriptHash(
-        scriptHashUint8List.pointer);
+    final result = _bindings.TWBitcoinScriptBuildPayToWitnessScriptHash(scriptHashUint8List.pointer);
     scriptHashUint8List.dispose();
 
     return BitcoinScript._(result);
@@ -191,8 +184,7 @@ final class BitcoinScript implements Disposable {
   }) {
     final addressString = StringImpl.createWithString(address);
     final coinEnum = TWCoinType.fromValue(coin.value);
-    final result = _bindings.TWBitcoinScriptLockScriptForAddress(
-        addressString.pointer, coinEnum);
+    final result = _bindings.TWBitcoinScriptLockScriptForAddress(addressString.pointer, coinEnum);
     addressString.dispose();
 
     return BitcoinScript._(result);
@@ -206,14 +198,14 @@ final class BitcoinScript implements Disposable {
 
     return result;
   }
-
+  
   int get size {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptSize(obj);
 
     return result;
   }
-
+    
   Uint8List get data {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptData(obj);
@@ -223,7 +215,7 @@ final class BitcoinScript implements Disposable {
 
     return val;
   }
-
+    
   Uint8List get scriptHash {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptScriptHash(obj);
@@ -233,32 +225,33 @@ final class BitcoinScript implements Disposable {
 
     return val;
   }
-
+    
   bool get isPayToScriptHash {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptIsPayToScriptHash(obj);
 
     return result;
   }
-
+    
   bool get isPayToWitnessScriptHash {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptIsPayToWitnessScriptHash(obj);
 
     return result;
   }
-
+    
   bool get isPayToWitnessPublicKeyHash {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptIsPayToWitnessPublicKeyHash(obj);
 
     return result;
   }
-
+    
   bool get isWitnessProgram {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptIsWitnessProgram(obj);
 
     return result;
   }
+  
 }

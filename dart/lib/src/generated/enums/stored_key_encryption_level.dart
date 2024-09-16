@@ -18,11 +18,10 @@ enum StoredKeyEncryptionLevel {
   const StoredKeyEncryptionLevel(this.value);
 
   static StoredKeyEncryptionLevel fromValue(int value) => switch (value) {
-        0 => defaultValue,
-        1 => minimal,
-        2 => weak,
-        3 => standard,
-        _ => throw ArgumentError(
-            "Unknown value for StoredKeyEncryptionLevel: $value"),
-      };
+    0 => defaultValue,
+    1 => minimal,
+    2 => weak,
+    3 => standard,
+    _ => throw ArgumentError("Unknown value for StoredKeyEncryptionLevel: $value"),
+  };
 }

@@ -12,8 +12,7 @@ final class DerivationPathIndex implements Disposable {
 
   Pointer<TWDerivationPathIndex> get pointer => _pointer;
 
-  const DerivationPathIndex._(Pointer<TWDerivationPathIndex> pointer)
-      : _pointer = pointer;
+  const DerivationPathIndex._(Pointer<TWDerivationPathIndex> pointer) : _pointer = pointer;
 
   factory DerivationPathIndex.create({
     required int value,
@@ -28,21 +27,21 @@ final class DerivationPathIndex implements Disposable {
   void dispose() {
     _bindings.TWDerivationPathIndexDelete(pointer);
   }
-
+  
   int get value {
     final obj = pointer;
     final result = _bindings.TWDerivationPathIndexValue(obj);
 
     return result;
   }
-
+    
   bool get hardened {
     final obj = pointer;
     final result = _bindings.TWDerivationPathIndexHardened(obj);
 
     return result;
   }
-
+    
   String get description {
     final obj = pointer;
     final result = _bindings.TWDerivationPathIndexDescription(obj);
@@ -52,4 +51,5 @@ final class DerivationPathIndex implements Disposable {
 
     return val;
   }
+  
 }

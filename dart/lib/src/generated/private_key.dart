@@ -25,8 +25,7 @@ final class PrivateKey implements Disposable {
   }) {
     final dataUint8List = DataImpl.createWithBytes(data);
     try {
-      final result =
-          _bindings.TWPrivateKeyCreateWithData(dataUint8List.pointer);
+      final result = _bindings.TWPrivateKeyCreateWithData(dataUint8List.pointer);
       if (result == nullptr) {
         throw ArgumentError('PrivateKey.createWithData: data=$data');
       }
@@ -60,8 +59,7 @@ final class PrivateKey implements Disposable {
   }) {
     final dataUint8List = DataImpl.createWithBytes(data);
     final curveEnum = TWCurve.fromValue(curve.value);
-    final result =
-        _bindings.TWPrivateKeyIsValid(dataUint8List.pointer, curveEnum);
+    final result = _bindings.TWPrivateKeyIsValid(dataUint8List.pointer, curveEnum);
     dataUint8List.dispose();
 
     return result;
@@ -82,8 +80,7 @@ final class PrivateKey implements Disposable {
   }) {
     final obj = pointer;
     final pubkeyTypeEnum = TWPublicKeyType.fromValue(pubkeyType.value);
-    final result =
-        _bindings.TWPrivateKeyGetPublicKeyByType(obj, pubkeyTypeEnum);
+    final result = _bindings.TWPrivateKeyGetPublicKeyByType(obj, pubkeyTypeEnum);
 
     return PublicKey._(result);
   }
@@ -140,8 +137,7 @@ final class PrivateKey implements Disposable {
     final digestUint8List = DataImpl.createWithBytes(digest);
     final curveEnum = TWCurve.fromValue(curve.value);
     try {
-      final result =
-          _bindings.TWPrivateKeySign(obj, digestUint8List.pointer, curveEnum);
+      final result = _bindings.TWPrivateKeySign(obj, digestUint8List.pointer, curveEnum);
       if (result == nullptr) {
         return null;
       }
@@ -161,8 +157,7 @@ final class PrivateKey implements Disposable {
     final obj = pointer;
     final digestUint8List = DataImpl.createWithBytes(digest);
     try {
-      final result =
-          _bindings.TWPrivateKeySignAsDER(obj, digestUint8List.pointer);
+      final result = _bindings.TWPrivateKeySignAsDER(obj, digestUint8List.pointer);
       if (result == nullptr) {
         return null;
       }
@@ -182,8 +177,7 @@ final class PrivateKey implements Disposable {
     final obj = pointer;
     final messageUint8List = DataImpl.createWithBytes(message);
     try {
-      final result = _bindings.TWPrivateKeySignZilliqaSchnorr(
-          obj, messageUint8List.pointer);
+      final result = _bindings.TWPrivateKeySignZilliqaSchnorr(obj, messageUint8List.pointer);
       if (result == nullptr) {
         return null;
       }
@@ -196,7 +190,7 @@ final class PrivateKey implements Disposable {
       messageUint8List.dispose();
     }
   }
-
+  
   Uint8List get data {
     final obj = pointer;
     final result = _bindings.TWPrivateKeyData(obj);
@@ -206,4 +200,5 @@ final class PrivateKey implements Disposable {
 
     return val;
   }
+  
 }
