@@ -2,10 +2,10 @@
 //
 // Copyright © 2017 Trust Wallet.
 
-use std::collections::HashSet;
-use crate::codegen::dart::res::ENUM_VALUE_TYPE;
 use super::{inits::process_deinits, *};
+use crate::codegen::dart::res::ENUM_VALUE_TYPE;
 use crate::codegen::dart::utils::*;
+use std::collections::HashSet;
 
 #[derive(Debug, Clone)]
 pub struct RenderTrustCoreInput<'a> {
@@ -55,16 +55,14 @@ pub fn render_trust_core_to_string(input: RenderTrustCoreInput) -> Result<String
 
     engine.register_partial("trust_core", input.trust_core_template)?;
 
-    let mut parts = input.part_names
+    let mut parts = input
+        .part_names
         .iter()
         .map(|name| get_parts_from_file_info(name))
         .collect::<Vec<DartPart>>();
     parts.sort();
 
-    let render = DartTrustWallet {
-        parts,
-    };
-
+    let render = DartTrustWallet { parts };
 
     let out = engine.render(
         "trust_core",
@@ -137,14 +135,9 @@ pub fn generate_dart_types(mut info: FileInfo) -> Result<GeneratedDartTypes> {
         let obj = ObjectVariant::Struct(&strct.name);
 
         // Process items.
-        let (
-            inits,
-            deinits,
-            mut methods,
-            properties,
-        );
+        let (inits, deinits, mut methods, properties);
 
-        (inits, info.inits,) = process_inits(&obj, info.inits)?;
+        (inits, info.inits) = process_inits(&obj, info.inits)?;
         (deinits, info.deinits) = process_deinits(&obj, info.deinits)?;
         (methods, info.functions) = process_methods(&obj, info.functions)?;
         (properties, info.properties) = process_properties(&obj, info.properties)?;

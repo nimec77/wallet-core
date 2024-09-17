@@ -2,8 +2,8 @@
 //
 // Copyright © 2017 Trust Wallet.
 
-use crate::codegen::dart::res::{CORE_VAR_NAME, MAX_LINE_LENGTH};
 use super::*;
+use crate::codegen::dart::res::{CORE_VAR_NAME, MAX_LINE_LENGTH};
 use crate::codegen::dart::utils::*;
 use crate::manifest::InitInfo;
 
@@ -37,7 +37,7 @@ pub(super) fn process_inits(
             .collect::<Vec<&TypeVariant>>();
         let has_finally = init.is_nullable
             & (type_variants.contains(&&TypeVariant::String)
-            || type_variants.contains(&&TypeVariant::Data));
+                || type_variants.contains(&&TypeVariant::Data));
         // For each parameter, we track a list of `params` which is used for the
         // function interface and add the necessary operations on how to process
         // those parameters.
@@ -45,9 +45,9 @@ pub(super) fn process_inits(
         for param in &init.params {
             let param_name = || param.name.to_string();
             let local_name: String;
-            let mut call_name = get_call_var_name(&param);
+            let mut call_name = get_call_var_name(param);
             // Process parameter.
-            if let (Some(op), call_var_name) = param_c_ffi_call(&param, !has_finally) {
+            if let (Some(op), call_var_name) = param_c_ffi_call(param, !has_finally) {
                 local_name = get_local_var_name(param);
                 if let Some(call_var_name) = call_var_name {
                     call_name = call_var_name;
@@ -73,8 +73,7 @@ pub(super) fn process_inits(
             params.push(var);
 
             match &param.ty.variant {
-                TypeVariant::Enum(name) | TypeVariant::Struct(name)
-                if name == object.name() => {
+                TypeVariant::Enum(name) | TypeVariant::Struct(name) if name == object.name() => {
                     continue
                 }
                 _ => {}
@@ -89,7 +88,7 @@ pub(super) fn process_inits(
             .join(", ");
         const PADDING: usize = 20;
         if param_names.len() + CORE_VAR_NAME.len() + init.name.len() + PADDING >= MAX_LINE_LENGTH {
-            param_names.push_str(",");
+            param_names.push(',');
         }
 
         // Call the underlying C FFI function, passing on the parameter list.
@@ -110,7 +109,7 @@ pub(super) fn process_inits(
 
         // Add Defer operation to release memory.
         for param in &init.params {
-            if let Some(op) = param_c_ffi_defer_call(&param) {
+            if let Some(op) = param_c_ffi_defer_call(param) {
                 ops.push(op);
             }
         }

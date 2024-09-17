@@ -2,12 +2,12 @@
 //
 // Copyright © 2017 Trust Wallet.
 
-use std::collections::HashSet;
 use libparser::codegen::{cpp, proto, rust};
 use libparser::coin_id::CoinId;
 use libparser::manifest::parse_dir;
 use libparser::registry::read_coin_from_registry;
 use libparser::{Error, Result};
+use std::collections::HashSet;
 use std::fs::read_to_string;
 
 fn main() -> Result<()> {

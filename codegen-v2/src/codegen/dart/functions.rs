@@ -2,10 +2,10 @@
 //
 // Copyright © 2017 Trust Wallet.
 
-use crate::codegen::dart::res::{CORE_VAR_NAME, MAX_LINE_LENGTH};
 use super::*;
-use crate::manifest::{FunctionInfo, TypeVariant};
+use crate::codegen::dart::res::{CORE_VAR_NAME, MAX_LINE_LENGTH};
 use crate::codegen::dart::utils::*;
+use crate::manifest::{FunctionInfo, TypeVariant};
 
 /// This function checks each function and determines whether there's an
 /// association with the passed on object (struct or enum), based on common name
@@ -35,7 +35,7 @@ pub(super) fn process_methods(
             .collect::<Vec<&TypeVariant>>();
         let has_finally = func.return_type.is_nullable
             & (params_types.contains(&&TypeVariant::String)
-            || params_types.contains(&&TypeVariant::Data));
+                || params_types.contains(&&TypeVariant::Data));
 
         let mut ops = vec![];
 
@@ -70,8 +70,7 @@ pub(super) fn process_methods(
             let param_name = || param.name.to_string();
             // Skip self parameter
             match &param.ty.variant {
-                TypeVariant::Enum(name) | TypeVariant::Struct(name)
-                if name == object.name() => {
+                TypeVariant::Enum(name) | TypeVariant::Struct(name) if name == object.name() => {
                     continue
                 }
                 _ => {}
@@ -80,7 +79,7 @@ pub(super) fn process_methods(
             let local_name: String;
             let mut call_name = get_call_var_name(param);
             // Process parameter.
-            if let (Some(op), call_var_name) = param_c_ffi_call(&param, !has_finally) {
+            if let (Some(op), call_var_name) = param_c_ffi_call(param, !has_finally) {
                 local_name = get_local_var_name(param);
                 if let Some(call_var_name) = call_var_name {
                     call_name = call_var_name;
@@ -107,7 +106,11 @@ pub(super) fn process_methods(
         }
 
         // Prepepare parameter list to be passed on to the underlying C FFI function.
-        let param_name_vec = if func.is_static { vec![] } else { vec!["obj".to_string()] };
+        let param_name_vec = if func.is_static {
+            vec![]
+        } else {
+            vec!["obj".to_string()]
+        };
         let mut param_names = param_name_vec
             .into_iter()
             .chain(params.iter().map(|p| p.call_name.to_string()))
@@ -115,7 +118,7 @@ pub(super) fn process_methods(
             .join(", ");
         const PADDING: usize = 24;
         if param_names.len() + CORE_VAR_NAME.len() + func.name.len() + PADDING >= MAX_LINE_LENGTH {
-            param_names.push_str(",");
+            param_names.push(',');
         }
         // Call the underlying C FFI function, passing on the parameter list.
         let (var_name, call) = (
@@ -140,14 +143,13 @@ pub(super) fn process_methods(
         // Add Defer operation to release memory.
         for param in &func.params {
             match &param.ty.variant {
-                TypeVariant::Enum(name) | TypeVariant::Struct(name)
-                if name == object.name() => {
+                TypeVariant::Enum(name) | TypeVariant::Struct(name) if name == object.name() => {
                     continue
                 }
                 _ => {}
             }
 
-            if let Some(op) = param_c_ffi_defer_call(&param) {
+            if let Some(op) = param_c_ffi_defer_call(param) {
                 ops.push(op);
             }
         }

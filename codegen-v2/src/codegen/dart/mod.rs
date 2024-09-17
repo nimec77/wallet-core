@@ -5,23 +5,23 @@
 use self::functions::process_methods;
 use self::inits::process_inits;
 use self::properties::process_properties;
+use crate::codegen::dart::utils::pretty_name;
 use crate::manifest::{DeinitInfo, FileInfo, TypeVariant};
-use crate::{Result};
+use crate::Result;
 use handlebars::Handlebars;
 use std::fmt::Display;
-use crate::codegen::dart::utils::pretty_name;
 
 mod functions;
 mod inits;
 mod properties;
 mod render;
-mod utils;
 mod res;
+mod utils;
 
 // Re-exports
 pub use self::render::{
     generate_dart_types, render_to_strings, render_trust_core_to_string, GeneratedDartTypes,
-    GeneratedDartTypesStrings, RenderTrustCoreInput, RenderInput,
+    GeneratedDartTypesStrings, RenderInput, RenderTrustCoreInput,
 };
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
@@ -139,7 +139,7 @@ pub enum DartOperation {
     Call {
         var_name: String,
         call: String,
-        is_final: bool,  // Is final variable.
+        is_final: bool, // Is final variable.
         core_var_name: Option<String>,
     },
     // Results in:
@@ -156,7 +156,7 @@ pub enum DartOperation {
         call_var_name: String,
         var_type: String,
         call: String,
-        is_final: bool,  // Is final variable.
+        is_final: bool, // Is final variable.
         core_var_name: Option<String>,
     },
     // Results in:

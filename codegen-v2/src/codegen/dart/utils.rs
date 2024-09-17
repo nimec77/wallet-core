@@ -9,8 +9,7 @@ pub fn pretty_name(name: &str) -> String {
 }
 
 pub fn pretty_name_without_prefix(name: &str, prefix: &str) -> String {
-    name
-        .strip_prefix(prefix)
+    name.strip_prefix(prefix)
         // Panicking implies bug, checked at the start of the loop.
         .unwrap()
         .to_lower_camel_case()
@@ -19,12 +18,9 @@ pub fn pretty_func_name(name: &str, object_name: &str) -> String {
     let pretty_name = pretty_name_without_prefix(name, object_name);
 
     if object_name == "TWStoredKey" {
-        pretty_name
-            .replace("Json", "JSON")
-            .replace("Hd", "HD")
+        pretty_name.replace("Json", "JSON").replace("Hd", "HD")
     } else if object_name == "TWPublicKey" {
-        pretty_name
-            .replace("Der", "DER")
+        pretty_name.replace("Der", "DER")
     } else if object_name == "TWHash" {
         pretty_name
             .replace("ripemd", "RIPEMD")
@@ -33,9 +29,7 @@ pub fn pretty_func_name(name: &str, object_name: &str) -> String {
             .replace("sha3256", "sha3_256")
             .replace("sha256sha256", "sha256SHA256")
     } else if object_name == "TWAES" {
-        pretty_name
-            .replace("Cbc", "CBC")
-            .replace("Ctr", "CTR")
+        pretty_name.replace("Cbc", "CBC").replace("Ctr", "CTR")
     } else {
         pretty_name
     }
@@ -79,8 +73,10 @@ pub fn get_call_var_name(param: &ParamInfo) -> String {
 
 // Convenience function: process the parameter, returning the operation for
 // handling the C FFI call (if any).
-pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool) ->
-(Option<DartOperation>, Option<String>) {
+pub fn param_c_ffi_call(
+    param: &ParamInfo,
+    is_final: bool,
+) -> (Option<DartOperation>, Option<String>) {
     let local_var_name = || get_local_var_name(param);
     let call_var_name = || get_call_var_name(param);
     let param_name = || param.name.to_string();
@@ -94,24 +90,28 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool) ->
 
             // If the parameter is nullable, add special handler.
             if param.ty.is_nullable {
-                (DartOperation::CallOptional {
-                    param_name: param_name(),
-                    var_name,
-                    call_var_name: call_var_name(),
-                    var_type: STRING_WRAPPER_CLASS.to_string(),
-                    call,
-                    is_final,
-                    core_var_name: None,
-                },
-                 Some(call_var_name()))
+                (
+                    DartOperation::CallOptional {
+                        param_name: param_name(),
+                        var_name,
+                        call_var_name: call_var_name(),
+                        var_type: STRING_WRAPPER_CLASS.to_string(),
+                        call,
+                        is_final,
+                        core_var_name: None,
+                    },
+                    Some(call_var_name()),
+                )
             } else {
-                (DartOperation::Call {
-                    var_name,
-                    call,
-                    is_final,
-                    core_var_name: None,
-                },
-                 None)
+                (
+                    DartOperation::Call {
+                        var_name,
+                        call,
+                        is_final,
+                        core_var_name: None,
+                    },
+                    None,
+                )
             }
         }
         TypeVariant::Data => {
@@ -122,24 +122,28 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool) ->
 
             // If the parameter is nullable, add special handler.
             if param.ty.is_nullable {
-                (DartOperation::CallOptional {
-                    param_name: param_name(),
-                    var_name,
-                    call_var_name: call_var_name(),
-                    var_type: DATA_WRAPPER_CLASS.to_string(),
-                    call,
-                    is_final: true,
-                    core_var_name: None,
-                },
-                 Some(call_var_name()))
+                (
+                    DartOperation::CallOptional {
+                        param_name: param_name(),
+                        var_name,
+                        call_var_name: call_var_name(),
+                        var_type: DATA_WRAPPER_CLASS.to_string(),
+                        call,
+                        is_final: true,
+                        core_var_name: None,
+                    },
+                    Some(call_var_name()),
+                )
             } else {
-                (DartOperation::Call {
-                    var_name,
-                    call,
-                    is_final: true,
-                    core_var_name: None,
-                },
-                 None)
+                (
+                    DartOperation::Call {
+                        var_name,
+                        call,
+                        is_final: true,
+                        core_var_name: None,
+                    },
+                    None,
+                )
             }
         }
         // E.g.
@@ -155,29 +159,31 @@ pub fn param_c_ffi_call(param: &ParamInfo, is_final: bool) ->
                     format!("{}?.pointer ?? nullptr", param_name()),
                 )
             } else {
-                (
-                    local_var_name(),
-                    format!("{}.pointer", param_name())
-                )
+                (local_var_name(), format!("{}.pointer", param_name()))
             };
 
-            (DartOperation::Call {
-                var_name,
-                call,
-                is_final,
-                core_var_name: None,
-            }, Some(local_var_name()))
+            (
+                DartOperation::Call {
+                    var_name,
+                    call,
+                    is_final,
+                    core_var_name: None,
+                },
+                Some(local_var_name()),
+            )
         }
         // E.g. `final param = TWSomeEnum.fromValue(param.value);`
         // Note that it calls the constructor of the enum, which calls
         // the underlying "*Create*" C FFI function.
-        TypeVariant::Enum(name) =>
-            (DartOperation::Call {
+        TypeVariant::Enum(name) => (
+            DartOperation::Call {
                 var_name: local_var_name(),
                 call: format!("{name}.fromValue({}.value)", param_name()),
                 is_final: true,
                 core_var_name: None,
-            }, Some(local_var_name())),
+            },
+            Some(local_var_name()),
+        ),
         // Skip processing parameter, reference the parameter by name
         // directly, as defined in the function interface (usually the
         // case for primitive types).
@@ -243,10 +249,7 @@ pub fn wrap_return(ty: &TypeInfo) -> DartOperation {
         },
         // E.g. `return SomeStruct._(result);`
         TypeVariant::Struct(_) => DartOperation::Return {
-            call: format!(
-                "{}._(result)",
-                DartType::from(ty.variant.clone()),
-            ),
+            call: format!("{}._(result)", DartType::from(ty.variant.clone()),),
         },
         _ => DartOperation::Return {
             call: "result".to_string(),
