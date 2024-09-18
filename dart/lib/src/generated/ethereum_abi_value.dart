@@ -8,6 +8,7 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class EthereumAbiValue {
+
   static Uint8List encodeBool({
     required bool value,
   }) {
@@ -163,4 +164,5 @@ final class EthereumAbiValue {
 
     return val;
   }
+
 }

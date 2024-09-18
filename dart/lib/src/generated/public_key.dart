@@ -84,11 +84,7 @@ final class PublicKey implements Disposable {
     final obj = pointer;
     final signatureUint8List = DataImpl.createWithBytes(signature);
     final messageUint8List = DataImpl.createWithBytes(message);
-    final result = _bindings.TWPublicKeyVerifyZilliqaSchnorr(
-      obj,
-      signatureUint8List.pointer,
-      messageUint8List.pointer,
-    );
+    final result = _bindings.TWPublicKeyVerifyZilliqaSchnorr(obj, signatureUint8List.pointer, messageUint8List.pointer,);
     signatureUint8List.dispose();
     messageUint8List.dispose();
 
@@ -113,28 +109,28 @@ final class PublicKey implements Disposable {
       messageUint8List.dispose();
     }
   }
-
+  
   bool get isCompressed {
     final obj = pointer;
     final result = _bindings.TWPublicKeyIsCompressed(obj);
 
     return result;
   }
-
+    
   PublicKey get compressed {
     final obj = pointer;
     final result = _bindings.TWPublicKeyCompressed(obj);
 
     return PublicKey._(result);
   }
-
+    
   PublicKey get uncompressed {
     final obj = pointer;
     final result = _bindings.TWPublicKeyUncompressed(obj);
 
     return PublicKey._(result);
   }
-
+    
   Uint8List get data {
     final obj = pointer;
     final result = _bindings.TWPublicKeyData(obj);
@@ -144,14 +140,14 @@ final class PublicKey implements Disposable {
 
     return val;
   }
-
+    
   PublicKeyType get keyType {
     final obj = pointer;
     final result = _bindings.TWPublicKeyKeyType(obj);
 
     return PublicKeyType.fromValue(result.value);
   }
-
+    
   String get description {
     final obj = pointer;
     final result = _bindings.TWPublicKeyDescription(obj);
@@ -161,4 +157,5 @@ final class PublicKey implements Disposable {
 
     return val;
   }
+  
 }

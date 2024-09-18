@@ -8,6 +8,7 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class Base32 {
+
   static Uint8List? decodeWithAlphabet({
     required String string,
     required String? alphabet,
@@ -85,4 +86,5 @@ final class Base32 {
 
     return val;
   }
+
 }

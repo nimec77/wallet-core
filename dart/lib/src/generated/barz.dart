@@ -8,6 +8,7 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class Barz {
+
   static String getCounterfactualAddress({
     required Uint8List input,
   }) {
@@ -20,4 +21,5 @@ final class Barz {
 
     return val;
   }
+
 }

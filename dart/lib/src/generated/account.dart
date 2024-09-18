@@ -28,14 +28,7 @@ final class Account implements Disposable {
     final derivationPathString = StringImpl.createWithString(derivationPath);
     final publicKeyString = StringImpl.createWithString(publicKey);
     final extendedPublicKeyString = StringImpl.createWithString(extendedPublicKey);
-    final result = _bindings.TWAccountCreate(
-      addressString.pointer,
-      coinEnum,
-      derivationEnum,
-      derivationPathString.pointer,
-      publicKeyString.pointer,
-      extendedPublicKeyString.pointer,
-    );
+    final result = _bindings.TWAccountCreate(addressString.pointer, coinEnum, derivationEnum, derivationPathString.pointer, publicKeyString.pointer, extendedPublicKeyString.pointer,);
     addressString.dispose();
     derivationPathString.dispose();
     publicKeyString.dispose();
@@ -48,7 +41,7 @@ final class Account implements Disposable {
   void dispose() {
     _bindings.TWAccountDelete(pointer);
   }
-
+  
   String get address {
     final obj = pointer;
     final result = _bindings.TWAccountAddress(obj);
@@ -58,21 +51,21 @@ final class Account implements Disposable {
 
     return val;
   }
-
+    
   CoinType get coin {
     final obj = pointer;
     final result = _bindings.TWAccountCoin(obj);
 
     return CoinType.fromValue(result.value);
   }
-
+    
   Derivation get derivation {
     final obj = pointer;
     final result = _bindings.TWAccountDerivation(obj);
 
     return Derivation.fromValue(result.value);
   }
-
+    
   String get derivationPath {
     final obj = pointer;
     final result = _bindings.TWAccountDerivationPath(obj);
@@ -82,7 +75,7 @@ final class Account implements Disposable {
 
     return val;
   }
-
+    
   String get publicKey {
     final obj = pointer;
     final result = _bindings.TWAccountPublicKey(obj);
@@ -92,7 +85,7 @@ final class Account implements Disposable {
 
     return val;
   }
-
+    
   String get extendedPublicKey {
     final obj = pointer;
     final result = _bindings.TWAccountExtendedPublicKey(obj);
@@ -102,4 +95,5 @@ final class Account implements Disposable {
 
     return val;
   }
+  
 }

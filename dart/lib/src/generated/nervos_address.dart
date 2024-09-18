@@ -15,10 +15,10 @@ final class NervosAddress implements Disposable, Address {
   const NervosAddress._(Pointer<TWNervosAddress> pointer) : _pointer = pointer;
 
   @override
-  bool operator ==(Object other) => switch (other) {
-        NervosAddress obj => _bindings.TWNervosAddressEqual(_pointer, obj.pointer),
-        _ => false,
-      };
+  bool operator == (Object other) => switch(other) {
+    NervosAddress obj => _bindings.TWNervosAddressEqual(_pointer, obj.pointer),
+    _ => false,
+  };
 
   @override
   int get hashCode => _pointer.hashCode;
@@ -53,7 +53,6 @@ final class NervosAddress implements Disposable, Address {
 
     return result;
   }
-
   @override
   String get description {
     final obj = pointer;
@@ -64,7 +63,7 @@ final class NervosAddress implements Disposable, Address {
 
     return val;
   }
-
+    
   Uint8List get codeHash {
     final obj = pointer;
     final result = _bindings.TWNervosAddressCodeHash(obj);
@@ -74,7 +73,7 @@ final class NervosAddress implements Disposable, Address {
 
     return val;
   }
-
+    
   String get hashType {
     final obj = pointer;
     final result = _bindings.TWNervosAddressHashType(obj);
@@ -84,7 +83,7 @@ final class NervosAddress implements Disposable, Address {
 
     return val;
   }
-
+    
   Uint8List get args {
     final obj = pointer;
     final result = _bindings.TWNervosAddressArgs(obj);
@@ -94,4 +93,5 @@ final class NervosAddress implements Disposable, Address {
 
     return val;
   }
+  
 }

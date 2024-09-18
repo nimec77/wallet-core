@@ -54,7 +54,6 @@ final class SolanaAddress implements Disposable, Address {
       tokenMintAddressString.dispose();
     }
   }
-
   @override
   String get description {
     final obj = pointer;
@@ -65,4 +64,5 @@ final class SolanaAddress implements Disposable, Address {
 
     return val;
   }
+  
 }
