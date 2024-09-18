@@ -7,10 +7,13 @@ set -o pipefail
 set -e
 
 ROOT="$PWD"
+PREFIX="${PREFIX:-$ROOT/build/local}"
 CODEGEN_FOLDER=$ROOT/codegen-v2
 DART_FOLDER=$ROOT/dart
 DART_PROTOBUF_SRC=$DART_FOLDER/include/proto
 DART_PROTOBUF_DST=$DART_FOLDER/lib/protobuf
+
+PROTOC=protoc
 
 clear_files() {
     case $1 in
@@ -84,6 +87,17 @@ clear_ffigen() {
     rm -rf $1/include/headers
 }
 
+generate_protobuf_c() {
+    echo "Generating Coins and C protobuf files..."
+    local root=$1
+    local prefix=$2
+    # Generate coins info from registry.json
+    $root/codegen/bin/coins
+
+    # Generate Proto interface file
+    $PROTOC -I=$prefix/include -I=src/proto --plugin=$prefix/bin/protoc-gen-c-typedef --c-typedef_out include/TrustWalletCore src/proto/*.proto
+}
+
 copy_ffigen() {
     echo "Copying FFI genration..."
     local src=$1/include/TrustWalletCore
@@ -94,7 +108,9 @@ copy_ffigen() {
 
 ffigen() {    
     echo "FFI genration..."
-    pushd $1
+    local dart_folder=$1
+
+    pushd $dart_folder
     dart run ffigen --config ffigen.yaml
     popd
 }
@@ -115,8 +131,7 @@ copy_protobuf() {
     mkdir -p $2/lib/protobuf
 }
 
-generate_protobuf() {
-    echo "Generating protobuf files..."
+set_protoc_path() {
     local prefix="$1/build/local"
     if  [ -d $prefix ] && \
         [ -d $prefix/include ] && \
@@ -124,12 +139,16 @@ generate_protobuf() {
     then
         export PATH="$prefix/bin":$PATH
     fi
+}
+
+generate_protobuf_dart() {
+    echo "Generating Dart protobuf files..."
     export PATH=~/.pub-cache/bin:$PATH
     local dart_folder=$2
     local src=$3
     local dst=$4
     pushd $dart_folder    
-    protoc  -I=$src --dart_out=$dst $src/**.proto
+    $PROTOC  -I=$src --dart_out=$dst $src/**.proto
     popd
 }
 
@@ -151,7 +170,9 @@ fix_protobuf_import() {
 }
 
 main() {
+    set_protoc_path $ROOT
     clear_files ffigen $DART_FOLDER
+    generate_protobuf_c $ROOT $PREFIX
     copy_files ffigen $ROOT $DART_FOLDER
     ffigen $DART_FOLDER
     clear_files bindings $CODEGEN_FOLDER $DART_FOLDER
@@ -159,10 +180,12 @@ main() {
     copy_files bindings $CODEGEN_FOLDER $DART_FOLDER
     clear_files protobuf $DART_FOLDER
     copy_protobuf $ROOT $DART_FOLDER
-    generate_protobuf $ROOT $DART_FOLDER $DART_PROTOBUF_SRC $DART_PROTOBUF_DST
+    generate_protobuf_dart $ROOT $DART_FOLDER $DART_PROTOBUF_SRC $DART_PROTOBUF_DST
     gen_dart_file_name $DART_PROTOBUF_DST
     fix_protobuf_import $DART_FOLDER $DART_PROTOBUF_DST
     dart_format $DART_FOLDER 120
+    
+    echo "done."
 }
 
 main

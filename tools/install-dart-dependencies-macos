@@ -6,52 +6,138 @@
 set -e
 
 ROOT="$PWD"
+PREFIX="${PREFIX:-$ROOT/build/local}"
+echo "PREFIX: $PREFIX"
 
-install_dart() {
-    if command -v dart &> /dev/null
+CMAKE=cmake
+MAKE=make
+DART=dart
+
+function set_env() {
+    # Load dependencies version
+    BASE_DIR=$(
+        cd $(dirname $0)
+        pwd
+    )
+    source $BASE_DIR/dependencies-version
+
+    # Setup up folders
+    export PATH="$PREFIX/bin":$PATH
+    export LDFLAGS="-L$PREFIX/lib"
+    export LT_SYS_LIBRARY_PATH="$PREFIX/lib"
+    export DYLD_LIBRARY_PATH="$PREFIX/lib"
+    export LD_LIBRARY_PATH="$PREFIX/lib"
+    export LD_RUN_PATH="$PREFIX/lib"
+}
+
+function install_curl() {
+    if command -v curl &> /dev/null
+    then
+        echo "Curl is already installed."
+    else
+        echo "Curl is not installed. Installing it now."
+        brew install curl
+    fi
+}
+
+function download_dependencies() {
+    $1/download-dependencies
+}
+
+function install_cmake() {
+    if command -v $CMAKE &> /dev/null
+    then
+        echo "CMake is already installed."
+    else
+        echo "CMake is not installed. Installing it now."
+        brew install $CMAKE
+    fi
+}
+
+function install_make() {
+    # Check if make is installed and install it if necessary
+    if command -v $MAKE &> /dev/null
+    then
+        echo "Make is already installed."
+    else
+        echo "Make is not installed. Installing Xcode Command Line Tools..."
+        xcode-select --install
+    fi    
+}
+
+function install_dart() {
+    if command -v $DART &> /dev/null
     then
         echo "Dart is already installed."
     else
         echo "Dart is not installed. Installing it now."
-        brew install dart-sdk
+        brew install $DART-sdk
     fi
 }
 
-install_rust() {
-    if command -v rustup &> /dev/null
-    then
-        echo "Rustup is already installed."
-    else
-        echo "Rustup is not installed. Installing it now."
-        brew install rustup
-    fi
-
-    $1/tools/install-rust-dependencies
+function install_rust_dependencies() {
+    $1/install-rust-dependencies
 }
 
-install_protobuf() {
-    local prefix="$1/build/local"
-    if  [ -d $prefix ] && \
-        [ -d $prefix/include ] && \
-        [ -f $prefix/bin/protoc ] 
-    then
-        export PATH="$prefix/bin":$PATH
-    fi
-    if command -v protoc &> /dev/null
-    then
-        echo "Protobuf is already installed."
-    else
-        echo "Protobuf is not installed. Installing it now."
-        brew install protobuf
-    fi
-    dart pub global activate protoc_plugin
+function install_protoc_dart_plugin() {
+    $DART pub global activate protoc_plugin
 }
 
+function build_gtest() {
+    # Build gtest
+    local GTEST_DIR="$ROOT/build/local/src/gtest"
+    cd ${GTEST_DIR}/googletest-release-$GTEST_VERSION
+    $CMAKE -DCMAKE_INSTALL_PREFIX:PATH=$PREFIX -H.
+    $MAKE -j4
+    $MAKE install
+    $MAKE clean
+}
 
-main() {
+function build_libcheck() {
+    # Build Check
+    local CHECK_DIR="$ROOT/build/local/src/check"
+    cd ${CHECK_DIR}/check-$CHECK_VERSION
+    $CMAKE -DCMAKE_INSTALL_PREFIX:PATH=$PREFIX -H.
+    $MAKE -j4
+    $MAKE install
+    $MAKE clean
+}
+
+function build_protobuf() {
+    # Build Protobuf
+    PROTOBUF_DIR="$ROOT/build/local/src/protobuf"
+    cd ${PROTOBUF_DIR}/protobuf-$PROTOBUF_VERSION
+
+    $CMAKE -Scmake -B . -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_MODULE_COMPATIBLE=ON
+    $CMAKE --build . -j
+    $CMAKE --install . --prefix $PREFIX
+
+    # after install, cleanup to save space (docker)
+    $CMAKE --build . --target clean
+    "$PREFIX/bin/protoc" --version
+
+    # Protobuf plugins
+    cd "$ROOT/protobuf-plugin"
+    $CMAKE . -Bbuild -DProtobuf_DIR=$PREFIX/lib/cmake/protobuf
+    $CMAKE --build build -j
+    $CMAKE --install build --prefix $PREFIX
+    $CMAKE --build build --target clean
+}
+
+function main() {
+    set_env
+    install_curl
+    download_dependencies $BASE_DIR
+    install_cmake
+    install_make
     install_dart
-    install_rust $ROOT
-    install_protobuf $ROOT
+    install_rust_dependencies $BASE_DIR
+    build_gtest
+    build_libcheck
+    build_protobuf
+    install_protoc_dart_plugin
+
+    echo "done."
 }
 
 main
