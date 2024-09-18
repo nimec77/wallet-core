@@ -15,10 +15,10 @@ final class RippleXAddress implements Disposable, Address {
   const RippleXAddress._(Pointer<TWRippleXAddress> pointer) : _pointer = pointer;
 
   @override
-  bool operator ==(Object other) => switch (other) {
-        RippleXAddress obj => _bindings.TWRippleXAddressEqual(_pointer, obj.pointer),
-        _ => false,
-      };
+  bool operator == (Object other) => switch(other) {
+    RippleXAddress obj => _bindings.TWRippleXAddressEqual(_pointer, obj.pointer),
+    _ => false,
+  };
 
   @override
   int get hashCode => _pointer.hashCode;
@@ -63,7 +63,6 @@ final class RippleXAddress implements Disposable, Address {
 
     return result;
   }
-
   @override
   String get description {
     final obj = pointer;
@@ -74,11 +73,12 @@ final class RippleXAddress implements Disposable, Address {
 
     return val;
   }
-
+    
   int get tag {
     final obj = pointer;
     final result = _bindings.TWRippleXAddressTag(obj);
 
     return result;
   }
+  
 }

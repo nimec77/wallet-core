@@ -23,15 +23,15 @@ enum PublicKeyType {
   const PublicKeyType(this.value);
 
   static PublicKeyType fromValue(int value) => switch (value) {
-        0 => secp256k1,
-        1 => secp256k1Extended,
-        2 => nist256p1,
-        3 => nist256p1Extended,
-        4 => ed25519,
-        5 => ed25519Blake2b,
-        6 => curve25519,
-        7 => ed25519Cardano,
-        8 => starkex,
-        _ => throw ArgumentError("Unknown value for PublicKeyType: $value"),
-      };
+    0 => secp256k1,
+    1 => secp256k1Extended,
+    2 => nist256p1,
+    3 => nist256p1Extended,
+    4 => ed25519,
+    5 => ed25519Blake2b,
+    6 => curve25519,
+    7 => ed25519Cardano,
+    8 => starkex,
+    _ => throw ArgumentError("Unknown value for PublicKeyType: $value"),
+  };
 }

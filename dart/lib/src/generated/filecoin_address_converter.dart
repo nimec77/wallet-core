@@ -8,6 +8,7 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class FilecoinAddressConverter {
+
   static String convertToEthereum({
     required String filecoinAddress,
   }) {
@@ -33,4 +34,5 @@ final class FilecoinAddressConverter {
 
     return val;
   }
+
 }

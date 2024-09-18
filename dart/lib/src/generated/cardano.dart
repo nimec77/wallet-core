@@ -8,6 +8,7 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class Cardano {
+
   static int minAdaAmount({
     required Uint8List tokenBundle,
   }) {
@@ -26,11 +27,7 @@ final class Cardano {
     final toAddressString = StringImpl.createWithString(toAddress);
     final tokenBundleUint8List = DataImpl.createWithBytes(tokenBundle);
     final coinsPerUtxoByteString = StringImpl.createWithString(coinsPerUtxoByte);
-    final result = _bindings.TWCardanoOutputMinAdaAmount(
-      toAddressString.pointer,
-      tokenBundleUint8List.pointer,
-      coinsPerUtxoByteString.pointer,
-    );
+    final result = _bindings.TWCardanoOutputMinAdaAmount(toAddressString.pointer, tokenBundleUint8List.pointer, coinsPerUtxoByteString.pointer,);
     toAddressString.dispose();
     tokenBundleUint8List.dispose();
     coinsPerUtxoByteString.dispose();
@@ -53,4 +50,5 @@ final class Cardano {
 
     return val;
   }
+
 }

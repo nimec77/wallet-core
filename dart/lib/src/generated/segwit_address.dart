@@ -15,10 +15,10 @@ final class SegwitAddress implements Disposable, Address {
   const SegwitAddress._(Pointer<TWSegwitAddress> pointer) : _pointer = pointer;
 
   @override
-  bool operator ==(Object other) => switch (other) {
-        SegwitAddress obj => _bindings.TWSegwitAddressEqual(_pointer, obj.pointer),
-        _ => false,
-      };
+  bool operator == (Object other) => switch(other) {
+    SegwitAddress obj => _bindings.TWSegwitAddressEqual(_pointer, obj.pointer),
+    _ => false,
+  };
 
   @override
   int get hashCode => _pointer.hashCode;
@@ -64,7 +64,6 @@ final class SegwitAddress implements Disposable, Address {
 
     return result;
   }
-
   @override
   String get description {
     final obj = pointer;
@@ -75,21 +74,21 @@ final class SegwitAddress implements Disposable, Address {
 
     return val;
   }
-
+    
   HRP get hrp {
     final obj = pointer;
     final result = _bindings.TWSegwitAddressHRP(obj);
 
     return HRP.fromValue(result.value);
   }
-
+    
   int get witnessVersion {
     final obj = pointer;
     final result = _bindings.TWSegwitAddressWitnessVersion(obj);
 
     return result;
   }
-
+    
   Uint8List get witnessProgram {
     final obj = pointer;
     final result = _bindings.TWSegwitAddressWitnessProgram(obj);
@@ -99,4 +98,5 @@ final class SegwitAddress implements Disposable, Address {
 
     return val;
   }
+  
 }

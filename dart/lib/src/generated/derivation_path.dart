@@ -66,42 +66,42 @@ final class DerivationPath implements Disposable {
 
     return result;
   }
-
+  
   Purpose get purpose {
     final obj = pointer;
     final result = _bindings.TWDerivationPathPurpose(obj);
 
     return Purpose.fromValue(result.value);
   }
-
+    
   int get coin {
     final obj = pointer;
     final result = _bindings.TWDerivationPathCoin(obj);
 
     return result;
   }
-
+    
   int get account {
     final obj = pointer;
     final result = _bindings.TWDerivationPathAccount(obj);
 
     return result;
   }
-
+    
   int get change {
     final obj = pointer;
     final result = _bindings.TWDerivationPathChange(obj);
 
     return result;
   }
-
+    
   int get address {
     final obj = pointer;
     final result = _bindings.TWDerivationPathAddress(obj);
 
     return result;
   }
-
+    
   String get description {
     final obj = pointer;
     final result = _bindings.TWDerivationPathDescription(obj);
@@ -111,4 +111,5 @@ final class DerivationPath implements Disposable {
 
     return val;
   }
+  
 }

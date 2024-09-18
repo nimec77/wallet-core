@@ -8,6 +8,7 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class PBKDF2 {
+
   static Uint8List? hmacSha256({
     required Uint8List password,
     required Uint8List salt,
@@ -55,4 +56,5 @@ final class PBKDF2 {
       saltUint8List.dispose();
     }
   }
+
 }

@@ -15,10 +15,10 @@ final class GroestlcoinAddress implements Disposable, Address {
   const GroestlcoinAddress._(Pointer<TWGroestlcoinAddress> pointer) : _pointer = pointer;
 
   @override
-  bool operator ==(Object other) => switch (other) {
-        GroestlcoinAddress obj => _bindings.TWGroestlcoinAddressEqual(_pointer, obj.pointer),
-        _ => false,
-      };
+  bool operator == (Object other) => switch(other) {
+    GroestlcoinAddress obj => _bindings.TWGroestlcoinAddressEqual(_pointer, obj.pointer),
+    _ => false,
+  };
 
   @override
   int get hashCode => _pointer.hashCode;
@@ -63,7 +63,6 @@ final class GroestlcoinAddress implements Disposable, Address {
 
     return result;
   }
-
   @override
   String get description {
     final obj = pointer;
@@ -74,4 +73,5 @@ final class GroestlcoinAddress implements Disposable, Address {
 
     return val;
   }
+  
 }
