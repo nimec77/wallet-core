@@ -190,15 +190,14 @@ final class PrivateKey implements Disposable {
       messageUint8List.dispose();
     }
   }
-  
+
   Uint8List get data {
     final obj = pointer;
     final result = _bindings.TWPrivateKeyData(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
     return val;
   }
-  
 }

@@ -12,4 +12,7 @@ class Utils {
   static String btcToSatoshi(String btc) => (double.parse(btc) * _oneBtcInSatoshi).round().toString();
 
   static String satoshiToBtc(String satoshi) => (double.parse(satoshi) / _oneBtcInSatoshi).toString();
+
+  static BigInt valueToMinUnit(double value, int decimals) =>
+      BigInt.from(value * BigInt.from(10).pow(decimals).toDouble());
 }
