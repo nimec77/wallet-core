@@ -36,18 +36,13 @@ class CurrencyAmount extends $pb.GeneratedMessage {
     return $result;
   }
   CurrencyAmount._() : super();
-  factory CurrencyAmount.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory CurrencyAmount.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory CurrencyAmount.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory CurrencyAmount.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'CurrencyAmount',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CurrencyAmount',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'currency')
     ..aOS(2, _omitFieldNames ? '' : 'value')
     ..aOS(3, _omitFieldNames ? '' : 'issuer')
@@ -61,19 +56,16 @@ class CurrencyAmount extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   CurrencyAmount copyWith(void Function(CurrencyAmount) updates) =>
-      super.copyWith((message) => updates(message as CurrencyAmount))
-          as CurrencyAmount;
+      super.copyWith((message) => updates(message as CurrencyAmount)) as CurrencyAmount;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static CurrencyAmount create() => CurrencyAmount._();
   CurrencyAmount createEmptyInstance() => create();
-  static $pb.PbList<CurrencyAmount> createRepeated() =>
-      $pb.PbList<CurrencyAmount>();
+  static $pb.PbList<CurrencyAmount> createRepeated() => $pb.PbList<CurrencyAmount>();
   @$core.pragma('dart2js:noInline')
-  static CurrencyAmount getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<CurrencyAmount>(create);
+  static CurrencyAmount getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CurrencyAmount>(create);
   static CurrencyAmount? _defaultInstance;
 
   /// Currency code
@@ -134,17 +126,12 @@ class OperationTrustSet extends $pb.GeneratedMessage {
   factory OperationTrustSet.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory OperationTrustSet.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory OperationTrustSet.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationTrustSet',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
-    ..aOM<CurrencyAmount>(1, _omitFieldNames ? '' : 'limitAmount',
-        subBuilder: CurrencyAmount.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationTrustSet',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
+    ..aOM<CurrencyAmount>(1, _omitFieldNames ? '' : 'limitAmount', subBuilder: CurrencyAmount.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -155,19 +142,17 @@ class OperationTrustSet extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   OperationTrustSet copyWith(void Function(OperationTrustSet) updates) =>
-      super.copyWith((message) => updates(message as OperationTrustSet))
-          as OperationTrustSet;
+      super.copyWith((message) => updates(message as OperationTrustSet)) as OperationTrustSet;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static OperationTrustSet create() => OperationTrustSet._();
   OperationTrustSet createEmptyInstance() => create();
-  static $pb.PbList<OperationTrustSet> createRepeated() =>
-      $pb.PbList<OperationTrustSet>();
+  static $pb.PbList<OperationTrustSet> createRepeated() => $pb.PbList<OperationTrustSet>();
   @$core.pragma('dart2js:noInline')
-  static OperationTrustSet getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationTrustSet>(create);
+  static OperationTrustSet getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationTrustSet>(create);
   static OperationTrustSet? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -214,25 +199,19 @@ class OperationPayment extends $pb.GeneratedMessage {
   factory OperationPayment.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory OperationPayment.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory OperationPayment.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, OperationPayment_AmountOneof>
-      _OperationPayment_AmountOneofByTag = {
+  static const $core.Map<$core.int, OperationPayment_AmountOneof> _OperationPayment_AmountOneofByTag = {
     1: OperationPayment_AmountOneof.amount,
     2: OperationPayment_AmountOneof.currencyAmount,
     0: OperationPayment_AmountOneof.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationPayment',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationPayment',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
     ..oo(0, [1, 2])
     ..aInt64(1, _omitFieldNames ? '' : 'amount')
-    ..aOM<CurrencyAmount>(2, _omitFieldNames ? '' : 'currencyAmount',
-        subBuilder: CurrencyAmount.create)
+    ..aOM<CurrencyAmount>(2, _omitFieldNames ? '' : 'currencyAmount', subBuilder: CurrencyAmount.create)
     ..aOS(3, _omitFieldNames ? '' : 'destination')
     ..aInt64(4, _omitFieldNames ? '' : 'destinationTag')
     ..hasRequiredFields = false;
@@ -245,23 +224,20 @@ class OperationPayment extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   OperationPayment copyWith(void Function(OperationPayment) updates) =>
-      super.copyWith((message) => updates(message as OperationPayment))
-          as OperationPayment;
+      super.copyWith((message) => updates(message as OperationPayment)) as OperationPayment;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static OperationPayment create() => OperationPayment._();
   OperationPayment createEmptyInstance() => create();
-  static $pb.PbList<OperationPayment> createRepeated() =>
-      $pb.PbList<OperationPayment>();
+  static $pb.PbList<OperationPayment> createRepeated() => $pb.PbList<OperationPayment>();
   @$core.pragma('dart2js:noInline')
-  static OperationPayment getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationPayment>(create);
+  static OperationPayment getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationPayment>(create);
   static OperationPayment? _defaultInstance;
 
-  OperationPayment_AmountOneof whichAmountOneof() =>
-      _OperationPayment_AmountOneofByTag[$_whichOneof(0)]!;
+  OperationPayment_AmountOneof whichAmountOneof() => _OperationPayment_AmountOneofByTag[$_whichOneof(0)]!;
   void clearAmountOneof() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -352,15 +328,11 @@ class OperationEscrowCreate extends $pb.GeneratedMessage {
   factory OperationEscrowCreate.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory OperationEscrowCreate.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory OperationEscrowCreate.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationEscrowCreate',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationEscrowCreate',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
     ..aInt64(1, _omitFieldNames ? '' : 'amount')
     ..aOS(2, _omitFieldNames ? '' : 'destination')
     ..aInt64(3, _omitFieldNames ? '' : 'destinationTag')
@@ -372,26 +344,22 @@ class OperationEscrowCreate extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  OperationEscrowCreate clone() =>
-      OperationEscrowCreate()..mergeFromMessage(this);
+  OperationEscrowCreate clone() => OperationEscrowCreate()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  OperationEscrowCreate copyWith(
-          void Function(OperationEscrowCreate) updates) =>
-      super.copyWith((message) => updates(message as OperationEscrowCreate))
-          as OperationEscrowCreate;
+  OperationEscrowCreate copyWith(void Function(OperationEscrowCreate) updates) =>
+      super.copyWith((message) => updates(message as OperationEscrowCreate)) as OperationEscrowCreate;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static OperationEscrowCreate create() => OperationEscrowCreate._();
   OperationEscrowCreate createEmptyInstance() => create();
-  static $pb.PbList<OperationEscrowCreate> createRepeated() =>
-      $pb.PbList<OperationEscrowCreate>();
+  static $pb.PbList<OperationEscrowCreate> createRepeated() => $pb.PbList<OperationEscrowCreate>();
   @$core.pragma('dart2js:noInline')
-  static OperationEscrowCreate getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationEscrowCreate>(create);
+  static OperationEscrowCreate getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationEscrowCreate>(create);
   static OperationEscrowCreate? _defaultInstance;
 
   /// Escrow amount
@@ -493,43 +461,34 @@ class OperationEscrowCancel extends $pb.GeneratedMessage {
   factory OperationEscrowCancel.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory OperationEscrowCancel.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory OperationEscrowCancel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationEscrowCancel',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationEscrowCancel',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'owner')
-    ..a<$core.int>(
-        2, _omitFieldNames ? '' : 'offerSequence', $pb.PbFieldType.O3)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'offerSequence', $pb.PbFieldType.O3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  OperationEscrowCancel clone() =>
-      OperationEscrowCancel()..mergeFromMessage(this);
+  OperationEscrowCancel clone() => OperationEscrowCancel()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  OperationEscrowCancel copyWith(
-          void Function(OperationEscrowCancel) updates) =>
-      super.copyWith((message) => updates(message as OperationEscrowCancel))
-          as OperationEscrowCancel;
+  OperationEscrowCancel copyWith(void Function(OperationEscrowCancel) updates) =>
+      super.copyWith((message) => updates(message as OperationEscrowCancel)) as OperationEscrowCancel;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static OperationEscrowCancel create() => OperationEscrowCancel._();
   OperationEscrowCancel createEmptyInstance() => create();
-  static $pb.PbList<OperationEscrowCancel> createRepeated() =>
-      $pb.PbList<OperationEscrowCancel>();
+  static $pb.PbList<OperationEscrowCancel> createRepeated() => $pb.PbList<OperationEscrowCancel>();
   @$core.pragma('dart2js:noInline')
-  static OperationEscrowCancel getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationEscrowCancel>(create);
+  static OperationEscrowCancel getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationEscrowCancel>(create);
   static OperationEscrowCancel? _defaultInstance;
 
   /// Funding account
@@ -586,18 +545,13 @@ class OperationEscrowFinish extends $pb.GeneratedMessage {
   factory OperationEscrowFinish.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory OperationEscrowFinish.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory OperationEscrowFinish.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationEscrowFinish',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationEscrowFinish',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'owner')
-    ..a<$core.int>(
-        2, _omitFieldNames ? '' : 'offerSequence', $pb.PbFieldType.O3)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'offerSequence', $pb.PbFieldType.O3)
     ..aOS(3, _omitFieldNames ? '' : 'condition')
     ..aOS(4, _omitFieldNames ? '' : 'fulfillment')
     ..hasRequiredFields = false;
@@ -605,26 +559,22 @@ class OperationEscrowFinish extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  OperationEscrowFinish clone() =>
-      OperationEscrowFinish()..mergeFromMessage(this);
+  OperationEscrowFinish clone() => OperationEscrowFinish()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  OperationEscrowFinish copyWith(
-          void Function(OperationEscrowFinish) updates) =>
-      super.copyWith((message) => updates(message as OperationEscrowFinish))
-          as OperationEscrowFinish;
+  OperationEscrowFinish copyWith(void Function(OperationEscrowFinish) updates) =>
+      super.copyWith((message) => updates(message as OperationEscrowFinish)) as OperationEscrowFinish;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static OperationEscrowFinish create() => OperationEscrowFinish._();
   OperationEscrowFinish createEmptyInstance() => create();
-  static $pb.PbList<OperationEscrowFinish> createRepeated() =>
-      $pb.PbList<OperationEscrowFinish>();
+  static $pb.PbList<OperationEscrowFinish> createRepeated() => $pb.PbList<OperationEscrowFinish>();
   @$core.pragma('dart2js:noInline')
-  static OperationEscrowFinish getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationEscrowFinish>(create);
+  static OperationEscrowFinish getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationEscrowFinish>(create);
   static OperationEscrowFinish? _defaultInstance;
 
   /// Funding account
@@ -695,41 +645,33 @@ class OperationNFTokenBurn extends $pb.GeneratedMessage {
   factory OperationNFTokenBurn.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory OperationNFTokenBurn.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory OperationNFTokenBurn.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationNFTokenBurn',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'nftokenId', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationNFTokenBurn',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'nftokenId', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  OperationNFTokenBurn clone() =>
-      OperationNFTokenBurn()..mergeFromMessage(this);
+  OperationNFTokenBurn clone() => OperationNFTokenBurn()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   OperationNFTokenBurn copyWith(void Function(OperationNFTokenBurn) updates) =>
-      super.copyWith((message) => updates(message as OperationNFTokenBurn))
-          as OperationNFTokenBurn;
+      super.copyWith((message) => updates(message as OperationNFTokenBurn)) as OperationNFTokenBurn;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static OperationNFTokenBurn create() => OperationNFTokenBurn._();
   OperationNFTokenBurn createEmptyInstance() => create();
-  static $pb.PbList<OperationNFTokenBurn> createRepeated() =>
-      $pb.PbList<OperationNFTokenBurn>();
+  static $pb.PbList<OperationNFTokenBurn> createRepeated() => $pb.PbList<OperationNFTokenBurn>();
   @$core.pragma('dart2js:noInline')
-  static OperationNFTokenBurn getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationNFTokenBurn>(create);
+  static OperationNFTokenBurn getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationNFTokenBurn>(create);
   static OperationNFTokenBurn? _defaultInstance;
 
   /// Hash256 NFTokenId
@@ -769,41 +711,31 @@ class OperationNFTokenCreateOffer extends $pb.GeneratedMessage {
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationNFTokenCreateOffer',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'nftokenId', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationNFTokenCreateOffer',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'nftokenId', $pb.PbFieldType.OY)
     ..aOS(2, _omitFieldNames ? '' : 'destination')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  OperationNFTokenCreateOffer clone() =>
-      OperationNFTokenCreateOffer()..mergeFromMessage(this);
+  OperationNFTokenCreateOffer clone() => OperationNFTokenCreateOffer()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  OperationNFTokenCreateOffer copyWith(
-          void Function(OperationNFTokenCreateOffer) updates) =>
-      super.copyWith(
-              (message) => updates(message as OperationNFTokenCreateOffer))
-          as OperationNFTokenCreateOffer;
+  OperationNFTokenCreateOffer copyWith(void Function(OperationNFTokenCreateOffer) updates) =>
+      super.copyWith((message) => updates(message as OperationNFTokenCreateOffer)) as OperationNFTokenCreateOffer;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static OperationNFTokenCreateOffer create() =>
-      OperationNFTokenCreateOffer._();
+  static OperationNFTokenCreateOffer create() => OperationNFTokenCreateOffer._();
   OperationNFTokenCreateOffer createEmptyInstance() => create();
-  static $pb.PbList<OperationNFTokenCreateOffer> createRepeated() =>
-      $pb.PbList<OperationNFTokenCreateOffer>();
+  static $pb.PbList<OperationNFTokenCreateOffer> createRepeated() => $pb.PbList<OperationNFTokenCreateOffer>();
   @$core.pragma('dart2js:noInline')
-  static OperationNFTokenCreateOffer getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationNFTokenCreateOffer>(create);
+  static OperationNFTokenCreateOffer getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationNFTokenCreateOffer>(create);
   static OperationNFTokenCreateOffer? _defaultInstance;
 
   /// Hash256 NFTokenId
@@ -852,40 +784,30 @@ class OperationNFTokenAcceptOffer extends $pb.GeneratedMessage {
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationNFTokenAcceptOffer',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'sellOffer', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationNFTokenAcceptOffer',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'sellOffer', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  OperationNFTokenAcceptOffer clone() =>
-      OperationNFTokenAcceptOffer()..mergeFromMessage(this);
+  OperationNFTokenAcceptOffer clone() => OperationNFTokenAcceptOffer()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  OperationNFTokenAcceptOffer copyWith(
-          void Function(OperationNFTokenAcceptOffer) updates) =>
-      super.copyWith(
-              (message) => updates(message as OperationNFTokenAcceptOffer))
-          as OperationNFTokenAcceptOffer;
+  OperationNFTokenAcceptOffer copyWith(void Function(OperationNFTokenAcceptOffer) updates) =>
+      super.copyWith((message) => updates(message as OperationNFTokenAcceptOffer)) as OperationNFTokenAcceptOffer;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static OperationNFTokenAcceptOffer create() =>
-      OperationNFTokenAcceptOffer._();
+  static OperationNFTokenAcceptOffer create() => OperationNFTokenAcceptOffer._();
   OperationNFTokenAcceptOffer createEmptyInstance() => create();
-  static $pb.PbList<OperationNFTokenAcceptOffer> createRepeated() =>
-      $pb.PbList<OperationNFTokenAcceptOffer>();
+  static $pb.PbList<OperationNFTokenAcceptOffer> createRepeated() => $pb.PbList<OperationNFTokenAcceptOffer>();
   @$core.pragma('dart2js:noInline')
-  static OperationNFTokenAcceptOffer getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationNFTokenAcceptOffer>(create);
+  static OperationNFTokenAcceptOffer getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationNFTokenAcceptOffer>(create);
   static OperationNFTokenAcceptOffer? _defaultInstance;
 
   /// Hash256 NFTokenOffer
@@ -921,40 +843,30 @@ class OperationNFTokenCancelOffer extends $pb.GeneratedMessage {
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationNFTokenCancelOffer',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
-    ..p<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'tokenOffers', $pb.PbFieldType.PY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationNFTokenCancelOffer',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
+    ..p<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'tokenOffers', $pb.PbFieldType.PY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  OperationNFTokenCancelOffer clone() =>
-      OperationNFTokenCancelOffer()..mergeFromMessage(this);
+  OperationNFTokenCancelOffer clone() => OperationNFTokenCancelOffer()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  OperationNFTokenCancelOffer copyWith(
-          void Function(OperationNFTokenCancelOffer) updates) =>
-      super.copyWith(
-              (message) => updates(message as OperationNFTokenCancelOffer))
-          as OperationNFTokenCancelOffer;
+  OperationNFTokenCancelOffer copyWith(void Function(OperationNFTokenCancelOffer) updates) =>
+      super.copyWith((message) => updates(message as OperationNFTokenCancelOffer)) as OperationNFTokenCancelOffer;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static OperationNFTokenCancelOffer create() =>
-      OperationNFTokenCancelOffer._();
+  static OperationNFTokenCancelOffer create() => OperationNFTokenCancelOffer._();
   OperationNFTokenCancelOffer createEmptyInstance() => create();
-  static $pb.PbList<OperationNFTokenCancelOffer> createRepeated() =>
-      $pb.PbList<OperationNFTokenCancelOffer>();
+  static $pb.PbList<OperationNFTokenCancelOffer> createRepeated() => $pb.PbList<OperationNFTokenCancelOffer>();
   @$core.pragma('dart2js:noInline')
-  static OperationNFTokenCancelOffer getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationNFTokenCancelOffer>(create);
+  static OperationNFTokenCancelOffer getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationNFTokenCancelOffer>(create);
   static OperationNFTokenCancelOffer? _defaultInstance;
 
   /// Vector256 NFTokenOffers
@@ -1047,15 +959,12 @@ class SigningInput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningInput._() : super();
-  factory SigningInput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, SigningInput_OperationOneof>
-      _SigningInput_OperationOneofByTag = {
+  static const $core.Map<$core.int, SigningInput_OperationOneof> _SigningInput_OperationOneofByTag = {
     7: SigningInput_OperationOneof.opTrustSet,
     8: SigningInput_OperationOneof.opPayment,
     9: SigningInput_OperationOneof.opNftokenBurn,
@@ -1067,43 +976,28 @@ class SigningInput extends $pb.GeneratedMessage {
     18: SigningInput_OperationOneof.opEscrowFinish,
     0: SigningInput_OperationOneof.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningInput',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
     ..oo(0, [7, 8, 9, 10, 11, 12, 16, 17, 18])
     ..aInt64(1, _omitFieldNames ? '' : 'fee')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'sequence', $pb.PbFieldType.O3)
-    ..a<$core.int>(
-        3, _omitFieldNames ? '' : 'lastLedgerSequence', $pb.PbFieldType.O3)
+    ..a<$core.int>(3, _omitFieldNames ? '' : 'lastLedgerSequence', $pb.PbFieldType.O3)
     ..aOS(4, _omitFieldNames ? '' : 'account')
     ..aInt64(5, _omitFieldNames ? '' : 'flags')
-    ..a<$core.List<$core.int>>(
-        6, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
-    ..aOM<OperationTrustSet>(7, _omitFieldNames ? '' : 'opTrustSet',
-        subBuilder: OperationTrustSet.create)
-    ..aOM<OperationPayment>(8, _omitFieldNames ? '' : 'opPayment',
-        subBuilder: OperationPayment.create)
-    ..aOM<OperationNFTokenBurn>(9, _omitFieldNames ? '' : 'opNftokenBurn',
-        subBuilder: OperationNFTokenBurn.create)
-    ..aOM<OperationNFTokenCreateOffer>(
-        10, _omitFieldNames ? '' : 'opNftokenCreateOffer',
+    ..a<$core.List<$core.int>>(6, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
+    ..aOM<OperationTrustSet>(7, _omitFieldNames ? '' : 'opTrustSet', subBuilder: OperationTrustSet.create)
+    ..aOM<OperationPayment>(8, _omitFieldNames ? '' : 'opPayment', subBuilder: OperationPayment.create)
+    ..aOM<OperationNFTokenBurn>(9, _omitFieldNames ? '' : 'opNftokenBurn', subBuilder: OperationNFTokenBurn.create)
+    ..aOM<OperationNFTokenCreateOffer>(10, _omitFieldNames ? '' : 'opNftokenCreateOffer',
         subBuilder: OperationNFTokenCreateOffer.create)
-    ..aOM<OperationNFTokenAcceptOffer>(
-        11, _omitFieldNames ? '' : 'opNftokenAcceptOffer',
+    ..aOM<OperationNFTokenAcceptOffer>(11, _omitFieldNames ? '' : 'opNftokenAcceptOffer',
         subBuilder: OperationNFTokenAcceptOffer.create)
-    ..aOM<OperationNFTokenCancelOffer>(
-        12, _omitFieldNames ? '' : 'opNftokenCancelOffer',
+    ..aOM<OperationNFTokenCancelOffer>(12, _omitFieldNames ? '' : 'opNftokenCancelOffer',
         subBuilder: OperationNFTokenCancelOffer.create)
-    ..a<$core.List<$core.int>>(
-        15, _omitFieldNames ? '' : 'publicKey', $pb.PbFieldType.OY)
-    ..aOM<OperationEscrowCreate>(16, _omitFieldNames ? '' : 'opEscrowCreate',
-        subBuilder: OperationEscrowCreate.create)
-    ..aOM<OperationEscrowCancel>(17, _omitFieldNames ? '' : 'opEscrowCancel',
-        subBuilder: OperationEscrowCancel.create)
-    ..aOM<OperationEscrowFinish>(18, _omitFieldNames ? '' : 'opEscrowFinish',
-        subBuilder: OperationEscrowFinish.create)
+    ..a<$core.List<$core.int>>(15, _omitFieldNames ? '' : 'publicKey', $pb.PbFieldType.OY)
+    ..aOM<OperationEscrowCreate>(16, _omitFieldNames ? '' : 'opEscrowCreate', subBuilder: OperationEscrowCreate.create)
+    ..aOM<OperationEscrowCancel>(17, _omitFieldNames ? '' : 'opEscrowCancel', subBuilder: OperationEscrowCancel.create)
+    ..aOM<OperationEscrowFinish>(18, _omitFieldNames ? '' : 'opEscrowFinish', subBuilder: OperationEscrowFinish.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1114,23 +1008,19 @@ class SigningInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningInput copyWith(void Function(SigningInput) updates) =>
-      super.copyWith((message) => updates(message as SigningInput))
-          as SigningInput;
+      super.copyWith((message) => updates(message as SigningInput)) as SigningInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningInput create() => SigningInput._();
   SigningInput createEmptyInstance() => create();
-  static $pb.PbList<SigningInput> createRepeated() =>
-      $pb.PbList<SigningInput>();
+  static $pb.PbList<SigningInput> createRepeated() => $pb.PbList<SigningInput>();
   @$core.pragma('dart2js:noInline')
-  static SigningInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
+  static SigningInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
   static SigningInput? _defaultInstance;
 
-  SigningInput_OperationOneof whichOperationOneof() =>
-      _SigningInput_OperationOneofByTag[$_whichOneof(0)]!;
+  SigningInput_OperationOneof whichOperationOneof() => _SigningInput_OperationOneofByTag[$_whichOneof(0)]!;
   void clearOperationOneof() => clearField($_whichOneof(0));
 
   /// Transfer fee
@@ -1371,24 +1261,16 @@ class SigningOutput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningOutput._() : super();
-  factory SigningOutput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningOutput',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Ripple.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
     ..e<$0.SigningError>(2, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: $0.SigningError.OK,
-        valueOf: $0.SigningError.valueOf,
-        enumValues: $0.SigningError.values)
+        defaultOrMaker: $0.SigningError.OK, valueOf: $0.SigningError.valueOf, enumValues: $0.SigningError.values)
     ..aOS(3, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
@@ -1400,19 +1282,16 @@ class SigningOutput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningOutput copyWith(void Function(SigningOutput) updates) =>
-      super.copyWith((message) => updates(message as SigningOutput))
-          as SigningOutput;
+      super.copyWith((message) => updates(message as SigningOutput)) as SigningOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningOutput create() => SigningOutput._();
   SigningOutput createEmptyInstance() => create();
-  static $pb.PbList<SigningOutput> createRepeated() =>
-      $pb.PbList<SigningOutput>();
+  static $pb.PbList<SigningOutput> createRepeated() => $pb.PbList<SigningOutput>();
   @$core.pragma('dart2js:noInline')
-  static SigningOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
+  static SigningOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
   static SigningOutput? _defaultInstance;
 
   /// Encoded transaction
@@ -1456,5 +1335,4 @@ class SigningOutput extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

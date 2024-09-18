@@ -174,8 +174,8 @@ pub fn generate_swift_types(mut info: FileInfo) -> Result<GeneratedSwiftTypes> {
             init_instance: strct.is_class,
             superclasses,
             eq_operator,
-            inits: inits,
-            deinits: deinits,
+            inits,
+            deinits,
             methods,
             properties,
         });

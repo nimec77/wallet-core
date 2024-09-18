@@ -44,7 +44,7 @@ abstract final class TrustWalletCore {
       throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
     }
 
-    final library = DynamicLibrary.open(dllPath);
-    _bindings = TrustWalletCoreBindings(library);
+    final lib = DynamicLibrary.open(dllPath);
+    _bindings = TrustWalletCoreBindings(lib);
   }
 }

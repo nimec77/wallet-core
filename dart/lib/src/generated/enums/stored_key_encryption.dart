@@ -18,10 +18,10 @@ enum StoredKeyEncryption {
   const StoredKeyEncryption(this.value);
 
   static StoredKeyEncryption fromValue(int value) => switch (value) {
-    0 => aes128Ctr,
-    1 => aes128Cbc,
-    2 => aes192Ctr,
-    3 => aes256Ctr,
-    _ => throw ArgumentError("Unknown value for StoredKeyEncryption: $value"),
-  };
+        0 => aes128Ctr,
+        1 => aes128Cbc,
+        2 => aes192Ctr,
+        3 => aes256Ctr,
+        _ => throw ArgumentError("Unknown value for StoredKeyEncryption: $value"),
+      };
 }

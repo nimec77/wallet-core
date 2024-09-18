@@ -8,7 +8,6 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class CoinTypeConfiguration {
-
   static String getSymbol({
     required CoinType type,
   }) {
@@ -83,5 +82,4 @@ final class CoinTypeConfiguration {
 
     return val;
   }
-
 }

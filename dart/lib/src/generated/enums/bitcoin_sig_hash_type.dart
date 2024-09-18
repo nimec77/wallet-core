@@ -20,14 +20,14 @@ enum BitcoinSigHashType {
   const BitcoinSigHashType(this.value);
 
   static BitcoinSigHashType fromValue(int value) => switch (value) {
-    0x01 => all,
-    0x02 => none,
-    0x03 => single,
-    0x40 => fork,
-    0x4f40 => forkBtg,
-    0x80 => anyoneCanPay,
-    _ => throw ArgumentError("Unknown value for BitcoinSigHashType: $value"),
-  };
+        0x01 => all,
+        0x02 => none,
+        0x03 => single,
+        0x40 => fork,
+        0x4f40 => forkBtg,
+        0x80 => anyoneCanPay,
+        _ => throw ArgumentError("Unknown value for BitcoinSigHashType: $value"),
+      };
 
   bool isSingle() {
     final obj = TWBitcoinSigHashType.fromValue(value);

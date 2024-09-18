@@ -41,33 +41,23 @@ class SigningInput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningInput._() : super();
-  factory SigningInput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, SigningInput_MessageOneof>
-      _SigningInput_MessageOneofByTag = {
+  static const $core.Map<$core.int, SigningInput_MessageOneof> _SigningInput_MessageOneofByTag = {
     3: SigningInput_MessageOneof.transactionMessage,
     4: SigningInput_MessageOneof.stakingMessage,
     0: SigningInput_MessageOneof.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningInput',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
     ..oo(0, [3, 4])
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'chainId', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        2, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
-    ..aOM<TransactionMessage>(3, _omitFieldNames ? '' : 'transactionMessage',
-        subBuilder: TransactionMessage.create)
-    ..aOM<StakingMessage>(4, _omitFieldNames ? '' : 'stakingMessage',
-        subBuilder: StakingMessage.create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'chainId', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
+    ..aOM<TransactionMessage>(3, _omitFieldNames ? '' : 'transactionMessage', subBuilder: TransactionMessage.create)
+    ..aOM<StakingMessage>(4, _omitFieldNames ? '' : 'stakingMessage', subBuilder: StakingMessage.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -78,23 +68,19 @@ class SigningInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningInput copyWith(void Function(SigningInput) updates) =>
-      super.copyWith((message) => updates(message as SigningInput))
-          as SigningInput;
+      super.copyWith((message) => updates(message as SigningInput)) as SigningInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningInput create() => SigningInput._();
   SigningInput createEmptyInstance() => create();
-  static $pb.PbList<SigningInput> createRepeated() =>
-      $pb.PbList<SigningInput>();
+  static $pb.PbList<SigningInput> createRepeated() => $pb.PbList<SigningInput>();
   @$core.pragma('dart2js:noInline')
-  static SigningInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
+  static SigningInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
   static SigningInput? _defaultInstance;
 
-  SigningInput_MessageOneof whichMessageOneof() =>
-      _SigningInput_MessageOneofByTag[$_whichOneof(0)]!;
+  SigningInput_MessageOneof whichMessageOneof() => _SigningInput_MessageOneofByTag[$_whichOneof(0)]!;
   void clearMessageOneof() => clearField($_whichOneof(0));
 
   /// Chain identifier (uint256, serialized big endian)
@@ -184,30 +170,19 @@ class SigningOutput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningOutput._() : super();
-  factory SigningOutput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningOutput',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        2, _omitFieldNames ? '' : 'v', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        3, _omitFieldNames ? '' : 'r', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        4, _omitFieldNames ? '' : 's', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'v', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'r', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(4, _omitFieldNames ? '' : 's', $pb.PbFieldType.OY)
     ..e<$0.SigningError>(5, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: $0.SigningError.OK,
-        valueOf: $0.SigningError.valueOf,
-        enumValues: $0.SigningError.values)
+        defaultOrMaker: $0.SigningError.OK, valueOf: $0.SigningError.valueOf, enumValues: $0.SigningError.values)
     ..aOS(6, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
@@ -219,19 +194,16 @@ class SigningOutput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningOutput copyWith(void Function(SigningOutput) updates) =>
-      super.copyWith((message) => updates(message as SigningOutput))
-          as SigningOutput;
+      super.copyWith((message) => updates(message as SigningOutput)) as SigningOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningOutput create() => SigningOutput._();
   SigningOutput createEmptyInstance() => create();
-  static $pb.PbList<SigningOutput> createRepeated() =>
-      $pb.PbList<SigningOutput>();
+  static $pb.PbList<SigningOutput> createRepeated() => $pb.PbList<SigningOutput>();
   @$core.pragma('dart2js:noInline')
-  static SigningOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
+  static SigningOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
   static SigningOutput? _defaultInstance;
 
   /// Signed and encoded transaction bytes.
@@ -354,30 +326,19 @@ class TransactionMessage extends $pb.GeneratedMessage {
   factory TransactionMessage.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory TransactionMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TransactionMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'TransactionMessage',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'nonce', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        2, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        3, _omitFieldNames ? '' : 'gasLimit', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TransactionMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'nonce', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'gasLimit', $pb.PbFieldType.OY)
     ..aOS(4, _omitFieldNames ? '' : 'toAddress')
-    ..a<$core.List<$core.int>>(
-        5, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        6, _omitFieldNames ? '' : 'payload', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        7, _omitFieldNames ? '' : 'fromShardId', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        8, _omitFieldNames ? '' : 'toShardId', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(5, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(6, _omitFieldNames ? '' : 'payload', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(7, _omitFieldNames ? '' : 'fromShardId', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(8, _omitFieldNames ? '' : 'toShardId', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -388,19 +349,17 @@ class TransactionMessage extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   TransactionMessage copyWith(void Function(TransactionMessage) updates) =>
-      super.copyWith((message) => updates(message as TransactionMessage))
-          as TransactionMessage;
+      super.copyWith((message) => updates(message as TransactionMessage)) as TransactionMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static TransactionMessage create() => TransactionMessage._();
   TransactionMessage createEmptyInstance() => create();
-  static $pb.PbList<TransactionMessage> createRepeated() =>
-      $pb.PbList<TransactionMessage>();
+  static $pb.PbList<TransactionMessage> createRepeated() => $pb.PbList<TransactionMessage>();
   @$core.pragma('dart2js:noInline')
-  static TransactionMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TransactionMessage>(create);
+  static TransactionMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TransactionMessage>(create);
   static TransactionMessage? _defaultInstance;
 
   /// Nonce (uint256, serialized big endian)
@@ -557,15 +516,12 @@ class StakingMessage extends $pb.GeneratedMessage {
     return $result;
   }
   StakingMessage._() : super();
-  factory StakingMessage.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory StakingMessage.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory StakingMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory StakingMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, StakingMessage_StakeMsg>
-      _StakingMessage_StakeMsgByTag = {
+  static const $core.Map<$core.int, StakingMessage_StakeMsg> _StakingMessage_StakeMsgByTag = {
     1: StakingMessage_StakeMsg.createValidatorMessage,
     2: StakingMessage_StakeMsg.editValidatorMessage,
     3: StakingMessage_StakeMsg.delegateMessage,
@@ -573,30 +529,20 @@ class StakingMessage extends $pb.GeneratedMessage {
     5: StakingMessage_StakeMsg.collectRewards,
     0: StakingMessage_StakeMsg.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'StakingMessage',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'StakingMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
     ..oo(0, [1, 2, 3, 4, 5])
-    ..aOM<DirectiveCreateValidator>(
-        1, _omitFieldNames ? '' : 'createValidatorMessage',
+    ..aOM<DirectiveCreateValidator>(1, _omitFieldNames ? '' : 'createValidatorMessage',
         subBuilder: DirectiveCreateValidator.create)
-    ..aOM<DirectiveEditValidator>(
-        2, _omitFieldNames ? '' : 'editValidatorMessage',
+    ..aOM<DirectiveEditValidator>(2, _omitFieldNames ? '' : 'editValidatorMessage',
         subBuilder: DirectiveEditValidator.create)
-    ..aOM<DirectiveDelegate>(3, _omitFieldNames ? '' : 'delegateMessage',
-        subBuilder: DirectiveDelegate.create)
-    ..aOM<DirectiveUndelegate>(4, _omitFieldNames ? '' : 'undelegateMessage',
-        subBuilder: DirectiveUndelegate.create)
+    ..aOM<DirectiveDelegate>(3, _omitFieldNames ? '' : 'delegateMessage', subBuilder: DirectiveDelegate.create)
+    ..aOM<DirectiveUndelegate>(4, _omitFieldNames ? '' : 'undelegateMessage', subBuilder: DirectiveUndelegate.create)
     ..aOM<DirectiveCollectRewards>(5, _omitFieldNames ? '' : 'collectRewards',
         subBuilder: DirectiveCollectRewards.create)
-    ..a<$core.List<$core.int>>(
-        6, _omitFieldNames ? '' : 'nonce', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        7, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        8, _omitFieldNames ? '' : 'gasLimit', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(6, _omitFieldNames ? '' : 'nonce', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(7, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(8, _omitFieldNames ? '' : 'gasLimit', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -607,23 +553,19 @@ class StakingMessage extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   StakingMessage copyWith(void Function(StakingMessage) updates) =>
-      super.copyWith((message) => updates(message as StakingMessage))
-          as StakingMessage;
+      super.copyWith((message) => updates(message as StakingMessage)) as StakingMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static StakingMessage create() => StakingMessage._();
   StakingMessage createEmptyInstance() => create();
-  static $pb.PbList<StakingMessage> createRepeated() =>
-      $pb.PbList<StakingMessage>();
+  static $pb.PbList<StakingMessage> createRepeated() => $pb.PbList<StakingMessage>();
   @$core.pragma('dart2js:noInline')
-  static StakingMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<StakingMessage>(create);
+  static StakingMessage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StakingMessage>(create);
   static StakingMessage? _defaultInstance;
 
-  StakingMessage_StakeMsg whichStakeMsg() =>
-      _StakingMessage_StakeMsgByTag[$_whichOneof(0)]!;
+  StakingMessage_StakeMsg whichStakeMsg() => _StakingMessage_StakeMsgByTag[$_whichOneof(0)]!;
   void clearStakeMsg() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -764,18 +706,13 @@ class Description extends $pb.GeneratedMessage {
     return $result;
   }
   Description._() : super();
-  factory Description.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Description.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Description.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Description.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Description',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Description',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aOS(2, _omitFieldNames ? '' : 'identity')
     ..aOS(3, _omitFieldNames ? '' : 'website')
@@ -791,8 +728,7 @@ class Description extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   Description copyWith(void Function(Description) updates) =>
-      super.copyWith((message) => updates(message as Description))
-          as Description;
+      super.copyWith((message) => updates(message as Description)) as Description;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -801,8 +737,7 @@ class Description extends $pb.GeneratedMessage {
   Description createEmptyInstance() => create();
   static $pb.PbList<Description> createRepeated() => $pb.PbList<Description>();
   @$core.pragma('dart2js:noInline')
-  static Description getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Description>(create);
+  static Description getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Description>(create);
   static Description? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -882,22 +817,15 @@ class Decimal extends $pb.GeneratedMessage {
     return $result;
   }
   Decimal._() : super();
-  factory Decimal.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Decimal.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Decimal.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Decimal.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Decimal',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'value', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        2, _omitFieldNames ? '' : 'precision', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Decimal',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'value', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'precision', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -917,8 +845,7 @@ class Decimal extends $pb.GeneratedMessage {
   Decimal createEmptyInstance() => create();
   static $pb.PbList<Decimal> createRepeated() => $pb.PbList<Decimal>();
   @$core.pragma('dart2js:noInline')
-  static Decimal getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Decimal>(create);
+  static Decimal getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Decimal>(create);
   static Decimal? _defaultInstance;
 
   /// The 'raw' value
@@ -968,23 +895,16 @@ class CommissionRate extends $pb.GeneratedMessage {
     return $result;
   }
   CommissionRate._() : super();
-  factory CommissionRate.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory CommissionRate.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory CommissionRate.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory CommissionRate.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'CommissionRate',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CommissionRate',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
     ..aOM<Decimal>(1, _omitFieldNames ? '' : 'rate', subBuilder: Decimal.create)
-    ..aOM<Decimal>(2, _omitFieldNames ? '' : 'maxRate',
-        subBuilder: Decimal.create)
-    ..aOM<Decimal>(3, _omitFieldNames ? '' : 'maxChangeRate',
-        subBuilder: Decimal.create)
+    ..aOM<Decimal>(2, _omitFieldNames ? '' : 'maxRate', subBuilder: Decimal.create)
+    ..aOM<Decimal>(3, _omitFieldNames ? '' : 'maxChangeRate', subBuilder: Decimal.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -995,19 +915,16 @@ class CommissionRate extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   CommissionRate copyWith(void Function(CommissionRate) updates) =>
-      super.copyWith((message) => updates(message as CommissionRate))
-          as CommissionRate;
+      super.copyWith((message) => updates(message as CommissionRate)) as CommissionRate;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static CommissionRate create() => CommissionRate._();
   CommissionRate createEmptyInstance() => create();
-  static $pb.PbList<CommissionRate> createRepeated() =>
-      $pb.PbList<CommissionRate>();
+  static $pb.PbList<CommissionRate> createRepeated() => $pb.PbList<CommissionRate>();
   @$core.pragma('dart2js:noInline')
-  static CommissionRate getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<CommissionRate>(create);
+  static CommissionRate getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CommissionRate>(create);
   static CommissionRate? _defaultInstance;
 
   /// The rate
@@ -1099,55 +1016,40 @@ class DirectiveCreateValidator extends $pb.GeneratedMessage {
   factory DirectiveCreateValidator.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory DirectiveCreateValidator.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory DirectiveCreateValidator.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'DirectiveCreateValidator',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DirectiveCreateValidator',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'validatorAddress')
-    ..aOM<Description>(2, _omitFieldNames ? '' : 'description',
-        subBuilder: Description.create)
-    ..aOM<CommissionRate>(3, _omitFieldNames ? '' : 'commissionRates',
-        subBuilder: CommissionRate.create)
-    ..a<$core.List<$core.int>>(
-        4, _omitFieldNames ? '' : 'minSelfDelegation', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        5, _omitFieldNames ? '' : 'maxTotalDelegation', $pb.PbFieldType.OY)
-    ..p<$core.List<$core.int>>(
-        6, _omitFieldNames ? '' : 'slotPubKeys', $pb.PbFieldType.PY)
-    ..p<$core.List<$core.int>>(
-        7, _omitFieldNames ? '' : 'slotKeySigs', $pb.PbFieldType.PY)
-    ..a<$core.List<$core.int>>(
-        8, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OY)
+    ..aOM<Description>(2, _omitFieldNames ? '' : 'description', subBuilder: Description.create)
+    ..aOM<CommissionRate>(3, _omitFieldNames ? '' : 'commissionRates', subBuilder: CommissionRate.create)
+    ..a<$core.List<$core.int>>(4, _omitFieldNames ? '' : 'minSelfDelegation', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(5, _omitFieldNames ? '' : 'maxTotalDelegation', $pb.PbFieldType.OY)
+    ..p<$core.List<$core.int>>(6, _omitFieldNames ? '' : 'slotPubKeys', $pb.PbFieldType.PY)
+    ..p<$core.List<$core.int>>(7, _omitFieldNames ? '' : 'slotKeySigs', $pb.PbFieldType.PY)
+    ..a<$core.List<$core.int>>(8, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  DirectiveCreateValidator clone() =>
-      DirectiveCreateValidator()..mergeFromMessage(this);
+  DirectiveCreateValidator clone() => DirectiveCreateValidator()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  DirectiveCreateValidator copyWith(
-          void Function(DirectiveCreateValidator) updates) =>
-      super.copyWith((message) => updates(message as DirectiveCreateValidator))
-          as DirectiveCreateValidator;
+  DirectiveCreateValidator copyWith(void Function(DirectiveCreateValidator) updates) =>
+      super.copyWith((message) => updates(message as DirectiveCreateValidator)) as DirectiveCreateValidator;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static DirectiveCreateValidator create() => DirectiveCreateValidator._();
   DirectiveCreateValidator createEmptyInstance() => create();
-  static $pb.PbList<DirectiveCreateValidator> createRepeated() =>
-      $pb.PbList<DirectiveCreateValidator>();
+  static $pb.PbList<DirectiveCreateValidator> createRepeated() => $pb.PbList<DirectiveCreateValidator>();
   @$core.pragma('dart2js:noInline')
-  static DirectiveCreateValidator getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DirectiveCreateValidator>(create);
+  static DirectiveCreateValidator getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DirectiveCreateValidator>(create);
   static DirectiveCreateValidator? _defaultInstance;
 
   /// Address of validator
@@ -1283,57 +1185,41 @@ class DirectiveEditValidator extends $pb.GeneratedMessage {
   factory DirectiveEditValidator.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory DirectiveEditValidator.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory DirectiveEditValidator.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'DirectiveEditValidator',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DirectiveEditValidator',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'validatorAddress')
-    ..aOM<Description>(2, _omitFieldNames ? '' : 'description',
-        subBuilder: Description.create)
-    ..aOM<Decimal>(3, _omitFieldNames ? '' : 'commissionRate',
-        subBuilder: Decimal.create)
-    ..a<$core.List<$core.int>>(
-        4, _omitFieldNames ? '' : 'minSelfDelegation', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        5, _omitFieldNames ? '' : 'maxTotalDelegation', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        6, _omitFieldNames ? '' : 'slotKeyToRemove', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        7, _omitFieldNames ? '' : 'slotKeyToAdd', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        8, _omitFieldNames ? '' : 'slotKeyToAddSig', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        9, _omitFieldNames ? '' : 'active', $pb.PbFieldType.OY)
+    ..aOM<Description>(2, _omitFieldNames ? '' : 'description', subBuilder: Description.create)
+    ..aOM<Decimal>(3, _omitFieldNames ? '' : 'commissionRate', subBuilder: Decimal.create)
+    ..a<$core.List<$core.int>>(4, _omitFieldNames ? '' : 'minSelfDelegation', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(5, _omitFieldNames ? '' : 'maxTotalDelegation', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(6, _omitFieldNames ? '' : 'slotKeyToRemove', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(7, _omitFieldNames ? '' : 'slotKeyToAdd', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(8, _omitFieldNames ? '' : 'slotKeyToAddSig', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(9, _omitFieldNames ? '' : 'active', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  DirectiveEditValidator clone() =>
-      DirectiveEditValidator()..mergeFromMessage(this);
+  DirectiveEditValidator clone() => DirectiveEditValidator()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  DirectiveEditValidator copyWith(
-          void Function(DirectiveEditValidator) updates) =>
-      super.copyWith((message) => updates(message as DirectiveEditValidator))
-          as DirectiveEditValidator;
+  DirectiveEditValidator copyWith(void Function(DirectiveEditValidator) updates) =>
+      super.copyWith((message) => updates(message as DirectiveEditValidator)) as DirectiveEditValidator;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static DirectiveEditValidator create() => DirectiveEditValidator._();
   DirectiveEditValidator createEmptyInstance() => create();
-  static $pb.PbList<DirectiveEditValidator> createRepeated() =>
-      $pb.PbList<DirectiveEditValidator>();
+  static $pb.PbList<DirectiveEditValidator> createRepeated() => $pb.PbList<DirectiveEditValidator>();
   @$core.pragma('dart2js:noInline')
-  static DirectiveEditValidator getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DirectiveEditValidator>(create);
+  static DirectiveEditValidator getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DirectiveEditValidator>(create);
   static DirectiveEditValidator? _defaultInstance;
 
   /// Validator address
@@ -1473,19 +1359,14 @@ class DirectiveDelegate extends $pb.GeneratedMessage {
   factory DirectiveDelegate.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory DirectiveDelegate.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory DirectiveDelegate.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'DirectiveDelegate',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DirectiveDelegate',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'delegatorAddress')
     ..aOS(2, _omitFieldNames ? '' : 'validatorAddress')
-    ..a<$core.List<$core.int>>(
-        3, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1496,19 +1377,17 @@ class DirectiveDelegate extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   DirectiveDelegate copyWith(void Function(DirectiveDelegate) updates) =>
-      super.copyWith((message) => updates(message as DirectiveDelegate))
-          as DirectiveDelegate;
+      super.copyWith((message) => updates(message as DirectiveDelegate)) as DirectiveDelegate;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static DirectiveDelegate create() => DirectiveDelegate._();
   DirectiveDelegate createEmptyInstance() => create();
-  static $pb.PbList<DirectiveDelegate> createRepeated() =>
-      $pb.PbList<DirectiveDelegate>();
+  static $pb.PbList<DirectiveDelegate> createRepeated() => $pb.PbList<DirectiveDelegate>();
   @$core.pragma('dart2js:noInline')
-  static DirectiveDelegate getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DirectiveDelegate>(create);
+  static DirectiveDelegate getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DirectiveDelegate>(create);
   static DirectiveDelegate? _defaultInstance;
 
   /// Delegator address
@@ -1574,19 +1453,14 @@ class DirectiveUndelegate extends $pb.GeneratedMessage {
   factory DirectiveUndelegate.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory DirectiveUndelegate.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory DirectiveUndelegate.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'DirectiveUndelegate',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DirectiveUndelegate',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'delegatorAddress')
     ..aOS(2, _omitFieldNames ? '' : 'validatorAddress')
-    ..a<$core.List<$core.int>>(
-        3, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1597,19 +1471,17 @@ class DirectiveUndelegate extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   DirectiveUndelegate copyWith(void Function(DirectiveUndelegate) updates) =>
-      super.copyWith((message) => updates(message as DirectiveUndelegate))
-          as DirectiveUndelegate;
+      super.copyWith((message) => updates(message as DirectiveUndelegate)) as DirectiveUndelegate;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static DirectiveUndelegate create() => DirectiveUndelegate._();
   DirectiveUndelegate createEmptyInstance() => create();
-  static $pb.PbList<DirectiveUndelegate> createRepeated() =>
-      $pb.PbList<DirectiveUndelegate>();
+  static $pb.PbList<DirectiveUndelegate> createRepeated() => $pb.PbList<DirectiveUndelegate>();
   @$core.pragma('dart2js:noInline')
-  static DirectiveUndelegate getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DirectiveUndelegate>(create);
+  static DirectiveUndelegate getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DirectiveUndelegate>(create);
   static DirectiveUndelegate? _defaultInstance;
 
   /// Delegator address
@@ -1667,41 +1539,33 @@ class DirectiveCollectRewards extends $pb.GeneratedMessage {
   factory DirectiveCollectRewards.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory DirectiveCollectRewards.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory DirectiveCollectRewards.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'DirectiveCollectRewards',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DirectiveCollectRewards',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Harmony.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'delegatorAddress')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  DirectiveCollectRewards clone() =>
-      DirectiveCollectRewards()..mergeFromMessage(this);
+  DirectiveCollectRewards clone() => DirectiveCollectRewards()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  DirectiveCollectRewards copyWith(
-          void Function(DirectiveCollectRewards) updates) =>
-      super.copyWith((message) => updates(message as DirectiveCollectRewards))
-          as DirectiveCollectRewards;
+  DirectiveCollectRewards copyWith(void Function(DirectiveCollectRewards) updates) =>
+      super.copyWith((message) => updates(message as DirectiveCollectRewards)) as DirectiveCollectRewards;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static DirectiveCollectRewards create() => DirectiveCollectRewards._();
   DirectiveCollectRewards createEmptyInstance() => create();
-  static $pb.PbList<DirectiveCollectRewards> createRepeated() =>
-      $pb.PbList<DirectiveCollectRewards>();
+  static $pb.PbList<DirectiveCollectRewards> createRepeated() => $pb.PbList<DirectiveCollectRewards>();
   @$core.pragma('dart2js:noInline')
-  static DirectiveCollectRewards getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<DirectiveCollectRewards>(create);
+  static DirectiveCollectRewards getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DirectiveCollectRewards>(create);
   static DirectiveCollectRewards? _defaultInstance;
 
   /// Delegator address
@@ -1719,5 +1583,4 @@ class DirectiveCollectRewards extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

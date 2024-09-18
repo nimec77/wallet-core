@@ -16,8 +16,8 @@ enum AESPaddingMode {
   const AESPaddingMode(this.value);
 
   static AESPaddingMode fromValue(int value) => switch (value) {
-    0 => zero,
-    1 => pkcs7,
-    _ => throw ArgumentError("Unknown value for AESPaddingMode: $value"),
-  };
+        0 => zero,
+        1 => pkcs7,
+        _ => throw ArgumentError("Unknown value for AESPaddingMode: $value"),
+      };
 }

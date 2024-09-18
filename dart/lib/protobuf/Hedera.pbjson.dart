@@ -23,9 +23,9 @@ const Timestamp$json = {
 };
 
 /// Descriptor for `Timestamp`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List timestampDescriptor = $convert.base64Decode(
-    'CglUaW1lc3RhbXASGAoHc2Vjb25kcxgBIAEoA1IHc2Vjb25kcxIUCgVuYW5vcxgCIAEoBVIFbm'
-    'Fub3M=');
+final $typed_data.Uint8List timestampDescriptor =
+    $convert.base64Decode('CglUaW1lc3RhbXASGAoHc2Vjb25kcxgBIAEoA1IHc2Vjb25kcxIUCgVuYW5vcxgCIAEoBVIFbm'
+        'Fub3M=');
 
 @$core.Deprecated('Use transactionIDDescriptor instead')
 const TransactionID$json = {
@@ -46,11 +46,11 @@ const TransactionID$json = {
 };
 
 /// Descriptor for `TransactionID`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List transactionIDDescriptor = $convert.base64Decode(
-    'Cg1UcmFuc2FjdGlvbklEElAKFXRyYW5zYWN0aW9uVmFsaWRTdGFydBgBIAEoCzIaLlRXLkhlZG'
-    'VyYS5Qcm90by5UaW1lc3RhbXBSFXRyYW5zYWN0aW9uVmFsaWRTdGFydBIcCglhY2NvdW50SUQY'
-    'AiABKAlSCWFjY291bnRJRBIcCglzY2hlZHVsZWQYAyABKAhSCXNjaGVkdWxlZBIUCgVub25jZR'
-    'gEIAEoBVIFbm9uY2U=');
+final $typed_data.Uint8List transactionIDDescriptor =
+    $convert.base64Decode('Cg1UcmFuc2FjdGlvbklEElAKFXRyYW5zYWN0aW9uVmFsaWRTdGFydBgBIAEoCzIaLlRXLkhlZG'
+        'VyYS5Qcm90by5UaW1lc3RhbXBSFXRyYW5zYWN0aW9uVmFsaWRTdGFydBIcCglhY2NvdW50SUQY'
+        'AiABKAlSCWFjY291bnRJRBIcCglzY2hlZHVsZWQYAyABKAhSCXNjaGVkdWxlZBIUCgVub25jZR'
+        'gEIAEoBVIFbm9uY2U=');
 
 @$core.Deprecated('Use transferMessageDescriptor instead')
 const TransferMessage$json = {
@@ -63,41 +63,20 @@ const TransferMessage$json = {
 };
 
 /// Descriptor for `TransferMessage`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List transferMessageDescriptor = $convert.base64Decode(
-    'Cg9UcmFuc2Zlck1lc3NhZ2USEgoEZnJvbRgBIAEoCVIEZnJvbRIOCgJ0bxgCIAEoCVICdG8SFg'
-    'oGYW1vdW50GAMgASgSUgZhbW91bnQ=');
+final $typed_data.Uint8List transferMessageDescriptor =
+    $convert.base64Decode('Cg9UcmFuc2Zlck1lc3NhZ2USEgoEZnJvbRgBIAEoCVIEZnJvbRIOCgJ0bxgCIAEoCVICdG8SFg'
+        'oGYW1vdW50GAMgASgSUgZhbW91bnQ=');
 
 @$core.Deprecated('Use transactionBodyDescriptor instead')
 const TransactionBody$json = {
   '1': 'TransactionBody',
   '2': [
-    {
-      '1': 'transactionID',
-      '3': 1,
-      '4': 1,
-      '5': 11,
-      '6': '.TW.Hedera.Proto.TransactionID',
-      '10': 'transactionID'
-    },
+    {'1': 'transactionID', '3': 1, '4': 1, '5': 11, '6': '.TW.Hedera.Proto.TransactionID', '10': 'transactionID'},
     {'1': 'nodeAccountID', '3': 2, '4': 1, '5': 9, '10': 'nodeAccountID'},
     {'1': 'transactionFee', '3': 3, '4': 1, '5': 4, '10': 'transactionFee'},
-    {
-      '1': 'transactionValidDuration',
-      '3': 4,
-      '4': 1,
-      '5': 3,
-      '10': 'transactionValidDuration'
-    },
+    {'1': 'transactionValidDuration', '3': 4, '4': 1, '5': 3, '10': 'transactionValidDuration'},
     {'1': 'memo', '3': 5, '4': 1, '5': 9, '10': 'memo'},
-    {
-      '1': 'transfer',
-      '3': 6,
-      '4': 1,
-      '5': 11,
-      '6': '.TW.Hedera.Proto.TransferMessage',
-      '9': 0,
-      '10': 'transfer'
-    },
+    {'1': 'transfer', '3': 6, '4': 1, '5': 11, '6': '.TW.Hedera.Proto.TransferMessage', '9': 0, '10': 'transfer'},
   ],
   '8': [
     {'1': 'data'},
@@ -105,34 +84,27 @@ const TransactionBody$json = {
 };
 
 /// Descriptor for `TransactionBody`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List transactionBodyDescriptor = $convert.base64Decode(
-    'Cg9UcmFuc2FjdGlvbkJvZHkSRAoNdHJhbnNhY3Rpb25JRBgBIAEoCzIeLlRXLkhlZGVyYS5Qcm'
-    '90by5UcmFuc2FjdGlvbklEUg10cmFuc2FjdGlvbklEEiQKDW5vZGVBY2NvdW50SUQYAiABKAlS'
-    'DW5vZGVBY2NvdW50SUQSJgoOdHJhbnNhY3Rpb25GZWUYAyABKARSDnRyYW5zYWN0aW9uRmVlEj'
-    'oKGHRyYW5zYWN0aW9uVmFsaWREdXJhdGlvbhgEIAEoA1IYdHJhbnNhY3Rpb25WYWxpZER1cmF0'
-    'aW9uEhIKBG1lbW8YBSABKAlSBG1lbW8SPgoIdHJhbnNmZXIYBiABKAsyIC5UVy5IZWRlcmEuUH'
-    'JvdG8uVHJhbnNmZXJNZXNzYWdlSABSCHRyYW5zZmVyQgYKBGRhdGE=');
+final $typed_data.Uint8List transactionBodyDescriptor =
+    $convert.base64Decode('Cg9UcmFuc2FjdGlvbkJvZHkSRAoNdHJhbnNhY3Rpb25JRBgBIAEoCzIeLlRXLkhlZGVyYS5Qcm'
+        '90by5UcmFuc2FjdGlvbklEUg10cmFuc2FjdGlvbklEEiQKDW5vZGVBY2NvdW50SUQYAiABKAlS'
+        'DW5vZGVBY2NvdW50SUQSJgoOdHJhbnNhY3Rpb25GZWUYAyABKARSDnRyYW5zYWN0aW9uRmVlEj'
+        'oKGHRyYW5zYWN0aW9uVmFsaWREdXJhdGlvbhgEIAEoA1IYdHJhbnNhY3Rpb25WYWxpZER1cmF0'
+        'aW9uEhIKBG1lbW8YBSABKAlSBG1lbW8SPgoIdHJhbnNmZXIYBiABKAsyIC5UVy5IZWRlcmEuUH'
+        'JvdG8uVHJhbnNmZXJNZXNzYWdlSABSCHRyYW5zZmVyQgYKBGRhdGE=');
 
 @$core.Deprecated('Use signingInputDescriptor instead')
 const SigningInput$json = {
   '1': 'SigningInput',
   '2': [
     {'1': 'private_key', '3': 1, '4': 1, '5': 12, '10': 'privateKey'},
-    {
-      '1': 'body',
-      '3': 2,
-      '4': 1,
-      '5': 11,
-      '6': '.TW.Hedera.Proto.TransactionBody',
-      '10': 'body'
-    },
+    {'1': 'body', '3': 2, '4': 1, '5': 11, '6': '.TW.Hedera.Proto.TransactionBody', '10': 'body'},
   ],
 };
 
 /// Descriptor for `SigningInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingInputDescriptor = $convert.base64Decode(
-    'CgxTaWduaW5nSW5wdXQSHwoLcHJpdmF0ZV9rZXkYASABKAxSCnByaXZhdGVLZXkSNAoEYm9keR'
-    'gCIAEoCzIgLlRXLkhlZGVyYS5Qcm90by5UcmFuc2FjdGlvbkJvZHlSBGJvZHk=');
+final $typed_data.Uint8List signingInputDescriptor =
+    $convert.base64Decode('CgxTaWduaW5nSW5wdXQSHwoLcHJpdmF0ZV9rZXkYASABKAxSCnByaXZhdGVLZXkSNAoEYm9keR'
+        'gCIAEoCzIgLlRXLkhlZGVyYS5Qcm90by5UcmFuc2FjdGlvbkJvZHlSBGJvZHk=');
 
 @$core.Deprecated('Use signingOutputDescriptor instead')
 const SigningOutput$json = {
@@ -143,5 +115,5 @@ const SigningOutput$json = {
 };
 
 /// Descriptor for `SigningOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingOutputDescriptor = $convert
-    .base64Decode('Cg1TaWduaW5nT3V0cHV0EhgKB2VuY29kZWQYASABKAxSB2VuY29kZWQ=');
+final $typed_data.Uint8List signingOutputDescriptor =
+    $convert.base64Decode('Cg1TaWduaW5nT3V0cHV0EhgKB2VuY29kZWQYASABKAxSB2VuY29kZWQ=');

@@ -35,17 +35,13 @@ class TransferMessage extends $pb.GeneratedMessage {
   factory TransferMessage.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory TransferMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TransferMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'TransferMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TransferMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'to')
-    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -56,19 +52,17 @@ class TransferMessage extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   TransferMessage copyWith(void Function(TransferMessage) updates) =>
-      super.copyWith((message) => updates(message as TransferMessage))
-          as TransferMessage;
+      super.copyWith((message) => updates(message as TransferMessage)) as TransferMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static TransferMessage create() => TransferMessage._();
   TransferMessage createEmptyInstance() => create();
-  static $pb.PbList<TransferMessage> createRepeated() =>
-      $pb.PbList<TransferMessage>();
+  static $pb.PbList<TransferMessage> createRepeated() => $pb.PbList<TransferMessage>();
   @$core.pragma('dart2js:noInline')
-  static TransferMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TransferMessage>(create);
+  static TransferMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TransferMessage>(create);
   static TransferMessage? _defaultInstance;
 
   /// Destination Account address (string)
@@ -118,17 +112,13 @@ class StructTag extends $pb.GeneratedMessage {
     return $result;
   }
   StructTag._() : super();
-  factory StructTag.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory StructTag.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory StructTag.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory StructTag.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'StructTag',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'StructTag',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'accountAddress')
     ..aOS(2, _omitFieldNames ? '' : 'module')
     ..aOS(3, _omitFieldNames ? '' : 'name')
@@ -151,8 +141,7 @@ class StructTag extends $pb.GeneratedMessage {
   StructTag createEmptyInstance() => create();
   static $pb.PbList<StructTag> createRepeated() => $pb.PbList<StructTag>();
   @$core.pragma('dart2js:noInline')
-  static StructTag getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StructTag>(create);
+  static StructTag getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StructTag>(create);
   static StructTag? _defaultInstance;
 
   /// Address of the account
@@ -218,43 +207,35 @@ class TokenTransferMessage extends $pb.GeneratedMessage {
   factory TokenTransferMessage.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory TokenTransferMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TokenTransferMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'TokenTransferMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TokenTransferMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'to')
-    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<StructTag>(3, _omitFieldNames ? '' : 'function',
-        subBuilder: StructTag.create)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOM<StructTag>(3, _omitFieldNames ? '' : 'function', subBuilder: StructTag.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  TokenTransferMessage clone() =>
-      TokenTransferMessage()..mergeFromMessage(this);
+  TokenTransferMessage clone() => TokenTransferMessage()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   TokenTransferMessage copyWith(void Function(TokenTransferMessage) updates) =>
-      super.copyWith((message) => updates(message as TokenTransferMessage))
-          as TokenTransferMessage;
+      super.copyWith((message) => updates(message as TokenTransferMessage)) as TokenTransferMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static TokenTransferMessage create() => TokenTransferMessage._();
   TokenTransferMessage createEmptyInstance() => create();
-  static $pb.PbList<TokenTransferMessage> createRepeated() =>
-      $pb.PbList<TokenTransferMessage>();
+  static $pb.PbList<TokenTransferMessage> createRepeated() => $pb.PbList<TokenTransferMessage>();
   @$core.pragma('dart2js:noInline')
-  static TokenTransferMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TokenTransferMessage>(create);
+  static TokenTransferMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenTransferMessage>(create);
   static TokenTransferMessage? _defaultInstance;
 
   /// Destination Account address (string)
@@ -323,44 +304,35 @@ class TokenTransferCoinsMessage extends $pb.GeneratedMessage {
   factory TokenTransferCoinsMessage.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory TokenTransferCoinsMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TokenTransferCoinsMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'TokenTransferCoinsMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TokenTransferCoinsMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'to')
-    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<StructTag>(3, _omitFieldNames ? '' : 'function',
-        subBuilder: StructTag.create)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOM<StructTag>(3, _omitFieldNames ? '' : 'function', subBuilder: StructTag.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  TokenTransferCoinsMessage clone() =>
-      TokenTransferCoinsMessage()..mergeFromMessage(this);
+  TokenTransferCoinsMessage clone() => TokenTransferCoinsMessage()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  TokenTransferCoinsMessage copyWith(
-          void Function(TokenTransferCoinsMessage) updates) =>
-      super.copyWith((message) => updates(message as TokenTransferCoinsMessage))
-          as TokenTransferCoinsMessage;
+  TokenTransferCoinsMessage copyWith(void Function(TokenTransferCoinsMessage) updates) =>
+      super.copyWith((message) => updates(message as TokenTransferCoinsMessage)) as TokenTransferCoinsMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static TokenTransferCoinsMessage create() => TokenTransferCoinsMessage._();
   TokenTransferCoinsMessage createEmptyInstance() => create();
-  static $pb.PbList<TokenTransferCoinsMessage> createRepeated() =>
-      $pb.PbList<TokenTransferCoinsMessage>();
+  static $pb.PbList<TokenTransferCoinsMessage> createRepeated() => $pb.PbList<TokenTransferCoinsMessage>();
   @$core.pragma('dart2js:noInline')
-  static TokenTransferCoinsMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TokenTransferCoinsMessage>(create);
+  static TokenTransferCoinsMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenTransferCoinsMessage>(create);
   static TokenTransferCoinsMessage? _defaultInstance;
 
   /// Destination Account address (string)
@@ -424,39 +396,30 @@ class ManagedTokensRegisterMessage extends $pb.GeneratedMessage {
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ManagedTokensRegisterMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
-    ..aOM<StructTag>(1, _omitFieldNames ? '' : 'function',
-        subBuilder: StructTag.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ManagedTokensRegisterMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
+    ..aOM<StructTag>(1, _omitFieldNames ? '' : 'function', subBuilder: StructTag.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  ManagedTokensRegisterMessage clone() =>
-      ManagedTokensRegisterMessage()..mergeFromMessage(this);
+  ManagedTokensRegisterMessage clone() => ManagedTokensRegisterMessage()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  ManagedTokensRegisterMessage copyWith(
-          void Function(ManagedTokensRegisterMessage) updates) =>
-      super.copyWith(
-              (message) => updates(message as ManagedTokensRegisterMessage))
-          as ManagedTokensRegisterMessage;
+  ManagedTokensRegisterMessage copyWith(void Function(ManagedTokensRegisterMessage) updates) =>
+      super.copyWith((message) => updates(message as ManagedTokensRegisterMessage)) as ManagedTokensRegisterMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static ManagedTokensRegisterMessage create() =>
-      ManagedTokensRegisterMessage._();
+  static ManagedTokensRegisterMessage create() => ManagedTokensRegisterMessage._();
   ManagedTokensRegisterMessage createEmptyInstance() => create();
-  static $pb.PbList<ManagedTokensRegisterMessage> createRepeated() =>
-      $pb.PbList<ManagedTokensRegisterMessage>();
+  static $pb.PbList<ManagedTokensRegisterMessage> createRepeated() => $pb.PbList<ManagedTokensRegisterMessage>();
   @$core.pragma('dart2js:noInline')
-  static ManagedTokensRegisterMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ManagedTokensRegisterMessage>(create);
+  static ManagedTokensRegisterMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ManagedTokensRegisterMessage>(create);
   static ManagedTokensRegisterMessage? _defaultInstance;
 
   /// token function to register, e.g BTC: 0x43417434fd869edee76cca2a4d2301e528a1551b1d719b75c350c3c97d15b8b9::coins::BTC
@@ -490,39 +453,33 @@ class CreateAccountMessage extends $pb.GeneratedMessage {
   factory CreateAccountMessage.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory CreateAccountMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory CreateAccountMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'CreateAccountMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CreateAccountMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'authKey')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  CreateAccountMessage clone() =>
-      CreateAccountMessage()..mergeFromMessage(this);
+  CreateAccountMessage clone() => CreateAccountMessage()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   CreateAccountMessage copyWith(void Function(CreateAccountMessage) updates) =>
-      super.copyWith((message) => updates(message as CreateAccountMessage))
-          as CreateAccountMessage;
+      super.copyWith((message) => updates(message as CreateAccountMessage)) as CreateAccountMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static CreateAccountMessage create() => CreateAccountMessage._();
   CreateAccountMessage createEmptyInstance() => create();
-  static $pb.PbList<CreateAccountMessage> createRepeated() =>
-      $pb.PbList<CreateAccountMessage>();
+  static $pb.PbList<CreateAccountMessage> createRepeated() => $pb.PbList<CreateAccountMessage>();
   @$core.pragma('dart2js:noInline')
-  static CreateAccountMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<CreateAccountMessage>(create);
+  static CreateAccountMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreateAccountMessage>(create);
   static CreateAccountMessage? _defaultInstance;
 
   /// auth account address to create
@@ -574,24 +531,18 @@ class OfferNftMessage extends $pb.GeneratedMessage {
   factory OfferNftMessage.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory OfferNftMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory OfferNftMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OfferNftMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OfferNftMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'receiver')
     ..aOS(2, _omitFieldNames ? '' : 'creator')
-    ..aOS(3, _omitFieldNames ? '' : 'collectionName',
-        protoName: 'collectionName')
+    ..aOS(3, _omitFieldNames ? '' : 'collectionName', protoName: 'collectionName')
     ..aOS(4, _omitFieldNames ? '' : 'name')
-    ..a<$fixnum.Int64>(
-        5, _omitFieldNames ? '' : 'propertyVersion', $pb.PbFieldType.OU6,
+    ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'propertyVersion', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(6, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(6, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -602,19 +553,17 @@ class OfferNftMessage extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   OfferNftMessage copyWith(void Function(OfferNftMessage) updates) =>
-      super.copyWith((message) => updates(message as OfferNftMessage))
-          as OfferNftMessage;
+      super.copyWith((message) => updates(message as OfferNftMessage)) as OfferNftMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static OfferNftMessage create() => OfferNftMessage._();
   OfferNftMessage createEmptyInstance() => create();
-  static $pb.PbList<OfferNftMessage> createRepeated() =>
-      $pb.PbList<OfferNftMessage>();
+  static $pb.PbList<OfferNftMessage> createRepeated() => $pb.PbList<OfferNftMessage>();
   @$core.pragma('dart2js:noInline')
-  static OfferNftMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OfferNftMessage>(create);
+  static OfferNftMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OfferNftMessage>(create);
   static OfferNftMessage? _defaultInstance;
 
   /// Receiver address
@@ -727,47 +676,38 @@ class CancelOfferNftMessage extends $pb.GeneratedMessage {
   factory CancelOfferNftMessage.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory CancelOfferNftMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory CancelOfferNftMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'CancelOfferNftMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CancelOfferNftMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'receiver')
     ..aOS(2, _omitFieldNames ? '' : 'creator')
-    ..aOS(3, _omitFieldNames ? '' : 'collectionName',
-        protoName: 'collectionName')
+    ..aOS(3, _omitFieldNames ? '' : 'collectionName', protoName: 'collectionName')
     ..aOS(4, _omitFieldNames ? '' : 'name')
-    ..a<$fixnum.Int64>(
-        5, _omitFieldNames ? '' : 'propertyVersion', $pb.PbFieldType.OU6,
+    ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'propertyVersion', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  CancelOfferNftMessage clone() =>
-      CancelOfferNftMessage()..mergeFromMessage(this);
+  CancelOfferNftMessage clone() => CancelOfferNftMessage()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  CancelOfferNftMessage copyWith(
-          void Function(CancelOfferNftMessage) updates) =>
-      super.copyWith((message) => updates(message as CancelOfferNftMessage))
-          as CancelOfferNftMessage;
+  CancelOfferNftMessage copyWith(void Function(CancelOfferNftMessage) updates) =>
+      super.copyWith((message) => updates(message as CancelOfferNftMessage)) as CancelOfferNftMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static CancelOfferNftMessage create() => CancelOfferNftMessage._();
   CancelOfferNftMessage createEmptyInstance() => create();
-  static $pb.PbList<CancelOfferNftMessage> createRepeated() =>
-      $pb.PbList<CancelOfferNftMessage>();
+  static $pb.PbList<CancelOfferNftMessage> createRepeated() => $pb.PbList<CancelOfferNftMessage>();
   @$core.pragma('dart2js:noInline')
-  static CancelOfferNftMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<CancelOfferNftMessage>(create);
+  static CancelOfferNftMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CancelOfferNftMessage>(create);
   static CancelOfferNftMessage? _defaultInstance;
 
   /// Receiver address
@@ -867,21 +807,16 @@ class ClaimNftMessage extends $pb.GeneratedMessage {
   factory ClaimNftMessage.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ClaimNftMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ClaimNftMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ClaimNftMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ClaimNftMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'sender')
     ..aOS(2, _omitFieldNames ? '' : 'creator')
-    ..aOS(3, _omitFieldNames ? '' : 'collectionName',
-        protoName: 'collectionName')
+    ..aOS(3, _omitFieldNames ? '' : 'collectionName', protoName: 'collectionName')
     ..aOS(4, _omitFieldNames ? '' : 'name')
-    ..a<$fixnum.Int64>(
-        5, _omitFieldNames ? '' : 'propertyVersion', $pb.PbFieldType.OU6,
+    ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'propertyVersion', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
@@ -893,19 +828,17 @@ class ClaimNftMessage extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ClaimNftMessage copyWith(void Function(ClaimNftMessage) updates) =>
-      super.copyWith((message) => updates(message as ClaimNftMessage))
-          as ClaimNftMessage;
+      super.copyWith((message) => updates(message as ClaimNftMessage)) as ClaimNftMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ClaimNftMessage create() => ClaimNftMessage._();
   ClaimNftMessage createEmptyInstance() => create();
-  static $pb.PbList<ClaimNftMessage> createRepeated() =>
-      $pb.PbList<ClaimNftMessage>();
+  static $pb.PbList<ClaimNftMessage> createRepeated() => $pb.PbList<ClaimNftMessage>();
   @$core.pragma('dart2js:noInline')
-  static ClaimNftMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ClaimNftMessage>(create);
+  static ClaimNftMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ClaimNftMessage>(create);
   static ClaimNftMessage? _defaultInstance;
 
   /// Sender address
@@ -985,19 +918,14 @@ class TortugaClaim extends $pb.GeneratedMessage {
     return $result;
   }
   TortugaClaim._() : super();
-  factory TortugaClaim.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TortugaClaim.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory TortugaClaim.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TortugaClaim.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'TortugaClaim',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'idx', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TortugaClaim',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'idx', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1008,19 +936,16 @@ class TortugaClaim extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   TortugaClaim copyWith(void Function(TortugaClaim) updates) =>
-      super.copyWith((message) => updates(message as TortugaClaim))
-          as TortugaClaim;
+      super.copyWith((message) => updates(message as TortugaClaim)) as TortugaClaim;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static TortugaClaim create() => TortugaClaim._();
   TortugaClaim createEmptyInstance() => create();
-  static $pb.PbList<TortugaClaim> createRepeated() =>
-      $pb.PbList<TortugaClaim>();
+  static $pb.PbList<TortugaClaim> createRepeated() => $pb.PbList<TortugaClaim>();
   @$core.pragma('dart2js:noInline')
-  static TortugaClaim getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TortugaClaim>(create);
+  static TortugaClaim getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TortugaClaim>(create);
   static TortugaClaim? _defaultInstance;
 
   /// idx of ticket to claim
@@ -1048,19 +973,14 @@ class TortugaStake extends $pb.GeneratedMessage {
     return $result;
   }
   TortugaStake._() : super();
-  factory TortugaStake.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TortugaStake.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory TortugaStake.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TortugaStake.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'TortugaStake',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TortugaStake',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1071,19 +991,16 @@ class TortugaStake extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   TortugaStake copyWith(void Function(TortugaStake) updates) =>
-      super.copyWith((message) => updates(message as TortugaStake))
-          as TortugaStake;
+      super.copyWith((message) => updates(message as TortugaStake)) as TortugaStake;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static TortugaStake create() => TortugaStake._();
   TortugaStake createEmptyInstance() => create();
-  static $pb.PbList<TortugaStake> createRepeated() =>
-      $pb.PbList<TortugaStake>();
+  static $pb.PbList<TortugaStake> createRepeated() => $pb.PbList<TortugaStake>();
   @$core.pragma('dart2js:noInline')
-  static TortugaStake getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TortugaStake>(create);
+  static TortugaStake getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TortugaStake>(create);
   static TortugaStake? _defaultInstance;
 
   /// Amount to be stake
@@ -1111,19 +1028,14 @@ class TortugaUnstake extends $pb.GeneratedMessage {
     return $result;
   }
   TortugaUnstake._() : super();
-  factory TortugaUnstake.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TortugaUnstake.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory TortugaUnstake.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TortugaUnstake.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'TortugaUnstake',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TortugaUnstake',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1134,19 +1046,16 @@ class TortugaUnstake extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   TortugaUnstake copyWith(void Function(TortugaUnstake) updates) =>
-      super.copyWith((message) => updates(message as TortugaUnstake))
-          as TortugaUnstake;
+      super.copyWith((message) => updates(message as TortugaUnstake)) as TortugaUnstake;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static TortugaUnstake create() => TortugaUnstake._();
   TortugaUnstake createEmptyInstance() => create();
-  static $pb.PbList<TortugaUnstake> createRepeated() =>
-      $pb.PbList<TortugaUnstake>();
+  static $pb.PbList<TortugaUnstake> createRepeated() => $pb.PbList<TortugaUnstake>();
   @$core.pragma('dart2js:noInline')
-  static TortugaUnstake getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TortugaUnstake>(create);
+  static TortugaUnstake getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TortugaUnstake>(create);
   static TortugaUnstake? _defaultInstance;
 
   /// Amount to be stake
@@ -1163,12 +1072,7 @@ class TortugaUnstake extends $pb.GeneratedMessage {
   void clearAmount() => clearField(1);
 }
 
-enum LiquidStaking_LiquidStakeTransactionPayload {
-  stake,
-  unstake,
-  claim,
-  notSet
-}
+enum LiquidStaking_LiquidStakeTransactionPayload { stake, unstake, claim, notSet }
 
 class LiquidStaking extends $pb.GeneratedMessage {
   factory LiquidStaking({
@@ -1193,11 +1097,9 @@ class LiquidStaking extends $pb.GeneratedMessage {
     return $result;
   }
   LiquidStaking._() : super();
-  factory LiquidStaking.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory LiquidStaking.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory LiquidStaking.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory LiquidStaking.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
   static const $core.Map<$core.int, LiquidStaking_LiquidStakeTransactionPayload>
@@ -1207,18 +1109,13 @@ class LiquidStaking extends $pb.GeneratedMessage {
     4: LiquidStaking_LiquidStakeTransactionPayload.claim,
     0: LiquidStaking_LiquidStakeTransactionPayload.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'LiquidStaking',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LiquidStaking',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
     ..oo(0, [2, 3, 4])
     ..aOS(1, _omitFieldNames ? '' : 'smartContractAddress')
-    ..aOM<TortugaStake>(2, _omitFieldNames ? '' : 'stake',
-        subBuilder: TortugaStake.create)
-    ..aOM<TortugaUnstake>(3, _omitFieldNames ? '' : 'unstake',
-        subBuilder: TortugaUnstake.create)
-    ..aOM<TortugaClaim>(4, _omitFieldNames ? '' : 'claim',
-        subBuilder: TortugaClaim.create)
+    ..aOM<TortugaStake>(2, _omitFieldNames ? '' : 'stake', subBuilder: TortugaStake.create)
+    ..aOM<TortugaUnstake>(3, _omitFieldNames ? '' : 'unstake', subBuilder: TortugaUnstake.create)
+    ..aOM<TortugaClaim>(4, _omitFieldNames ? '' : 'claim', subBuilder: TortugaClaim.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1229,24 +1126,20 @@ class LiquidStaking extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   LiquidStaking copyWith(void Function(LiquidStaking) updates) =>
-      super.copyWith((message) => updates(message as LiquidStaking))
-          as LiquidStaking;
+      super.copyWith((message) => updates(message as LiquidStaking)) as LiquidStaking;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static LiquidStaking create() => LiquidStaking._();
   LiquidStaking createEmptyInstance() => create();
-  static $pb.PbList<LiquidStaking> createRepeated() =>
-      $pb.PbList<LiquidStaking>();
+  static $pb.PbList<LiquidStaking> createRepeated() => $pb.PbList<LiquidStaking>();
   @$core.pragma('dart2js:noInline')
-  static LiquidStaking getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<LiquidStaking>(create);
+  static LiquidStaking getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LiquidStaking>(create);
   static LiquidStaking? _defaultInstance;
 
-  LiquidStaking_LiquidStakeTransactionPayload
-      whichLiquidStakeTransactionPayload() =>
-          _LiquidStaking_LiquidStakeTransactionPayloadByTag[$_whichOneof(0)]!;
+  LiquidStaking_LiquidStakeTransactionPayload whichLiquidStakeTransactionPayload() =>
+      _LiquidStaking_LiquidStakeTransactionPayloadByTag[$_whichOneof(0)]!;
   void clearLiquidStakeTransactionPayload() => clearField($_whichOneof(0));
 
   /// Smart contract address of liquid staking module
@@ -1305,12 +1198,7 @@ class LiquidStaking extends $pb.GeneratedMessage {
   TortugaClaim ensureClaim() => $_ensure(3);
 }
 
-enum NftMessage_NftTransactionPayload {
-  offerNft,
-  cancelOfferNft,
-  claimNft,
-  notSet
-}
+enum NftMessage_NftTransactionPayload { offerNft, cancelOfferNft, claimNft, notSet }
 
 class NftMessage extends $pb.GeneratedMessage {
   factory NftMessage({
@@ -1331,31 +1219,23 @@ class NftMessage extends $pb.GeneratedMessage {
     return $result;
   }
   NftMessage._() : super();
-  factory NftMessage.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory NftMessage.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory NftMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory NftMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, NftMessage_NftTransactionPayload>
-      _NftMessage_NftTransactionPayloadByTag = {
+  static const $core.Map<$core.int, NftMessage_NftTransactionPayload> _NftMessage_NftTransactionPayloadByTag = {
     1: NftMessage_NftTransactionPayload.offerNft,
     2: NftMessage_NftTransactionPayload.cancelOfferNft,
     3: NftMessage_NftTransactionPayload.claimNft,
     0: NftMessage_NftTransactionPayload.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'NftMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'NftMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
     ..oo(0, [1, 2, 3])
-    ..aOM<OfferNftMessage>(1, _omitFieldNames ? '' : 'offerNft',
-        subBuilder: OfferNftMessage.create)
-    ..aOM<CancelOfferNftMessage>(2, _omitFieldNames ? '' : 'cancelOfferNft',
-        subBuilder: CancelOfferNftMessage.create)
-    ..aOM<ClaimNftMessage>(3, _omitFieldNames ? '' : 'claimNft',
-        subBuilder: ClaimNftMessage.create)
+    ..aOM<OfferNftMessage>(1, _omitFieldNames ? '' : 'offerNft', subBuilder: OfferNftMessage.create)
+    ..aOM<CancelOfferNftMessage>(2, _omitFieldNames ? '' : 'cancelOfferNft', subBuilder: CancelOfferNftMessage.create)
+    ..aOM<ClaimNftMessage>(3, _omitFieldNames ? '' : 'claimNft', subBuilder: ClaimNftMessage.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1375,8 +1255,7 @@ class NftMessage extends $pb.GeneratedMessage {
   NftMessage createEmptyInstance() => create();
   static $pb.PbList<NftMessage> createRepeated() => $pb.PbList<NftMessage>();
   @$core.pragma('dart2js:noInline')
-  static NftMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<NftMessage>(create);
+  static NftMessage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<NftMessage>(create);
   static NftMessage? _defaultInstance;
 
   NftMessage_NftTransactionPayload whichNftTransactionPayload() =>
@@ -1505,15 +1384,12 @@ class SigningInput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningInput._() : super();
-  factory SigningInput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, SigningInput_TransactionPayload>
-      _SigningInput_TransactionPayloadByTag = {
+  static const $core.Map<$core.int, SigningInput_TransactionPayload> _SigningInput_TransactionPayloadByTag = {
     9: SigningInput_TransactionPayload.transfer,
     10: SigningInput_TransactionPayload.tokenTransfer,
     11: SigningInput_TransactionPayload.createAccount,
@@ -1523,41 +1399,28 @@ class SigningInput extends $pb.GeneratedMessage {
     15: SigningInput_TransactionPayload.tokenTransferCoins,
     0: SigningInput_TransactionPayload.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningInput',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
     ..oo(0, [9, 10, 11, 12, 13, 14, 15])
     ..aOS(1, _omitFieldNames ? '' : 'sender')
     ..aInt64(2, _omitFieldNames ? '' : 'sequenceNumber')
-    ..a<$fixnum.Int64>(
-        3, _omitFieldNames ? '' : 'maxGasAmount', $pb.PbFieldType.OU6,
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'maxGasAmount', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(
-        4, _omitFieldNames ? '' : 'gasUnitPrice', $pb.PbFieldType.OU6,
+    ..a<$fixnum.Int64>(4, _omitFieldNames ? '' : 'gasUnitPrice', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'expirationTimestampSecs',
-        $pb.PbFieldType.OU6,
+    ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'expirationTimestampSecs', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
     ..a<$core.int>(6, _omitFieldNames ? '' : 'chainId', $pb.PbFieldType.OU3)
-    ..a<$core.List<$core.int>>(
-        7, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(7, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
     ..aOS(8, _omitFieldNames ? '' : 'anyEncoded')
-    ..aOM<TransferMessage>(9, _omitFieldNames ? '' : 'transfer',
-        subBuilder: TransferMessage.create)
-    ..aOM<TokenTransferMessage>(10, _omitFieldNames ? '' : 'tokenTransfer',
-        subBuilder: TokenTransferMessage.create)
-    ..aOM<CreateAccountMessage>(11, _omitFieldNames ? '' : 'createAccount',
-        subBuilder: CreateAccountMessage.create)
-    ..aOM<NftMessage>(12, _omitFieldNames ? '' : 'nftMessage',
-        subBuilder: NftMessage.create)
-    ..aOM<ManagedTokensRegisterMessage>(
-        13, _omitFieldNames ? '' : 'registerToken',
+    ..aOM<TransferMessage>(9, _omitFieldNames ? '' : 'transfer', subBuilder: TransferMessage.create)
+    ..aOM<TokenTransferMessage>(10, _omitFieldNames ? '' : 'tokenTransfer', subBuilder: TokenTransferMessage.create)
+    ..aOM<CreateAccountMessage>(11, _omitFieldNames ? '' : 'createAccount', subBuilder: CreateAccountMessage.create)
+    ..aOM<NftMessage>(12, _omitFieldNames ? '' : 'nftMessage', subBuilder: NftMessage.create)
+    ..aOM<ManagedTokensRegisterMessage>(13, _omitFieldNames ? '' : 'registerToken',
         subBuilder: ManagedTokensRegisterMessage.create)
-    ..aOM<LiquidStaking>(14, _omitFieldNames ? '' : 'liquidStakingMessage',
-        subBuilder: LiquidStaking.create)
-    ..aOM<TokenTransferCoinsMessage>(
-        15, _omitFieldNames ? '' : 'tokenTransferCoins',
+    ..aOM<LiquidStaking>(14, _omitFieldNames ? '' : 'liquidStakingMessage', subBuilder: LiquidStaking.create)
+    ..aOM<TokenTransferCoinsMessage>(15, _omitFieldNames ? '' : 'tokenTransferCoins',
         subBuilder: TokenTransferCoinsMessage.create)
     ..hasRequiredFields = false;
 
@@ -1569,23 +1432,19 @@ class SigningInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningInput copyWith(void Function(SigningInput) updates) =>
-      super.copyWith((message) => updates(message as SigningInput))
-          as SigningInput;
+      super.copyWith((message) => updates(message as SigningInput)) as SigningInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningInput create() => SigningInput._();
   SigningInput createEmptyInstance() => create();
-  static $pb.PbList<SigningInput> createRepeated() =>
-      $pb.PbList<SigningInput>();
+  static $pb.PbList<SigningInput> createRepeated() => $pb.PbList<SigningInput>();
   @$core.pragma('dart2js:noInline')
-  static SigningInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
+  static SigningInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
   static SigningInput? _defaultInstance;
 
-  SigningInput_TransactionPayload whichTransactionPayload() =>
-      _SigningInput_TransactionPayloadByTag[$_whichOneof(0)]!;
+  SigningInput_TransactionPayload whichTransactionPayload() => _SigningInput_TransactionPayloadByTag[$_whichOneof(0)]!;
   void clearTransactionPayload() => clearField($_whichOneof(0));
 
   /// Sender Account address (string)
@@ -1810,43 +1669,34 @@ class TransactionAuthenticator extends $pb.GeneratedMessage {
   factory TransactionAuthenticator.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory TransactionAuthenticator.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TransactionAuthenticator.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'TransactionAuthenticator',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'signature', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        2, _omitFieldNames ? '' : 'publicKey', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TransactionAuthenticator',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'signature', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'publicKey', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  TransactionAuthenticator clone() =>
-      TransactionAuthenticator()..mergeFromMessage(this);
+  TransactionAuthenticator clone() => TransactionAuthenticator()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  TransactionAuthenticator copyWith(
-          void Function(TransactionAuthenticator) updates) =>
-      super.copyWith((message) => updates(message as TransactionAuthenticator))
-          as TransactionAuthenticator;
+  TransactionAuthenticator copyWith(void Function(TransactionAuthenticator) updates) =>
+      super.copyWith((message) => updates(message as TransactionAuthenticator)) as TransactionAuthenticator;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static TransactionAuthenticator create() => TransactionAuthenticator._();
   TransactionAuthenticator createEmptyInstance() => create();
-  static $pb.PbList<TransactionAuthenticator> createRepeated() =>
-      $pb.PbList<TransactionAuthenticator>();
+  static $pb.PbList<TransactionAuthenticator> createRepeated() => $pb.PbList<TransactionAuthenticator>();
   @$core.pragma('dart2js:noInline')
-  static TransactionAuthenticator getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TransactionAuthenticator>(create);
+  static TransactionAuthenticator getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TransactionAuthenticator>(create);
   static TransactionAuthenticator? _defaultInstance;
 
   /// Signature part of the signed transaction (bytes)
@@ -1908,28 +1758,20 @@ class SigningOutput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningOutput._() : super();
-  factory SigningOutput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningOutput',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'rawTxn', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Aptos.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'rawTxn', $pb.PbFieldType.OY)
     ..aOM<TransactionAuthenticator>(2, _omitFieldNames ? '' : 'authenticator',
         subBuilder: TransactionAuthenticator.create)
-    ..a<$core.List<$core.int>>(
-        3, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
     ..aOS(4, _omitFieldNames ? '' : 'json')
     ..e<$0.SigningError>(5, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: $0.SigningError.OK,
-        valueOf: $0.SigningError.valueOf,
-        enumValues: $0.SigningError.values)
+        defaultOrMaker: $0.SigningError.OK, valueOf: $0.SigningError.valueOf, enumValues: $0.SigningError.values)
     ..aOS(6, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
@@ -1941,19 +1783,16 @@ class SigningOutput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningOutput copyWith(void Function(SigningOutput) updates) =>
-      super.copyWith((message) => updates(message as SigningOutput))
-          as SigningOutput;
+      super.copyWith((message) => updates(message as SigningOutput)) as SigningOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningOutput create() => SigningOutput._();
   SigningOutput createEmptyInstance() => create();
-  static $pb.PbList<SigningOutput> createRepeated() =>
-      $pb.PbList<SigningOutput>();
+  static $pb.PbList<SigningOutput> createRepeated() => $pb.PbList<SigningOutput>();
   @$core.pragma('dart2js:noInline')
-  static SigningOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
+  static SigningOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
   static SigningOutput? _defaultInstance;
 
   /// / The raw transaction (bytes)
@@ -2038,5 +1877,4 @@ class SigningOutput extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

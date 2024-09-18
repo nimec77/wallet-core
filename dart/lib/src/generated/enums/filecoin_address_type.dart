@@ -16,8 +16,8 @@ enum FilecoinAddressType {
   const FilecoinAddressType(this.value);
 
   static FilecoinAddressType fromValue(int value) => switch (value) {
-    0 => defaultValue,
-    1 => delegated,
-    _ => throw ArgumentError("Unknown value for FilecoinAddressType: $value"),
-  };
+        0 => defaultValue,
+        1 => delegated,
+        _ => throw ArgumentError("Unknown value for FilecoinAddressType: $value"),
+      };
 }

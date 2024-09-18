@@ -28,20 +28,14 @@ class RlpList extends $pb.GeneratedMessage {
     return $result;
   }
   RlpList._() : super();
-  factory RlpList.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory RlpList.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory RlpList.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory RlpList.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'RlpList',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumRlp.Proto'),
-      createEmptyInstance: create)
-    ..pc<RlpItem>(1, _omitFieldNames ? '' : 'items', $pb.PbFieldType.PM,
-        subBuilder: RlpItem.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RlpList',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumRlp.Proto'), createEmptyInstance: create)
+    ..pc<RlpItem>(1, _omitFieldNames ? '' : 'items', $pb.PbFieldType.PM, subBuilder: RlpItem.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -61,24 +55,14 @@ class RlpList extends $pb.GeneratedMessage {
   RlpList createEmptyInstance() => create();
   static $pb.PbList<RlpList> createRepeated() => $pb.PbList<RlpList>();
   @$core.pragma('dart2js:noInline')
-  static RlpList getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RlpList>(create);
+  static RlpList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RlpList>(create);
   static RlpList? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<RlpItem> get items => $_getList(0);
 }
 
-enum RlpItem_Item {
-  stringItem,
-  numberU64,
-  numberU256,
-  address,
-  data,
-  list,
-  rawEncoded,
-  notSet
-}
+enum RlpItem_Item { stringItem, numberU64, numberU256, address, data, list, rawEncoded, notSet }
 
 /// RLP item.
 class RlpItem extends $pb.GeneratedMessage {
@@ -116,11 +100,9 @@ class RlpItem extends $pb.GeneratedMessage {
     return $result;
   }
   RlpItem._() : super();
-  factory RlpItem.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory RlpItem.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory RlpItem.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory RlpItem.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
   static const $core.Map<$core.int, RlpItem_Item> _RlpItem_ItemByTag = {
@@ -133,24 +115,16 @@ class RlpItem extends $pb.GeneratedMessage {
     7: RlpItem_Item.rawEncoded,
     0: RlpItem_Item.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'RlpItem',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumRlp.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RlpItem',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumRlp.Proto'), createEmptyInstance: create)
     ..oo(0, [1, 2, 3, 4, 5, 6, 7])
     ..aOS(1, _omitFieldNames ? '' : 'stringItem')
-    ..a<$fixnum.Int64>(
-        2, _omitFieldNames ? '' : 'numberU64', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$core.List<$core.int>>(
-        3, _omitFieldNames ? '' : 'numberU256', $pb.PbFieldType.OY)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'numberU64', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'numberU256', $pb.PbFieldType.OY)
     ..aOS(4, _omitFieldNames ? '' : 'address')
-    ..a<$core.List<$core.int>>(
-        5, _omitFieldNames ? '' : 'data', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(5, _omitFieldNames ? '' : 'data', $pb.PbFieldType.OY)
     ..aOM<RlpList>(6, _omitFieldNames ? '' : 'list', subBuilder: RlpList.create)
-    ..a<$core.List<$core.int>>(
-        7, _omitFieldNames ? '' : 'rawEncoded', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(7, _omitFieldNames ? '' : 'rawEncoded', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -170,8 +144,7 @@ class RlpItem extends $pb.GeneratedMessage {
   RlpItem createEmptyInstance() => create();
   static $pb.PbList<RlpItem> createRepeated() => $pb.PbList<RlpItem>();
   @$core.pragma('dart2js:noInline')
-  static RlpItem getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RlpItem>(create);
+  static RlpItem getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RlpItem>(create);
   static RlpItem? _defaultInstance;
 
   RlpItem_Item whichItem() => _RlpItem_ItemByTag[$_whichOneof(0)]!;
@@ -283,18 +256,13 @@ class EncodingInput extends $pb.GeneratedMessage {
     return $result;
   }
   EncodingInput._() : super();
-  factory EncodingInput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory EncodingInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory EncodingInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory EncodingInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'EncodingInput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumRlp.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'EncodingInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumRlp.Proto'), createEmptyInstance: create)
     ..aOM<RlpItem>(1, _omitFieldNames ? '' : 'item', subBuilder: RlpItem.create)
     ..hasRequiredFields = false;
 
@@ -306,19 +274,16 @@ class EncodingInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   EncodingInput copyWith(void Function(EncodingInput) updates) =>
-      super.copyWith((message) => updates(message as EncodingInput))
-          as EncodingInput;
+      super.copyWith((message) => updates(message as EncodingInput)) as EncodingInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static EncodingInput create() => EncodingInput._();
   EncodingInput createEmptyInstance() => create();
-  static $pb.PbList<EncodingInput> createRepeated() =>
-      $pb.PbList<EncodingInput>();
+  static $pb.PbList<EncodingInput> createRepeated() => $pb.PbList<EncodingInput>();
   @$core.pragma('dart2js:noInline')
-  static EncodingInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<EncodingInput>(create);
+  static EncodingInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<EncodingInput>(create);
   static EncodingInput? _defaultInstance;
 
   /// An item or a list to encode.
@@ -357,24 +322,16 @@ class EncodingOutput extends $pb.GeneratedMessage {
     return $result;
   }
   EncodingOutput._() : super();
-  factory EncodingOutput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory EncodingOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory EncodingOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory EncodingOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'EncodingOutput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.EthereumRlp.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'EncodingOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.EthereumRlp.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
     ..e<$0.SigningError>(2, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: $0.SigningError.OK,
-        valueOf: $0.SigningError.valueOf,
-        enumValues: $0.SigningError.values)
+        defaultOrMaker: $0.SigningError.OK, valueOf: $0.SigningError.valueOf, enumValues: $0.SigningError.values)
     ..aOS(3, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
@@ -386,19 +343,16 @@ class EncodingOutput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   EncodingOutput copyWith(void Function(EncodingOutput) updates) =>
-      super.copyWith((message) => updates(message as EncodingOutput))
-          as EncodingOutput;
+      super.copyWith((message) => updates(message as EncodingOutput)) as EncodingOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static EncodingOutput create() => EncodingOutput._();
   EncodingOutput createEmptyInstance() => create();
-  static $pb.PbList<EncodingOutput> createRepeated() =>
-      $pb.PbList<EncodingOutput>();
+  static $pb.PbList<EncodingOutput> createRepeated() => $pb.PbList<EncodingOutput>();
   @$core.pragma('dart2js:noInline')
-  static EncodingOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<EncodingOutput>(create);
+  static EncodingOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<EncodingOutput>(create);
   static EncodingOutput? _defaultInstance;
 
   /// An item RLP encoded.
@@ -442,5 +396,4 @@ class EncodingOutput extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

@@ -15,10 +15,10 @@ final class BitcoinAddress implements Disposable, Address {
   const BitcoinAddress._(Pointer<TWBitcoinAddress> pointer) : _pointer = pointer;
 
   @override
-  bool operator == (Object other) => switch(other) {
-    BitcoinAddress obj => _bindings.TWBitcoinAddressEqual(_pointer, obj.pointer),
-    _ => false,
-  };
+  bool operator ==(Object other) => switch (other) {
+        BitcoinAddress obj => _bindings.TWBitcoinAddressEqual(_pointer, obj.pointer),
+        _ => false,
+      };
 
   @override
   int get hashCode => _pointer.hashCode;
@@ -92,6 +92,7 @@ final class BitcoinAddress implements Disposable, Address {
 
     return result;
   }
+
   @override
   String get description {
     final obj = pointer;
@@ -102,14 +103,14 @@ final class BitcoinAddress implements Disposable, Address {
 
     return val;
   }
-    
+
   int get prefix {
     final obj = pointer;
     final result = _bindings.TWBitcoinAddressPrefix(obj);
 
     return result;
   }
-    
+
   Uint8List get keyhash {
     final obj = pointer;
     final result = _bindings.TWBitcoinAddressKeyhash(obj);
@@ -119,5 +120,4 @@ final class BitcoinAddress implements Disposable, Address {
 
     return val;
   }
-  
 }

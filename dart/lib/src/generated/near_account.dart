@@ -34,7 +34,7 @@ final class NEARAccount implements Disposable {
   void dispose() {
     _bindings.TWNEARAccountDelete(pointer);
   }
-  
+
   String get description {
     final obj = pointer;
     final result = _bindings.TWNEARAccountDescription(obj);
@@ -44,5 +44,4 @@ final class NEARAccount implements Disposable {
 
     return val;
   }
-  
 }

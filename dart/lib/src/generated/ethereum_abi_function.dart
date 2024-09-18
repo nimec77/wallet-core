@@ -494,5 +494,4 @@ final class EthereumAbiFunction implements Disposable {
 
     return result;
   }
-
 }

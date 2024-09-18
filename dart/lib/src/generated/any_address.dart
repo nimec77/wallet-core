@@ -15,10 +15,10 @@ final class AnyAddress implements Disposable, Address {
   const AnyAddress._(Pointer<TWAnyAddress> pointer) : _pointer = pointer;
 
   @override
-  bool operator == (Object other) => switch(other) {
-    AnyAddress obj => _bindings.TWAnyAddressEqual(_pointer, obj.pointer),
-    _ => false,
-  };
+  bool operator ==(Object other) => switch (other) {
+        AnyAddress obj => _bindings.TWAnyAddressEqual(_pointer, obj.pointer),
+        _ => false,
+      };
 
   @override
   int get hashCode => _pointer.hashCode;
@@ -137,7 +137,10 @@ final class AnyAddress implements Disposable, Address {
   }) {
     final publicKeyPublicKey = publicKey.pointer;
     final filecoinAddressTypeEnum = TWFilecoinAddressType.fromValue(filecoinAddressType.value);
-    final result = _bindings.TWAnyAddressCreateWithPublicKeyFilecoinAddressType(publicKeyPublicKey, filecoinAddressTypeEnum,);
+    final result = _bindings.TWAnyAddressCreateWithPublicKeyFilecoinAddressType(
+      publicKeyPublicKey,
+      filecoinAddressTypeEnum,
+    );
 
     return AnyAddress._(result);
   }
@@ -186,6 +189,7 @@ final class AnyAddress implements Disposable, Address {
 
     return result;
   }
+
   @override
   String get description {
     final obj = pointer;
@@ -196,14 +200,14 @@ final class AnyAddress implements Disposable, Address {
 
     return val;
   }
-    
+
   CoinType get coin {
     final obj = pointer;
     final result = _bindings.TWAnyAddressCoin(obj);
 
     return CoinType.fromValue(result.value);
   }
-    
+
   Uint8List get data {
     final obj = pointer;
     final result = _bindings.TWAnyAddressData(obj);
@@ -213,5 +217,4 @@ final class AnyAddress implements Disposable, Address {
 
     return val;
   }
-  
 }

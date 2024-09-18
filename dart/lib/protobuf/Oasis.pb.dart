@@ -51,22 +51,16 @@ class TransferMessage extends $pb.GeneratedMessage {
   factory TransferMessage.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory TransferMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory TransferMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'TransferMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Oasis.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TransferMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Oasis.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'to')
-    ..a<$fixnum.Int64>(
-        2, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(3, _omitFieldNames ? '' : 'gasAmount')
     ..aOS(4, _omitFieldNames ? '' : 'amount')
-    ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'nonce', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'nonce', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(6, _omitFieldNames ? '' : 'context')
     ..hasRequiredFields = false;
 
@@ -78,19 +72,17 @@ class TransferMessage extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   TransferMessage copyWith(void Function(TransferMessage) updates) =>
-      super.copyWith((message) => updates(message as TransferMessage))
-          as TransferMessage;
+      super.copyWith((message) => updates(message as TransferMessage)) as TransferMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static TransferMessage create() => TransferMessage._();
   TransferMessage createEmptyInstance() => create();
-  static $pb.PbList<TransferMessage> createRepeated() =>
-      $pb.PbList<TransferMessage>();
+  static $pb.PbList<TransferMessage> createRepeated() => $pb.PbList<TransferMessage>();
   @$core.pragma('dart2js:noInline')
-  static TransferMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<TransferMessage>(create);
+  static TransferMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TransferMessage>(create);
   static TransferMessage? _defaultInstance;
 
   /// destination address
@@ -203,23 +195,16 @@ class EscrowMessage extends $pb.GeneratedMessage {
     return $result;
   }
   EscrowMessage._() : super();
-  factory EscrowMessage.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory EscrowMessage.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory EscrowMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory EscrowMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'EscrowMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Oasis.Proto'),
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(
-        1, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'EscrowMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Oasis.Proto'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(2, _omitFieldNames ? '' : 'gasAmount')
-    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'nonce', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'nonce', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(4, _omitFieldNames ? '' : 'account')
     ..aOS(5, _omitFieldNames ? '' : 'amount')
     ..aOS(6, _omitFieldNames ? '' : 'context')
@@ -233,19 +218,16 @@ class EscrowMessage extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   EscrowMessage copyWith(void Function(EscrowMessage) updates) =>
-      super.copyWith((message) => updates(message as EscrowMessage))
-          as EscrowMessage;
+      super.copyWith((message) => updates(message as EscrowMessage)) as EscrowMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static EscrowMessage create() => EscrowMessage._();
   EscrowMessage createEmptyInstance() => create();
-  static $pb.PbList<EscrowMessage> createRepeated() =>
-      $pb.PbList<EscrowMessage>();
+  static $pb.PbList<EscrowMessage> createRepeated() => $pb.PbList<EscrowMessage>();
   @$core.pragma('dart2js:noInline')
-  static EscrowMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<EscrowMessage>(create);
+  static EscrowMessage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<EscrowMessage>(create);
   static EscrowMessage? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -355,20 +337,14 @@ class ReclaimEscrowMessage extends $pb.GeneratedMessage {
   factory ReclaimEscrowMessage.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ReclaimEscrowMessage.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ReclaimEscrowMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ReclaimEscrowMessage',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Oasis.Proto'),
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(
-        1, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ReclaimEscrowMessage',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Oasis.Proto'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'gasPrice', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(2, _omitFieldNames ? '' : 'gasAmount')
-    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'nonce', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'nonce', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(4, _omitFieldNames ? '' : 'account')
     ..aOS(5, _omitFieldNames ? '' : 'shares')
     ..aOS(6, _omitFieldNames ? '' : 'context')
@@ -377,25 +353,22 @@ class ReclaimEscrowMessage extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  ReclaimEscrowMessage clone() =>
-      ReclaimEscrowMessage()..mergeFromMessage(this);
+  ReclaimEscrowMessage clone() => ReclaimEscrowMessage()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ReclaimEscrowMessage copyWith(void Function(ReclaimEscrowMessage) updates) =>
-      super.copyWith((message) => updates(message as ReclaimEscrowMessage))
-          as ReclaimEscrowMessage;
+      super.copyWith((message) => updates(message as ReclaimEscrowMessage)) as ReclaimEscrowMessage;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static ReclaimEscrowMessage create() => ReclaimEscrowMessage._();
   ReclaimEscrowMessage createEmptyInstance() => create();
-  static $pb.PbList<ReclaimEscrowMessage> createRepeated() =>
-      $pb.PbList<ReclaimEscrowMessage>();
+  static $pb.PbList<ReclaimEscrowMessage> createRepeated() => $pb.PbList<ReclaimEscrowMessage>();
   @$core.pragma('dart2js:noInline')
-  static ReclaimEscrowMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ReclaimEscrowMessage>(create);
+  static ReclaimEscrowMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ReclaimEscrowMessage>(create);
   static ReclaimEscrowMessage? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -497,31 +470,23 @@ class SigningInput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningInput._() : super();
-  factory SigningInput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, SigningInput_Message>
-      _SigningInput_MessageByTag = {
+  static const $core.Map<$core.int, SigningInput_Message> _SigningInput_MessageByTag = {
     2: SigningInput_Message.transfer,
     3: SigningInput_Message.escrow,
     4: SigningInput_Message.reclaimEscrow,
     0: SigningInput_Message.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningInput',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Oasis.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Oasis.Proto'), createEmptyInstance: create)
     ..oo(0, [2, 3, 4])
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
-    ..aOM<TransferMessage>(2, _omitFieldNames ? '' : 'transfer',
-        subBuilder: TransferMessage.create)
-    ..aOM<EscrowMessage>(3, _omitFieldNames ? '' : 'escrow',
-        subBuilder: EscrowMessage.create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
+    ..aOM<TransferMessage>(2, _omitFieldNames ? '' : 'transfer', subBuilder: TransferMessage.create)
+    ..aOM<EscrowMessage>(3, _omitFieldNames ? '' : 'escrow', subBuilder: EscrowMessage.create)
     ..aOM<ReclaimEscrowMessage>(4, _omitFieldNames ? '' : 'reclaimEscrow',
         protoName: 'reclaimEscrow', subBuilder: ReclaimEscrowMessage.create)
     ..hasRequiredFields = false;
@@ -534,23 +499,19 @@ class SigningInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningInput copyWith(void Function(SigningInput) updates) =>
-      super.copyWith((message) => updates(message as SigningInput))
-          as SigningInput;
+      super.copyWith((message) => updates(message as SigningInput)) as SigningInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningInput create() => SigningInput._();
   SigningInput createEmptyInstance() => create();
-  static $pb.PbList<SigningInput> createRepeated() =>
-      $pb.PbList<SigningInput>();
+  static $pb.PbList<SigningInput> createRepeated() => $pb.PbList<SigningInput>();
   @$core.pragma('dart2js:noInline')
-  static SigningInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
+  static SigningInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
   static SigningInput? _defaultInstance;
 
-  SigningInput_Message whichMessage() =>
-      _SigningInput_MessageByTag[$_whichOneof(0)]!;
+  SigningInput_Message whichMessage() => _SigningInput_MessageByTag[$_whichOneof(0)]!;
   void clearMessage() => clearField($_whichOneof(0));
 
   /// The secret private key used for signing (32 bytes).
@@ -629,23 +590,16 @@ class SigningOutput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningOutput._() : super();
-  factory SigningOutput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningOutput',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Oasis.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Oasis.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'encoded', $pb.PbFieldType.OY)
     ..e<$0.SigningError>(2, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: $0.SigningError.OK,
-        valueOf: $0.SigningError.valueOf,
-        enumValues: $0.SigningError.values)
+        defaultOrMaker: $0.SigningError.OK, valueOf: $0.SigningError.valueOf, enumValues: $0.SigningError.values)
     ..aOS(3, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
@@ -657,19 +611,16 @@ class SigningOutput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningOutput copyWith(void Function(SigningOutput) updates) =>
-      super.copyWith((message) => updates(message as SigningOutput))
-          as SigningOutput;
+      super.copyWith((message) => updates(message as SigningOutput)) as SigningOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningOutput create() => SigningOutput._();
   SigningOutput createEmptyInstance() => create();
-  static $pb.PbList<SigningOutput> createRepeated() =>
-      $pb.PbList<SigningOutput>();
+  static $pb.PbList<SigningOutput> createRepeated() => $pb.PbList<SigningOutput>();
   @$core.pragma('dart2js:noInline')
-  static SigningOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
+  static SigningOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
   static SigningOutput? _defaultInstance;
 
   /// Signed and encoded transaction bytes.
@@ -713,5 +664,4 @@ class SigningOutput extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

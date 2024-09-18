@@ -60,12 +60,11 @@ final class DataVector implements Disposable {
 
     return val;
   }
-  
+
   int get size {
     final obj = pointer;
     final result = _bindings.TWDataVectorSize(obj);
 
     return result;
   }
-  
 }

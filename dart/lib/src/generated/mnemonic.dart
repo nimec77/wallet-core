@@ -8,7 +8,6 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class Mnemonic {
-
   static bool isValid({
     required String mnemonic,
   }) {
@@ -41,5 +40,4 @@ final class Mnemonic {
 
     return val;
   }
-
 }

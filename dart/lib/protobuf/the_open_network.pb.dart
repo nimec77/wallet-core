@@ -56,11 +56,9 @@ class Transfer extends $pb.GeneratedMessage {
     return $result;
   }
   Transfer._() : super();
-  factory Transfer.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Transfer.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Transfer.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Transfer.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
   static const $core.Map<$core.int, Transfer_Payload> _Transfer_PayloadByTag = {
@@ -68,22 +66,16 @@ class Transfer extends $pb.GeneratedMessage {
     7: Transfer_Payload.customPayload,
     0: Transfer_Payload.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Transfer',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.TheOpenNetwork.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Transfer',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.TheOpenNetwork.Proto'), createEmptyInstance: create)
     ..oo(0, [6, 7])
     ..aOS(1, _omitFieldNames ? '' : 'dest')
-    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..a<$core.int>(3, _omitFieldNames ? '' : 'mode', $pb.PbFieldType.OU3)
     ..aOS(4, _omitFieldNames ? '' : 'comment')
     ..aOB(5, _omitFieldNames ? '' : 'bounceable')
-    ..aOM<JettonTransfer>(6, _omitFieldNames ? '' : 'jettonTransfer',
-        subBuilder: JettonTransfer.create)
-    ..aOM<CustomPayload>(7, _omitFieldNames ? '' : 'customPayload',
-        subBuilder: CustomPayload.create)
+    ..aOM<JettonTransfer>(6, _omitFieldNames ? '' : 'jettonTransfer', subBuilder: JettonTransfer.create)
+    ..aOM<CustomPayload>(7, _omitFieldNames ? '' : 'customPayload', subBuilder: CustomPayload.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -103,8 +95,7 @@ class Transfer extends $pb.GeneratedMessage {
   Transfer createEmptyInstance() => create();
   static $pb.PbList<Transfer> createRepeated() => $pb.PbList<Transfer>();
   @$core.pragma('dart2js:noInline')
-  static Transfer getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Transfer>(create);
+  static Transfer getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Transfer>(create);
   static Transfer? _defaultInstance;
 
   Transfer_Payload whichPayload() => _Transfer_PayloadByTag[$_whichOneof(0)]!;
@@ -235,27 +226,19 @@ class JettonTransfer extends $pb.GeneratedMessage {
     return $result;
   }
   JettonTransfer._() : super();
-  factory JettonTransfer.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory JettonTransfer.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory JettonTransfer.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory JettonTransfer.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'JettonTransfer',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.TheOpenNetwork.Proto'),
-      createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'queryId', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(
-        2, _omitFieldNames ? '' : 'jettonAmount', $pb.PbFieldType.OU6,
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'JettonTransfer',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.TheOpenNetwork.Proto'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'queryId', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'jettonAmount', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(3, _omitFieldNames ? '' : 'toOwner')
     ..aOS(4, _omitFieldNames ? '' : 'responseAddress')
-    ..a<$fixnum.Int64>(
-        5, _omitFieldNames ? '' : 'forwardAmount', $pb.PbFieldType.OU6,
+    ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'forwardAmount', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
@@ -267,19 +250,16 @@ class JettonTransfer extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   JettonTransfer copyWith(void Function(JettonTransfer) updates) =>
-      super.copyWith((message) => updates(message as JettonTransfer))
-          as JettonTransfer;
+      super.copyWith((message) => updates(message as JettonTransfer)) as JettonTransfer;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static JettonTransfer create() => JettonTransfer._();
   JettonTransfer createEmptyInstance() => create();
-  static $pb.PbList<JettonTransfer> createRepeated() =>
-      $pb.PbList<JettonTransfer>();
+  static $pb.PbList<JettonTransfer> createRepeated() => $pb.PbList<JettonTransfer>();
   @$core.pragma('dart2js:noInline')
-  static JettonTransfer getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<JettonTransfer>(create);
+  static JettonTransfer getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<JettonTransfer>(create);
   static JettonTransfer? _defaultInstance;
 
   /// Arbitrary request number. Default is 0. Optional field.
@@ -363,18 +343,13 @@ class CustomPayload extends $pb.GeneratedMessage {
     return $result;
   }
   CustomPayload._() : super();
-  factory CustomPayload.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory CustomPayload.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory CustomPayload.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory CustomPayload.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'CustomPayload',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.TheOpenNetwork.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CustomPayload',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.TheOpenNetwork.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'stateInit')
     ..aOS(2, _omitFieldNames ? '' : 'payload')
     ..hasRequiredFields = false;
@@ -387,19 +362,16 @@ class CustomPayload extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   CustomPayload copyWith(void Function(CustomPayload) updates) =>
-      super.copyWith((message) => updates(message as CustomPayload))
-          as CustomPayload;
+      super.copyWith((message) => updates(message as CustomPayload)) as CustomPayload;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static CustomPayload create() => CustomPayload._();
   CustomPayload createEmptyInstance() => create();
-  static $pb.PbList<CustomPayload> createRepeated() =>
-      $pb.PbList<CustomPayload>();
+  static $pb.PbList<CustomPayload> createRepeated() => $pb.PbList<CustomPayload>();
   @$core.pragma('dart2js:noInline')
-  static CustomPayload getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<CustomPayload>(create);
+  static CustomPayload getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CustomPayload>(create);
   static CustomPayload? _defaultInstance;
 
   /// (string base64, optional): raw one-cell BoC encoded in Base64.
@@ -461,32 +433,20 @@ class SigningInput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningInput._() : super();
-  factory SigningInput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningInput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.TheOpenNetwork.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(
-        2, _omitFieldNames ? '' : 'publicKey', $pb.PbFieldType.OY)
-    ..pc<Transfer>(3, _omitFieldNames ? '' : 'messages', $pb.PbFieldType.PM,
-        subBuilder: Transfer.create)
-    ..a<$core.int>(
-        4, _omitFieldNames ? '' : 'sequenceNumber', $pb.PbFieldType.OU3)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.TheOpenNetwork.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'publicKey', $pb.PbFieldType.OY)
+    ..pc<Transfer>(3, _omitFieldNames ? '' : 'messages', $pb.PbFieldType.PM, subBuilder: Transfer.create)
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'sequenceNumber', $pb.PbFieldType.OU3)
     ..a<$core.int>(5, _omitFieldNames ? '' : 'expireAt', $pb.PbFieldType.OU3)
-    ..e<WalletVersion>(
-        6, _omitFieldNames ? '' : 'walletVersion', $pb.PbFieldType.OE,
-        defaultOrMaker: WalletVersion.WALLET_V3_R1,
-        valueOf: WalletVersion.valueOf,
-        enumValues: WalletVersion.values)
+    ..e<WalletVersion>(6, _omitFieldNames ? '' : 'walletVersion', $pb.PbFieldType.OE,
+        defaultOrMaker: WalletVersion.WALLET_V3_R1, valueOf: WalletVersion.valueOf, enumValues: WalletVersion.values)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -497,19 +457,16 @@ class SigningInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningInput copyWith(void Function(SigningInput) updates) =>
-      super.copyWith((message) => updates(message as SigningInput))
-          as SigningInput;
+      super.copyWith((message) => updates(message as SigningInput)) as SigningInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningInput create() => SigningInput._();
   SigningInput createEmptyInstance() => create();
-  static $pb.PbList<SigningInput> createRepeated() =>
-      $pb.PbList<SigningInput>();
+  static $pb.PbList<SigningInput> createRepeated() => $pb.PbList<SigningInput>();
   @$core.pragma('dart2js:noInline')
-  static SigningInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
+  static SigningInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
   static SigningInput? _defaultInstance;
 
   /// The secret private key used for signing (32 bytes).
@@ -608,25 +565,17 @@ class SigningOutput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningOutput._() : super();
-  factory SigningOutput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningOutput',
-      package: const $pb.PackageName(
-          _omitMessageNames ? '' : 'TW.TheOpenNetwork.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.TheOpenNetwork.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'encoded')
-    ..a<$core.List<$core.int>>(
-        2, _omitFieldNames ? '' : 'hash', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'hash', $pb.PbFieldType.OY)
     ..e<$0.SigningError>(3, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: $0.SigningError.OK,
-        valueOf: $0.SigningError.valueOf,
-        enumValues: $0.SigningError.values)
+        defaultOrMaker: $0.SigningError.OK, valueOf: $0.SigningError.valueOf, enumValues: $0.SigningError.values)
     ..aOS(4, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
@@ -638,19 +587,16 @@ class SigningOutput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningOutput copyWith(void Function(SigningOutput) updates) =>
-      super.copyWith((message) => updates(message as SigningOutput))
-          as SigningOutput;
+      super.copyWith((message) => updates(message as SigningOutput)) as SigningOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningOutput create() => SigningOutput._();
   SigningOutput createEmptyInstance() => create();
-  static $pb.PbList<SigningOutput> createRepeated() =>
-      $pb.PbList<SigningOutput>();
+  static $pb.PbList<SigningOutput> createRepeated() => $pb.PbList<SigningOutput>();
   @$core.pragma('dart2js:noInline')
-  static SigningOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
+  static SigningOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
   static SigningOutput? _defaultInstance;
 
   /// Signed and base64 encoded BOC message
@@ -707,5 +653,4 @@ class SigningOutput extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

@@ -15,10 +15,10 @@ final class BitcoinScript implements Disposable {
   const BitcoinScript._(Pointer<TWBitcoinScript> pointer) : _pointer = pointer;
 
   @override
-  bool operator == (Object other) => switch(other) {
-    BitcoinScript obj => _bindings.TWBitcoinScriptEqual(_pointer, obj.pointer),
-    _ => false,
-  };
+  bool operator ==(Object other) => switch (other) {
+        BitcoinScript obj => _bindings.TWBitcoinScriptEqual(_pointer, obj.pointer),
+        _ => false,
+      };
 
   @override
   int get hashCode => _pointer.hashCode;
@@ -198,14 +198,14 @@ final class BitcoinScript implements Disposable {
 
     return result;
   }
-  
+
   int get size {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptSize(obj);
 
     return result;
   }
-    
+
   Uint8List get data {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptData(obj);
@@ -215,7 +215,7 @@ final class BitcoinScript implements Disposable {
 
     return val;
   }
-    
+
   Uint8List get scriptHash {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptScriptHash(obj);
@@ -225,33 +225,32 @@ final class BitcoinScript implements Disposable {
 
     return val;
   }
-    
+
   bool get isPayToScriptHash {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptIsPayToScriptHash(obj);
 
     return result;
   }
-    
+
   bool get isPayToWitnessScriptHash {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptIsPayToWitnessScriptHash(obj);
 
     return result;
   }
-    
+
   bool get isPayToWitnessPublicKeyHash {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptIsPayToWitnessPublicKeyHash(obj);
 
     return result;
   }
-    
+
   bool get isWitnessProgram {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptIsWitnessProgram(obj);
 
     return result;
   }
-  
 }

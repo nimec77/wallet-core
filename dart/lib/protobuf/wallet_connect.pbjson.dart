@@ -22,8 +22,7 @@ const Protocol$json = {
 };
 
 /// Descriptor for `Protocol`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List protocolDescriptor =
-    $convert.base64Decode('CghQcm90b2NvbBIGCgJWMhAA');
+final $typed_data.Uint8List protocolDescriptor = $convert.base64Decode('CghQcm90b2NvbBIGCgJWMhAA');
 
 @$core.Deprecated('Use methodDescriptor instead')
 const Method$json = {
@@ -36,71 +35,34 @@ const Method$json = {
 };
 
 /// Descriptor for `Method`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List methodDescriptor = $convert.base64Decode(
-    'CgZNZXRob2QSCwoHVW5rbm93bhAAEhMKD0Nvc21vc1NpZ25BbWlubxABEhkKFVNvbGFuYVNpZ2'
-    '5UcmFuc2FjdGlvbhAC');
+final $typed_data.Uint8List methodDescriptor =
+    $convert.base64Decode('CgZNZXRob2QSCwoHVW5rbm93bhAAEhMKD0Nvc21vc1NpZ25BbWlubxABEhkKFVNvbGFuYVNpZ2'
+        '5UcmFuc2FjdGlvbhAC');
 
 @$core.Deprecated('Use parseRequestInputDescriptor instead')
 const ParseRequestInput$json = {
   '1': 'ParseRequestInput',
   '2': [
-    {
-      '1': 'protocol',
-      '3': 1,
-      '4': 1,
-      '5': 14,
-      '6': '.TW.WalletConnect.Proto.Protocol',
-      '10': 'protocol'
-    },
-    {
-      '1': 'method',
-      '3': 2,
-      '4': 1,
-      '5': 14,
-      '6': '.TW.WalletConnect.Proto.Method',
-      '10': 'method'
-    },
+    {'1': 'protocol', '3': 1, '4': 1, '5': 14, '6': '.TW.WalletConnect.Proto.Protocol', '10': 'protocol'},
+    {'1': 'method', '3': 2, '4': 1, '5': 14, '6': '.TW.WalletConnect.Proto.Method', '10': 'method'},
     {'1': 'payload', '3': 3, '4': 1, '5': 9, '10': 'payload'},
   ],
 };
 
 /// Descriptor for `ParseRequestInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List parseRequestInputDescriptor = $convert.base64Decode(
-    'ChFQYXJzZVJlcXVlc3RJbnB1dBI8Cghwcm90b2NvbBgBIAEoDjIgLlRXLldhbGxldENvbm5lY3'
-    'QuUHJvdG8uUHJvdG9jb2xSCHByb3RvY29sEjYKBm1ldGhvZBgCIAEoDjIeLlRXLldhbGxldENv'
-    'bm5lY3QuUHJvdG8uTWV0aG9kUgZtZXRob2QSGAoHcGF5bG9hZBgDIAEoCVIHcGF5bG9hZA==');
+final $typed_data.Uint8List parseRequestInputDescriptor =
+    $convert.base64Decode('ChFQYXJzZVJlcXVlc3RJbnB1dBI8Cghwcm90b2NvbBgBIAEoDjIgLlRXLldhbGxldENvbm5lY3'
+        'QuUHJvdG8uUHJvdG9jb2xSCHByb3RvY29sEjYKBm1ldGhvZBgCIAEoDjIeLlRXLldhbGxldENv'
+        'bm5lY3QuUHJvdG8uTWV0aG9kUgZtZXRob2QSGAoHcGF5bG9hZBgDIAEoCVIHcGF5bG9hZA==');
 
 @$core.Deprecated('Use parseRequestOutputDescriptor instead')
 const ParseRequestOutput$json = {
   '1': 'ParseRequestOutput',
   '2': [
-    {
-      '1': 'error',
-      '3': 1,
-      '4': 1,
-      '5': 14,
-      '6': '.TW.Common.Proto.SigningError',
-      '10': 'error'
-    },
+    {'1': 'error', '3': 1, '4': 1, '5': 14, '6': '.TW.Common.Proto.SigningError', '10': 'error'},
     {'1': 'error_message', '3': 2, '4': 1, '5': 9, '10': 'errorMessage'},
-    {
-      '1': 'binance',
-      '3': 3,
-      '4': 1,
-      '5': 11,
-      '6': '.TW.Binance.Proto.SigningInput',
-      '9': 0,
-      '10': 'binance'
-    },
-    {
-      '1': 'solana',
-      '3': 4,
-      '4': 1,
-      '5': 11,
-      '6': '.TW.Solana.Proto.SigningInput',
-      '9': 0,
-      '10': 'solana'
-    },
+    {'1': 'binance', '3': 3, '4': 1, '5': 11, '6': '.TW.Binance.Proto.SigningInput', '9': 0, '10': 'binance'},
+    {'1': 'solana', '3': 4, '4': 1, '5': 11, '6': '.TW.Solana.Proto.SigningInput', '9': 0, '10': 'solana'},
   ],
   '8': [
     {'1': 'signing_input_oneof'},
@@ -108,9 +70,9 @@ const ParseRequestOutput$json = {
 };
 
 /// Descriptor for `ParseRequestOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List parseRequestOutputDescriptor = $convert.base64Decode(
-    'ChJQYXJzZVJlcXVlc3RPdXRwdXQSMwoFZXJyb3IYASABKA4yHS5UVy5Db21tb24uUHJvdG8uU2'
-    'lnbmluZ0Vycm9yUgVlcnJvchIjCg1lcnJvcl9tZXNzYWdlGAIgASgJUgxlcnJvck1lc3NhZ2US'
-    'OgoHYmluYW5jZRgDIAEoCzIeLlRXLkJpbmFuY2UuUHJvdG8uU2lnbmluZ0lucHV0SABSB2Jpbm'
-    'FuY2USNwoGc29sYW5hGAQgASgLMh0uVFcuU29sYW5hLlByb3RvLlNpZ25pbmdJbnB1dEgAUgZz'
-    'b2xhbmFCFQoTc2lnbmluZ19pbnB1dF9vbmVvZg==');
+final $typed_data.Uint8List parseRequestOutputDescriptor =
+    $convert.base64Decode('ChJQYXJzZVJlcXVlc3RPdXRwdXQSMwoFZXJyb3IYASABKA4yHS5UVy5Db21tb24uUHJvdG8uU2'
+        'lnbmluZ0Vycm9yUgVlcnJvchIjCg1lcnJvcl9tZXNzYWdlGAIgASgJUgxlcnJvck1lc3NhZ2US'
+        'OgoHYmluYW5jZRgDIAEoCzIeLlRXLkJpbmFuY2UuUHJvdG8uU2lnbmluZ0lucHV0SABSB2Jpbm'
+        'FuY2USNwoGc29sYW5hGAQgASgLMh0uVFcuU29sYW5hLlByb3RvLlNpZ25pbmdJbnB1dEgAUgZz'
+        'b2xhbmFCFQoTc2lnbmluZ19pbnB1dF9vbmVvZg==');

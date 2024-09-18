@@ -29,12 +29,12 @@ const SigningInput$json = {
 };
 
 /// Descriptor for `SigningInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingInputDescriptor = $convert.base64Decode(
-    'CgxTaWduaW5nSW5wdXQSGQoIY2hhaW5faWQYASABKAlSB2NoYWluSWQSHQoKdG9fYWRkcmVzcx'
-    'gCIAEoCVIJdG9BZGRyZXNzEiEKDHRoZXRhX2Ftb3VudBgDIAEoDFILdGhldGFBbW91bnQSIQoM'
-    'dGZ1ZWxfYW1vdW50GAQgASgMUgt0ZnVlbEFtb3VudBIaCghzZXF1ZW5jZRgFIAEoBFIIc2VxdW'
-    'VuY2USEAoDZmVlGAYgASgMUgNmZWUSHwoLcHJpdmF0ZV9rZXkYByABKAxSCnByaXZhdGVLZXkS'
-    'HQoKcHVibGljX2tleRgIIAEoDFIJcHVibGljS2V5');
+final $typed_data.Uint8List signingInputDescriptor =
+    $convert.base64Decode('CgxTaWduaW5nSW5wdXQSGQoIY2hhaW5faWQYASABKAlSB2NoYWluSWQSHQoKdG9fYWRkcmVzcx'
+        'gCIAEoCVIJdG9BZGRyZXNzEiEKDHRoZXRhX2Ftb3VudBgDIAEoDFILdGhldGFBbW91bnQSIQoM'
+        'dGZ1ZWxfYW1vdW50GAQgASgMUgt0ZnVlbEFtb3VudBIaCghzZXF1ZW5jZRgFIAEoBFIIc2VxdW'
+        'VuY2USEAoDZmVlGAYgASgMUgNmZWUSHwoLcHJpdmF0ZV9rZXkYByABKAxSCnByaXZhdGVLZXkS'
+        'HQoKcHVibGljX2tleRgIIAEoDFIJcHVibGljS2V5');
 
 @$core.Deprecated('Use signingOutputDescriptor instead')
 const SigningOutput$json = {
@@ -42,20 +42,13 @@ const SigningOutput$json = {
   '2': [
     {'1': 'encoded', '3': 1, '4': 1, '5': 12, '10': 'encoded'},
     {'1': 'signature', '3': 2, '4': 1, '5': 12, '10': 'signature'},
-    {
-      '1': 'error',
-      '3': 3,
-      '4': 1,
-      '5': 14,
-      '6': '.TW.Common.Proto.SigningError',
-      '10': 'error'
-    },
+    {'1': 'error', '3': 3, '4': 1, '5': 14, '6': '.TW.Common.Proto.SigningError', '10': 'error'},
     {'1': 'error_message', '3': 4, '4': 1, '5': 9, '10': 'errorMessage'},
   ],
 };
 
 /// Descriptor for `SigningOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signingOutputDescriptor = $convert.base64Decode(
-    'Cg1TaWduaW5nT3V0cHV0EhgKB2VuY29kZWQYASABKAxSB2VuY29kZWQSHAoJc2lnbmF0dXJlGA'
-    'IgASgMUglzaWduYXR1cmUSMwoFZXJyb3IYAyABKA4yHS5UVy5Db21tb24uUHJvdG8uU2lnbmlu'
-    'Z0Vycm9yUgVlcnJvchIjCg1lcnJvcl9tZXNzYWdlGAQgASgJUgxlcnJvck1lc3NhZ2U=');
+final $typed_data.Uint8List signingOutputDescriptor =
+    $convert.base64Decode('Cg1TaWduaW5nT3V0cHV0EhgKB2VuY29kZWQYASABKAxSB2VuY29kZWQSHAoJc2lnbmF0dXJlGA'
+        'IgASgMUglzaWduYXR1cmUSMwoFZXJyb3IYAyABKA4yHS5UVy5Db21tb24uUHJvdG8uU2lnbmlu'
+        'Z0Vycm9yUgVlcnJvchIjCg1lcnJvcl9tZXNzYWdlGAQgASgJUgxlcnJvck1lc3NhZ2U=');

@@ -36,18 +36,13 @@ class Asset extends $pb.GeneratedMessage {
     return $result;
   }
   Asset._() : super();
-  factory Asset.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Asset.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Asset.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Asset.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Asset',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Asset',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'issuer')
     ..aOS(2, _omitFieldNames ? '' : 'alphanum4')
     ..hasRequiredFields = false;
@@ -59,8 +54,7 @@ class Asset extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Asset copyWith(void Function(Asset) updates) =>
-      super.copyWith((message) => updates(message as Asset)) as Asset;
+  Asset copyWith(void Function(Asset) updates) => super.copyWith((message) => updates(message as Asset)) as Asset;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -69,8 +63,7 @@ class Asset extends $pb.GeneratedMessage {
   Asset createEmptyInstance() => create();
   static $pb.PbList<Asset> createRepeated() => $pb.PbList<Asset>();
   @$core.pragma('dart2js:noInline')
-  static Asset getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Asset>(create);
+  static Asset getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Asset>(create);
   static Asset? _defaultInstance;
 
   /// Optional in case of non-native asset; the asset issuer address
@@ -119,15 +112,11 @@ class OperationCreateAccount extends $pb.GeneratedMessage {
   factory OperationCreateAccount.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory OperationCreateAccount.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory OperationCreateAccount.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationCreateAccount',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationCreateAccount',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'destination')
     ..aInt64(2, _omitFieldNames ? '' : 'amount')
     ..hasRequiredFields = false;
@@ -135,26 +124,22 @@ class OperationCreateAccount extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  OperationCreateAccount clone() =>
-      OperationCreateAccount()..mergeFromMessage(this);
+  OperationCreateAccount clone() => OperationCreateAccount()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  OperationCreateAccount copyWith(
-          void Function(OperationCreateAccount) updates) =>
-      super.copyWith((message) => updates(message as OperationCreateAccount))
-          as OperationCreateAccount;
+  OperationCreateAccount copyWith(void Function(OperationCreateAccount) updates) =>
+      super.copyWith((message) => updates(message as OperationCreateAccount)) as OperationCreateAccount;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static OperationCreateAccount create() => OperationCreateAccount._();
   OperationCreateAccount createEmptyInstance() => create();
-  static $pb.PbList<OperationCreateAccount> createRepeated() =>
-      $pb.PbList<OperationCreateAccount>();
+  static $pb.PbList<OperationCreateAccount> createRepeated() => $pb.PbList<OperationCreateAccount>();
   @$core.pragma('dart2js:noInline')
-  static OperationCreateAccount getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationCreateAccount>(create);
+  static OperationCreateAccount getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationCreateAccount>(create);
   static OperationCreateAccount? _defaultInstance;
 
   /// address
@@ -207,15 +192,11 @@ class OperationPayment extends $pb.GeneratedMessage {
   factory OperationPayment.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory OperationPayment.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory OperationPayment.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationPayment',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationPayment',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'destination')
     ..aOM<Asset>(2, _omitFieldNames ? '' : 'asset', subBuilder: Asset.create)
     ..aInt64(3, _omitFieldNames ? '' : 'amount')
@@ -229,19 +210,17 @@ class OperationPayment extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   OperationPayment copyWith(void Function(OperationPayment) updates) =>
-      super.copyWith((message) => updates(message as OperationPayment))
-          as OperationPayment;
+      super.copyWith((message) => updates(message as OperationPayment)) as OperationPayment;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static OperationPayment create() => OperationPayment._();
   OperationPayment createEmptyInstance() => create();
-  static $pb.PbList<OperationPayment> createRepeated() =>
-      $pb.PbList<OperationPayment>();
+  static $pb.PbList<OperationPayment> createRepeated() => $pb.PbList<OperationPayment>();
   @$core.pragma('dart2js:noInline')
-  static OperationPayment getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationPayment>(create);
+  static OperationPayment getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationPayment>(create);
   static OperationPayment? _defaultInstance;
 
   /// Destination address
@@ -305,15 +284,11 @@ class OperationChangeTrust extends $pb.GeneratedMessage {
   factory OperationChangeTrust.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory OperationChangeTrust.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory OperationChangeTrust.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationChangeTrust',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationChangeTrust',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
     ..aOM<Asset>(1, _omitFieldNames ? '' : 'asset', subBuilder: Asset.create)
     ..aInt64(2, _omitFieldNames ? '' : 'validBefore')
     ..hasRequiredFields = false;
@@ -321,25 +296,22 @@ class OperationChangeTrust extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  OperationChangeTrust clone() =>
-      OperationChangeTrust()..mergeFromMessage(this);
+  OperationChangeTrust clone() => OperationChangeTrust()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   OperationChangeTrust copyWith(void Function(OperationChangeTrust) updates) =>
-      super.copyWith((message) => updates(message as OperationChangeTrust))
-          as OperationChangeTrust;
+      super.copyWith((message) => updates(message as OperationChangeTrust)) as OperationChangeTrust;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static OperationChangeTrust create() => OperationChangeTrust._();
   OperationChangeTrust createEmptyInstance() => create();
-  static $pb.PbList<OperationChangeTrust> createRepeated() =>
-      $pb.PbList<OperationChangeTrust>();
+  static $pb.PbList<OperationChangeTrust> createRepeated() => $pb.PbList<OperationChangeTrust>();
   @$core.pragma('dart2js:noInline')
-  static OperationChangeTrust getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationChangeTrust>(create);
+  static OperationChangeTrust getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationChangeTrust>(create);
   static OperationChangeTrust? _defaultInstance;
 
   /// The asset
@@ -387,21 +359,15 @@ class Claimant extends $pb.GeneratedMessage {
     return $result;
   }
   Claimant._() : super();
-  factory Claimant.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Claimant.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Claimant.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Claimant.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Claimant',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Claimant',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'account')
-    ..e<ClaimPredicate>(
-        2, _omitFieldNames ? '' : 'predicate', $pb.PbFieldType.OE,
+    ..e<ClaimPredicate>(2, _omitFieldNames ? '' : 'predicate', $pb.PbFieldType.OE,
         defaultOrMaker: ClaimPredicate.Predicate_unconditional,
         valueOf: ClaimPredicate.valueOf,
         enumValues: ClaimPredicate.values)
@@ -424,8 +390,7 @@ class Claimant extends $pb.GeneratedMessage {
   Claimant createEmptyInstance() => create();
   static $pb.PbList<Claimant> createRepeated() => $pb.PbList<Claimant>();
   @$core.pragma('dart2js:noInline')
-  static Claimant getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Claimant>(create);
+  static Claimant getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Claimant>(create);
   static Claimant? _defaultInstance;
 
   /// Claimant account
@@ -482,43 +447,33 @@ class OperationCreateClaimableBalance extends $pb.GeneratedMessage {
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationCreateClaimableBalance',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationCreateClaimableBalance',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
     ..aOM<Asset>(1, _omitFieldNames ? '' : 'asset', subBuilder: Asset.create)
     ..aInt64(2, _omitFieldNames ? '' : 'amount')
-    ..pc<Claimant>(3, _omitFieldNames ? '' : 'claimants', $pb.PbFieldType.PM,
-        subBuilder: Claimant.create)
+    ..pc<Claimant>(3, _omitFieldNames ? '' : 'claimants', $pb.PbFieldType.PM, subBuilder: Claimant.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  OperationCreateClaimableBalance clone() =>
-      OperationCreateClaimableBalance()..mergeFromMessage(this);
+  OperationCreateClaimableBalance clone() => OperationCreateClaimableBalance()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  OperationCreateClaimableBalance copyWith(
-          void Function(OperationCreateClaimableBalance) updates) =>
-      super.copyWith(
-              (message) => updates(message as OperationCreateClaimableBalance))
+  OperationCreateClaimableBalance copyWith(void Function(OperationCreateClaimableBalance) updates) =>
+      super.copyWith((message) => updates(message as OperationCreateClaimableBalance))
           as OperationCreateClaimableBalance;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static OperationCreateClaimableBalance create() =>
-      OperationCreateClaimableBalance._();
+  static OperationCreateClaimableBalance create() => OperationCreateClaimableBalance._();
   OperationCreateClaimableBalance createEmptyInstance() => create();
-  static $pb.PbList<OperationCreateClaimableBalance> createRepeated() =>
-      $pb.PbList<OperationCreateClaimableBalance>();
+  static $pb.PbList<OperationCreateClaimableBalance> createRepeated() => $pb.PbList<OperationCreateClaimableBalance>();
   @$core.pragma('dart2js:noInline')
-  static OperationCreateClaimableBalance getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationCreateClaimableBalance>(
-          create);
+  static OperationCreateClaimableBalance getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationCreateClaimableBalance>(create);
   static OperationCreateClaimableBalance? _defaultInstance;
 
   /// Optional, can be left empty for native asset
@@ -573,40 +528,30 @@ class OperationClaimClaimableBalance extends $pb.GeneratedMessage {
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'OperationClaimClaimableBalance',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'balanceId', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OperationClaimClaimableBalance',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'balanceId', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  OperationClaimClaimableBalance clone() =>
-      OperationClaimClaimableBalance()..mergeFromMessage(this);
+  OperationClaimClaimableBalance clone() => OperationClaimClaimableBalance()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  OperationClaimClaimableBalance copyWith(
-          void Function(OperationClaimClaimableBalance) updates) =>
-      super.copyWith(
-              (message) => updates(message as OperationClaimClaimableBalance))
-          as OperationClaimClaimableBalance;
+  OperationClaimClaimableBalance copyWith(void Function(OperationClaimClaimableBalance) updates) =>
+      super.copyWith((message) => updates(message as OperationClaimClaimableBalance)) as OperationClaimClaimableBalance;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static OperationClaimClaimableBalance create() =>
-      OperationClaimClaimableBalance._();
+  static OperationClaimClaimableBalance create() => OperationClaimClaimableBalance._();
   OperationClaimClaimableBalance createEmptyInstance() => create();
-  static $pb.PbList<OperationClaimClaimableBalance> createRepeated() =>
-      $pb.PbList<OperationClaimClaimableBalance>();
+  static $pb.PbList<OperationClaimClaimableBalance> createRepeated() => $pb.PbList<OperationClaimClaimableBalance>();
   @$core.pragma('dart2js:noInline')
-  static OperationClaimClaimableBalance getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<OperationClaimClaimableBalance>(create);
+  static OperationClaimClaimableBalance getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OperationClaimClaimableBalance>(create);
   static OperationClaimClaimableBalance? _defaultInstance;
 
   /// 32-byte balance ID hash
@@ -627,18 +572,13 @@ class OperationClaimClaimableBalance extends $pb.GeneratedMessage {
 class MemoVoid extends $pb.GeneratedMessage {
   factory MemoVoid() => create();
   MemoVoid._() : super();
-  factory MemoVoid.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory MemoVoid.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory MemoVoid.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory MemoVoid.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'MemoVoid',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'MemoVoid',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -658,8 +598,7 @@ class MemoVoid extends $pb.GeneratedMessage {
   MemoVoid createEmptyInstance() => create();
   static $pb.PbList<MemoVoid> createRepeated() => $pb.PbList<MemoVoid>();
   @$core.pragma('dart2js:noInline')
-  static MemoVoid getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MemoVoid>(create);
+  static MemoVoid getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MemoVoid>(create);
   static MemoVoid? _defaultInstance;
 }
 
@@ -675,18 +614,13 @@ class MemoText extends $pb.GeneratedMessage {
     return $result;
   }
   MemoText._() : super();
-  factory MemoText.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory MemoText.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory MemoText.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory MemoText.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'MemoText',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'MemoText',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'text')
     ..hasRequiredFields = false;
 
@@ -707,8 +641,7 @@ class MemoText extends $pb.GeneratedMessage {
   MemoText createEmptyInstance() => create();
   static $pb.PbList<MemoText> createRepeated() => $pb.PbList<MemoText>();
   @$core.pragma('dart2js:noInline')
-  static MemoText getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MemoText>(create);
+  static MemoText getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MemoText>(create);
   static MemoText? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -736,18 +669,13 @@ class MemoId extends $pb.GeneratedMessage {
     return $result;
   }
   MemoId._() : super();
-  factory MemoId.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory MemoId.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory MemoId.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory MemoId.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'MemoId',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'MemoId',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
     ..aInt64(1, _omitFieldNames ? '' : 'id')
     ..hasRequiredFields = false;
 
@@ -758,8 +686,7 @@ class MemoId extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  MemoId copyWith(void Function(MemoId) updates) =>
-      super.copyWith((message) => updates(message as MemoId)) as MemoId;
+  MemoId copyWith(void Function(MemoId) updates) => super.copyWith((message) => updates(message as MemoId)) as MemoId;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -768,8 +695,7 @@ class MemoId extends $pb.GeneratedMessage {
   MemoId createEmptyInstance() => create();
   static $pb.PbList<MemoId> createRepeated() => $pb.PbList<MemoId>();
   @$core.pragma('dart2js:noInline')
-  static MemoId getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MemoId>(create);
+  static MemoId getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MemoId>(create);
   static MemoId? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -797,20 +723,14 @@ class MemoHash extends $pb.GeneratedMessage {
     return $result;
   }
   MemoHash._() : super();
-  factory MemoHash.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory MemoHash.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory MemoHash.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory MemoHash.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'MemoHash',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'hash', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'MemoHash',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'hash', $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -830,8 +750,7 @@ class MemoHash extends $pb.GeneratedMessage {
   MemoHash createEmptyInstance() => create();
   static $pb.PbList<MemoHash> createRepeated() => $pb.PbList<MemoHash>();
   @$core.pragma('dart2js:noInline')
-  static MemoHash getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MemoHash>(create);
+  static MemoHash getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MemoHash>(create);
   static MemoHash? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -856,14 +775,7 @@ enum SigningInput_OperationOneof {
   notSet
 }
 
-enum SigningInput_MemoTypeOneof {
-  memoVoid,
-  memoText,
-  memoId,
-  memoHash,
-  memoReturnHash,
-  notSet
-}
+enum SigningInput_MemoTypeOneof { memoVoid, memoText, memoId, memoHash, memoReturnHash, notSet }
 
 /// Input data necessary to create a signed transaction.
 class SigningInput extends $pb.GeneratedMessage {
@@ -937,15 +849,12 @@ class SigningInput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningInput._() : super();
-  factory SigningInput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, SigningInput_OperationOneof>
-      _SigningInput_OperationOneofByTag = {
+  static const $core.Map<$core.int, SigningInput_OperationOneof> _SigningInput_OperationOneofByTag = {
     6: SigningInput_OperationOneof.opCreateAccount,
     7: SigningInput_OperationOneof.opPayment,
     8: SigningInput_OperationOneof.opChangeTrust,
@@ -953,8 +862,7 @@ class SigningInput extends $pb.GeneratedMessage {
     15: SigningInput_OperationOneof.opClaimClaimableBalance,
     0: SigningInput_OperationOneof.notSet
   };
-  static const $core.Map<$core.int, SigningInput_MemoTypeOneof>
-      _SigningInput_MemoTypeOneofByTag = {
+  static const $core.Map<$core.int, SigningInput_MemoTypeOneof> _SigningInput_MemoTypeOneofByTag = {
     9: SigningInput_MemoTypeOneof.memoVoid,
     10: SigningInput_MemoTypeOneof.memoText,
     11: SigningInput_MemoTypeOneof.memoId,
@@ -962,40 +870,27 @@ class SigningInput extends $pb.GeneratedMessage {
     13: SigningInput_MemoTypeOneof.memoReturnHash,
     0: SigningInput_MemoTypeOneof.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningInput',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
     ..oo(0, [6, 7, 8, 14, 15])
     ..oo(1, [9, 10, 11, 12, 13])
     ..a<$core.int>(1, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.O3)
     ..aInt64(2, _omitFieldNames ? '' : 'sequence')
     ..aOS(3, _omitFieldNames ? '' : 'account')
-    ..a<$core.List<$core.int>>(
-        4, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(4, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
     ..aOS(5, _omitFieldNames ? '' : 'passphrase')
     ..aOM<OperationCreateAccount>(6, _omitFieldNames ? '' : 'opCreateAccount',
         subBuilder: OperationCreateAccount.create)
-    ..aOM<OperationPayment>(7, _omitFieldNames ? '' : 'opPayment',
-        subBuilder: OperationPayment.create)
-    ..aOM<OperationChangeTrust>(8, _omitFieldNames ? '' : 'opChangeTrust',
-        subBuilder: OperationChangeTrust.create)
-    ..aOM<MemoVoid>(9, _omitFieldNames ? '' : 'memoVoid',
-        subBuilder: MemoVoid.create)
-    ..aOM<MemoText>(10, _omitFieldNames ? '' : 'memoText',
-        subBuilder: MemoText.create)
-    ..aOM<MemoId>(11, _omitFieldNames ? '' : 'memoId',
-        subBuilder: MemoId.create)
-    ..aOM<MemoHash>(12, _omitFieldNames ? '' : 'memoHash',
-        subBuilder: MemoHash.create)
-    ..aOM<MemoHash>(13, _omitFieldNames ? '' : 'memoReturnHash',
-        subBuilder: MemoHash.create)
-    ..aOM<OperationCreateClaimableBalance>(
-        14, _omitFieldNames ? '' : 'opCreateClaimableBalance',
+    ..aOM<OperationPayment>(7, _omitFieldNames ? '' : 'opPayment', subBuilder: OperationPayment.create)
+    ..aOM<OperationChangeTrust>(8, _omitFieldNames ? '' : 'opChangeTrust', subBuilder: OperationChangeTrust.create)
+    ..aOM<MemoVoid>(9, _omitFieldNames ? '' : 'memoVoid', subBuilder: MemoVoid.create)
+    ..aOM<MemoText>(10, _omitFieldNames ? '' : 'memoText', subBuilder: MemoText.create)
+    ..aOM<MemoId>(11, _omitFieldNames ? '' : 'memoId', subBuilder: MemoId.create)
+    ..aOM<MemoHash>(12, _omitFieldNames ? '' : 'memoHash', subBuilder: MemoHash.create)
+    ..aOM<MemoHash>(13, _omitFieldNames ? '' : 'memoReturnHash', subBuilder: MemoHash.create)
+    ..aOM<OperationCreateClaimableBalance>(14, _omitFieldNames ? '' : 'opCreateClaimableBalance',
         subBuilder: OperationCreateClaimableBalance.create)
-    ..aOM<OperationClaimClaimableBalance>(
-        15, _omitFieldNames ? '' : 'opClaimClaimableBalance',
+    ..aOM<OperationClaimClaimableBalance>(15, _omitFieldNames ? '' : 'opClaimClaimableBalance',
         subBuilder: OperationClaimClaimableBalance.create)
     ..aInt64(16, _omitFieldNames ? '' : 'timeBounds')
     ..hasRequiredFields = false;
@@ -1008,27 +903,22 @@ class SigningInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningInput copyWith(void Function(SigningInput) updates) =>
-      super.copyWith((message) => updates(message as SigningInput))
-          as SigningInput;
+      super.copyWith((message) => updates(message as SigningInput)) as SigningInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningInput create() => SigningInput._();
   SigningInput createEmptyInstance() => create();
-  static $pb.PbList<SigningInput> createRepeated() =>
-      $pb.PbList<SigningInput>();
+  static $pb.PbList<SigningInput> createRepeated() => $pb.PbList<SigningInput>();
   @$core.pragma('dart2js:noInline')
-  static SigningInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
+  static SigningInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
   static SigningInput? _defaultInstance;
 
-  SigningInput_OperationOneof whichOperationOneof() =>
-      _SigningInput_OperationOneofByTag[$_whichOneof(0)]!;
+  SigningInput_OperationOneof whichOperationOneof() => _SigningInput_OperationOneofByTag[$_whichOneof(0)]!;
   void clearOperationOneof() => clearField($_whichOneof(0));
 
-  SigningInput_MemoTypeOneof whichMemoTypeOneof() =>
-      _SigningInput_MemoTypeOneofByTag[$_whichOneof(1)]!;
+  SigningInput_MemoTypeOneof whichMemoTypeOneof() => _SigningInput_MemoTypeOneofByTag[$_whichOneof(1)]!;
   void clearMemoTypeOneof() => clearField($_whichOneof(1));
 
   /// Transaction fee
@@ -1220,8 +1110,7 @@ class SigningInput extends $pb.GeneratedMessage {
   @$pb.TagNumber(14)
   void clearOpCreateClaimableBalance() => clearField(14);
   @$pb.TagNumber(14)
-  OperationCreateClaimableBalance ensureOpCreateClaimableBalance() =>
-      $_ensure(13);
+  OperationCreateClaimableBalance ensureOpCreateClaimableBalance() => $_ensure(13);
 
   @$pb.TagNumber(15)
   OperationClaimClaimableBalance get opClaimClaimableBalance => $_getN(14);
@@ -1235,8 +1124,7 @@ class SigningInput extends $pb.GeneratedMessage {
   @$pb.TagNumber(15)
   void clearOpClaimClaimableBalance() => clearField(15);
   @$pb.TagNumber(15)
-  OperationClaimClaimableBalance ensureOpClaimClaimableBalance() =>
-      $_ensure(14);
+  OperationClaimClaimableBalance ensureOpClaimClaimableBalance() => $_ensure(14);
 
   @$pb.TagNumber(16)
   $fixnum.Int64 get timeBounds => $_getI64(15);
@@ -1271,23 +1159,16 @@ class SigningOutput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningOutput._() : super();
-  factory SigningOutput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningOutput',
-      package:
-          const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.Stellar.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'signature')
     ..e<$0.SigningError>(2, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: $0.SigningError.OK,
-        valueOf: $0.SigningError.valueOf,
-        enumValues: $0.SigningError.values)
+        defaultOrMaker: $0.SigningError.OK, valueOf: $0.SigningError.valueOf, enumValues: $0.SigningError.values)
     ..aOS(3, _omitFieldNames ? '' : 'errorMessage')
     ..hasRequiredFields = false;
 
@@ -1299,19 +1180,16 @@ class SigningOutput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningOutput copyWith(void Function(SigningOutput) updates) =>
-      super.copyWith((message) => updates(message as SigningOutput))
-          as SigningOutput;
+      super.copyWith((message) => updates(message as SigningOutput)) as SigningOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningOutput create() => SigningOutput._();
   SigningOutput createEmptyInstance() => create();
-  static $pb.PbList<SigningOutput> createRepeated() =>
-      $pb.PbList<SigningOutput>();
+  static $pb.PbList<SigningOutput> createRepeated() => $pb.PbList<SigningOutput>();
   @$core.pragma('dart2js:noInline')
-  static SigningOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
+  static SigningOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
   static SigningOutput? _defaultInstance;
 
   /// Signature.
@@ -1355,5 +1233,4 @@ class SigningOutput extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

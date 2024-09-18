@@ -21,8 +21,7 @@ class Protocol extends $pb.ProtobufEnum {
     V2,
   ];
 
-  static final $core.Map<$core.int, Protocol> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, Protocol> _byValue = $pb.ProtobufEnum.initByValue(values);
   static Protocol? valueOf($core.int value) => _byValue[value];
 
   const Protocol._($core.int v, $core.String n) : super(v, n);
@@ -31,10 +30,8 @@ class Protocol extends $pb.ProtobufEnum {
 /// WalletConnect request method.
 class Method extends $pb.ProtobufEnum {
   static const Method Unknown = Method._(0, _omitEnumNames ? '' : 'Unknown');
-  static const Method CosmosSignAmino =
-      Method._(1, _omitEnumNames ? '' : 'CosmosSignAmino');
-  static const Method SolanaSignTransaction =
-      Method._(2, _omitEnumNames ? '' : 'SolanaSignTransaction');
+  static const Method CosmosSignAmino = Method._(1, _omitEnumNames ? '' : 'CosmosSignAmino');
+  static const Method SolanaSignTransaction = Method._(2, _omitEnumNames ? '' : 'SolanaSignTransaction');
 
   static const $core.List<Method> values = <Method>[
     Unknown,
@@ -42,8 +39,7 @@ class Method extends $pb.ProtobufEnum {
     SolanaSignTransaction,
   ];
 
-  static final $core.Map<$core.int, Method> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, Method> _byValue = $pb.ProtobufEnum.initByValue(values);
   static Method? valueOf($core.int value) => _byValue[value];
 
   const Method._($core.int v, $core.String n) : super(v, n);

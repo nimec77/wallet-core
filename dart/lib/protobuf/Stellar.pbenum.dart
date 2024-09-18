@@ -24,8 +24,7 @@ class ClaimPredicate extends $pb.ProtobufEnum {
     Predicate_unconditional,
   ];
 
-  static final $core.Map<$core.int, ClaimPredicate> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, ClaimPredicate> _byValue = $pb.ProtobufEnum.initByValue(values);
   static ClaimPredicate? valueOf($core.int value) => _byValue[value];
 
   const ClaimPredicate._($core.int v, $core.String n) : super(v, n);

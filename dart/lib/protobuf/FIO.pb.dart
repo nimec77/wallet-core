@@ -32,17 +32,13 @@ class PublicAddress extends $pb.GeneratedMessage {
     return $result;
   }
   PublicAddress._() : super();
-  factory PublicAddress.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory PublicAddress.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory PublicAddress.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory PublicAddress.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'PublicAddress',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PublicAddress',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'coinSymbol')
     ..aOS(2, _omitFieldNames ? '' : 'address')
     ..hasRequiredFields = false;
@@ -55,19 +51,16 @@ class PublicAddress extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   PublicAddress copyWith(void Function(PublicAddress) updates) =>
-      super.copyWith((message) => updates(message as PublicAddress))
-          as PublicAddress;
+      super.copyWith((message) => updates(message as PublicAddress)) as PublicAddress;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static PublicAddress create() => PublicAddress._();
   PublicAddress createEmptyInstance() => create();
-  static $pb.PbList<PublicAddress> createRepeated() =>
-      $pb.PbList<PublicAddress>();
+  static $pb.PbList<PublicAddress> createRepeated() => $pb.PbList<PublicAddress>();
   @$core.pragma('dart2js:noInline')
-  static PublicAddress getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<PublicAddress>(create);
+  static PublicAddress getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PublicAddress>(create);
   static PublicAddress? _defaultInstance;
 
   /// Coin symbol for the address (a.k.a. tokenCode)
@@ -132,14 +125,11 @@ class NewFundsContent extends $pb.GeneratedMessage {
   factory NewFundsContent.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory NewFundsContent.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory NewFundsContent.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'NewFundsContent',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'NewFundsContent',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'payeePublicAddress')
     ..aOS(2, _omitFieldNames ? '' : 'amount')
     ..aOS(3, _omitFieldNames ? '' : 'coinSymbol')
@@ -156,19 +146,17 @@ class NewFundsContent extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   NewFundsContent copyWith(void Function(NewFundsContent) updates) =>
-      super.copyWith((message) => updates(message as NewFundsContent))
-          as NewFundsContent;
+      super.copyWith((message) => updates(message as NewFundsContent)) as NewFundsContent;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static NewFundsContent create() => NewFundsContent._();
   NewFundsContent createEmptyInstance() => create();
-  static $pb.PbList<NewFundsContent> createRepeated() =>
-      $pb.PbList<NewFundsContent>();
+  static $pb.PbList<NewFundsContent> createRepeated() => $pb.PbList<NewFundsContent>();
   @$core.pragma('dart2js:noInline')
-  static NewFundsContent getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<NewFundsContent>(create);
+  static NewFundsContent getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<NewFundsContent>(create);
   static NewFundsContent? _defaultInstance;
 
   /// Public addressed of the payee, on the mentioned blockchain.
@@ -273,43 +261,35 @@ class Action_RegisterFioAddress extends $pb.GeneratedMessage {
   factory Action_RegisterFioAddress.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Action_RegisterFioAddress.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Action_RegisterFioAddress.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Action.RegisterFioAddress',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Action.RegisterFioAddress',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'fioAddress')
     ..aOS(2, _omitFieldNames ? '' : 'ownerFioPublicKey')
-    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  Action_RegisterFioAddress clone() =>
-      Action_RegisterFioAddress()..mergeFromMessage(this);
+  Action_RegisterFioAddress clone() => Action_RegisterFioAddress()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Action_RegisterFioAddress copyWith(
-          void Function(Action_RegisterFioAddress) updates) =>
-      super.copyWith((message) => updates(message as Action_RegisterFioAddress))
-          as Action_RegisterFioAddress;
+  Action_RegisterFioAddress copyWith(void Function(Action_RegisterFioAddress) updates) =>
+      super.copyWith((message) => updates(message as Action_RegisterFioAddress)) as Action_RegisterFioAddress;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static Action_RegisterFioAddress create() => Action_RegisterFioAddress._();
   Action_RegisterFioAddress createEmptyInstance() => create();
-  static $pb.PbList<Action_RegisterFioAddress> createRepeated() =>
-      $pb.PbList<Action_RegisterFioAddress>();
+  static $pb.PbList<Action_RegisterFioAddress> createRepeated() => $pb.PbList<Action_RegisterFioAddress>();
   @$core.pragma('dart2js:noInline')
-  static Action_RegisterFioAddress getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Action_RegisterFioAddress>(create);
+  static Action_RegisterFioAddress getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Action_RegisterFioAddress>(create);
   static Action_RegisterFioAddress? _defaultInstance;
 
   /// The FIO name to be registered. Ex.: "alice@trust"
@@ -376,44 +356,36 @@ class Action_AddPubAddress extends $pb.GeneratedMessage {
   factory Action_AddPubAddress.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Action_AddPubAddress.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Action_AddPubAddress.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Action.AddPubAddress',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Action.AddPubAddress',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'fioAddress')
-    ..pc<PublicAddress>(
-        2, _omitFieldNames ? '' : 'publicAddresses', $pb.PbFieldType.PM,
+    ..pc<PublicAddress>(2, _omitFieldNames ? '' : 'publicAddresses', $pb.PbFieldType.PM,
         subBuilder: PublicAddress.create)
-    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  Action_AddPubAddress clone() =>
-      Action_AddPubAddress()..mergeFromMessage(this);
+  Action_AddPubAddress clone() => Action_AddPubAddress()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   Action_AddPubAddress copyWith(void Function(Action_AddPubAddress) updates) =>
-      super.copyWith((message) => updates(message as Action_AddPubAddress))
-          as Action_AddPubAddress;
+      super.copyWith((message) => updates(message as Action_AddPubAddress)) as Action_AddPubAddress;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static Action_AddPubAddress create() => Action_AddPubAddress._();
   Action_AddPubAddress createEmptyInstance() => create();
-  static $pb.PbList<Action_AddPubAddress> createRepeated() =>
-      $pb.PbList<Action_AddPubAddress>();
+  static $pb.PbList<Action_AddPubAddress> createRepeated() => $pb.PbList<Action_AddPubAddress>();
   @$core.pragma('dart2js:noInline')
-  static Action_AddPubAddress getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Action_AddPubAddress>(create);
+  static Action_AddPubAddress getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Action_AddPubAddress>(create);
   static Action_AddPubAddress? _defaultInstance;
 
   /// The FIO name already registered to the owner. Ex.: "alice@trust"
@@ -471,45 +443,36 @@ class Action_RemovePubAddress extends $pb.GeneratedMessage {
   factory Action_RemovePubAddress.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Action_RemovePubAddress.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Action_RemovePubAddress.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Action.RemovePubAddress',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Action.RemovePubAddress',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'fioAddress')
-    ..pc<PublicAddress>(
-        2, _omitFieldNames ? '' : 'publicAddresses', $pb.PbFieldType.PM,
+    ..pc<PublicAddress>(2, _omitFieldNames ? '' : 'publicAddresses', $pb.PbFieldType.PM,
         subBuilder: PublicAddress.create)
-    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  Action_RemovePubAddress clone() =>
-      Action_RemovePubAddress()..mergeFromMessage(this);
+  Action_RemovePubAddress clone() => Action_RemovePubAddress()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Action_RemovePubAddress copyWith(
-          void Function(Action_RemovePubAddress) updates) =>
-      super.copyWith((message) => updates(message as Action_RemovePubAddress))
-          as Action_RemovePubAddress;
+  Action_RemovePubAddress copyWith(void Function(Action_RemovePubAddress) updates) =>
+      super.copyWith((message) => updates(message as Action_RemovePubAddress)) as Action_RemovePubAddress;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static Action_RemovePubAddress create() => Action_RemovePubAddress._();
   Action_RemovePubAddress createEmptyInstance() => create();
-  static $pb.PbList<Action_RemovePubAddress> createRepeated() =>
-      $pb.PbList<Action_RemovePubAddress>();
+  static $pb.PbList<Action_RemovePubAddress> createRepeated() => $pb.PbList<Action_RemovePubAddress>();
   @$core.pragma('dart2js:noInline')
-  static Action_RemovePubAddress getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Action_RemovePubAddress>(create);
+  static Action_RemovePubAddress getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Action_RemovePubAddress>(create);
   static Action_RemovePubAddress? _defaultInstance;
 
   /// The FIO name already registered to the owner. Ex.: "alice@trust"
@@ -567,39 +530,31 @@ class Action_RemoveAllPubAddress extends $pb.GeneratedMessage {
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Action.RemoveAllPubAddress',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Action.RemoveAllPubAddress',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'fioAddress')
-    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  Action_RemoveAllPubAddress clone() =>
-      Action_RemoveAllPubAddress()..mergeFromMessage(this);
+  Action_RemoveAllPubAddress clone() => Action_RemoveAllPubAddress()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Action_RemoveAllPubAddress copyWith(
-          void Function(Action_RemoveAllPubAddress) updates) =>
-      super.copyWith(
-              (message) => updates(message as Action_RemoveAllPubAddress))
-          as Action_RemoveAllPubAddress;
+  Action_RemoveAllPubAddress copyWith(void Function(Action_RemoveAllPubAddress) updates) =>
+      super.copyWith((message) => updates(message as Action_RemoveAllPubAddress)) as Action_RemoveAllPubAddress;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static Action_RemoveAllPubAddress create() => Action_RemoveAllPubAddress._();
   Action_RemoveAllPubAddress createEmptyInstance() => create();
-  static $pb.PbList<Action_RemoveAllPubAddress> createRepeated() =>
-      $pb.PbList<Action_RemoveAllPubAddress>();
+  static $pb.PbList<Action_RemoveAllPubAddress> createRepeated() => $pb.PbList<Action_RemoveAllPubAddress>();
   @$core.pragma('dart2js:noInline')
-  static Action_RemoveAllPubAddress getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Action_RemoveAllPubAddress>(create);
+  static Action_RemoveAllPubAddress getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Action_RemoveAllPubAddress>(create);
   static Action_RemoveAllPubAddress? _defaultInstance;
 
   /// The FIO name already registered to the owner. Ex.: "alice@trust"
@@ -653,19 +608,14 @@ class Action_Transfer extends $pb.GeneratedMessage {
   factory Action_Transfer.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Action_Transfer.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Action_Transfer.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Action.Transfer',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Action.Transfer',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'payeePublicKey')
-    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'amount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -676,19 +626,17 @@ class Action_Transfer extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   Action_Transfer copyWith(void Function(Action_Transfer) updates) =>
-      super.copyWith((message) => updates(message as Action_Transfer))
-          as Action_Transfer;
+      super.copyWith((message) => updates(message as Action_Transfer)) as Action_Transfer;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static Action_Transfer create() => Action_Transfer._();
   Action_Transfer createEmptyInstance() => create();
-  static $pb.PbList<Action_Transfer> createRepeated() =>
-      $pb.PbList<Action_Transfer>();
+  static $pb.PbList<Action_Transfer> createRepeated() => $pb.PbList<Action_Transfer>();
   @$core.pragma('dart2js:noInline')
-  static Action_Transfer getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Action_Transfer>(create);
+  static Action_Transfer getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Action_Transfer>(create);
   static Action_Transfer? _defaultInstance;
 
   /// FIO address of the payee. Ex.: "FIO6m1fMdTpRkRBnedvYshXCxLFiC5suRU8KDfx8xxtXp2hntxpnf"
@@ -755,43 +703,35 @@ class Action_RenewFioAddress extends $pb.GeneratedMessage {
   factory Action_RenewFioAddress.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Action_RenewFioAddress.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Action_RenewFioAddress.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Action.RenewFioAddress',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Action.RenewFioAddress',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'fioAddress')
     ..aOS(2, _omitFieldNames ? '' : 'ownerFioPublicKey')
-    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  Action_RenewFioAddress clone() =>
-      Action_RenewFioAddress()..mergeFromMessage(this);
+  Action_RenewFioAddress clone() => Action_RenewFioAddress()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Action_RenewFioAddress copyWith(
-          void Function(Action_RenewFioAddress) updates) =>
-      super.copyWith((message) => updates(message as Action_RenewFioAddress))
-          as Action_RenewFioAddress;
+  Action_RenewFioAddress copyWith(void Function(Action_RenewFioAddress) updates) =>
+      super.copyWith((message) => updates(message as Action_RenewFioAddress)) as Action_RenewFioAddress;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static Action_RenewFioAddress create() => Action_RenewFioAddress._();
   Action_RenewFioAddress createEmptyInstance() => create();
-  static $pb.PbList<Action_RenewFioAddress> createRepeated() =>
-      $pb.PbList<Action_RenewFioAddress>();
+  static $pb.PbList<Action_RenewFioAddress> createRepeated() => $pb.PbList<Action_RenewFioAddress>();
   @$core.pragma('dart2js:noInline')
-  static Action_RenewFioAddress getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Action_RenewFioAddress>(create);
+  static Action_RenewFioAddress getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Action_RenewFioAddress>(create);
   static Action_RenewFioAddress? _defaultInstance;
 
   /// The FIO name to be renewed. Ex.: "alice@trust"
@@ -866,46 +806,37 @@ class Action_NewFundsRequest extends $pb.GeneratedMessage {
   factory Action_NewFundsRequest.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Action_NewFundsRequest.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Action_NewFundsRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Action.NewFundsRequest',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Action.NewFundsRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'payerFioName')
     ..aOS(2, _omitFieldNames ? '' : 'payerFioAddress')
     ..aOS(3, _omitFieldNames ? '' : 'payeeFioName')
-    ..aOM<NewFundsContent>(4, _omitFieldNames ? '' : 'content',
-        subBuilder: NewFundsContent.create)
-    ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOM<NewFundsContent>(4, _omitFieldNames ? '' : 'content', subBuilder: NewFundsContent.create)
+    ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  Action_NewFundsRequest clone() =>
-      Action_NewFundsRequest()..mergeFromMessage(this);
+  Action_NewFundsRequest clone() => Action_NewFundsRequest()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Action_NewFundsRequest copyWith(
-          void Function(Action_NewFundsRequest) updates) =>
-      super.copyWith((message) => updates(message as Action_NewFundsRequest))
-          as Action_NewFundsRequest;
+  Action_NewFundsRequest copyWith(void Function(Action_NewFundsRequest) updates) =>
+      super.copyWith((message) => updates(message as Action_NewFundsRequest)) as Action_NewFundsRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static Action_NewFundsRequest create() => Action_NewFundsRequest._();
   Action_NewFundsRequest createEmptyInstance() => create();
-  static $pb.PbList<Action_NewFundsRequest> createRepeated() =>
-      $pb.PbList<Action_NewFundsRequest>();
+  static $pb.PbList<Action_NewFundsRequest> createRepeated() => $pb.PbList<Action_NewFundsRequest>();
   @$core.pragma('dart2js:noInline')
-  static Action_NewFundsRequest getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Action_NewFundsRequest>(create);
+  static Action_NewFundsRequest getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Action_NewFundsRequest>(create);
   static Action_NewFundsRequest? _defaultInstance;
 
   /// The FIO name of the requested payer. Ex.: "alice@trust"
@@ -1003,43 +934,32 @@ class Action_AddBundledTransactions extends $pb.GeneratedMessage {
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Action.AddBundledTransactions',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Action.AddBundledTransactions',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'fioAddress')
-    ..a<$fixnum.Int64>(
-        2, _omitFieldNames ? '' : 'bundleSets', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'bundleSets', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'fee', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
       'Will be removed in next major version')
-  Action_AddBundledTransactions clone() =>
-      Action_AddBundledTransactions()..mergeFromMessage(this);
+  Action_AddBundledTransactions clone() => Action_AddBundledTransactions()..mergeFromMessage(this);
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Action_AddBundledTransactions copyWith(
-          void Function(Action_AddBundledTransactions) updates) =>
-      super.copyWith(
-              (message) => updates(message as Action_AddBundledTransactions))
-          as Action_AddBundledTransactions;
+  Action_AddBundledTransactions copyWith(void Function(Action_AddBundledTransactions) updates) =>
+      super.copyWith((message) => updates(message as Action_AddBundledTransactions)) as Action_AddBundledTransactions;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static Action_AddBundledTransactions create() =>
-      Action_AddBundledTransactions._();
+  static Action_AddBundledTransactions create() => Action_AddBundledTransactions._();
   Action_AddBundledTransactions createEmptyInstance() => create();
-  static $pb.PbList<Action_AddBundledTransactions> createRepeated() =>
-      $pb.PbList<Action_AddBundledTransactions>();
+  static $pb.PbList<Action_AddBundledTransactions> createRepeated() => $pb.PbList<Action_AddBundledTransactions>();
   @$core.pragma('dart2js:noInline')
-  static Action_AddBundledTransactions getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<Action_AddBundledTransactions>(create);
+  static Action_AddBundledTransactions getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Action_AddBundledTransactions>(create);
   static Action_AddBundledTransactions? _defaultInstance;
 
   /// The FIO name already registered to the owner. Ex.: "alice@trust"
@@ -1134,15 +1054,12 @@ class Action extends $pb.GeneratedMessage {
     return $result;
   }
   Action._() : super();
-  factory Action.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Action.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory Action.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory Action.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static const $core.Map<$core.int, Action_MessageOneof>
-      _Action_MessageOneofByTag = {
+  static const $core.Map<$core.int, Action_MessageOneof> _Action_MessageOneofByTag = {
     1: Action_MessageOneof.registerFioAddressMessage,
     2: Action_MessageOneof.addPubAddressMessage,
     3: Action_MessageOneof.transferMessage,
@@ -1153,33 +1070,23 @@ class Action extends $pb.GeneratedMessage {
     8: Action_MessageOneof.addBundledTransactionsMessage,
     0: Action_MessageOneof.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Action',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Action',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..oo(0, [1, 2, 3, 4, 5, 6, 7, 8])
-    ..aOM<Action_RegisterFioAddress>(
-        1, _omitFieldNames ? '' : 'registerFioAddressMessage',
+    ..aOM<Action_RegisterFioAddress>(1, _omitFieldNames ? '' : 'registerFioAddressMessage',
         subBuilder: Action_RegisterFioAddress.create)
-    ..aOM<Action_AddPubAddress>(
-        2, _omitFieldNames ? '' : 'addPubAddressMessage',
+    ..aOM<Action_AddPubAddress>(2, _omitFieldNames ? '' : 'addPubAddressMessage',
         subBuilder: Action_AddPubAddress.create)
-    ..aOM<Action_Transfer>(3, _omitFieldNames ? '' : 'transferMessage',
-        subBuilder: Action_Transfer.create)
-    ..aOM<Action_RenewFioAddress>(
-        4, _omitFieldNames ? '' : 'renewFioAddressMessage',
+    ..aOM<Action_Transfer>(3, _omitFieldNames ? '' : 'transferMessage', subBuilder: Action_Transfer.create)
+    ..aOM<Action_RenewFioAddress>(4, _omitFieldNames ? '' : 'renewFioAddressMessage',
         subBuilder: Action_RenewFioAddress.create)
-    ..aOM<Action_NewFundsRequest>(
-        5, _omitFieldNames ? '' : 'newFundsRequestMessage',
+    ..aOM<Action_NewFundsRequest>(5, _omitFieldNames ? '' : 'newFundsRequestMessage',
         subBuilder: Action_NewFundsRequest.create)
-    ..aOM<Action_RemovePubAddress>(
-        6, _omitFieldNames ? '' : 'removePubAddressMessage',
+    ..aOM<Action_RemovePubAddress>(6, _omitFieldNames ? '' : 'removePubAddressMessage',
         subBuilder: Action_RemovePubAddress.create)
-    ..aOM<Action_RemoveAllPubAddress>(
-        7, _omitFieldNames ? '' : 'removeAllPubAddressesMessage',
+    ..aOM<Action_RemoveAllPubAddress>(7, _omitFieldNames ? '' : 'removeAllPubAddressesMessage',
         subBuilder: Action_RemoveAllPubAddress.create)
-    ..aOM<Action_AddBundledTransactions>(
-        8, _omitFieldNames ? '' : 'addBundledTransactionsMessage',
+    ..aOM<Action_AddBundledTransactions>(8, _omitFieldNames ? '' : 'addBundledTransactionsMessage',
         subBuilder: Action_AddBundledTransactions.create)
     ..hasRequiredFields = false;
 
@@ -1190,8 +1097,7 @@ class Action extends $pb.GeneratedMessage {
   @$core.Deprecated('Using this can add significant overhead to your binary. '
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
-  Action copyWith(void Function(Action) updates) =>
-      super.copyWith((message) => updates(message as Action)) as Action;
+  Action copyWith(void Function(Action) updates) => super.copyWith((message) => updates(message as Action)) as Action;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -1200,12 +1106,10 @@ class Action extends $pb.GeneratedMessage {
   Action createEmptyInstance() => create();
   static $pb.PbList<Action> createRepeated() => $pb.PbList<Action>();
   @$core.pragma('dart2js:noInline')
-  static Action getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Action>(create);
+  static Action getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Action>(create);
   static Action? _defaultInstance;
 
-  Action_MessageOneof whichMessageOneof() =>
-      _Action_MessageOneofByTag[$_whichOneof(0)]!;
+  Action_MessageOneof whichMessageOneof() => _Action_MessageOneofByTag[$_whichOneof(0)]!;
   void clearMessageOneof() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -1304,8 +1208,7 @@ class Action extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   void clearRemoveAllPubAddressesMessage() => clearField(7);
   @$pb.TagNumber(7)
-  Action_RemoveAllPubAddress ensureRemoveAllPubAddressesMessage() =>
-      $_ensure(6);
+  Action_RemoveAllPubAddress ensureRemoveAllPubAddressesMessage() => $_ensure(6);
 
   @$pb.TagNumber(8)
   Action_AddBundledTransactions get addBundledTransactionsMessage => $_getN(7);
@@ -1319,8 +1222,7 @@ class Action extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   void clearAddBundledTransactionsMessage() => clearField(8);
   @$pb.TagNumber(8)
-  Action_AddBundledTransactions ensureAddBundledTransactionsMessage() =>
-      $_ensure(7);
+  Action_AddBundledTransactions ensureAddBundledTransactionsMessage() => $_ensure(7);
 }
 
 /// Represents current parameters of the FIO blockchain
@@ -1343,24 +1245,17 @@ class ChainParams extends $pb.GeneratedMessage {
     return $result;
   }
   ChainParams._() : super();
-  factory ChainParams.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ChainParams.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory ChainParams.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory ChainParams.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ChainParams',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(
-        1, _omitFieldNames ? '' : 'chainId', $pb.PbFieldType.OY)
-    ..a<$fixnum.Int64>(
-        2, _omitFieldNames ? '' : 'headBlockNumber', $pb.PbFieldType.OU6,
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ChainParams',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'chainId', $pb.PbFieldType.OY)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'headBlockNumber', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(
-        3, _omitFieldNames ? '' : 'refBlockPrefix', $pb.PbFieldType.OU6,
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'refBlockPrefix', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false;
 
@@ -1372,8 +1267,7 @@ class ChainParams extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   ChainParams copyWith(void Function(ChainParams) updates) =>
-      super.copyWith((message) => updates(message as ChainParams))
-          as ChainParams;
+      super.copyWith((message) => updates(message as ChainParams)) as ChainParams;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -1382,8 +1276,7 @@ class ChainParams extends $pb.GeneratedMessage {
   ChainParams createEmptyInstance() => create();
   static $pb.PbList<ChainParams> createRepeated() => $pb.PbList<ChainParams>();
   @$core.pragma('dart2js:noInline')
-  static ChainParams getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ChainParams>(create);
+  static ChainParams getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ChainParams>(create);
   static ChainParams? _defaultInstance;
 
   /// Constant chainId (32 bytes), obtained from get_info API
@@ -1458,22 +1351,16 @@ class SigningInput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningInput._() : super();
-  factory SigningInput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningInput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningInput',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningInput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'expiry', $pb.PbFieldType.OU3)
-    ..aOM<ChainParams>(2, _omitFieldNames ? '' : 'chainParams',
-        subBuilder: ChainParams.create)
-    ..a<$core.List<$core.int>>(
-        3, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
+    ..aOM<ChainParams>(2, _omitFieldNames ? '' : 'chainParams', subBuilder: ChainParams.create)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'privateKey', $pb.PbFieldType.OY)
     ..aOS(4, _omitFieldNames ? '' : 'tpid')
     ..aOM<Action>(5, _omitFieldNames ? '' : 'action', subBuilder: Action.create)
     ..aOS(6, _omitFieldNames ? '' : 'ownerPublicKey')
@@ -1487,19 +1374,16 @@ class SigningInput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningInput copyWith(void Function(SigningInput) updates) =>
-      super.copyWith((message) => updates(message as SigningInput))
-          as SigningInput;
+      super.copyWith((message) => updates(message as SigningInput)) as SigningInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningInput create() => SigningInput._();
   SigningInput createEmptyInstance() => create();
-  static $pb.PbList<SigningInput> createRepeated() =>
-      $pb.PbList<SigningInput>();
+  static $pb.PbList<SigningInput> createRepeated() => $pb.PbList<SigningInput>();
   @$core.pragma('dart2js:noInline')
-  static SigningInput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
+  static SigningInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningInput>(create);
   static SigningInput? _defaultInstance;
 
   /// Expiry for this message, in unix time. Can be 0, then it is taken from current time with default expiry
@@ -1609,22 +1493,16 @@ class SigningOutput extends $pb.GeneratedMessage {
     return $result;
   }
   SigningOutput._() : super();
-  factory SigningOutput.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
-  factory SigningOutput.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+  factory SigningOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'SigningOutput',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'),
-      createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SigningOutput',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'TW.FIO.Proto'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'json')
     ..e<$0.SigningError>(2, _omitFieldNames ? '' : 'error', $pb.PbFieldType.OE,
-        defaultOrMaker: $0.SigningError.OK,
-        valueOf: $0.SigningError.valueOf,
-        enumValues: $0.SigningError.values)
+        defaultOrMaker: $0.SigningError.OK, valueOf: $0.SigningError.valueOf, enumValues: $0.SigningError.values)
     ..aOS(3, _omitFieldNames ? '' : 'errorMessage')
     ..aOS(4, _omitFieldNames ? '' : 'actionName')
     ..hasRequiredFields = false;
@@ -1637,19 +1515,16 @@ class SigningOutput extends $pb.GeneratedMessage {
       'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
       'Will be removed in next major version')
   SigningOutput copyWith(void Function(SigningOutput) updates) =>
-      super.copyWith((message) => updates(message as SigningOutput))
-          as SigningOutput;
+      super.copyWith((message) => updates(message as SigningOutput)) as SigningOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static SigningOutput create() => SigningOutput._();
   SigningOutput createEmptyInstance() => create();
-  static $pb.PbList<SigningOutput> createRepeated() =>
-      $pb.PbList<SigningOutput>();
+  static $pb.PbList<SigningOutput> createRepeated() => $pb.PbList<SigningOutput>();
   @$core.pragma('dart2js:noInline')
-  static SigningOutput getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
+  static SigningOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SigningOutput>(create);
   static SigningOutput? _defaultInstance;
 
   /// Signed transaction in JSON
@@ -1706,5 +1581,4 @@ class SigningOutput extends $pb.GeneratedMessage {
 }
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
-const _omitMessageNames =
-    $core.bool.fromEnvironment('protobuf.omit_message_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

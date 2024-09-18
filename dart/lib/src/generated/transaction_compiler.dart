@@ -8,7 +8,6 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class TransactionCompiler {
-
   static Uint8List preImageHashes({
     required CoinType coinType,
     required Uint8List txInputData,
@@ -34,7 +33,12 @@ final class TransactionCompiler {
     final txInputDataUint8List = DataImpl.createWithBytes(txInputData);
     final signaturesDataVector = signatures.pointer;
     final publicKeysDataVector = publicKeys.pointer;
-    final result = _bindings.TWTransactionCompilerCompileWithSignatures(coinTypeEnum, txInputDataUint8List.pointer, signaturesDataVector, publicKeysDataVector,);
+    final result = _bindings.TWTransactionCompilerCompileWithSignatures(
+      coinTypeEnum,
+      txInputDataUint8List.pointer,
+      signaturesDataVector,
+      publicKeysDataVector,
+    );
     txInputDataUint8List.dispose();
     final wrapper = DataImpl.createWithData(result);
     final val = wrapper.bytes;
@@ -42,5 +46,4 @@ final class TransactionCompiler {
 
     return val;
   }
-
 }

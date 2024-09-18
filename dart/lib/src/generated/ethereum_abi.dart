@@ -8,7 +8,6 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class EthereumAbi {
-
   static Uint8List encode({
     required EthereumAbiFunction fn,
   }) {
@@ -67,5 +66,4 @@ final class EthereumAbi {
 
     return val;
   }
-
 }

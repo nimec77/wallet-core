@@ -8,7 +8,6 @@
 part of 'package:trust_wallet_core/trust_wallet_core.dart';
 
 final class TezosMessageSigner {
-
   static String formatMessage({
     required String message,
     required String url,
@@ -61,11 +60,14 @@ final class TezosMessageSigner {
     final pubKeyPublicKey = pubKey.pointer;
     final messageString = StringImpl.createWithString(message);
     final signatureString = StringImpl.createWithString(signature);
-    final result = _bindings.TWTezosMessageSignerVerifyMessage(pubKeyPublicKey, messageString.pointer, signatureString.pointer,);
+    final result = _bindings.TWTezosMessageSignerVerifyMessage(
+      pubKeyPublicKey,
+      messageString.pointer,
+      signatureString.pointer,
+    );
     messageString.dispose();
     signatureString.dispose();
 
     return result;
   }
-
 }
