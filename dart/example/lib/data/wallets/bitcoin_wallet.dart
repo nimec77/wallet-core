@@ -82,9 +82,7 @@ final class BitcoinWallet extends BaseBlockchainWallet {
       byteFee: $fixnum.Int64(10),
       coinType: coin.value,
       utxo: unspentTransactions,
-      privateKey: [
-        secretPrivateKeyBtc,
-      ],
+      privateKey: [secretPrivateKeyBtc],
     );
 
     bitcoinScript.dispose();

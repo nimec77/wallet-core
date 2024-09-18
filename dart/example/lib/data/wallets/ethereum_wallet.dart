@@ -83,7 +83,7 @@ final class EthereumWallet extends BaseBlockchainWallet {
         if (gasPriceResponse.statusCode == 200) {
           final gasPriceResult = Result.fromJson(jsonDecode(gasPriceResponse.body)).result;
 
-          final privateKeyEth = getKeyForCoin(CoinType.ethereum);
+          final privateKeyEth = getKeyForCoin(CoinType.ethereum).toList();
           final gasPrice = _bigIntToUint8List(BigInt.parse(gasPriceResult));
           final gasLimit = _intToUint8List(21000);
 

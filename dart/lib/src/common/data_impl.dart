@@ -6,7 +6,7 @@ final class DataImpl implements Disposable {
 
   Pointer<TWData> get pointer => _pointer;
 
-  const DataImpl(Pointer<TWData> data) : _pointer = data;
+  const DataImpl.createWithPointer(Pointer<TWData> data) : _pointer = data;
 
   DataImpl.createWithBytes(Uint8List bytes)
       : _pointer = _bindings.TWDataCreateWithBytes(
