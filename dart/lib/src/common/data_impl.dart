@@ -6,6 +6,8 @@ final class DataImpl implements Disposable {
 
   Pointer<TWData> get pointer => _pointer;
 
+  const DataImpl.createWithPointer(Pointer<TWData> data) : _pointer = data;
+
   DataImpl.createWithBytes(Uint8List bytes)
       : _pointer = _bindings.TWDataCreateWithBytes(
           bytes.toPointerUint8(),
@@ -19,7 +21,9 @@ final class DataImpl implements Disposable {
   Uint8List get bytes {
     final size = _bindings.TWDataSize(_pointer);
     final data = _bindings.TWDataBytes(_pointer);
-    return data.asTypedList(size);
+    final typedList = data.asTypedList(size);
+
+    return Uint8List.fromList(typedList.toList());
   }
 
   @override

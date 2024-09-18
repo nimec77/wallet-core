@@ -49,7 +49,6 @@ dependencies:
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
   fixnum: ^1.1.0
-  meta: ^1.15.0
 
 dev_dependencies:
   flutter_test:

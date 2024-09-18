@@ -1,6 +1,4 @@
-import 'dart:typed_data';
-
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 import 'package:trust_wallet_core/trust_wallet_core.dart';
 
 abstract interface class BlockchainWallet {
@@ -19,9 +17,7 @@ abstract base class BaseBlockchainWallet implements BlockchainWallet {
   @mustCallSuper
   final HDWallet _hdWallet;
 
-  const BaseBlockchainWallet({
-    required HDWallet hdWallet,
-  }) : _hdWallet = hdWallet;
+  const BaseBlockchainWallet({required HDWallet hdWallet}) : _hdWallet = hdWallet;
 
   @override
   @nonVirtual
@@ -33,6 +29,7 @@ abstract base class BaseBlockchainWallet implements BlockchainWallet {
     final privateKey = _hdWallet.getKeyForCoin(coin: coinType);
     final privateKeyBytes = privateKey.data;
     privateKey.dispose();
+
     return privateKeyBytes;
   }
 

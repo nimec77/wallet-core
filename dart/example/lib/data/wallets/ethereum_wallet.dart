@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:http_interceptor/http/intercepted_http.dart';
+import 'package:http_interceptor/http_interceptor.dart';
 import 'package:trust_wallet_core/protobuf/ethereum.pb.dart' as ethereum;
 import 'package:trust_wallet_core/trust_wallet_core.dart';
 import 'package:trust_wallet_core_example/common/utils.dart';
@@ -25,22 +25,14 @@ final class EthereumWallet extends BaseBlockchainWallet {
   Future<double> getBalance() async {
     final addressEth = getAddressForCoin(CoinType.ethereum);
 
-    final payload = {
-      'jsonrpc': '2.0',
-      'method': 'eth_getBalance',
-      'params': [addressEth, 'latest'],
-      // TODO: get response ID
-      'id': 1,
-    };
-
     try {
-      final response = await _http.post(
-        Uri.parse(_url),
-        headers: {
-          HttpHeaders.contentTypeHeader: ContentType.json.toString(),
-        },
-        body: jsonEncode(payload),
-      );
+      final response = await _sendRequest({
+        'jsonrpc': '2.0',
+        'method': 'eth_getBalance',
+        'params': [addressEth, 'latest'],
+        // TODO: get response ID
+        'id': 1,
+      });
 
       if (response.statusCode == 200) {
         final result = Result.fromJson(jsonDecode(response.body)).result;
@@ -64,23 +56,16 @@ final class EthereumWallet extends BaseBlockchainWallet {
   @override
   Future<String> sendTransaction({required String toAddress, required String amount}) async {
     final addressEth = getAddressForCoin(CoinType.ethereum);
-    final privateKeyEth = getKeyForCoin(CoinType.ethereum).toList();
 
     try {
       // Receive nonce
-      final nonceResponse = await _http.post(
-        Uri.parse(_url),
-        headers: {
-          HttpHeaders.contentTypeHeader: ContentType.json.toString(),
-        },
-        body: jsonEncode({
-          'jsonrpc': '2.0',
-          'method': 'eth_getTransactionCount',
-          'params': [addressEth, 'latest'],
-          // TODO: get response ID
-          'id': 1,
-        }),
-      );
+      final nonceResponse = await _sendRequest({
+        'jsonrpc': '2.0',
+        'method': 'eth_getTransactionCount',
+        'params': [addressEth, 'latest'],
+        // TODO: get response ID
+        'id': 1,
+      });
 
       if (nonceResponse.statusCode == 200) {
         final nonceResult = Result.fromJson(jsonDecode(nonceResponse.body)).result;
@@ -88,37 +73,31 @@ final class EthereumWallet extends BaseBlockchainWallet {
         final nonce = _bigIntToUint8List(BigInt.parse(nonceResult.substring(2), radix: 16));
 
         // Returns the current price per gas in wei.
-        final gasPriceResponse = await _http.post(
-          Uri.parse(_url),
-          headers: {
-            HttpHeaders.contentTypeHeader: ContentType.json.toString(),
-          },
-          body: jsonEncode({
-            'jsonrpc': '2.0',
-            'method': 'eth_gasPrice',
-            'params': [],
-            'id': 1,
-          }),
-        );
+        final gasPriceResponse = await _sendRequest({
+          'jsonrpc': '2.0',
+          'method': 'eth_gasPrice',
+          'params': [],
+          'id': 1,
+        });
 
         if (gasPriceResponse.statusCode == 200) {
           final gasPriceResult = Result.fromJson(jsonDecode(gasPriceResponse.body)).result;
+
+          final privateKeyEth = getKeyForCoin(CoinType.ethereum).toList();
           final gasPrice = _bigIntToUint8List(BigInt.parse(gasPriceResult));
           final gasLimit = _intToUint8List(21000);
-          final double amountDouble = double.parse(amount);
 
           // Минимальный gas limit для простой транзакции
           // 1 ETH in Wei
-          final amountInWei = BigInt.from(amountDouble * 1e18);
+          final amountInWei = Utils.valueToMinUnit(double.parse(amount), 18);
 
           final transaction = ethereum.Transaction(
             transfer: ethereum.Transaction_Transfer(
-              //amount: [amountInWei.toInt()],
               amount: _bigIntToUint8List(amountInWei),
             ),
           );
 
-          final chainId = _bigIntToUint8List(BigInt.parse('0x4268'));
+          final chainId = _bigIntToUint8List(BigInt.parse('0x4268')); // TestNet
 
           final signedTransaction = ethereum.SigningInput(
             chainId: chainId,
@@ -130,12 +109,25 @@ final class EthereumWallet extends BaseBlockchainWallet {
             nonce: nonce,
           );
 
-          CoinType coin = CoinType.ethereum;
-          final sign = AnySigner.sign(signedTransaction.writeToBuffer(), coin);
+          final sign = AnySigner.sign(
+            signedTransaction.writeToBuffer(),
+            CoinType.ethereum,
+          );
           final signingOutput = ethereum.SigningOutput.fromBuffer(sign);
           final rawTx = Utils.bytesToHex(signingOutput.encoded);
 
-          return _sendRawTransaction(rawTx);
+          final transactionResponse = await _sendRequest({
+            'jsonrpc': '2.0',
+            'method': 'eth_sendRawTransaction',
+            'params': ['0x$rawTx'],
+            'id': 1,
+          });
+
+          if (transactionResponse.statusCode == 200) {
+            return Result.fromJson(jsonDecode(transactionResponse.body)).result;
+          } else {
+            throw Exception('Failed to send transaction ${transactionResponse.reasonPhrase}');
+          }
         } else {
           throw Exception('Failed to send transaction ${gasPriceResponse.reasonPhrase}');
         }
@@ -177,18 +169,11 @@ final class EthereumWallet extends BaseBlockchainWallet {
     return bytes;
   }
 
-  Future<String> _sendRawTransaction(String rawTx) async {
-    final response = await _http.post(
-      Uri.parse(_url),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'jsonrpc': '2.0',
-        'method': 'eth_sendRawTransaction',
-        'params': ['0x$rawTx'],
-        'id': 1,
-      }),
-    );
-
-    return Result.fromJson(jsonDecode(response.body)).result;
-  }
+  Future<Response> _sendRequest(Map<String, Object> body) => _http.post(
+        Uri.parse(_url),
+        headers: {
+          HttpHeaders.contentTypeHeader: ContentType.json.toString(),
+        },
+        body: jsonEncode(body),
+      );
 }
