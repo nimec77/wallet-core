@@ -12,7 +12,7 @@ final class EthereumAbiValue {
     required bool value,
   }) {
     final result = _bindings.TWEthereumAbiValueEncodeBool(value);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -23,7 +23,7 @@ final class EthereumAbiValue {
     required int value,
   }) {
     final result = _bindings.TWEthereumAbiValueEncodeInt32(value);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -34,7 +34,7 @@ final class EthereumAbiValue {
     required int value,
   }) {
     final result = _bindings.TWEthereumAbiValueEncodeUInt32(value);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -47,7 +47,7 @@ final class EthereumAbiValue {
     final valueUint8List = DataImpl.createWithBytes(value);
     final result = _bindings.TWEthereumAbiValueEncodeInt256(valueUint8List.pointer);
     valueUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -60,7 +60,7 @@ final class EthereumAbiValue {
     final valueUint8List = DataImpl.createWithBytes(value);
     final result = _bindings.TWEthereumAbiValueEncodeUInt256(valueUint8List.pointer);
     valueUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -73,7 +73,7 @@ final class EthereumAbiValue {
     final valueUint8List = DataImpl.createWithBytes(value);
     final result = _bindings.TWEthereumAbiValueEncodeAddress(valueUint8List.pointer);
     valueUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -86,7 +86,7 @@ final class EthereumAbiValue {
     final valueString = StringImpl.createWithString(value);
     final result = _bindings.TWEthereumAbiValueEncodeString(valueString.pointer);
     valueString.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -99,7 +99,7 @@ final class EthereumAbiValue {
     final valueUint8List = DataImpl.createWithBytes(value);
     final result = _bindings.TWEthereumAbiValueEncodeBytes(valueUint8List.pointer);
     valueUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -112,7 +112,7 @@ final class EthereumAbiValue {
     final valueUint8List = DataImpl.createWithBytes(value);
     final result = _bindings.TWEthereumAbiValueEncodeBytesDyn(valueUint8List.pointer);
     valueUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

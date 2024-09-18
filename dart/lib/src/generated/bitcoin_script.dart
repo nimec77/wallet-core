@@ -59,7 +59,7 @@ final class BitcoinScript implements Disposable {
     if (result == nullptr) {
       return null;
     }
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -72,7 +72,7 @@ final class BitcoinScript implements Disposable {
     if (result == nullptr) {
       return null;
     }
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -85,7 +85,7 @@ final class BitcoinScript implements Disposable {
     if (result == nullptr) {
       return null;
     }
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -98,7 +98,7 @@ final class BitcoinScript implements Disposable {
     if (result == nullptr) {
       return null;
     }
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -111,7 +111,7 @@ final class BitcoinScript implements Disposable {
     if (result == nullptr) {
       return null;
     }
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -121,7 +121,7 @@ final class BitcoinScript implements Disposable {
   Uint8List encode() {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptEncode(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -209,7 +209,7 @@ final class BitcoinScript implements Disposable {
   Uint8List get data {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptData(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -219,7 +219,7 @@ final class BitcoinScript implements Disposable {
   Uint8List get scriptHash {
     final obj = pointer;
     final result = _bindings.TWBitcoinScriptScriptHash(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

@@ -16,7 +16,7 @@ final class TransactionCompiler {
     final txInputDataUint8List = DataImpl.createWithBytes(txInputData);
     final result = _bindings.TWTransactionCompilerPreImageHashes(coinTypeEnum, txInputDataUint8List.pointer);
     txInputDataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -40,7 +40,7 @@ final class TransactionCompiler {
       publicKeysDataVector,
     );
     txInputDataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

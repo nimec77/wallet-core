@@ -28,7 +28,7 @@ final class AES {
       if (result == nullptr) {
         return null;
       }
-      final wrapper = DataImpl.createWithData(result);
+      final wrapper = DataImpl.createWithPointer(result);
       final val = wrapper.bytes;
       wrapper.dispose();
 
@@ -60,7 +60,7 @@ final class AES {
       if (result == nullptr) {
         return null;
       }
-      final wrapper = DataImpl.createWithData(result);
+      final wrapper = DataImpl.createWithPointer(result);
       final val = wrapper.bytes;
       wrapper.dispose();
 
@@ -85,7 +85,7 @@ final class AES {
       if (result == nullptr) {
         return null;
       }
-      final wrapper = DataImpl.createWithData(result);
+      final wrapper = DataImpl.createWithPointer(result);
       final val = wrapper.bytes;
       wrapper.dispose();
 
@@ -110,7 +110,7 @@ final class AES {
       if (result == nullptr) {
         return null;
       }
-      final wrapper = DataImpl.createWithData(result);
+      final wrapper = DataImpl.createWithPointer(result);
       final val = wrapper.bytes;
       wrapper.dispose();
 

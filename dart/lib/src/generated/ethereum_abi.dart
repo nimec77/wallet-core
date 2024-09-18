@@ -13,7 +13,7 @@ final class EthereumAbi {
   }) {
     final fnEthereumAbiFunction = fn.pointer;
     final result = _bindings.TWEthereumAbiEncode(fnEthereumAbiFunction);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -60,7 +60,7 @@ final class EthereumAbi {
     final messageJsonString = StringImpl.createWithString(messageJson);
     final result = _bindings.TWEthereumAbiEncodeTyped(messageJsonString.pointer);
     messageJsonString.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

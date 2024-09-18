@@ -14,7 +14,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashSHA1(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -27,7 +27,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashSHA256(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -40,7 +40,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashSHA512(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -53,7 +53,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashSHA512_256(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -66,7 +66,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashKeccak256(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -79,7 +79,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashKeccak512(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -92,7 +92,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashSHA3_256(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -105,7 +105,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashSHA3_512(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -118,7 +118,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashRIPEMD(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -131,7 +131,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashBlake256(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -145,7 +145,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashBlake2b(dataUint8List.pointer, size);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -158,7 +158,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashGroestl512(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -171,7 +171,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashSHA256SHA256(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -184,7 +184,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashSHA256RIPEMD(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -197,7 +197,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashSHA3_256RIPEMD(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -210,7 +210,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashBlake256Blake256(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -223,7 +223,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashBlake256RIPEMD(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -236,7 +236,7 @@ final class Hash {
     final dataUint8List = DataImpl.createWithBytes(data);
     final result = _bindings.TWHashGroestl512Groestl512(dataUint8List.pointer);
     dataUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

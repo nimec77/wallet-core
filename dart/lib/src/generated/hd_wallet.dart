@@ -361,7 +361,7 @@ final class HDWallet implements Disposable {
   Uint8List get seed {
     final obj = pointer;
     final result = _bindings.TWHDWalletSeed(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -381,7 +381,7 @@ final class HDWallet implements Disposable {
   Uint8List get entropy {
     final obj = pointer;
     final result = _bindings.TWHDWalletEntropy(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

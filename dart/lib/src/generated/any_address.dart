@@ -211,7 +211,7 @@ final class AnyAddress implements Disposable, Address {
   Uint8List get data {
     final obj = pointer;
     final result = _bindings.TWAnyAddressData(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

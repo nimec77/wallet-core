@@ -263,7 +263,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final result = _bindings.TWEthereumAbiFunctionGetParamUInt256(obj, idx, isOutput);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -299,7 +299,7 @@ final class EthereumAbiFunction implements Disposable {
   }) {
     final obj = pointer;
     final result = _bindings.TWEthereumAbiFunctionGetParamAddress(obj, idx, isOutput);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

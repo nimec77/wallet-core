@@ -14,7 +14,7 @@ final class LiquidStaking {
     final inputUint8List = DataImpl.createWithBytes(input);
     final result = _bindings.TWLiquidStakingBuildRequest(inputUint8List.pointer);
     inputUint8List.dispose();
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

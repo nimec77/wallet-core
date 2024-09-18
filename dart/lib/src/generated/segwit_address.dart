@@ -93,7 +93,7 @@ final class SegwitAddress implements Disposable, Address {
   Uint8List get witnessProgram {
     final obj = pointer;
     final result = _bindings.TWSegwitAddressWitnessProgram(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

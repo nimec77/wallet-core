@@ -138,7 +138,7 @@ final class PublicKey implements Disposable {
   Uint8List get data {
     final obj = pointer;
     final result = _bindings.TWPublicKeyData(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

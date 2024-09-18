@@ -114,7 +114,7 @@ final class BitcoinAddress implements Disposable, Address {
   Uint8List get keyhash {
     final obj = pointer;
     final result = _bindings.TWBitcoinAddressKeyhash(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

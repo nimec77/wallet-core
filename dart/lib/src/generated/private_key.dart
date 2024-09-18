@@ -141,7 +141,7 @@ final class PrivateKey implements Disposable {
       if (result == nullptr) {
         return null;
       }
-      final wrapper = DataImpl.createWithData(result);
+      final wrapper = DataImpl.createWithPointer(result);
       final val = wrapper.bytes;
       wrapper.dispose();
 
@@ -161,7 +161,7 @@ final class PrivateKey implements Disposable {
       if (result == nullptr) {
         return null;
       }
-      final wrapper = DataImpl.createWithData(result);
+      final wrapper = DataImpl.createWithPointer(result);
       final val = wrapper.bytes;
       wrapper.dispose();
 
@@ -181,7 +181,7 @@ final class PrivateKey implements Disposable {
       if (result == nullptr) {
         return null;
       }
-      final wrapper = DataImpl.createWithData(result);
+      final wrapper = DataImpl.createWithPointer(result);
       final val = wrapper.bytes;
       wrapper.dispose();
 

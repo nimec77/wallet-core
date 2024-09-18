@@ -68,7 +68,7 @@ final class NervosAddress implements Disposable, Address {
   Uint8List get codeHash {
     final obj = pointer;
     final result = _bindings.TWNervosAddressCodeHash(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 
@@ -88,7 +88,7 @@ final class NervosAddress implements Disposable, Address {
   Uint8List get args {
     final obj = pointer;
     final result = _bindings.TWNervosAddressArgs(obj);
-    final wrapper = DataImpl.createWithData(result);
+    final wrapper = DataImpl.createWithPointer(result);
     final val = wrapper.bytes;
     wrapper.dispose();
 

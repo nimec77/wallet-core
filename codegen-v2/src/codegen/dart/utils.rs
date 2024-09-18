@@ -237,7 +237,7 @@ pub fn wrap_return(ty: &TypeInfo) -> DartOperation {
             get_method: "dartString".to_string(),
         },
         TypeVariant::Data => DartOperation::ReturnWithDispose {
-            call: format!("{DATA_WRAPPER_CLASS}.createWithData(result)"),
+            call: format!("{DATA_WRAPPER_CLASS}.createWithPointer(result)"),
             get_method: "bytes".to_string(),
         },
         // E.g. `return SomeEnum.fromValue(result.value)`
